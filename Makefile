@@ -6,3 +6,6 @@ get-wikipedia:
 
 tokenize:
 	python ./script/tokenize_document.py
+
+test:
+	 python -m unittest discover tests

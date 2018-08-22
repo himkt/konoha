@@ -1,5 +1,11 @@
 # Tiny Tokenizer: Basic sentence/word Tokenizer
 
+### Requirements
+
+- Python
+- MeCab
+- KyTea
+
 ### Quick start
 
 `make`
@@ -13,3 +19,7 @@
 #### Preprocessing
 
 `make tokenize`
+
+#### Run test
+
+`make test`
