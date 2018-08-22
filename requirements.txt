@@ -1,0 +1,3 @@
+git+https://github.com/attardi/wikiextractor
+kytea
+natto-py
