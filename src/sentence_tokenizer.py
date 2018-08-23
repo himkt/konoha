@@ -13,7 +13,11 @@ class SentenceTokenizer:
         return item.group(0).replace(SentenceTokenizer.PERIOD, '__PERIOD__')
 
     def tokenize(self, document):
-        pattern = '（.*?(' + SentenceTokenizer.PERIOD + ').*?）'
+        pattern = r'（.*?）'
+        pattern = re.compile(pattern)
+        document = re.sub(pattern, self.conv_period, document)
+
+        pattern = r'「.*?」'
         pattern = re.compile(pattern)
         document = re.sub(pattern, self.conv_period, document)
 

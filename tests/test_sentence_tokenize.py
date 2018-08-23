@@ -14,6 +14,16 @@ DOCUMENT2 = '''
 にゃにゃ
 '''
 
+DOCUMENT3 = '''
+猫「にゃおにゃ。ただしかわいいものとする。異議は認める」。
+
+にゃお。にゃにゃ
+'''
+
+DOCUMENT4 = '''
+わんわん。「にゃ？」(にゃー）わんわん。「わおーん。」（犬より。）
+'''
+
 
 class TestSentenceTokenizer(unittest.TestCase):
     def test_sentence_tokenize(self):
@@ -26,4 +36,16 @@ class TestSentenceTokenizer(unittest.TestCase):
         corpus = SentenceTokenizer()
         expect = ['私は猫である（ただしかわいいものとする。異議は認める）。', 'にゃお。', 'にゃにゃ']
         result = corpus.tokenize(DOCUMENT2)
+        self.assertEqual(expect, result)
+
+    def test_sentence_tokenize_with_quotation(self):
+        corpus = SentenceTokenizer()
+        expect = ['猫「にゃおにゃ。ただしかわいいものとする。異議は認める」。', 'にゃお。', 'にゃにゃ']
+        result = corpus.tokenize(DOCUMENT3)
+        self.assertEqual(expect, result)
+
+    def test_sentence_tokenize_with_combined(self):
+        corpus = SentenceTokenizer()
+        expect = ['わんわん。', '「にゃ？」(にゃー）わんわん。', '「わおーん。」（犬より。）']
+        result = corpus.tokenize(DOCUMENT4)
         self.assertEqual(expect, result)
