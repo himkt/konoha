@@ -5,7 +5,7 @@ from setuptools import find_packages
 
 
 setup(name='tiny_tokenizer',
-      version='1.0',
+      version='1.0.1',
       description='Tiny Word/Sentence Tokenizer',
       author='himkt',
       author_email='himkt@klis.tsukuba.ac.jp',
