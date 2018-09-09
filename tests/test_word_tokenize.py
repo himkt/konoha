@@ -1,4 +1,4 @@
-from src.word_tokenizer import WordTokenizer
+from tiny_tokenizer.word_tokenizer import WordTokenizer
 import unittest
 
 
