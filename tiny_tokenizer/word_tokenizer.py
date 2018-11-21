@@ -1,7 +1,8 @@
+import warnings
 
 
 class WordTokenizer:
-    def __init__(self, tokenizer='KyTea'):
+    def __init__(self, tokenizer=None):
         if tokenizer == 'KyTea':
             import Mykytea
             self.tokenizer = Mykytea.Mykytea('')
@@ -13,7 +14,9 @@ class WordTokenizer:
             self.tokenize = self._mecab_tokenize
 
         else:
-            raise Exception('Bad')
+            warnings.warn('Return input directly')
+            self.tokenizer = None
+            self.tokenize = lambda x: x
 
     def _mecab_tokenize(self, sentence):
         return self.tokenizer.parse(sentence)

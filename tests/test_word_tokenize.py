@@ -17,3 +17,9 @@ class TestWordTokenizer(unittest.TestCase):
         expect = '吾輩 は 猫 で ある'
         result = tokenizer.tokenize(SENTENCE1)
         self.assertEqual(expect, result)
+
+    def test_word_without_tokenizer(self):
+        tokenizer = WordTokenizer()
+        expect = '吾輩は猫である'
+        result = tokenizer.tokenize(SENTENCE1)
+        self.assertEqual(expect, result)
