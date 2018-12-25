@@ -9,6 +9,6 @@ setup(name='tiny_tokenizer',
       description='Tiny Word/Sentence Tokenizer',
       author='himkt',
       author_email='himkt@klis.tsukuba.ac.jp',
-      install_requires=['mecab-python3', 'kytea'],
+      install_requires=['natto-py', 'kytea'],
       url='https://github.com/himkt/tiny_tokenizer',
       packages=find_packages())
