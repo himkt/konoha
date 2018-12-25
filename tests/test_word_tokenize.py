@@ -5,7 +5,7 @@ import unittest
 SENTENCE1 = '吾輩は猫である'
 
 
-class TestWordTokenizer(unittest.TestCase):
+class WordTokenizerTest(unittest.TestCase):
     def test_word_tokenize_with_kytea(self):
         tokenizer = WordTokenizer('KyTea')
         expect = '吾輩 は 猫 で あ る'
