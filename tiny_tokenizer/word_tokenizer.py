@@ -2,15 +2,16 @@ import warnings
 
 
 class WordTokenizer:
-    def __init__(self, tokenizer=None):
+    def __init__(self, tokenizer=None, flags=''):
         if tokenizer == 'KyTea':
             import Mykytea
-            self.tokenizer = Mykytea.Mykytea('')
+            self.tokenizer = Mykytea.Mykytea(flags)
             self.tokenize = self._kytea_tokenize
 
         elif tokenizer == 'MeCab':
             import natto
-            self.tokenizer = natto.MeCab('-Owakati')
+            flags = '-Owakati' if not flags else flags
+            self.tokenizer = natto.MeCab(flags)
             self.tokenize = self._mecab_tokenize
 
         else:
