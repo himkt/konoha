@@ -13,6 +13,13 @@ class SentenceTokenizer:
         return item.group(0).replace(SentenceTokenizer.PERIOD, '__PERIOD__')
 
     def tokenize(self, document):
+        """
+        Divide a raw document into sentences.
+        :param document: a raw document
+        :type document: str
+        :return: list of sentences
+        :rtype list[str]
+        """
         pattern = r'（.*?）'
         pattern = re.compile(pattern)
         document = re.sub(pattern, self.conv_period, document)

@@ -3,6 +3,13 @@ import warnings
 
 class WordTokenizer:
     def __init__(self, tokenizer=None, flags=''):
+        """
+        :param tokenizer: specify tokenizer you use
+        :type tokenizer: str
+        :param flags: tokenizer's flags
+        :type flags: str
+        :rtype: None
+        """
         if tokenizer == 'KyTea':
             import Mykytea
             self.tokenizer = Mykytea.Mykytea(flags)
@@ -20,9 +27,23 @@ class WordTokenizer:
             self.tokenize = lambda x: x
 
     def _mecab_tokenize(self, sentence):
+        """
+        :param sentence: a sentence to be tokenized
+        :type sentence: str
+        :return: a tokenized sentence words
+                 are segmented with whitespace
+        :rtype: str
+        """
         return self.tokenizer.parse(sentence)
 
     def _kytea_tokenize(self, sentence):
+        """
+        :param sentence: a sentence to be tokenized
+        :type sentence: str
+        :return: a tokenized sentence words
+                 are segmented with whitespace
+        :rtype: str
+        """
         return ' '.join(self.tokenizer.getWS(sentence))
 
 
