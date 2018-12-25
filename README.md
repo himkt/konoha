@@ -1,4 +1,8 @@
-# Tiny Tokenizer: Basic sentence/word Tokenizer
+### Overview
+
+Tiny Tokenizer is simple sentence/word Tokenizer which is convenient to pre-process Japanese text.
+
+<div align="center"><img src="./static/image/tiny_tokenizer.png" width="700"/></div>
 
 ### Quick start: Install tiny_tokenizer using PIP
 
