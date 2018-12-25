@@ -1,3 +1,10 @@
+[![Build Status](https://travis-ci.org/himkt/tiny_tokenizer.svg?branch=master)](https://travis-ci.org/himkt/tiny_tokenizer)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/himkt/tiny_tokenizer.svg)](https://github.com/himkt/tiny_tokenizer/issues)
+[![GitHub stars](https://img.shields.io/github/stars/himkt/tiny_tokenizer.svg)](https://github.com/himkt/tiny_tokenizer/stargazers)
+[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg?maxAge=2592000)](https://github.com/himkt/tiny_tokenizer)
+[![GitHub commits](https://img.shields.io/github/commits-since/SubtitleEdit/subtitleedit/3.4.7.svg?maxAge=2592000)](https://github.com/himkt/tiny_tokenizer)
+
 ### Overview
 
 Tiny Tokenizer is simple sentence/word Tokenizer which is convenient to pre-process Japanese text.
