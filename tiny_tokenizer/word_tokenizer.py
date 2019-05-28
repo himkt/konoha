@@ -1,14 +1,16 @@
+"""Word Level Tokenizer."""
 import warnings
 
 
 class WordTokenizer:
+    """Tokenizer takes a sentence into tokens."""
+
     def __init__(self, tokenizer=None, flags=''):
-        """
-        :param tokenizer: specify tokenizer you use
-        :type tokenizer: str
-        :param flags: tokenizer's flags
-        :type flags: str
-        :rtype: None
+        """Create tokenizer.
+
+        Keyword Arguments:
+            tokenizer {str} -- specify the type of tokenizer (default: {None})
+            flags {str} -- option passing to tokenizer (default: {''})
         """
         if tokenizer == 'KyTea':
             import Mykytea
@@ -36,27 +38,23 @@ class WordTokenizer:
             self.tokenize = lambda x: x
 
     def _mecab_tokenize(self, sentence):
-        """
-        :param sentence: a sentence to be tokenized
-        :type sentence: str
-        :return: a tokenized sentence words \
-            are segmented with whitespace
-        :rtype: str
+        """Mecab tokenizer.
+
+        Arguments:
+            sentence {str} -- raw sentence
         """
         return self.tokenizer.parse(sentence)
 
     def _kytea_tokenize(self, sentence):
-        """
-        :param sentence: a sentence to be tokenized
-        :type sentence: str
-        :return: a tokenized sentence words \
-            are segmented with whitespace
-        :rtype: str
+        """Kytea tokenizer.
+
+        Arguments:
+            sentence {str} -- raw sentence
         """
         return ' '.join(self.tokenizer.getWS(sentence))
 
     def _sentencepiece_tokenize(self, sentence):
-        """sentencepiece tokenizer
+        """Sentencepiece tokenizer.
 
         Arguments:
             sentence {str} -- raw sentence
@@ -64,7 +62,7 @@ class WordTokenizer:
         return ' '.join(self.tokenizer.EncodeAsPieces(sentence))
 
     def _character_level_tokenizer(self, sentence):
-        """return a list of characters
+        """Character level tokenizer.
 
         Arguments:
             sentence {str} -- raw sentence
