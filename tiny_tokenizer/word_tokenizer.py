@@ -30,7 +30,7 @@ class WordTokenizer:
             self.tokenize = self._sentencepiece_tokenize
 
         elif tokenizer == 'Character':
-            self.tokenize = self._character_level_tokenizer
+            self.tokenize = self._character_level_tokenize
 
         else:
             warnings.warn('Return input directly')
@@ -61,7 +61,7 @@ class WordTokenizer:
         """
         return ' '.join(self.tokenizer.EncodeAsPieces(sentence))
 
-    def _character_level_tokenizer(self, sentence):
+    def _character_level_tokenize(self, sentence):
         """Character level tokenizer.
 
         Arguments:
