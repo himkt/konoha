@@ -18,6 +18,18 @@ class WordTokenizerTest(unittest.TestCase):
         result = tokenizer.tokenize(SENTENCE1)
         self.assertEqual(expect, result)
 
+    def test_word_tokenize_with_sentencepiece(self):
+        tokenizer = WordTokenizer('Sentencepiece', 'data/model.spm')
+        expect = '▁ 吾 輩 は 猫 である'
+        result = tokenizer.tokenize(SENTENCE1)
+        self.assertEqual(expect, result)
+
+    def test_word_tokenize_with_character(self):
+        tokenizer = WordTokenizer('Character')
+        expect = '吾 輩 は 猫 で あ る'
+        result = tokenizer.tokenize(SENTENCE1)
+        self.assertEqual(expect, result)
+
     def test_word_without_tokenizer(self):
         tokenizer = WordTokenizer()
         expect = '吾輩は猫である'
