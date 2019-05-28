@@ -68,4 +68,7 @@ words: KyTea
 
 ### Test
 
-`python -m unittest discover tests`
+```
+make download_spm  # download pre-trained sentencepiece model
+nosetests
+```
