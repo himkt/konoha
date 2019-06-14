@@ -9,59 +9,71 @@ class WordTokenizer:
         """Create tokenizer.
 
         Keyword Arguments:
-            tokenizer {str} -- specify the type of tokenizer (default: {None})
+            tokenizer {str or None} -- specify the type of tokenizer (default: {None})  # NOQA
             flags {str} -- option passing to tokenizer (default: {''})
         """
-        if tokenizer == 'KyTea':
-            import Mykytea
-            self.tokenizer = Mykytea.Mykytea(flags)
-            self.tokenize = self._kytea_tokenize
+        if tokenizer is None:
+            self.tokenize = self.__identity
+            warnings.warn('No tokenizer specified. Return input directly')
+            return
 
-        elif tokenizer == 'MeCab':
+        __tokenizer = tokenizer.lower()
+
+        if __tokenizer == 'character':
+            self.tokenize = self.__character_level_tokenize
+            self.__tokenizer_name = 'Character'
+            return
+
+        # use external libraries
+        if __tokenizer == 'mecab':
             import natto
             flags = '-Owakati' if not flags else flags
-            self.tokenizer = natto.MeCab(flags)
-            self.tokenize = self._mecab_tokenize
+            self.__tokenizer = natto.MeCab(flags)
+            self.tokenize = self.__mecab_tokenize
+            self.__tokenizer_name = 'MeCab'
 
-        elif tokenizer == 'Sentencepiece':
+        if __tokenizer == 'kytea':
+            import Mykytea
+            self.__tokenizer = Mykytea.Mykytea(flags)
+            self.tokenize = self.__kytea_tokenize
+            self.__tokenizer_name = 'KyTea'
+
+        elif __tokenizer == 'sentencepiece':
             import sentencepiece
-            self.tokenizer = sentencepiece.SentencePieceProcessor()
-            self.tokenizer.load(flags)
-            self.tokenize = self._sentencepiece_tokenize
+            self.__tokenizer = sentencepiece.SentencePieceProcessor()
+            self.__tokenizer.load(flags)
+            self.tokenize = self.__sentencepiece_tokenize
+            self.__tokenizer_name = 'Sentencepiece'
 
-        elif tokenizer == 'Character':
-            self.tokenize = self._character_level_tokenize
+    def __identity(self, sentence):
+        """Return input sentence directly."""
+        return sentence
 
-        else:
-            warnings.warn('Return input directly')
-            self.tokenizer = None
-            self.tokenize = lambda x: x
-
-    def _mecab_tokenize(self, sentence):
+    def __mecab_tokenize(self, sentence):
         """Mecab tokenizer.
 
         Arguments:
             sentence {str} -- raw sentence
         """
-        return self.tokenizer.parse(sentence)
+        return self.__tokenizer.parse(sentence)
 
-    def _kytea_tokenize(self, sentence):
+    def __kytea_tokenize(self, sentence):
         """Kytea tokenizer.
 
         Arguments:
             sentence {str} -- raw sentence
         """
-        return ' '.join(self.tokenizer.getWS(sentence))
+        return ' '.join(self.__tokenizer.getWS(sentence))
 
-    def _sentencepiece_tokenize(self, sentence):
+    def __sentencepiece_tokenize(self, sentence):
         """Sentencepiece tokenizer.
 
         Arguments:
             sentence {str} -- raw sentence
         """
-        return ' '.join(self.tokenizer.EncodeAsPieces(sentence))
+        return ' '.join(self.__tokenizer.EncodeAsPieces(sentence))
 
-    def _character_level_tokenize(self, sentence):
+    def __character_level_tokenize(self, sentence):
         """Character level tokenizer.
 
         Arguments:
