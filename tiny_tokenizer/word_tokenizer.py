@@ -14,14 +14,15 @@ class WordTokenizer:
         """
         if tokenizer is None:
             self.tokenize = self.__identity
+            self.__tokenizer_name = 'identity'
             warnings.warn('No tokenizer specified. Return input directly')
             return
 
         __tokenizer = tokenizer.lower()
 
         if __tokenizer == 'character':
-            self.tokenize = self.__character_level_tokenize
             self.__tokenizer_name = 'Character'
+            self.tokenize = self.__character_level_tokenize
             return
 
         # use external libraries
@@ -29,21 +30,21 @@ class WordTokenizer:
             import natto
             flags = '-Owakati' if not flags else flags
             self.__tokenizer = natto.MeCab(flags)
-            self.tokenize = self.__mecab_tokenize
             self.__tokenizer_name = 'MeCab'
+            self.tokenize = self.__mecab_tokenize
 
         if __tokenizer == 'kytea':
             import Mykytea
             self.__tokenizer = Mykytea.Mykytea(flags)
-            self.tokenize = self.__kytea_tokenize
             self.__tokenizer_name = 'KyTea'
+            self.tokenize = self.__kytea_tokenize
 
         elif __tokenizer == 'sentencepiece':
             import sentencepiece
             self.__tokenizer = sentencepiece.SentencePieceProcessor()
             self.__tokenizer.load(flags)
-            self.tokenize = self.__sentencepiece_tokenize
             self.__tokenizer_name = 'Sentencepiece'
+            self.tokenize = self.__sentencepiece_tokenize
 
     def __identity(self, sentence):
         """Return input sentence directly."""
@@ -80,6 +81,10 @@ class WordTokenizer:
             sentence {str} -- raw sentence
         """
         return ' '.join(list(sentence))
+
+    @property
+    def tokenizer_name(self):
+        return self.__tokenizer_name
 
 
 if __name__ == '__main__':
