@@ -36,39 +36,30 @@ docker run -it himkt/tiny_tokenizer
 
 ```
 # python3 example/tokenize_document.py
-我輩は猫である。
-words: MeCab
-  我輩
-  は
-  猫
-  で
-  ある
-  。
-words: KyTea
-  我輩
-  は
-  猫
-  で
-  あ
-  る
-  。
-名前はまだない
-words: MeCab
-  名前
-  は
-  まだ
-  ない
-words: KyTea
-  名前
-  は
-  まだ
-  な
-  い
+Finish creating word tokenizers
+
+Given document: 我輩は猫である。名前はまだない
+#0: 我輩は猫である。
+Tokenizer (identity): 我輩は猫である。
+Tokenizer (MeCab): 我輩 は 猫 で ある 。
+Tokenizer (KyTea): 我輩 は 猫 で あ る 。
+Tokenizer (Sentencepiece): ▁ 我 輩 は 猫 である 。
+Tokenizer (Character): 我 輩 は 猫 で あ る 。
+
+#1: 名前はまだない
+Tokenizer (identity): 名前はまだない
+Tokenizer (MeCab): 名前 は まだ ない
+Tokenizer (KyTea): 名前 は まだ な い
+Tokenizer (Sentencepiece): ▁ 名前 はまだ ない
+Tokenizer (Character): 名 前 は ま だ な い
 ```
 
 ### Test
 
 ```
-make download_spm  # download pre-trained sentencepiece model
 nosetests
 ```
+
+### Acknowledgement
+
+Sentencepiece model used in test is provided by @yoheikikuta. Thanks a lot!
