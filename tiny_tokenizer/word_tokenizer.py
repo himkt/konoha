@@ -64,7 +64,7 @@ class WordTokenizer:
         Arguments:
             sentence {str} -- raw sentence
         """
-        return list(map(str, self.__tokenizer.getWS(sentence)))
+        return list(self.__tokenizer.getWS(sentence))
 
     def __sentencepiece_tokenize(self, sentence):
         """Sentencepiece tokenizer.
