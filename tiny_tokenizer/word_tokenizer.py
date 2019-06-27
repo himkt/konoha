@@ -48,7 +48,7 @@ class WordTokenizer:
 
     def __identity(self, sentence):
         """Return input sentence directly."""
-        return sentence
+        return [sentence]
 
     def __mecab_tokenize(self, sentence):
         """Mecab tokenizer.
@@ -56,7 +56,7 @@ class WordTokenizer:
         Arguments:
             sentence {str} -- raw sentence
         """
-        return self.__tokenizer.parse(sentence)
+        return self.__tokenizer.parse(sentence).split(' ')
 
     def __kytea_tokenize(self, sentence):
         """Kytea tokenizer.
@@ -64,7 +64,7 @@ class WordTokenizer:
         Arguments:
             sentence {str} -- raw sentence
         """
-        return ' '.join(self.__tokenizer.getWS(sentence))
+        return list(self.__tokenizer.getWS(sentence))
 
     def __sentencepiece_tokenize(self, sentence):
         """Sentencepiece tokenizer.
@@ -72,7 +72,7 @@ class WordTokenizer:
         Arguments:
             sentence {str} -- raw sentence
         """
-        return ' '.join(self.__tokenizer.EncodeAsPieces(sentence))
+        return self.__tokenizer.EncodeAsPieces(sentence)
 
     def __character_level_tokenize(self, sentence):
         """Character level tokenizer.
@@ -80,7 +80,7 @@ class WordTokenizer:
         Arguments:
             sentence {str} -- raw sentence
         """
-        return ' '.join(list(sentence))
+        return list(sentence)
 
     @property
     def tokenizer_name(self):
