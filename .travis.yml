@@ -13,6 +13,10 @@ before_install:
   - cd kytea-0.4.7 && ./configure && sudo make && sudo make install && cd ..
   - sudo ldconfig -v
 
+env:
+  - BUILD_WORD_TOKENIZER=
+  - BUILD_WORD_TOKENIZER=0
+
 install:
   - pip install .
 
@@ -20,4 +24,4 @@ python:
       - 3.6
 
 script:
-      - nosetests tests
+      - python -m pytest
