@@ -21,7 +21,7 @@ You can install tiny_tokenizer via pip.
 `pip install tiny_tokenizer`
 
 Or, you can install tiny_tokenizer only with SentenceTokenizer by the following command.
-`TINY_TOKENIZER_BUILD_WORD_TOKENIZER=0 pip install tiny_tokenizer`
+`BUILD_WORD_TOKENIZER=0 pip install tiny_tokenizer`
 
 
 ### Quick start: Docker
