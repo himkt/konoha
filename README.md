@@ -20,6 +20,10 @@ tiny_tokenizer requires following libraries.
 You can install tiny_tokenizer via pip.
 `pip install tiny_tokenizer`
 
+Or, you can install tiny_tokenizer only with SentenceTokenizer by the following command.
+`BUILD_WORD_TOKENIZER=0 pip install tiny_tokenizer`
+
+
 ### Quick start: Docker
 
 You can use tiny_tokenizer using the Docker container.
@@ -29,6 +33,7 @@ If you want to use tiny_tokenizer with Docker, run following commands.
 docker build -t himkt/tiny_tokenizer .
 docker run -it himkt/tiny_tokenizer
 ```
+
 
 ### Example
 
@@ -54,10 +59,11 @@ Tokenizer (Sentencepiece): ▁ 名前 はまだ ない
 Tokenizer (Character): 名 前 は ま だ な い
 ```
 
+
 ### Test
 
 ```
-nosetests
+python -m pytest
 ```
 
 ### Acknowledgement

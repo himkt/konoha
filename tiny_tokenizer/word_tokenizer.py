@@ -27,20 +27,33 @@ class WordTokenizer:
 
         # use external libraries
         if __tokenizer == 'mecab':
-            import natto
+            try:
+                import natto
+            except ModuleNotFoundError:
+                raise ModuleNotFoundError('natto-py is not installed')
+                exit()
+
             flags = '-Owakati' if not flags else flags
             self.__tokenizer = natto.MeCab(flags)
             self.__tokenizer_name = 'MeCab'
             self.tokenize = self.__mecab_tokenize
 
         if __tokenizer == 'kytea':
-            import Mykytea
+            try:
+                import Mykytea
+            except ModuleNotFoundError:
+                raise ModuleNotFoundError('kytea is not installed')
+
             self.__tokenizer = Mykytea.Mykytea(flags)
             self.__tokenizer_name = 'KyTea'
             self.tokenize = self.__kytea_tokenize
 
         elif __tokenizer == 'sentencepiece':
-            import sentencepiece
+            try:
+                import sentencepiece
+            except ModuleNotFoundError:
+                raise ModuleNotFoundError('sentencepiece is not installed')
+
             self.__tokenizer = sentencepiece.SentencePieceProcessor()
             self.__tokenizer.load(flags)
             self.__tokenizer_name = 'Sentencepiece'
