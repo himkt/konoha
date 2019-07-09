@@ -14,7 +14,7 @@ before_install:
   - sudo ldconfig -v
 
 env:
-  - BUILD_WORD_TOKENIZER=
+  - 
   - BUILD_WORD_TOKENIZER=0
 
 install:
