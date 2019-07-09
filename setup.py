@@ -22,7 +22,7 @@ else:
 
 setup(
     name='tiny_tokenizer',
-    version='1.3.0',
+    version='1.3.1',
     description='Tiny Word/Sentence Tokenizer',
     author='himkt',
     author_email='himkt@klis.tsukuba.ac.jp',
