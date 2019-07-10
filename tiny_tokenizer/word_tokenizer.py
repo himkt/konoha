@@ -20,6 +20,10 @@ class Token:
             representation += f' ({self.postag})'
         return representation
 
+    def __eq__(self, right):
+        return self.surface == right.surface and \
+            self.postag == right.postag
+
 
 class BaseWordLevelTokenizer:
     """Base class for word level tokenizer"""
