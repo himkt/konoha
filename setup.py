@@ -1,15 +1,14 @@
 """setup.py."""
 
+from os import getenv
 
 from setuptools import find_packages
 from setuptools import setup
 
-from os import getenv
-
 
 try:
-    BUILD_WORD_TOKENIZER = int(getenv("BUILD_WORD_TOKENIZER", 1))
-except:
+    BUILD_WORD_TOKENIZER = int(getenv("BUILD_WORD_TOKENIZER", '1'))
+except ValueError:
     raise ValueError("BUILD_WORD_TOKENIZER should be integer")
 
 
@@ -22,7 +21,7 @@ else:
 
 setup(
     name="tiny_tokenizer",
-    version="1.3.1",
+    version="2.0.0",
     description="Tiny Word/Sentence Tokenizer",
     author="himkt",
     author_email="himkt@klis.tsukuba.ac.jp",
