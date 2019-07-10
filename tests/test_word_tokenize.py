@@ -13,7 +13,7 @@ class WordTokenizerTest(unittest.TestCase):
     def test_word_tokenize_with_kytea(self):
         """Test KyTea tokenizer."""
         try:
-            tokenizer = WordTokenizer("KyTea")
+            tokenizer = WordTokenizer(tokenizer="KyTea")
         except ModuleNotFoundError:
             pytest.skip("skip kytea")
 
@@ -24,7 +24,7 @@ class WordTokenizerTest(unittest.TestCase):
     def test_word_tokenize_with_mecab(self):
         """Test MeCab tokenizer."""
         try:
-            tokenizer = WordTokenizer("MeCab")
+            tokenizer = WordTokenizer(tokenizer="MeCab")
         except ModuleNotFoundError:
             pytest.skip("skip mecab")
 
@@ -35,7 +35,10 @@ class WordTokenizerTest(unittest.TestCase):
     def test_word_tokenize_with_sentencepiece(self):
         """Test Sentencepiece tokenizer."""
         try:
-            tokenizer = WordTokenizer("Sentencepiece", "data/model.spm")
+            tokenizer = WordTokenizer(
+                tokenizer="Sentencepiece",
+                model_path="data/model.spm"
+            )
         except ModuleNotFoundError:
             pytest.skip("skip sentencepiece")
 
@@ -45,15 +48,10 @@ class WordTokenizerTest(unittest.TestCase):
 
     def test_word_tokenize_with_character(self):
         """Test Character tokenizer."""
-        tokenizer = WordTokenizer("Character")
+        tokenizer = WordTokenizer(
+            tokenizer="Character"
+        )
         expect = "吾 輩 は 猫 で あ る".split(" ")
-        result = tokenizer.tokenize(SENTENCE1)
-        self.assertEqual(expect, result)
-
-    def test_word_without_tokenizer(self):
-        """Test identity tokenizer."""
-        tokenizer = WordTokenizer()
-        expect = "吾輩は猫である".split(" ")
         result = tokenizer.tokenize(SENTENCE1)
         self.assertEqual(expect, result)
 
@@ -64,7 +62,7 @@ class WordTokenizerWithLowerCaseTest(unittest.TestCase):
     def test_word_tokenize_with_kytea(self):
         """Test KyTea tokenizer."""
         try:
-            tokenizer = WordTokenizer("kytea")
+            tokenizer = WordTokenizer(tokenizer="kytea")
         except ModuleNotFoundError:
             pytest.skip("skip kytea")
 
@@ -75,7 +73,7 @@ class WordTokenizerWithLowerCaseTest(unittest.TestCase):
     def test_word_tokenize_with_mecab(self):
         """Test MeCab tokenizer."""
         try:
-            tokenizer = WordTokenizer("mecab")
+            tokenizer = WordTokenizer(tokenizer="mecab")
         except ModuleNotFoundError:
             pytest.skip("skip mecab")
 
@@ -86,7 +84,10 @@ class WordTokenizerWithLowerCaseTest(unittest.TestCase):
     def test_word_tokenize_with_sentencepiece(self):
         """Test Sentencepiece tokenizer."""
         try:
-            tokenizer = WordTokenizer("Sentencepiece", "data/model.spm")
+            tokenizer = WordTokenizer(
+                tokenizer="Sentencepiece",
+                model_path="data/model.spm"
+            )
         except ModuleNotFoundError:
             pytest.skip("skip sentencepiece")
 
@@ -96,14 +97,7 @@ class WordTokenizerWithLowerCaseTest(unittest.TestCase):
 
     def test_word_tokenize_with_character(self):
         """Test Character tokenizer."""
-        tokenizer = WordTokenizer("character")
+        tokenizer = WordTokenizer(tokenizer="character")
         expect = "吾 輩 は 猫 で あ る".split(" ")
-        result = tokenizer.tokenize(SENTENCE1)
-        self.assertEqual(expect, result)
-
-    def test_word_without_tokenizer(self):
-        """Test identity tokenizer."""
-        tokenizer = WordTokenizer()
-        expect = "吾輩は猫である".split(" ")
         result = tokenizer.tokenize(SENTENCE1)
         self.assertEqual(expect, result)
