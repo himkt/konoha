@@ -192,6 +192,10 @@ class WordTokenizer:
         """Tokenize input text"""
         return self.tokenizer.tokenize(text)
 
+    @property
+    def name(self):
+        return self.__tokenizer_name
+
 
 if __name__ == "__main__":
     tokenizer = WordTokenizer(tokenizer='mecab', with_postag=False)

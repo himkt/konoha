@@ -6,7 +6,9 @@ if __name__ == "__main__":
     sentence_tokenizer = SentenceTokenizer()
     word_tokenizers = []
     word_tokenizers.append(WordTokenizer(tokenizer="MeCab"))
+    word_tokenizers.append(WordTokenizer(tokenizer="MeCab", with_postag=True))
     word_tokenizers.append(WordTokenizer(tokenizer="KyTea"))
+    word_tokenizers.append(WordTokenizer(tokenizer="KyTea", with_postag=True))
     word_tokenizers.append(WordTokenizer(tokenizer="Sentencepiece", model_path="data/model.spm"))  # NOQA
     word_tokenizers.append(WordTokenizer(tokenizer="Character"))
     print("Finish creating word tokenizers")
