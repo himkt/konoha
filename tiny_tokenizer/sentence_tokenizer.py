@@ -1,16 +1,17 @@
+"""Sentence Tokenizer."""
 import re
 
 
 class SentenceTokenizer:
-    PERIOD = '。'
-    PERIOD_SPECIAL = '__PERIOD__'
+    PERIOD = "。"
+    PERIOD_SPECIAL = "__PERIOD__"
 
     def __init__(self):
         pass
 
     @staticmethod
     def conv_period(item):
-        return item.group(0).replace(SentenceTokenizer.PERIOD, '__PERIOD__')
+        return item.group(0).replace(SentenceTokenizer.PERIOD, "__PERIOD__")
 
     def tokenize(self, document):
         """
@@ -20,21 +21,21 @@ class SentenceTokenizer:
         :return: list of sentences
         :rtype list[str]
         """
-        pattern = r'（.*?）'
+        pattern = r"（.*?）"
         pattern = re.compile(pattern)
         document = re.sub(pattern, self.conv_period, document)
 
-        pattern = r'「.*?」'
+        pattern = r"「.*?」"
         pattern = re.compile(pattern)
         document = re.sub(pattern, self.conv_period, document)
 
         result = []
-        for line in document.split('\n'):
+        for line in document.split("\n"):
             line = line.rstrip()
-            line = line.replace('\n', '')
-            line = line.replace('\r', '')
-            line = line.replace('。', '。\n')
-            sentences = line.split('\n')
+            line = line.replace("\n", "")
+            line = line.replace("\r", "")
+            line = line.replace("。", "。\n")
+            sentences = line.split("\n")
 
             for sentence in sentences:
                 if not sentence:

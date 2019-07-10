@@ -5,7 +5,7 @@ import warnings
 class WordTokenizer:
     """Tokenizer takes a sentence into tokens."""
 
-    def __init__(self, tokenizer=None, flags=''):
+    def __init__(self, tokenizer=None, flags=""):
         """Create tokenizer.
 
         Keyword Arguments:
@@ -14,49 +14,48 @@ class WordTokenizer:
         """
         if tokenizer is None:
             self.tokenize = self.__identity
-            self.__tokenizer_name = 'identity'
-            warnings.warn('No tokenizer specified. Return input directly')
+            self.__tokenizer_name = "identity"
+            warnings.warn("No tokenizer specified. Return input directly")
             return
 
         __tokenizer = tokenizer.lower()
 
-        if __tokenizer == 'character':
-            self.__tokenizer_name = 'Character'
+        if __tokenizer == "character":
+            self.__tokenizer_name = "Character"
             self.tokenize = self.__character_level_tokenize
             return
 
         # use external libraries
-        if __tokenizer == 'mecab':
+        if __tokenizer == "mecab":
             try:
                 import natto
             except ModuleNotFoundError:
-                raise ModuleNotFoundError('natto-py is not installed')
-                exit()
+                raise ModuleNotFoundError("natto-py is not installed")
 
-            flags = '-Owakati' if not flags else flags
+            flags = "-Owakati" if not flags else flags
             self.__tokenizer = natto.MeCab(flags)
-            self.__tokenizer_name = 'MeCab'
+            self.__tokenizer_name = "MeCab"
             self.tokenize = self.__mecab_tokenize
 
-        if __tokenizer == 'kytea':
+        if __tokenizer == "kytea":
             try:
                 import Mykytea
             except ModuleNotFoundError:
-                raise ModuleNotFoundError('kytea is not installed')
+                raise ModuleNotFoundError("kytea is not installed")
 
             self.__tokenizer = Mykytea.Mykytea(flags)
-            self.__tokenizer_name = 'KyTea'
+            self.__tokenizer_name = "KyTea"
             self.tokenize = self.__kytea_tokenize
 
-        elif __tokenizer == 'sentencepiece':
+        elif __tokenizer == "sentencepiece":
             try:
                 import sentencepiece
             except ModuleNotFoundError:
-                raise ModuleNotFoundError('sentencepiece is not installed')
+                raise ModuleNotFoundError("sentencepiece is not installed")
 
             self.__tokenizer = sentencepiece.SentencePieceProcessor()
             self.__tokenizer.load(flags)
-            self.__tokenizer_name = 'Sentencepiece'
+            self.__tokenizer_name = "Sentencepiece"
             self.tokenize = self.__sentencepiece_tokenize
 
     def __identity(self, sentence):
@@ -69,7 +68,7 @@ class WordTokenizer:
         Arguments:
             sentence {str} -- raw sentence
         """
-        return self.__tokenizer.parse(sentence).split(' ')
+        return self.__tokenizer.parse(sentence).split(" ")
 
     def __kytea_tokenize(self, sentence):
         """Kytea tokenizer.
@@ -100,19 +99,19 @@ class WordTokenizer:
         return self.__tokenizer_name
 
 
-if __name__ == '__main__':
-    word_tokenizer = WordTokenizer('KyTea')
-    res = word_tokenizer.tokenize('我輩は猫である')
+if __name__ == "__main__":
+    word_tokenizer = WordTokenizer("KyTea")
+    res = word_tokenizer.tokenize("我輩は猫である")
     print(res)
 
-    word_tokenizer = WordTokenizer('MeCab')
-    res = word_tokenizer.tokenize('我輩は猫である')
+    word_tokenizer = WordTokenizer("MeCab")
+    res = word_tokenizer.tokenize("我輩は猫である")
     print(res)
 
-    word_tokenizer = WordTokenizer('Sentencepiece', 'data/model.spm')
-    res = word_tokenizer.tokenize('我輩は猫である')
+    word_tokenizer = WordTokenizer("Sentencepiece", "data/model.spm")
+    res = word_tokenizer.tokenize("我輩は猫である")
     print(res)
 
-    word_tokenizer = WordTokenizer('Character')
-    res = word_tokenizer.tokenize('我輩は猫である')
+    word_tokenizer = WordTokenizer("Character")
+    res = word_tokenizer.tokenize("我輩は猫である")
     print(res)
