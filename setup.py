@@ -14,7 +14,8 @@ except ValueError:
 
 install_requires = []
 if BUILD_WORD_TOKENIZER == 1:
-    install_requires.extend(["natto-py", "kytea", "sentencepiece"])
+    install_requires.extend(["natto-py", "kytea", "sentencepiece", "SudachiPy"])  # NOQA
+
 else:
     print("Install sentence tokenizer only")
 
