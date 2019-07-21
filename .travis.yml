@@ -18,7 +18,7 @@ env:
   - BUILD_WORD_TOKENIZER=0
 
 install:
-  - pip install .
+  - python setup.py install
 
 python:
       - 3.6
