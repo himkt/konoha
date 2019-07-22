@@ -20,7 +20,8 @@ if __name__ == "__main__":
     print("Finish creating word tokenizers")
     print()
 
-    document = "我輩は猫である。名前はまだない"
+    document = "東京特許許可局（とうきょうとっきょきょかきょく） 日本語の早口言葉。"  # NOQA
+    document += "なお実際に特許に関する行政を行うのは特許庁であり、過去にこのような役所が存在したことは一度も無い。"  # NOQA
     print(f"Given document: {document}")
 
     sentences = sentence_tokenizer.tokenize(document)
