@@ -1,38 +1,29 @@
 """Word Level Tokenizer."""
-from typing import Optional
-
 import warnings
+from typing import Optional
 
 
 class Token:
     """Token class"""
-    def __init__(
-        self,
-        surface: str,
-        postag: Optional[str] = None
-    ):
+
+    def __init__(self, surface: str, postag: Optional[str] = None):
         self.surface = surface
         self.postag = postag
 
     def __repr__(self):
         representation = self.surface
         if self.postag is not None:
-            representation += f' ({self.postag})'
+            representation += f" ({self.postag})"
         return representation
 
     def __eq__(self, right):
-        return self.surface == right.surface and \
-            self.postag == right.postag
+        return self.surface == right.surface and self.postag == right.postag
 
 
 class BaseWordLevelTokenizer:
     """Base class for word level tokenizer"""
-    def __init__(
-            self,
-            name: str,
-            with_postag: bool = False,
-            **kwargs,
-    ):
+
+    def __init__(self, name: str, with_postag: bool = False, **kwargs):
         self.__name = name
         self.with_postag = with_postag
 
@@ -47,24 +38,23 @@ class BaseWordLevelTokenizer:
 
 
 class MeCabTokenizer(BaseWordLevelTokenizer):
-    """Wrapper class of external text analyzers"""
+    """Wrapper class forexternal text analyzers"""
+
     def __init__(
-        self,
-        dictionary_path: Optional[str] = None,
-        with_postag: bool = False,
+        self, dictionary_path: Optional[str] = None, with_postag: bool = False
     ):
-        super().__init__(name='mecab', with_postag=with_postag)
+        super().__init__(name="mecab", with_postag=with_postag)
         try:
             import natto
         except ModuleNotFoundError:
             raise ModuleNotFoundError("natto-py is not installed")
 
-        flag = ''
+        flag = ""
         if not self.with_postag:
-            flag += ' -Owakati'
+            flag += " -Owakati"
 
         if dictionary_path is not None:
-            flag += f' -u {dictionary_path}'
+            flag += f" -u {dictionary_path}"
 
         self.mecab = natto.MeCab(flag)
 
@@ -73,42 +63,37 @@ class MeCabTokenizer(BaseWordLevelTokenizer):
         return_result = []
         parse_result = self.mecab.parse(text)
         if self.with_postag:
-            for elem in parse_result.split('\n')[:-1]:
+            for elem in parse_result.split("\n")[:-1]:
                 surface, feature = elem.split()
-                postag = feature.split(',')[0]
+                postag = feature.split(",")[0]
                 return_result.append(Token(surface=surface, postag=postag))
         else:
-            for surface in parse_result.split(' '):
+            for surface in parse_result.split(" "):
                 return_result.append(Token(surface=surface))
 
         return return_result
 
 
 class KyTeaTokenizer(BaseWordLevelTokenizer):
-    """Wrapper class of KyTea"""
-    def __init__(
-        self,
-        with_postag: bool = False,
-        **kwargs,
-    ):
+    """Wrapper class forKyTea"""
+
+    def __init__(self, with_postag: bool = False, **kwargs):
         super(KyTeaTokenizer, self).__init__(
-            name='kytea',
-            with_postag=with_postag
-        )
+            name="kytea", with_postag=with_postag)
         try:
             import Mykytea
         except ModuleNotFoundError:
             raise ModuleNotFoundError("kytea is not installed")
 
-        flag = ''
+        flag = ""
         self.kytea = Mykytea.Mykytea(flag)
 
     def tokenize(self, text: str):
         return_result = []
 
         if self.with_postag:
-            for elem in self.kytea.getTagsToString(text).split(' ')[:-1]:
-                surface, postag, _ = elem.split('/')
+            for elem in self.kytea.getTagsToString(text).split(" ")[:-1]:
+                surface, postag, _ = elem.split("/")
                 return_result.append(Token(surface=surface, postag=postag))
 
         else:
@@ -119,13 +104,10 @@ class KyTeaTokenizer(BaseWordLevelTokenizer):
 
 
 class SentencepieceTokenizer(BaseWordLevelTokenizer):
-    """Wrapper class of Sentencepiece"""
-    def __init__(
-        self,
-        model_path: str,
-        **kwargs,
-    ):
-        super(SentencepieceTokenizer, self).__init__('sentencepiece')
+    """Wrapper class forSentencepiece"""
+
+    def __init__(self, model_path: str, **kwargs):
+        super(SentencepieceTokenizer, self).__init__("sentencepiece")
         try:
             import sentencepiece
         except ModuleNotFoundError:
@@ -135,14 +117,57 @@ class SentencepieceTokenizer(BaseWordLevelTokenizer):
         self.tokenizer.load(model_path)
 
     def tokenize(self, text: str):
-        return [Token(surface=subword) for subword in
-                self.tokenizer.EncodeAsPieces(text)]
+        return [
+            Token(surface=subword) for subword in self.tokenizer.EncodeAsPieces(text)
+        ]
+
+
+class SudachiTokenizer(BaseWordLevelTokenizer):
+    """Wrapper class for SudachiPy."""
+
+    def __init__(self, mode: str, with_postag: bool, **kwargs):
+        super(SudachiTokenizer, self).__init__("sudachi")
+        try:
+            from sudachipy import tokenizer
+            from sudachipy import dictionary
+        except ModuleNotFoundError:
+            raise ModuleNotFoundError("sudachipy is not installed")
+        try:
+            self.tokenizer = dictionary.Dictionary().create()
+        except KeyError:
+            msg = "please install dictionary"
+            msg += " ( see https://github.com/WorksApplications/SudachiPy#install-dict-packages )"  # NOQA
+            raise KeyError(msg)
+
+        _mode = mode.capitalize()
+        if _mode == "A":
+            self.mode = tokenizer.Tokenizer.SplitMode.A
+        elif _mode == "B":
+            self.mode = tokenizer.Tokenizer.SplitMode.B
+        elif _mode == "C":
+            self.mode = tokenizer.Tokenizer.SplitMode.C
+        else:
+            msg = "Invalid mode is specified. Mode should be 'A', 'B' or 'C'"
+            raise ValueError(msg)
+
+        self.with_postag = with_postag
+
+    def tokenize(self, text: str):
+        """Tokenize."""
+        result = []
+        for token in self.tokenizer.tokenize(text, self.mode):
+            _token = Token(surface=token.surface())
+            if self.with_postag:
+                _token.postag = token.part_of_speech()[0]
+            result.append(_token)
+        return result
 
 
 class CharacterTokenizer(BaseWordLevelTokenizer):
     """Character tokenizer"""
+
     def __init__(self):
-        super(CharacterTokenizer, self).__init__('character')
+        super(CharacterTokenizer, self).__init__("character")
 
     def tokenize(self, text: str):
         return [Token(surface=char) for char in list(text)]
@@ -157,6 +182,7 @@ class WordTokenizer:
         with_postag: bool = False,
         dictionary_path: Optional[str] = None,
         model_path: Optional[str] = None,
+        mode: Optional[str] = None,
     ):
         """Create tokenizer.
 
@@ -168,24 +194,27 @@ class WordTokenizer:
         self.with_postag = with_postag
         self.dictionary_path = dictionary_path
         self.model_path = model_path
+        if mode is not None:
+            self.mode = mode.lower()
 
         self.__setup_tokenizer()
 
     def __setup_tokenizer(self):
-        if self.__tokenizer_name == 'mecab':
+        if self.__tokenizer_name == "mecab":
             self.tokenizer = MeCabTokenizer(
                 dictionary_path=self.dictionary_path,
-                with_postag=self.with_postag,
-            )
-        if self.__tokenizer_name == 'kytea':
-            self.tokenizer = KyTeaTokenizer(
                 with_postag=self.with_postag
             )
-        if self.__tokenizer_name == 'sentencepiece':
-            self.tokenizer = SentencepieceTokenizer(
-                model_path=self.model_path
+        if self.__tokenizer_name == "kytea":
+            self.tokenizer = KyTeaTokenizer(with_postag=self.with_postag)
+        if self.__tokenizer_name == "sentencepiece":
+            self.tokenizer = SentencepieceTokenizer(model_path=self.model_path)
+        if self.__tokenizer_name == "sudachi":
+            self.tokenizer = SudachiTokenizer(
+                mode=self.mode,
+                with_postag=self.with_postag
             )
-        if self.__tokenizer_name == 'character':
+        if self.__tokenizer_name == "character":
             self.tokenizer = CharacterTokenizer()
 
     def tokenize(self, text: str):
@@ -198,11 +227,11 @@ class WordTokenizer:
 
 
 if __name__ == "__main__":
-    tokenizer = WordTokenizer(tokenizer='mecab', with_postag=False)
-    print(tokenizer.tokenize('我輩は猫である'))
+    tokenizer = WordTokenizer(tokenizer="mecab", with_postag=False)
+    print(tokenizer.tokenize("我輩は猫である"))
 
-    tokenizer = WordTokenizer(tokenizer='mecab', with_postag=True)
-    print(tokenizer.tokenize('我輩は猫である'))
+    tokenizer = WordTokenizer(tokenizer="mecab", with_postag=True)
+    print(tokenizer.tokenize("我輩は猫である"))
 
     tokenizer = WordTokenizer("kytea", with_postag=False)
     print(tokenizer.tokenize("我輩は猫である"))

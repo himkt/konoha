@@ -14,14 +14,15 @@ except ValueError:
 
 install_requires = []
 if BUILD_WORD_TOKENIZER == 1:
-    install_requires.extend(["natto-py", "kytea", "sentencepiece"])
+    install_requires.extend(["natto-py", "kytea", "sentencepiece", "SudachiPy"])  # NOQA
+
 else:
     print("Install sentence tokenizer only")
 
 
 setup(
     name="tiny_tokenizer",
-    version="2.0.0",
+    version="2.1.0",
     description="Tiny Word/Sentence Tokenizer",
     author="himkt",
     author_email="himkt@klis.tsukuba.ac.jp",

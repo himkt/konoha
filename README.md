@@ -39,25 +39,67 @@ docker run -it himkt/tiny_tokenizer
 
 `python3 example/tokenize_document.py`
 
+<details>
+
 ```
 # python3 example/tokenize_document.py
 Finish creating word tokenizers
 
 Given document: 我輩は猫である。名前はまだない
 #0: 我輩は猫である。
-Tokenizer (identity): 我輩は猫である。
-Tokenizer (MeCab): 我輩 は 猫 で ある 。
-Tokenizer (KyTea): 我輩 は 猫 で あ る 。
-Tokenizer (Sentencepiece): ▁ 我 輩 は 猫 である 。
-Tokenizer (Character): 我 輩 は 猫 で あ る 。
+Tokenizer: MeCab
+[我輩, は, 猫, で, ある, 。]
+Tokenizer: MeCab
+[我輩 (名詞), は (助詞), 猫 (名詞), で (助動詞), ある (助動詞), 。 (記号)]
+Tokenizer: KyTea
+[我輩, は, 猫, で, あ, る, 。]
+Tokenizer: KyTea
+[我輩 (名詞), は (助詞), 猫 (名詞), で (助動詞), あ (動詞), る (語尾), 。 (補助記号)]
+Tokenizer: Sentencepiece
+[▁, 我, 輩, は, 猫, である, 。]
+Tokenizer: Sudachi (A)
+[我輩, は, 猫, で, ある, 。]
+Tokenizer: Sudachi (A)
+[我輩 (代名詞), は (助詞), 猫 (名詞), で (助動詞), ある (動詞), 。 (補助記号)]
+Tokenizer: Sudachi (B)
+[我輩, は, 猫, で, ある, 。]
+Tokenizer: Sudachi (B)
+[我輩 (代名詞), は (助詞), 猫 (名詞), で (助動詞), ある (動詞), 。 (補助記号)]
+Tokenizer: Sudachi (C)
+[我輩, は, 猫, で, ある, 。]
+Tokenizer: Sudachi (C)
+[我輩 (代名詞), は (助詞), 猫 (名詞), で (助動詞), ある (動詞), 。 (補助記号)]
+Tokenizer: Character
+[我, 輩, は, 猫, で, あ, る, 。]
 
 #1: 名前はまだない
-Tokenizer (identity): 名前はまだない
-Tokenizer (MeCab): 名前 は まだ ない
-Tokenizer (KyTea): 名前 は まだ な い
-Tokenizer (Sentencepiece): ▁ 名前 はまだ ない
-Tokenizer (Character): 名 前 は ま だ な い
+Tokenizer: MeCab
+[名前, は, まだ, ない]
+Tokenizer: MeCab
+[名前 (名詞), は (助詞), まだ (副詞), ない (形容詞)]
+Tokenizer: KyTea
+[名前, は, まだ, な, い]
+Tokenizer: KyTea
+[名前 (名詞), は (助詞), まだ (副詞), な (形容詞), い (語尾)]
+Tokenizer: Sentencepiece
+[▁, 名前, はまだ, ない]
+Tokenizer: Sudachi (A)
+[名前, は, まだ, ない]
+Tokenizer: Sudachi (A)
+[名前 (名詞), は (助詞), まだ (副詞), ない (形容詞)]
+Tokenizer: Sudachi (B)
+[名前, は, まだ, ない]
+Tokenizer: Sudachi (B)
+[名前 (名詞), は (助詞), まだ (副詞), ない (形容詞)]
+Tokenizer: Sudachi (C)
+[名前, は, まだ, ない]
+Tokenizer: Sudachi (C)
+[名前 (名詞), は (助詞), まだ (副詞), ない (形容詞)]
+Tokenizer: Character
+[名, 前, は, ま, だ, な, い]
 ```
+
+</details>
 
 
 ### Test
