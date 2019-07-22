@@ -136,7 +136,7 @@ class SudachiTokenizer(BaseWordLevelTokenizer):
             self.tokenizer = dictionary.Dictionary().create()
         except KeyError:
             msg = "please install dictionary"
-            msg += " (see https://github.com/WorksApplications/SudachiPy#install-dict-packages)"  # NOQA
+            msg += " ( see https://github.com/WorksApplications/SudachiPy#install-dict-packages )"  # NOQA
             raise KeyError(msg)
 
         _mode = mode.capitalize()
