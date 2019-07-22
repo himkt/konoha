@@ -78,8 +78,7 @@ class KyTeaTokenizer(BaseWordLevelTokenizer):
     """Wrapper class forKyTea"""
 
     def __init__(self, with_postag: bool = False, **kwargs):
-        super(KyTeaTokenizer, self).__init__(
-            name="kytea", with_postag=with_postag)
+        super(KyTeaTokenizer, self).__init__(name="kytea", with_postag=with_postag)  # NOQA
         try:
             import Mykytea
         except ModuleNotFoundError:
@@ -92,8 +91,12 @@ class KyTeaTokenizer(BaseWordLevelTokenizer):
         return_result = []
 
         if self.with_postag:
-            for elem in self.kytea.getTagsToString(text).split(" ")[:-1]:
+            response = self.kytea.getTagsToString(text)
+            response = response.replace("  ", " <SPACE>")  # FIXME
+
+            for elem in response.split(" ")[:-1]:
                 surface, postag, _ = elem.split("/")
+                surface = surface.replace("<SPACE>", " ")
                 return_result.append(Token(surface=surface, postag=postag))
 
         else:
@@ -117,9 +120,10 @@ class SentencepieceTokenizer(BaseWordLevelTokenizer):
         self.tokenizer.load(model_path)
 
     def tokenize(self, text: str):
-        return [
-            Token(surface=subword) for subword in self.tokenizer.EncodeAsPieces(text)
-        ]
+        result = []
+        for subword in self.tokenizer.EncodeAsPieces(text):
+            result.append(Token(surface=subword))
+        return result
 
 
 class SudachiTokenizer(BaseWordLevelTokenizer):
@@ -202,8 +206,7 @@ class WordTokenizer:
     def __setup_tokenizer(self):
         if self.__tokenizer_name == "mecab":
             self.tokenizer = MeCabTokenizer(
-                dictionary_path=self.dictionary_path,
-                with_postag=self.with_postag
+                dictionary_path=self.dictionary_path, with_postag=self.with_postag
             )
         if self.__tokenizer_name == "kytea":
             self.tokenizer = KyTeaTokenizer(with_postag=self.with_postag)
@@ -211,8 +214,7 @@ class WordTokenizer:
             self.tokenizer = SentencepieceTokenizer(model_path=self.model_path)
         if self.__tokenizer_name == "sudachi":
             self.tokenizer = SudachiTokenizer(
-                mode=self.mode,
-                with_postag=self.with_postag
+                mode=self.mode, with_postag=self.with_postag
             )
         if self.__tokenizer_name == "character":
             self.tokenizer = CharacterTokenizer()
