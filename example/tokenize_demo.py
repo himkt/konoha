@@ -5,12 +5,18 @@ from tiny_tokenizer import WordTokenizer
 if __name__ == "__main__":
     sentence_tokenizer = SentenceTokenizer()
     word_tokenizers = []
-    word_tokenizers.append(WordTokenizer(tokenizer="MeCab"))
-    word_tokenizers.append(WordTokenizer(tokenizer="MeCab", with_postag=True))
-    word_tokenizers.append(WordTokenizer(tokenizer="KyTea"))
-    word_tokenizers.append(WordTokenizer(tokenizer="KyTea", with_postag=True))
-    word_tokenizers.append(WordTokenizer(tokenizer="Sentencepiece", model_path="data/model.spm"))  # NOQA
-    word_tokenizers.append(WordTokenizer(tokenizer="Character"))
+    word_tokenizers.append(["MeCab", WordTokenizer(tokenizer="MeCab")])
+    word_tokenizers.append(["MeCab", WordTokenizer(tokenizer="MeCab", with_postag=True)])  # NOQA
+    word_tokenizers.append(["KyTea", WordTokenizer(tokenizer="KyTea")])
+    word_tokenizers.append(["KyTea", WordTokenizer(tokenizer="KyTea", with_postag=True)])  # NOQA
+    word_tokenizers.append(["Sentencepiece", WordTokenizer(tokenizer="Sentencepiece", model_path="data/model.spm")])  # NOQA
+    word_tokenizers.append(["Sudachi (A)", WordTokenizer(tokenizer="Sudachi", mode="A")])  # NOQA
+    word_tokenizers.append(["Sudachi (A)", WordTokenizer(tokenizer="Sudachi", with_postag=True, mode="A")])  # NOQA
+    word_tokenizers.append(["Sudachi (B)", WordTokenizer(tokenizer="Sudachi", mode="B")])  # NOQA
+    word_tokenizers.append(["Sudachi (B)", WordTokenizer(tokenizer="Sudachi", with_postag=True, mode="B")])  # NOQA
+    word_tokenizers.append(["Sudachi (C)", WordTokenizer(tokenizer="Sudachi", mode="C")])  # NOQA
+    word_tokenizers.append(["Sudachi (C)", WordTokenizer(tokenizer="Sudachi", with_postag=True, mode="C")])  # NOQA
+    word_tokenizers.append(["Character", WordTokenizer(tokenizer="Character")])  # NOQA
     print("Finish creating word tokenizers")
     print()
 
@@ -21,8 +27,9 @@ if __name__ == "__main__":
     for sentence_id, sentence in enumerate(sentences):
         print(f"#{sentence_id}: {sentence}")
 
-        for tokenizer in word_tokenizers:
+        for name, tokenizer in word_tokenizers:
+            print(f"Tokenizer: {name}")
             result = tokenizer.tokenize(sentence)
-            print(f"Tokenizer ({tokenizer.name}): {result}")
+            print(result)
 
         print()
