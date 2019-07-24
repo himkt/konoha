@@ -7,6 +7,7 @@ from tiny_tokenizer.word_tokenizer import Token
 
 
 SENTENCE1 = "吾輩は猫である"
+SENTENCE2 = "医薬品安全管理責任者"
 
 
 class WordSegmentationTest(unittest.TestCase):
@@ -59,6 +60,49 @@ class WordSegmentationTest(unittest.TestCase):
         result2 = tokenizer2.tokenize(SENTENCE1)
         assert expect  == result1  # NOQA
         assert result1 == result2
+
+    def test_word_tokenize_with_sudachi_mode_a(self):
+        """Test Sudachi tokenizer."""
+        try:
+            tokenizer = WordTokenizer(
+                tokenizer="Sudachi",
+                mode="A",
+            )
+        except ModuleNotFoundError:
+            pytest.skip("skip sudachi")
+
+        expect = [Token(surface=w) for w in "医薬 品 安全 管理 責任 者".split(" ")]
+        result = tokenizer.tokenize(SENTENCE2)
+        self.assertEqual(expect, result)
+
+    def test_word_tokenize_with_sudachi_mode_b(self):
+        """Test Sudachi tokenizer."""
+        try:
+            tokenizer = WordTokenizer(
+                tokenizer="Sudachi",
+                mode="B",
+            )
+        except ModuleNotFoundError:
+            pytest.skip("skip sudachi")
+
+        expect = [Token(surface=w) for w in "医薬品 安全 管理 責任者".split(" ")]
+        result = tokenizer.tokenize(SENTENCE2)
+        self.assertEqual(expect, result)
+
+    def test_word_tokenize_with_sudachi_mode_c(self):
+        """Test Sudachi tokenizer."""
+        try:
+            tokenizer = WordTokenizer(
+                tokenizer="Sudachi",
+                mode="C",
+            )
+        except ModuleNotFoundError:
+            pytest.skip("skip sudachi")
+
+        expect = [Token(surface=w) for w in "医薬品安全管理責任者".split(" ")]
+        result = tokenizer.tokenize(SENTENCE2)
+        self.assertEqual(expect, result)
+
 
     def test_word_tokenize_with_character(self):
         """Test Character tokenizer."""
