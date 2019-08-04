@@ -1,10 +1,10 @@
 """Test for word tokenizers"""
 import unittest
+
 import pytest
 
+from tiny_tokenizer.tiny_tokenizer_token import Token
 from tiny_tokenizer.word_tokenizer import WordTokenizer
-from tiny_tokenizer.token import Token
-
 
 SENTENCE1 = "吾輩は猫である"
 SENTENCE2 = "医薬品安全管理責任者"
@@ -21,10 +21,10 @@ class WordSegmentationTest(unittest.TestCase):
         except ModuleNotFoundError:
             pytest.skip("skip kytea")
 
-        expect  = [Token(surface=w) for w in "吾輩 は 猫 で あ る".split(" ")]  # NOQA
+        expect = [Token(surface=w) for w in "吾輩 は 猫 で あ る".split(" ")]  # NOQA
         result1 = tokenizer1.tokenize(SENTENCE1)
         result2 = tokenizer2.tokenize(SENTENCE1)
-        assert expect  == result1  # NOQA
+        assert expect == result1  # NOQA
         assert result1 == result2
 
     def test_word_tokenize_with_mecab(self):
@@ -35,22 +35,20 @@ class WordSegmentationTest(unittest.TestCase):
         except ModuleNotFoundError:
             pytest.skip("skip mecab")
 
-        expect  = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]  # NOQA
+        expect = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]  # NOQA
         result1 = tokenizer1.tokenize(SENTENCE1)
         result2 = tokenizer2.tokenize(SENTENCE1)
-        assert expect  == result1  # NOQA
+        assert expect == result1  # NOQA
         assert result1 == result2
 
     def test_word_tokenize_with_sentencepiece(self):
         """Test Sentencepiece tokenizer."""
         try:
             tokenizer1 = WordTokenizer(
-                tokenizer="Sentencepiece",
-                model_path="data/model.spm"
+                tokenizer="Sentencepiece", model_path="data/model.spm"
             )
             tokenizer2 = WordTokenizer(
-                tokenizer="Sentencepiece",
-                model_path="data/model.spm"
+                tokenizer="Sentencepiece", model_path="data/model.spm"
             )
         except ModuleNotFoundError:
             pytest.skip("skip sentencepiece")
@@ -58,16 +56,13 @@ class WordSegmentationTest(unittest.TestCase):
         expect = [Token(surface=w) for w in "▁ 吾 輩 は 猫 である".split(" ")]  # NOQA
         result1 = tokenizer1.tokenize(SENTENCE1)
         result2 = tokenizer2.tokenize(SENTENCE1)
-        assert expect  == result1  # NOQA
+        assert expect == result1  # NOQA
         assert result1 == result2
 
     def test_word_tokenize_with_sudachi_mode_a(self):
         """Test Sudachi tokenizer."""
         try:
-            tokenizer = WordTokenizer(
-                tokenizer="Sudachi",
-                mode="A",
-            )
+            tokenizer = WordTokenizer(tokenizer="Sudachi", mode="A")
         except ModuleNotFoundError:
             pytest.skip("skip sudachi")
 
@@ -78,10 +73,7 @@ class WordSegmentationTest(unittest.TestCase):
     def test_word_tokenize_with_sudachi_mode_b(self):
         """Test Sudachi tokenizer."""
         try:
-            tokenizer = WordTokenizer(
-                tokenizer="Sudachi",
-                mode="B",
-            )
+            tokenizer = WordTokenizer(tokenizer="Sudachi", mode="B")
         except ModuleNotFoundError:
             pytest.skip("skip sudachi")
 
@@ -92,10 +84,7 @@ class WordSegmentationTest(unittest.TestCase):
     def test_word_tokenize_with_sudachi_mode_c(self):
         """Test Sudachi tokenizer."""
         try:
-            tokenizer = WordTokenizer(
-                tokenizer="Sudachi",
-                mode="C",
-            )
+            tokenizer = WordTokenizer(tokenizer="Sudachi", mode="C")
         except ModuleNotFoundError:
             pytest.skip("skip sudachi")
 
@@ -108,8 +97,8 @@ class WordSegmentationTest(unittest.TestCase):
         tokenizer1 = WordTokenizer(tokenizer="Character")
         tokenizer2 = WordTokenizer(tokenizer="character")
         # assert tokenizer1 == tokenizer2
-        expect  = [Token(surface=w) for w in "吾 輩 は 猫 で あ る".split(" ")]  # NOQA
+        expect = [Token(surface=w) for w in "吾 輩 は 猫 で あ る".split(" ")]  # NOQA
         result1 = tokenizer1.tokenize(SENTENCE1)
         result2 = tokenizer2.tokenize(SENTENCE1)
-        assert expect  == result1  # NOQA
+        assert expect == result1  # NOQA
         assert result1 == result2

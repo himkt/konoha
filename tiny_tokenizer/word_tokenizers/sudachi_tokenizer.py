@@ -1,5 +1,5 @@
+from tiny_tokenizer.tiny_tokenizer_token import Token
 from tiny_tokenizer.word_tokenizers.tokenizer import BaseTokenizer
-from tiny_tokenizer.token import Token
 
 
 class SudachiTokenizer(BaseTokenizer):
