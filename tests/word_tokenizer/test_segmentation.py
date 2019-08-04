@@ -3,7 +3,7 @@ import unittest
 import pytest
 
 from tiny_tokenizer.word_tokenizer import WordTokenizer
-from tiny_tokenizer.word_tokenizer import Token
+from tiny_tokenizer.token import Token
 
 
 SENTENCE1 = "吾輩は猫である"
@@ -102,7 +102,6 @@ class WordSegmentationTest(unittest.TestCase):
         expect = [Token(surface=w) for w in "医薬品安全管理責任者".split(" ")]
         result = tokenizer.tokenize(SENTENCE2)
         self.assertEqual(expect, result)
-
 
     def test_word_tokenize_with_character(self):
         """Test Character tokenizer."""
