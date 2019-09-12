@@ -10,21 +10,25 @@ Tiny Tokenizer is simple sentence/word Tokenizer which is convenient to pre-proc
 
 <div align="center"><img src="./static/image/tiny_tokenizer.png" width="700"/></div>
 
-### Quick start: Install tiny_tokenizer using PIP
+### Quick Start
 
-tiny_tokenizer requires following libraries.
-- Python
+#### Install tiny_tokenizer on local machine
+
+`tiny_tokenizer` uses following libraries.
 - MeCab (and [natto-py](https://github.com/buruzaemon/natto-py))
 - KyTea (and [Mykytea-python](https://github.com/chezou/Mykytea-python))
+- Sudachi ([SudachiPy](https://github.com/WorksApplications/SudachiPy))
+- Sentencepiece ([Sentencepiece](https://github.com/google/sentencepiece))
 
-You can install tiny_tokenizer via pip.
-`pip install tiny_tokenizer`
+It is not needed for sentence level tokenization because these libraries are used in word level tokenization.
+You can install tiny_tokenizer and above libraries by pip, please run:
+`pip install tiny_tokenizer`.
 
-Or, you can install tiny_tokenizer only with SentenceTokenizer by the following command.
-`BUILD_WORD_TOKENIZER=0 pip install tiny_tokenizer`
+Or, you can install tiny_tokenizer only with SentenceTokenizer by the following command:
+`BUILD_WORD_TOKENIZER=0 pip install tiny_tokenizer`.
 
 
-### Quick start: Docker
+#### Install tiny_tokenizer on Docker container
 
 You can use tiny_tokenizer using the Docker container.
 If you want to use tiny_tokenizer with Docker, run following commands.
