@@ -13,12 +13,8 @@ before_install:
   - cd kytea-0.4.7 && ./configure && sudo make && sudo make install && cd ..
   - sudo ldconfig -v
 
-env:
-  - 
-  - BUILD_WORD_TOKENIZER=0
-
 install:
-  - python setup.py install
+  - pip install -e '.[all]'
   - pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_full-20190718.tar.gz
   - sudachipy link -t full
 
