@@ -17,12 +17,12 @@ setup(
     description="Tiny Word/Sentence Tokenizer",
     author="himkt",
     author_email="himkt@klis.tsukuba.ac.jp",
-    install_requires=install_requires,
     extras_require={
         "mecab": ["natto-py"],
         "kytea": ["kytea"],
         "sentencepiece": ["sentencepiece"],
-        "sudachi": ["SudachiPy"]
+        "sudachi": ["SudachiPy"],
+        "all": ["natto-py", "kytea", "sentencepiece", "SudachiPy"]
     },
     url="https://github.com/himkt/tiny_tokenizer",
     packages=find_packages(),
