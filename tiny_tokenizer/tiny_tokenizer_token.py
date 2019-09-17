@@ -9,12 +9,15 @@ class Token:
         self,
         surface: str,
         postag: Optional[str] = None,
+        postag1: Optional[str] = None,
         postag2: Optional[str] = None,
-        conj_type: Optional[str] = None,
-        conj_form: Optional[str] = None,
+        postag3: Optional[str] = None,
+        inflection: Optional[str] = None,
+        conjugation: Optional[str] = None,
         origin_form: Optional[str] = None,
         yomi: Optional[str] = None,
         pron: Optional[str] = None,
+        normalized_form: Optional[str] = None,
     ):
         """
         Initializer for Token.
@@ -25,11 +28,15 @@ class Token:
             surface (original form) of a word
         postag (str, default: None)
             part-of-speech tag of a word (optional)
+        postag1 (str, default: None)
+            detailed part-of-speech tag of a word (optional)
         postag2 (str, default: None)
             detailed part-of-speech tag of a word (optional)
-        conjugate type (str, default: None)
+        postag3 (str, default: None)
+            detailed part-of-speech tag of a word (optional)
+        inflection (str, default: None)
             conjugate type of word (optional)
-        conjugate form (str, default: None)
+        conjugation (str, default: None)
             conjugate type of word (optional)
         origin_form (str, default: None)
             original form of a word
@@ -37,15 +44,22 @@ class Token:
             yomi of a word (optional)
         pron (str, default: None)
             pronounciation of a word (optional)
+        normalized_form (str, default: None)
+            normalized form of a word (optional)
+            Note that normalized_form is only
+            available on SudachiPy
         """
         self.surface = surface
         self.postag = postag
+        self.postag1 = postag1
         self.postag2 = postag2
-        self.conj_type = conj_type
-        self.conj_form = conj_form
+        self.postag3 = postag3
+        self.inflection = inflection
+        self.conjugation = conjugation
         self.origin_form = origin_form
         self.pron = pron
         self.yomi = yomi
+        self.normalized_form = normalized_form
 
     def __repr__(self):
         representation = self.surface
@@ -65,12 +79,16 @@ class Token:
         feature = []
         if self.postag is not None:
             feature.append(self.postag)
+        if self.postag1 is not None:
+            feature.append(self.postag1)
         if self.postag2 is not None:
             feature.append(self.postag2)
-        if self.conj_type is not None:
-            feature.append(self.conj_type)
-        if self.conj_form is not None:
-            feature.append(self.conj_form)
+        if self.postag3 is not None:
+            feature.append(self.postag3)
+        if self.inflection is not None:
+            feature.append(self.inflection)
+        if self.conjugation is not None:
+            feature.append(self.conjugation)
         if self.origin_form is not None:
             feature.append(self.origin_form)
         if self.yomi is not None:
