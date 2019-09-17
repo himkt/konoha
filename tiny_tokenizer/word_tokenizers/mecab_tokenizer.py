@@ -43,8 +43,21 @@ class MeCabTokenizer(BaseTokenizer):
         if self.with_postag:
             for elem in parse_result.split("\n")[:-1]:
                 surface, feature = elem.split()
-                postag = feature.split(",")[0]
-                return_result.append(Token(surface=surface, postag=postag))
+                postag, postag1, postag2, postag3, \
+                    inflection, conjugation, \
+                    original_form, yomi, pron = feature.split(",")
+
+                token = Token(
+                    surface=surface,
+                    postag=postag,
+                    postag1=postag1,
+                    postag2=postag2,
+                    postag3=postag3,
+                    inflection=inflection,
+                    conjugation=conjugation,
+                    yomi=yomi,
+                    pron=pron)
+                return_result.append(token)
         else:
             for surface in parse_result.split(" "):
                 return_result.append(Token(surface=surface))

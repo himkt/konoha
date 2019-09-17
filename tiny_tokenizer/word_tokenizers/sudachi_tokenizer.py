@@ -52,8 +52,25 @@ class SudachiTokenizer(BaseTokenizer):
         """Tokenize."""
         result = []
         for token in self.tokenizer.tokenize(text, self.mode):
-            _token = Token(token.surface())
+            surface = token.surface()
             if self.with_postag:
-                _token.postag = token.part_of_speech()[0]
-            result.append(_token)
+                postag, postag1, postag2, postag3, *_ = token.part_of_speech()
+                origin_form = token.dictionary_form()
+                normalized_form = token.normalized_form()
+                yomi = token.reading_form()
+                result.append(Token(
+                    surface=surface,
+                    postag=postag,
+                    postag1=postag1,
+                    postag2=postag2,
+                    postag3=postag3,
+                    origin_form=origin_form,
+                    normalized_form=normalized_form,
+                    yomi=yomi,
+                ))
+
+            else:
+                result.append(Token(
+                    surface=surface
+                ))
         return result
