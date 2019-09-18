@@ -57,8 +57,8 @@ class Token:
         self.inflection = inflection
         self.conjugation = conjugation
         self.original_form = original_form
-        self.pron = pron
         self.yomi = yomi
+        self.pron = pron
         self.normalized_form = normalized_form
 
     def __repr__(self):
