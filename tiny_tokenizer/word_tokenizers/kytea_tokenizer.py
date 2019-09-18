@@ -22,8 +22,13 @@ class KyTeaTokenizer(BaseTokenizer):
 
         if self.with_postag:
             response = self.kytea.getTagsToString(text)
-            response = response.replace("\\ ", "<SPACE>")  # FIXME "私 は猫"
-            response = response.replace("  ", " <SPACE>")
+
+            # FIXME Following dirty workaround is required to
+            #       process inputs which include <whitespace> itself
+            #       (e.g. "私 は猫")
+            response = response \
+                .replace("\\ ", "<SPACE>") \
+                .replace("  ", " <SPACE>")
 
             for elem in response.split(" ")[:-1]:
                 # FIXME If input contains a character "/",
