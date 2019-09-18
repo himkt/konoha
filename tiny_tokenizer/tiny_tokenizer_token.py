@@ -95,4 +95,6 @@ class Token:
             feature.append(self.yomi)
         if self.pron is not None:
             feature.append(self.pron)
+        if self.normalized_form is not None:
+            feature.append(self.normalized_form)
         return ','.join(feature)
