@@ -56,7 +56,7 @@ class SudachiTokenizer(BaseTokenizer):
             if self.with_postag:
                 postag, postag1, postag2, postag3, \
                     inflection, conjugation = token.part_of_speech()
-                origin_form = token.dictionary_form()
+                original_form = token.dictionary_form()
                 normalized_form = token.normalized_form()
                 yomi = token.reading_form()
                 result.append(Token(
@@ -67,7 +67,7 @@ class SudachiTokenizer(BaseTokenizer):
                     postag3=postag3,
                     inflection=inflection,
                     conjugation=conjugation,
-                    origin_form=origin_form,
+                    original_form=original_form,
                     normalized_form=normalized_form,
                     yomi=yomi,
                 ))

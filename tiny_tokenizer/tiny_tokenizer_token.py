@@ -14,7 +14,7 @@ class Token:
         postag3: Optional[str] = None,
         inflection: Optional[str] = None,
         conjugation: Optional[str] = None,
-        origin_form: Optional[str] = None,
+        original_form: Optional[str] = None,
         yomi: Optional[str] = None,
         pron: Optional[str] = None,
         normalized_form: Optional[str] = None,
@@ -38,7 +38,7 @@ class Token:
             conjugate type of word (optional)
         conjugation (str, default: None)
             conjugate type of word (optional)
-        origin_form (str, default: None)
+        original_form (str, default: None)
             original form of a word
         yomi (str, default: None)
             yomi of a word (optional)
@@ -56,7 +56,7 @@ class Token:
         self.postag3 = postag3
         self.inflection = inflection
         self.conjugation = conjugation
-        self.origin_form = origin_form
+        self.original_form = original_form
         self.pron = pron
         self.yomi = yomi
         self.normalized_form = normalized_form
@@ -89,8 +89,8 @@ class Token:
             feature.append(self.inflection)
         if self.conjugation is not None:
             feature.append(self.conjugation)
-        if self.origin_form is not None:
-            feature.append(self.origin_form)
+        if self.original_form is not None:
+            feature.append(self.original_form)
         if self.yomi is not None:
             feature.append(self.yomi)
         if self.pron is not None:

@@ -21,7 +21,7 @@ def test_token_with_postag2():
         postag2="固有名詞,人名,姓",
         inflection="*",
         conjugation="*",
-        origin_form="大崎",
+        original_form="大崎",
         yomi="オオサキ",
         pron="オーサキ")
 
