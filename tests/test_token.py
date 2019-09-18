@@ -4,8 +4,8 @@ from tiny_tokenizer.tiny_tokenizer_token import Token
 
 def test_token_without_feature():
     token = Token(surface="大崎")
-    assert"大崎" == token.surface
-    assert"" == token.feature
+    assert "大崎" == token.surface
+    assert "" == token.feature
 
 
 def test_token_with_postag():
