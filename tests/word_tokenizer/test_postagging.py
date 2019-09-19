@@ -23,7 +23,7 @@ $ kytea
 吾輩は猫である
 吾輩/名詞/わがはい は/助詞/は 猫/名詞/ねこ で/助動詞/で あ/動詞/あ る/語尾/る
 """
-list_kytea_tokens = [
+kytea_tokens_list = [
     {"surface": "吾輩", "postag": "名詞", "pron": "わがはい"},
     {"surface": "は", "postag": "助詞", "pron": "は"},
     {"surface": "猫", "postag": "名詞", "pron": "ねこ"},
@@ -40,7 +40,7 @@ def test_word_tokenize_with_kytea():
     except ModuleNotFoundError:
         pytest.skip("skip kytea")
 
-    expect = [Token(**kwargs) for kwargs in list_kytea_tokens]
+    expect = [Token(**kwargs) for kwargs in kytea_tokens_list]
     result = tokenizer.tokenize(SENTENCE1)
     assert expect == result
 
@@ -55,7 +55,7 @@ $ mecab
 ある    助動詞,*,*,*,五段・ラ行アル,基本形,ある,アル,アル
 EOS
 """
-list_mecab_tokens = [
+mecab_tokens_list = [
     {"surface": "吾輩", "postag": "名詞", "postag1": "代名詞", "postag2": "一般", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": None, "normalized_form": None, "yomi": "ワガハイ", "pron": "ワガハイ"},  # NOQA
     {"surface": "は", "postag": "助詞", "postag1": "係助詞", "postag2": "*", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": None, "normalized_form": None, "yomi": "ハ", "pron": "ワ"},  # NOQA
     {"surface": "猫", "postag": "名詞", "postag1": "一般", "postag2": "*", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": None, "normalized_form": None, "yomi": "ネコ", "pron": "ネコ"},  # NOQA
@@ -71,7 +71,7 @@ def test_word_tokenize_with_mecab():
     except ModuleNotFoundError:
         pytest.skip("skip mecab")
 
-    expect = [Token(**kwargs) for kwargs in list_mecab_tokens]
+    expect = [Token(**kwargs) for kwargs in mecab_tokens_list]
     result = tokenizer.tokenize(SENTENCE1)
     assert expect == result
 
@@ -89,7 +89,7 @@ EOS
                                         ^^^^    ^^^^    ^^^^^^^^
                                         norm    dict      yomi
 """
-list_sudachi_tokens = [
+sudachi_tokens_list = [
     {"surface": "医薬", "postag": "名詞", "postag1": "普通名詞", "postag2": "一般", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "医薬", "normalized_form": "医薬", "yomi": "イヤク", "pron": None},  # NOQA
     {"surface": "品", "postag": "接尾辞", "postag1": "名詞的", "postag2": "一般", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "品", "normalized_form": "品", "yomi": "ヒン", "pron": None},  # NOQA
     {"surface": "安全", "postag": "名詞", "postag1": "普通名詞", "postag2": "形状詞可能", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "安全", "normalized_form": "安全", "yomi": "アンゼン", "pron": None},  # NOQA
@@ -107,6 +107,6 @@ def test_word_tokenize_with_sudachi_mode_a():
     except ModuleNotFoundError:
         pytest.skip("skip sudachi")
 
-    expect = [Token(**kwargs) for kwargs in list_sudachi_tokens]
+    expect = [Token(**kwargs) for kwargs in sudachi_tokens_list]
     result = tokenizer.tokenize(SENTENCE2)
     assert expect == result
