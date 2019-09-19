@@ -43,16 +43,22 @@ class MeCabTokenizer(BaseTokenizer):
         if self.with_postag:
             for elem in parse_result.split("\n")[:-1]:
                 surface, feature = elem.split()
-                postag, postag1, postag2, postag3, \
+                postag, postag2, postag3, postag4, \
                     inflection, conjugation, \
-                    original_form, yomi, pron = feature.split(",")
+                    base_form, *other = feature.split(",")
+
+                # For words not in a dictionary
+                if len(other) == 2:
+                    yomi, pron = other
+                else:
+                    yomi, pron = None, None
 
                 token = Token(
                     surface=surface,
                     postag=postag,
-                    postag1=postag1,
                     postag2=postag2,
                     postag3=postag3,
+                    postag4=postag4,
                     inflection=inflection,
                     conjugation=conjugation,
                     yomi=yomi,

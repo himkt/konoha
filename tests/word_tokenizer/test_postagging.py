@@ -56,11 +56,11 @@ $ mecab
 EOS
 """
 mecab_tokens_list = [
-    {"surface": "吾輩", "postag": "名詞", "postag1": "代名詞", "postag2": "一般", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": None, "normalized_form": None, "yomi": "ワガハイ", "pron": "ワガハイ"},  # NOQA
-    {"surface": "は", "postag": "助詞", "postag1": "係助詞", "postag2": "*", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": None, "normalized_form": None, "yomi": "ハ", "pron": "ワ"},  # NOQA
-    {"surface": "猫", "postag": "名詞", "postag1": "一般", "postag2": "*", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": None, "normalized_form": None, "yomi": "ネコ", "pron": "ネコ"},  # NOQA
-    {"surface": "で", "postag": "助動詞", "postag1": "*", "postag2": "*", "postag3": "*", "inflection": "特殊・ダ", "conjugation": "連用形", "original_form": None, "normalized_form": None, "yomi": "デ", "pron": "デ"},  # NOQA
-    {"surface": "ある", "postag": "助動詞", "postag1": "*", "postag2": "*", "postag3": "*", "inflection": "五段・ラ行アル", "conjugation": "基本形", "original_form": None, "normalized_form": None, "yomi": "アル", "pron": "アル"},  # NOQA
+    {"surface": "吾輩", "postag": "名詞", "postag2": "代名詞", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": None, "normalized_form": None, "yomi": "ワガハイ", "pron": "ワガハイ"},  # NOQA
+    {"surface": "は", "postag": "助詞", "postag2": "係助詞", "postag3": "*", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": None, "normalized_form": None, "yomi": "ハ", "pron": "ワ"},  # NOQA
+    {"surface": "猫", "postag": "名詞", "postag2": "一般", "postag3": "*", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": None, "normalized_form": None, "yomi": "ネコ", "pron": "ネコ"},  # NOQA
+    {"surface": "で", "postag": "助動詞", "postag2": "*", "postag3": "*", "postag4": "*", "inflection": "特殊・ダ", "conjugation": "連用形", "base_form": None, "normalized_form": None, "yomi": "デ", "pron": "デ"},  # NOQA
+    {"surface": "ある", "postag": "助動詞", "postag2": "*", "postag3": "*", "postag4": "*", "inflection": "五段・ラ行アル", "conjugation": "基本形", "base_form": None, "normalized_form": None, "yomi": "アル", "pron": "アル"},  # NOQA
 ]
 
 
@@ -90,12 +90,12 @@ EOS
                                         norm    dict      yomi
 """
 sudachi_tokens_list = [
-    {"surface": "医薬", "postag": "名詞", "postag1": "普通名詞", "postag2": "一般", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "医薬", "normalized_form": "医薬", "yomi": "イヤク", "pron": None},  # NOQA
-    {"surface": "品", "postag": "接尾辞", "postag1": "名詞的", "postag2": "一般", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "品", "normalized_form": "品", "yomi": "ヒン", "pron": None},  # NOQA
-    {"surface": "安全", "postag": "名詞", "postag1": "普通名詞", "postag2": "形状詞可能", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "安全", "normalized_form": "安全", "yomi": "アンゼン", "pron": None},  # NOQA
-    {"surface": "管理", "postag": "名詞", "postag1": "普通名詞", "postag2": "サ変可能", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "管理", "normalized_form": "管理", "yomi": "カンリ", "pron": None},  # NOQA
-    {"surface": "責任", "postag": "名詞", "postag1": "普通名詞", "postag2": "一般", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "責任", "normalized_form": "責任", "yomi": "セキニン", "pron": None},  # NOQA
-    {"surface": "者", "postag": "接尾辞", "postag1": "名詞的", "postag2": "一般", "postag3": "*", "inflection": "*", "conjugation": "*", "original_form": "者", "normalized_form": "者", "yomi": "シャ", "pron": None},  # NOQA
+    {"surface": "医薬", "postag": "名詞", "postag2": "普通名詞", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "医薬", "normalized_form": "医薬", "yomi": "イヤク", "pron": None},  # NOQA
+    {"surface": "品", "postag": "接尾辞", "postag2": "名詞的", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "品", "normalized_form": "品", "yomi": "ヒン", "pron": None},  # NOQA
+    {"surface": "安全", "postag": "名詞", "postag2": "普通名詞", "postag3": "形状詞可能", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "安全", "normalized_form": "安全", "yomi": "アンゼン", "pron": None},  # NOQA
+    {"surface": "管理", "postag": "名詞", "postag2": "普通名詞", "postag3": "サ変可能", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "管理", "normalized_form": "管理", "yomi": "カンリ", "pron": None},  # NOQA
+    {"surface": "責任", "postag": "名詞", "postag2": "普通名詞", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "責任", "normalized_form": "責任", "yomi": "セキニン", "pron": None},  # NOQA
+    {"surface": "者", "postag": "接尾辞", "postag2": "名詞的", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "者", "normalized_form": "者", "yomi": "シャ", "pron": None},  # NOQA
 ]
 
 

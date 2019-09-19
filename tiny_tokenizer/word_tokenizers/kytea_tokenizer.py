@@ -18,7 +18,7 @@ class KyTeaTokenizer(BaseTokenizer):
         self.kytea = Mykytea.Mykytea(flag)
 
     def tokenize(self, text: str):
-        tokens_list = []
+        tokens = []
 
         if self.with_postag:
             response = self.kytea.getTagsToString(text)
@@ -37,7 +37,7 @@ class KyTeaTokenizer(BaseTokenizer):
                 pron, postag, surface = map(
                     lambda e: e[::-1], elem[::-1].split("/", maxsplit=2))
                 surface = surface.replace("<SPACE>", " ")
-                tokens_list.append(Token(
+                tokens.append(Token(
                     surface=surface,
                     postag=postag,
                     pron=pron
@@ -45,6 +45,6 @@ class KyTeaTokenizer(BaseTokenizer):
 
         else:
             for surface in list(self.kytea.getWS(text)):
-                tokens_list.append(Token(surface=surface))
+                tokens.append(Token(surface=surface))
 
-        return tokens_list
+        return tokens
