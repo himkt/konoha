@@ -18,19 +18,33 @@ class KyTeaTokenizer(BaseTokenizer):
         self.kytea = Mykytea.Mykytea(flag)
 
     def tokenize(self, text: str):
-        return_result = []
+        tokens = []
 
         if self.with_postag:
             response = self.kytea.getTagsToString(text)
-            response = response.replace("  ", " <SPACE>")  # FIXME
+
+            # FIXME Following dirty workaround is required to
+            #       process inputs which include <whitespace> itself
+            #       (e.g. "私 は猫")
+            response = response \
+                .replace("\\ ", "<SPACE>") \
+                .replace("  ", " <SPACE>")
 
             for elem in response.split(" ")[:-1]:
-                surface, postag, _ = elem.split("/")
+                # FIXME If input contains a character "/",
+                #       KyTea outputs "//補助記号/・",
+                #       which breaks the simple logic elem.split("/")
+                pron, postag, surface = map(
+                    lambda e: e[::-1], elem[::-1].split("/", maxsplit=2))
                 surface = surface.replace("<SPACE>", " ")
-                return_result.append(Token(surface=surface, postag=postag))
+                tokens.append(Token(
+                    surface=surface,
+                    postag=postag,
+                    pron=pron
+                ))
 
         else:
             for surface in list(self.kytea.getWS(text)):
-                return_result.append(Token(surface=surface))
+                tokens.append(Token(surface=surface))
 
-        return return_result
+        return tokens
