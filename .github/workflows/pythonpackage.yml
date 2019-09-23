@@ -1,0 +1,45 @@
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-16.04
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.6, 3.7]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install tokenizers
+      run: |
+        sudo apt update -y
+        sudo apt install mecab libmecab-dev mecab-ipadic-utf8
+        cd /tmp
+        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz
+        tar zxvf kytea-0.4.7.tar.gz
+        cd kytea-0.4.7 && ./configure && sudo make && sudo make install && cd ..
+        sudo ldconfig -v
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install .[all]
+        pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_full-20190718.tar.gz
+        sudachipy link -t full
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        pip install pytest
+        pytest
