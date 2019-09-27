@@ -8,6 +8,7 @@ from tiny_tokenizer.word_tokenizer import WordTokenizer
 
 SENTENCE1 = "吾輩は猫である"
 SENTENCE2 = "医薬品安全管理責任者"
+SENTENCE3 = "吾輩 は 猫 で ある"
 
 
 class WordSegmentationTest(unittest.TestCase):
@@ -100,5 +101,16 @@ class WordSegmentationTest(unittest.TestCase):
         expect = [Token(surface=w) for w in "吾 輩 は 猫 で あ る".split(" ")]  # NOQA
         result1 = tokenizer1.tokenize(SENTENCE1)
         result2 = tokenizer2.tokenize(SENTENCE1)
+        assert expect == result1  # NOQA
+        assert result1 == result2
+
+    def test_word_tokenize_with_whitespace(self):
+        """Test Character tokenizer."""
+        tokenizer1 = WordTokenizer(tokenizer="Whitespace")
+        tokenizer2 = WordTokenizer(tokenizer="whitespace")
+        # assert tokenizer1 == tokenizer2
+        expect = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]  # NOQA
+        result1 = tokenizer1.tokenize(SENTENCE3)
+        result2 = tokenizer2.tokenize(SENTENCE3)
         assert expect == result1  # NOQA
         assert result1 == result2
