@@ -69,10 +69,10 @@ class Token:
 
     def __eq__(self, right):
         return (
-            self.surface == right.surface
-            and self.postag == right.postag
-            and self.postag3 == right.postag3
-            and self.yomi == right.yomi)
+            self.surface == right.surface and
+            self.postag == right.postag and
+            self.postag3 == right.postag3 and
+            self.yomi == right.yomi)
 
     @property
     def feature(self):

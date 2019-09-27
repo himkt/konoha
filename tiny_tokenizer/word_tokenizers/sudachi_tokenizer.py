@@ -22,12 +22,16 @@ class SudachiTokenizer(BaseTokenizer):
         **kwargs
             others.
         """
-        super(SudachiTokenizer, self).__init__(f"sudachi ({mode})")
+        super(SudachiTokenizer, self).__init__(
+            name="sudachi ({})".format(mode),
+            with_postag=with_postag,
+        )
+
         try:
             from sudachipy import tokenizer
             from sudachipy import dictionary
-        except ModuleNotFoundError:
-            raise ModuleNotFoundError("sudachipy is not installed")
+        except ImportError:
+            raise ImportError("sudachipy is not installed")
         try:
             self.tokenizer = dictionary.Dictionary().create()
         except KeyError:
@@ -45,8 +49,6 @@ class SudachiTokenizer(BaseTokenizer):
         else:
             msg = "Invalid mode is specified. Mode should be 'A', 'B' or 'C'"
             raise ValueError(msg)
-
-        self.with_postag = with_postag
 
     def tokenize(self, text: str):
         """Tokenize."""
