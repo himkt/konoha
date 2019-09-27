@@ -64,7 +64,7 @@ class Token:
     def __repr__(self):
         representation = self.surface
         if self.postag is not None:
-            representation += f" ({self.postag})"
+            representation += " ({})".format(self.postag)
         return representation
 
     def __eq__(self, right):

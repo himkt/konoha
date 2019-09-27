@@ -32,7 +32,7 @@ class MeCabTokenizer(BaseTokenizer):
             flag += " -Owakati"
 
         if dictionary_path is not None:
-            flag += f" -u {dictionary_path}"
+            flag += " -u {}".format(dictionary_path)
 
         self.mecab = natto.MeCab(flag)
 
