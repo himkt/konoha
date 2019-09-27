@@ -18,7 +18,7 @@ class WordSegmentationTest(unittest.TestCase):
         try:
             tokenizer1 = WordTokenizer(tokenizer="KyTea")
             tokenizer2 = WordTokenizer(tokenizer="kytea")
-        except ModuleNotFoundError:
+        except ImportError:
             pytest.skip("skip kytea")
 
         expect = [Token(surface=w) for w in "吾輩 は 猫 で あ る".split(" ")]  # NOQA
@@ -32,7 +32,7 @@ class WordSegmentationTest(unittest.TestCase):
         try:
             tokenizer1 = WordTokenizer(tokenizer="MeCab")
             tokenizer2 = WordTokenizer(tokenizer="mecab")
-        except ModuleNotFoundError:
+        except ImportError:
             pytest.skip("skip mecab")
 
         expect = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]  # NOQA
@@ -50,7 +50,7 @@ class WordSegmentationTest(unittest.TestCase):
             tokenizer2 = WordTokenizer(
                 tokenizer="Sentencepiece", model_path="data/model.spm"
             )
-        except ModuleNotFoundError:
+        except ImportError:
             pytest.skip("skip sentencepiece")
 
         expect = [Token(surface=w) for w in "▁ 吾 輩 は 猫 である".split(" ")]  # NOQA
@@ -63,7 +63,7 @@ class WordSegmentationTest(unittest.TestCase):
         """Test Sudachi tokenizer."""
         try:
             tokenizer = WordTokenizer(tokenizer="Sudachi", mode="A")
-        except ModuleNotFoundError:
+        except ImportError:
             pytest.skip("skip sudachi")
 
         expect = [Token(surface=w) for w in "医薬 品 安全 管理 責任 者".split(" ")]
@@ -74,7 +74,7 @@ class WordSegmentationTest(unittest.TestCase):
         """Test Sudachi tokenizer."""
         try:
             tokenizer = WordTokenizer(tokenizer="Sudachi", mode="B")
-        except ModuleNotFoundError:
+        except ImportError:
             pytest.skip("skip sudachi")
 
         expect = [Token(surface=w) for w in "医薬品 安全 管理 責任者".split(" ")]
@@ -85,7 +85,7 @@ class WordSegmentationTest(unittest.TestCase):
         """Test Sudachi tokenizer."""
         try:
             tokenizer = WordTokenizer(tokenizer="Sudachi", mode="C")
-        except ModuleNotFoundError:
+        except ImportError:
             pytest.skip("skip sudachi")
 
         expect = [Token(surface=w) for w in "医薬品安全管理責任者".split(" ")]
