@@ -13,7 +13,7 @@ except ValueError:
 
 setup(
     name="tiny_tokenizer",
-    version="3.0.0",
+    version="3.0.1",
     description="Tiny Word/Sentence Tokenizer",
     author="himkt",
     author_email="himkt@klis.tsukuba.ac.jp",
