@@ -17,21 +17,21 @@ if __name__ == "__main__":
                 _tokenizer = WordTokenizer(tokenizer, with_postag=True)
                 word_tokenizers.append(_tokenizer)
 
-        except (ModuleNotFoundError, RuntimeError):
+        except (ImportError, RuntimeError):
             print("Skip: ", tokenizer)
 
     try:
         _tokenizer = WordTokenizer("Sentencepiece", model_path="./data/model.spm")  # NOQA
         word_tokenizers.append(_tokenizer)
 
-    except (ModuleNotFoundError, OSError, RuntimeError):
+    except (ImportError, OSError, RuntimeError):
         print("Skip: ", "Sentencepiece")
 
     try:
         _tokenizer = WordTokenizer("Sudachi", mode="A", with_postag=True)
         word_tokenizers.append(_tokenizer)
 
-    except (ModuleNotFoundError, KeyError):
+    except (ImportError, KeyError):
         print("Skip: ", "Sudachi")
 
     print("Finish creating word tokenizers")
