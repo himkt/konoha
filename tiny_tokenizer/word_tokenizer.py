@@ -33,6 +33,8 @@ class WordTokenizer:
     def __setup_tokenizer(self):
         if self._tokenizer == "character":
             self.tokenizer = word_tokenizers.CharacterTokenizer()
+        if self._tokenizer == "whitespace":
+            self.tokenizer = word_tokenizers.WhitespaceTokenizer()
         if self._tokenizer == "kytea":
             self.tokenizer = word_tokenizers.KyTeaTokenizer(
                 with_postag=self.with_postag
@@ -81,3 +83,6 @@ if __name__ == "__main__":
 
     tokenizer = WordTokenizer("character")
     print(tokenizer.tokenize("我輩は猫である"))
+
+    tokenizer = WordTokenizer("whitespace")
+    print(tokenizer.tokenize("我輩 は 猫 で ある"))
