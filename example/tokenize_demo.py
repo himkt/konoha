@@ -17,21 +17,21 @@ if __name__ == "__main__":
                 _tokenizer = WordTokenizer(tokenizer, with_postag=True)
                 word_tokenizers.append(_tokenizer)
 
-        except (ModuleNotFoundError, RuntimeError):
+        except (ImportError, RuntimeError):
             print("Skip: ", tokenizer)
 
     try:
         _tokenizer = WordTokenizer("Sentencepiece", model_path="./data/model.spm")  # NOQA
         word_tokenizers.append(_tokenizer)
 
-    except (ModuleNotFoundError, OSError, RuntimeError):
+    except (ImportError, OSError, RuntimeError):
         print("Skip: ", "Sentencepiece")
 
     try:
         _tokenizer = WordTokenizer("Sudachi", mode="A", with_postag=True)
         word_tokenizers.append(_tokenizer)
 
-    except (ModuleNotFoundError, KeyError):
+    except (ImportError, KeyError):
         print("Skip: ", "Sudachi")
 
     print("Finish creating word tokenizers")
@@ -40,14 +40,14 @@ if __name__ == "__main__":
     # ref: https://ja.wikipedia.org/wiki/東京特許許可局
     document = "東京特許許可局（とうきょうとっきょきょかきょく） 日本語の早口言葉。"  # NOQA
     document += "なお実際に特許に関する行政を行うのは特許庁であり、過去にこのような役所が存在したことは一度も無い。"  # NOQA
-    print(f"Given document: {document}")
+    print("Given document: {}".format(document))
 
     sentences = sentence_tokenizer.tokenize(document)
     for sentence_id, sentence in enumerate(sentences):
-        print(f"#{sentence_id}: {sentence}")
+        print("#{}: {}".format(sentence_id, sentence))
 
         for tokenizer in word_tokenizers:
-            print(f"Tokenizer: {tokenizer.name}")
+            print("Tokenizer: {}".format(tokenizer.name))
             result = tokenizer.tokenize(sentence)
             result = [str(r) for r in result]
             print(' '.join(result))

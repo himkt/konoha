@@ -7,15 +7,14 @@ class KyTeaTokenizer(BaseTokenizer):
 
     def __init__(self, with_postag: bool = False, **kwargs):
         super(KyTeaTokenizer, self).__init__(
-            name="kytea", with_postag=with_postag
-        )  # NOQA
+            name="kytea",
+            with_postag=with_postag)
         try:
             import Mykytea
-        except ModuleNotFoundError:
-            raise ModuleNotFoundError("kytea is not installed")
+        except ImportError:
+            raise ImportError("kytea is not installed")
 
-        flag = ""
-        self.kytea = Mykytea.Mykytea(flag)
+        self.kytea = Mykytea.Mykytea("")
 
     def tokenize(self, text: str):
         tokens = []

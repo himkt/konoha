@@ -37,7 +37,7 @@ def test_word_tokenize_with_kytea():
     """Test KyTea tokenizer."""
     try:
         tokenizer = WordTokenizer(tokenizer="kytea", with_postag=True)
-    except ModuleNotFoundError:
+    except ImportError:
         pytest.skip("skip kytea")
 
     expect = [Token(**kwargs) for kwargs in kytea_tokens_list]
@@ -68,7 +68,7 @@ def test_word_tokenize_with_mecab():
     """Test MeCab tokenizer."""
     try:
         tokenizer = WordTokenizer(tokenizer="mecab", with_postag=True)
-    except ModuleNotFoundError:
+    except ImportError:
         pytest.skip("skip mecab")
 
     expect = [Token(**kwargs) for kwargs in mecab_tokens_list]
@@ -104,7 +104,7 @@ def test_word_tokenize_with_sudachi_mode_a():
     try:
         tokenizer = WordTokenizer(
             tokenizer="sudachi", mode="A", with_postag=True)
-    except ModuleNotFoundError:
+    except ImportError:
         pytest.skip("skip sudachi")
 
     expect = [Token(**kwargs) for kwargs in sudachi_tokens_list]

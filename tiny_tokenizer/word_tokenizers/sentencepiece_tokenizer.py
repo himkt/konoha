@@ -19,8 +19,8 @@ class SentencepieceTokenizer(BaseTokenizer):
         super(SentencepieceTokenizer, self).__init__("sentencepiece")
         try:
             import sentencepiece
-        except ModuleNotFoundError:
-            raise ModuleNotFoundError("sentencepiece is not installed")
+        except ImportError:
+            raise ImportError("sentencepiece is not installed")
 
         self.tokenizer = sentencepiece.SentencePieceProcessor()
         self.tokenizer.load(model_path)

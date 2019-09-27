@@ -21,18 +21,21 @@ class MeCabTokenizer(BaseTokenizer):
         with_postag (bool=False)
             flag determines iftiny_tokenizer.tokenizer include pos tags.
         """
-        super().__init__(name="mecab", with_postag=with_postag)
+        super().__init__(
+            name="mecab",
+            with_postag=with_postag)
+
         try:
             import natto
-        except ModuleNotFoundError:
-            raise ModuleNotFoundError("natto-py is not installed")
+        except ImportError:
+            raise ImportError("natto-py is not installed")
 
         flag = ""
         if not self.with_postag:
             flag += " -Owakati"
 
         if dictionary_path is not None:
-            flag += f" -u {dictionary_path}"
+            flag += " -u {}".format(dictionary_path)
 
         self.mecab = natto.MeCab(flag)
 
@@ -61,6 +64,7 @@ class MeCabTokenizer(BaseTokenizer):
                     postag4=postag4,
                     inflection=inflection,
                     conjugation=conjugation,
+                    base_form=base_form,
                     yomi=yomi,
                     pron=pron)
                 return_result.append(token)
