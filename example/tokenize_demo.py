@@ -53,3 +53,8 @@ if __name__ == "__main__":
             print(' '.join(result))
 
         print()
+
+    tokenizer = WordTokenizer("whitespace")
+    sentence = "私 は 猫 だ ニャン"
+    print(tokenizer.tokenize(sentence))
+
