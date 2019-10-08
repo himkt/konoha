@@ -11,7 +11,8 @@ class WordTokenizer:
         self,
         tokenizer: Optional[str] = None,
         with_postag: bool = False,
-        dictionary_path: Optional[str] = None,
+        user_dictionary_path: Optional[str] = None,
+        system_dictionary_path: Optional[str] = None,
         model_path: Optional[str] = None,
         mode: Optional[str] = None,
     ):
@@ -23,7 +24,8 @@ class WordTokenizer:
         """
         self._tokenizer = tokenizer.lower()
         self.with_postag = with_postag
-        self.dictionary_path = dictionary_path
+        self.user_dictionary_path = user_dictionary_path
+        self.system_dictionary_path = system_dictionary_path
         self.model_path = model_path
         if mode is not None:
             self.mode = mode.lower()
@@ -36,18 +38,16 @@ class WordTokenizer:
         if self._tokenizer == "whitespace":
             self.tokenizer = word_tokenizers.WhitespaceTokenizer()
         if self._tokenizer == "kytea":
-            self.tokenizer = word_tokenizers.KyTeaTokenizer(
-                with_postag=self.with_postag)
+            self.tokenizer = word_tokenizers.KyTeaTokenizer(with_postag=self.with_postag)  # NOQA
         if self._tokenizer == "sentencepiece":
-            self.tokenizer = word_tokenizers.SentencepieceTokenizer(
-                model_path=self.model_path)
+            self.tokenizer = word_tokenizers.SentencepieceTokenizer(model_path=self.model_path)  # NOQA
         if self._tokenizer == "mecab":
-            self.tokenizer = word_tokenizers.MeCabTokenizer(
-                dictionary_path=self.dictionary_path,
-                with_postag=self.with_postag)
+            self.tokenizer = word_tokenizers.MeCabTokenizer(user_dictionary_path=self.user_dictionary_path,      # NOQA
+                                                            system_dictionary_path=self.system_dictionary_path,  # NOQA
+                                                            with_postag=self.with_postag)                        # NOQA
         if self._tokenizer == "sudachi":
-            self.tokenizer = word_tokenizers.SudachiTokenizer(
-                mode=self.mode, with_postag=self.with_postag)
+            self.tokenizer = word_tokenizers.SudachiTokenizer(mode=self.mode,
+                                                              with_postag=self.with_postag)  # NOQA
 
     def tokenize(self, text: str):
         """Tokenize input text"""
