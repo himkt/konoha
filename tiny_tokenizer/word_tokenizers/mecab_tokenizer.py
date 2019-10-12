@@ -1,4 +1,5 @@
 from typing import Optional
+from typing import List
 
 from tiny_tokenizer.tiny_tokenizer_token import Token
 from tiny_tokenizer.word_tokenizers.tokenizer import BaseTokenizer
@@ -8,8 +9,11 @@ class MeCabTokenizer(BaseTokenizer):
     """Wrapper class forexternal text analyzers"""
 
     def __init__(
-        self, dictionary_path: Optional[str] = None, with_postag: bool = False
-    ):
+            self,
+            user_dictionary_path: Optional[str] = None,
+            system_dictionary_path: Optional[str] = None,
+            with_postag: bool = False,
+    ) -> None:
         """
         Initializer for MeCabTokenizer.
 
@@ -34,12 +38,15 @@ class MeCabTokenizer(BaseTokenizer):
         if not self.with_postag:
             flag += " -Owakati"
 
-        if dictionary_path is not None:
-            flag += " -u {}".format(dictionary_path)
+        if user_dictionary_path is not None:
+            flag += " -u {}".format(user_dictionary_path)
+
+        if system_dictionary_path is not None:
+            flag += " -d {}".format(system_dictionary_path)
 
         self.mecab = natto.MeCab(flag)
 
-    def tokenize(self, text: str):
+    def tokenize(self, text: str) -> List[Token]:
         """Tokenize"""
         return_result = []
         parse_result = self.mecab.parse(text)
