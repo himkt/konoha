@@ -11,13 +11,15 @@ isort = "*"
 mypy = "*"
 pytest = "*"
 python-language-server = "*"
+v = {editable = true,version = "*"}
+pylint = "*"
+pep8 = "*"
+pylama = "*"
+
+[packages]
 SudachiDict_full = {file = "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_full-20190718.1.tar.gz"}
 SudachiPy = "*"
 natto-py = "*"
 kytea = "*"
 sentencepiece = "*"
-v = {editable = true,version = "*"}
-pylint = "*"
-pep8 = "*"
-
-[packages]
+tiny-tokenizer = {path = "."}
