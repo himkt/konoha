@@ -8,7 +8,7 @@ from tiny_tokenizer.word_tokenizer import WordTokenizer
 
 SENTENCE1 = "吾輩は猫である"
 SENTENCE2 = "医薬品安全管理責任者"
-SENTENCE3 = "吾輩 は 猫 で ある"
+SENTENCE3 = "吾輩 は 猫 で ある"  # whitespace
 
 
 class WordSegmentationTest(unittest.TestCase):
@@ -27,6 +27,16 @@ class WordSegmentationTest(unittest.TestCase):
         result2 = tokenizer2.tokenize(SENTENCE1)
         assert expect == result1  # NOQA
         assert result1 == result2
+
+    def test_word_tokenize_with_kytea_using_custom_model(self):
+        try:
+            tokenizer = WordTokenizer(tokenizer="KyTea", model_path="data/model.knm")
+        except ImportError:
+            pytest.skip("skip kytea")
+
+        expect = [Token(surface=w) for w in "吾輩は 猫である".split(" ")]  # NOQA
+        result = tokenizer.tokenize(SENTENCE1)
+        assert expect == result  # NOQA
 
     def test_word_tokenize_with_mecab(self):
         """Test MeCab tokenizer."""
@@ -89,7 +99,7 @@ class WordSegmentationTest(unittest.TestCase):
         except ImportError:
             pytest.skip("skip sudachi")
 
-        expect = [Token(surface=w) for w in "医薬品安全管理責任者".split(" ")]
+        expect = [Token(surface=w) for w in "医薬品 安全 管理責任者".split(" ")]
         result = tokenizer.tokenize(SENTENCE2)
         self.assertEqual(expect, result)
 
