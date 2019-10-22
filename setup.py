@@ -11,6 +11,11 @@ try:
 except ValueError:
     raise ValueError("BUILD_WORD_TOKENIZER should be integer")
 
+SUDACHIDICT_URL = "https://object-storage.tyo2.conoha.io/v1/" \
+    "nc_2520839e1f9641b08211a5c85243124a/" \
+    "sudachi/SudachiDict_core-20190927.tar.gz"
+SUDACHIDICT = "SudachiDict_core @ {}".format(SUDACHIDICT_URL)
+
 setup(
     name="tiny_tokenizer",
     version="3.0.1",
@@ -21,8 +26,8 @@ setup(
         "mecab": ["natto-py"],
         "kytea": ["kytea"],
         "sentencepiece": ["sentencepiece"],
-        "sudachi": ["SudachiPy"],
-        "all": ["natto-py", "kytea", "sentencepiece", "SudachiPy"]
+        "sudachi": ["SudachiPy", SUDACHIDICT],
+        "all": ["natto-py", "kytea", "sentencepiece", "SudachiPy", SUDACHIDICT]
     },
     url="https://github.com/himkt/tiny_tokenizer",
     packages=find_packages(),
