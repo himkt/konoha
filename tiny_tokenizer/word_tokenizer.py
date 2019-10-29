@@ -38,16 +38,23 @@ class WordTokenizer:
         if self._tokenizer == "whitespace":
             self.tokenizer = word_tokenizers.WhitespaceTokenizer()
         if self._tokenizer == "kytea":
-            self.tokenizer = word_tokenizers.KyTeaTokenizer(with_postag=self.with_postag)  # NOQA
+            self.tokenizer = word_tokenizers.KyTeaTokenizer(
+                with_postag=self.with_postag, model_path=self.model_path
+            )
         if self._tokenizer == "sentencepiece":
-            self.tokenizer = word_tokenizers.SentencepieceTokenizer(model_path=self.model_path)  # NOQA
+            self.tokenizer = word_tokenizers.SentencepieceTokenizer(
+                model_path=self.model_path
+            )  # NOQA
         if self._tokenizer == "mecab":
-            self.tokenizer = word_tokenizers.MeCabTokenizer(user_dictionary_path=self.user_dictionary_path,      # NOQA
-                                                            system_dictionary_path=self.system_dictionary_path,  # NOQA
-                                                            with_postag=self.with_postag)                        # NOQA
+            self.tokenizer = word_tokenizers.MeCabTokenizer(
+                user_dictionary_path=self.user_dictionary_path,  # NOQA
+                system_dictionary_path=self.system_dictionary_path,  # NOQA
+                with_postag=self.with_postag,
+            )  # NOQA
         if self._tokenizer == "sudachi":
-            self.tokenizer = word_tokenizers.SudachiTokenizer(mode=self.mode,
-                                                              with_postag=self.with_postag)  # NOQA
+            self.tokenizer = word_tokenizers.SudachiTokenizer(
+                mode=self.mode, with_postag=self.with_postag
+            )  # NOQA
 
     def tokenize(self, text: str):
         """Tokenize input text"""
