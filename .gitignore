@@ -3,4 +3,6 @@
 .*
 !.gitignore
 
-/venv
+/build
+/dist
+/tiny_tokenizer.egg-info
