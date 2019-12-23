@@ -52,7 +52,7 @@ class MeCabTokenizer(BaseTokenizer):
         parse_result = self.mecab.parse(text)
         if self.with_postag:
             for elem in parse_result.split("\n")[:-1]:
-                surface, feature = elem.split()
+                surface, feature = elem.split("\t")
                 postag, postag2, postag3, postag4, \
                     inflection, conjugation, \
                     base_form, *other = feature.split(",")

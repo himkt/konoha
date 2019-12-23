@@ -15,6 +15,7 @@ v = {editable = true,version = "*"}
 pylint = "*"
 pep8 = "*"
 pylama = "*"
+rope = "*"
 
 [packages]
 natto-py = "*"
