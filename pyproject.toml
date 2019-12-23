@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "tiny_tokenizer"
+version = "3.0.2"
+description = ""
+authors = ["himkt <himkt@cookpad.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+sudachipy = "^0.4.2"
+kytea = "^0.1.4"
+sudachidict-full = {url = "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_full-20191030.tar.gz"}
+sudachidict-core = {url = "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191030.tar.gz"}
+natto-py = "^0.9.0"
+sentencepiece = "^0.1.85"
+
+[tool.poetry.dev-dependencies]
+python-language-server = "^0.31.2"
+pytest = "^5.3.2"
+flake8 = "^3.7.9"
+rope = "^0.14.0"
+mypy = "^0.761"
+black = "^19.10b0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
