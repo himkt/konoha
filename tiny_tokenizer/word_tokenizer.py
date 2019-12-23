@@ -9,7 +9,7 @@ class WordTokenizer:
 
     def __init__(
         self,
-        tokenizer: Optional[str] = None,
+        tokenizer: str = 'MeCab',
         with_postag: bool = False,
         user_dictionary_path: Optional[str] = None,
         system_dictionary_path: Optional[str] = None,
