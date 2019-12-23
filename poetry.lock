@@ -412,22 +412,6 @@ version = "2.1.0"
 [[package]]
 category = "main"
 description = "A lexicon for Sudachi, the Japanese Morphological Analyzer"
-name = "SudachiDict_core"
-optional = false
-python-versions = "*"
-version = "20191030"
-
-[package.dependencies]
-SudachiPy = ">=0.2.1"
-
-[package.source]
-reference = ""
-type = "url"
-url = "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191030.tar.gz"
-
-[[package]]
-category = "main"
-description = "A lexicon for Sudachi, the Japanese Morphological Analyzer"
 name = "SudachiDict_full"
 optional = false
 python-versions = "*"
@@ -440,7 +424,6 @@ SudachiPy = ">=0.2.1"
 reference = ""
 type = "url"
 url = "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_full-20191030.tar.gz"
-
 [[package]]
 category = "main"
 description = "Python version of Sudachi, the Japanese Morphological Analyzer"
@@ -511,7 +494,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "0079f1b8eabd95eccf66df6d301a12e4da935e47a7d6b94c5643d1aa3c0be80d"
+content-hash = "d04e86b76d90aa50989f1bdc7ecf8e4212045fba109e314d36da6016d076fd3e"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -786,7 +769,6 @@ sortedcontainers = [
     {file = "sortedcontainers-2.1.0-py2.py3-none-any.whl", hash = "sha256:d9e96492dd51fae31e60837736b38fe42a187b5404c16606ff7ee7cd582d4c60"},
     {file = "sortedcontainers-2.1.0.tar.gz", hash = "sha256:974e9a32f56b17c1bac2aebd9dcf197f3eb9cd30553c5852a3187ad162e1a03a"},
 ]
-SudachiDict_core = []
 SudachiDict_full = []
 sudachipy = [
     {file = "SudachiPy-0.4.2-py3-none-any.whl", hash = "sha256:85b28fcb8bb59e0b3220fceeb173e8f5c2e2f34ab4ee122853a240c07bd41173"},

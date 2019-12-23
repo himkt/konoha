@@ -9,7 +9,6 @@ python = "^3.6"
 sudachipy = "^0.4.2"
 kytea = "^0.1.4"
 sudachidict-full = {url = "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_full-20191030.tar.gz"}
-sudachidict-core = {url = "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191030.tar.gz"}
 natto-py = "^0.9.0"
 sentencepiece = "^0.1.85"
 
