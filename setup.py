@@ -6,11 +6,6 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-try:
-    BUILD_WORD_TOKENIZER = int(getenv("BUILD_WORD_TOKENIZER", "1"))
-except ValueError:
-    raise ValueError("BUILD_WORD_TOKENIZER should be integer")
-
 SUDACHIDICT_URL = (
     "https://object-storage.tyo2.conoha.io/v1/"
     "nc_2520839e1f9641b08211a5c85243124a/"
