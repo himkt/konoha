@@ -15,7 +15,7 @@ SUDACHIDICT = "SudachiDict_core @ {}".format(SUDACHIDICT_URL)
 
 setup(
     name="tiny_tokenizer",
-    version="3.0.2",
+    version="3.1.0",
     description="Tiny Word/Sentence Tokenizer",
     author="himkt",
     author_email="himkt@klis.tsukuba.ac.jp",
