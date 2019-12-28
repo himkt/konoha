@@ -49,7 +49,7 @@ class MeCabTokenizer(BaseTokenizer):
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize"""
         return_result = []
-        parse_result = self.mecab.parse(text)
+        parse_result = self.mecab.parse(text).rstrip(' ')
         if self.with_postag:
             for elem in parse_result.split("\n")[:-1]:
                 surface, feature = elem.split("\t")
