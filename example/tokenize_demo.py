@@ -4,21 +4,21 @@ from tiny_tokenizer import WordTokenizer
 
 if __name__ == "__main__":
     sentence_tokenizer = SentenceTokenizer()
-    tokenizers = ["MeCab", "KyTea", "Character"]
-    tokenizers_support_postag = ["MeCab", "KyTea"]
+    tokenizers = ["MeCab", "KyTea", "Janome", "Character"]
+    tokenizers_support_postag = ["MeCab", "KyTea", "Janome"]
 
     word_tokenizers = []
-    for tokenizer in tokenizers:
+    for word_tokenizer_name in tokenizers:
         try:
-            _tokenizer = WordTokenizer(tokenizer)
+            _tokenizer = WordTokenizer(word_tokenizer_name)
             word_tokenizers.append(_tokenizer)
 
-            if tokenizer in tokenizers_support_postag:
-                _tokenizer = WordTokenizer(tokenizer, with_postag=True)
+            if word_tokenizer_name in tokenizers_support_postag:
+                _tokenizer = WordTokenizer(word_tokenizer_name, with_postag=True)
                 word_tokenizers.append(_tokenizer)
 
         except (ImportError, RuntimeError):
-            print("Skip: ", tokenizer)
+            print("Skip: ", word_tokenizer_name)
 
     try:
         _tokenizer = WordTokenizer("Sentencepiece", model_path="./data/model.spm")  # NOQA
@@ -46,15 +46,15 @@ if __name__ == "__main__":
     for sentence_id, sentence in enumerate(sentences):
         print("#{}: {}".format(sentence_id, sentence))
 
-        for tokenizer in word_tokenizers:
-            print("Tokenizer: {}".format(tokenizer.name))
-            result = tokenizer.tokenize(sentence)
+        for word_tokenizer in word_tokenizers:
+            print("Tokenizer: {}".format(word_tokenizer.name))
+            result = word_tokenizer.tokenize(sentence)
             result = [str(r) for r in result]
             print(' '.join(result))
 
         print()
 
-    tokenizer = WordTokenizer("whitespace")
+    word_tokenizer = WordTokenizer("whitespace")
     sentence = "私 は 猫 だ ニャン"
-    print(tokenizer.tokenize(sentence))
+    print(word_tokenizer.tokenize(sentence))
 
