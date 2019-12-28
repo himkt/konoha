@@ -53,6 +53,20 @@ class WordSegmentationTest(unittest.TestCase):
         assert expect == result1  # NOQA
         assert result1 == result2
 
+    def test_word_tokenize_with_janome(self):
+        """Test MeCab tokenizer."""
+        try:
+            tokenizer1 = WordTokenizer(tokenizer="Janome")
+            tokenizer2 = WordTokenizer(tokenizer="janome")
+        except ImportError:
+            pytest.skip("skip janome")
+
+        expect = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]  # NOQA
+        result1 = tokenizer1.tokenize(SENTENCE1)
+        result2 = tokenizer2.tokenize(SENTENCE1)
+        assert expect == result1  # NOQA
+        assert result1 == result2
+
     def test_word_tokenize_with_mecab_whitespace(self):
         """Test MeCab tokenizer."""
         try:
