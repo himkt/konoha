@@ -24,6 +24,7 @@ setup(
         "kytea": ["kytea"],
         "sentencepiece": ["sentencepiece"],
         "sudachi": ["SudachiPy", SUDACHIDICT],
+        "janome": ["janome"],
         "all": ["natto-py", "kytea", "janome", "sentencepiece", "SudachiPy", SUDACHIDICT],
     },
     url="https://github.com/himkt/tiny_tokenizer",
