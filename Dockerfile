@@ -31,9 +31,13 @@ WORKDIR /work
 COPY ./data ./data
 COPY ./example ./example
 COPY ./tiny_tokenizer ./tiny_tokenizer
-COPY ./setup.py .
+COPY ./pyproject.toml ./pyproject.toml
+COPY ./poetry.lock ./poetry.lock
 
+RUN pip3 --version
+RUN pip3 install -U pip
+RUN pip3 --version
 RUN pip3 install '.[all]'
-RUN pip3 install "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_full-20190718.tar.gz"
-RUN sudachipy link -t full
-RUN rm setup.py
+RUN pip3 install "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz"
+
+RUN rm pyproject.toml poetry.lock

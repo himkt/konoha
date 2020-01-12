@@ -6,6 +6,15 @@
 [![GitHub release](https://img.shields.io/github/release/himkt/tiny_tokenizer.svg?maxAge=2592000&colorB=red)](https://github.com/himkt/tiny_tokenizer)
 [![MIT License](http://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](LICENSE)
 
+
+## Requirements
+
+- Python>=3.5.0
+- pip>=19.0
+
+
+## Introduction
+
 Tiny tokenizer is a simple wrapper of wrapper for Japanese tokenizers.
 
 It unifies the interface of several Japanese tokenizers.
@@ -36,6 +45,9 @@ You can install tiny_tokenizer and above libraries by pip, please run:
 Or, you can install tiny_tokenizer only with SentenceTokenizer by the following command:
 `pip install tiny_tokenizer`.
 
+**Note**
+
+If you want to use SudachiPy, please run `pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz` to install a dictionary.
 
 ### Install tiny_tokenizer on Docker container
 
