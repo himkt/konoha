@@ -694,15 +694,16 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [extras]
-all = ["janome", "natto-py", "kytea", "sudachipy", "sentencepiece"]
+all = ["janome", "natto-py", "kytea", "sudachipy", "sentencepiece", "boto3"]
 janome = ["janome"]
 kytea = ["kytea"]
 mecab = ["natto-py"]
+remote = ["boto3"]
 sentencepiece = ["sentencepiece"]
 sudachi = ["sudachipy"]
 
 [metadata]
-content-hash = "40088be82c042e356fb76c275ffc992bc81602120f75ffce22430ad1d525cdd3"
+content-hash = "bf4aa34ca71e3b711f947fd1066dff5e3b8f11aa732529699e4364d2724907bb"
 python-versions = "^3.6"
 
 [metadata.files]
