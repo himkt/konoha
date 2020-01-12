@@ -6,6 +6,15 @@
 [![GitHub release](https://img.shields.io/github/release/himkt/tiny_tokenizer.svg?maxAge=2592000&colorB=red)](https://github.com/himkt/tiny_tokenizer)
 [![MIT License](http://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](LICENSE)
 
+
+## Requirements
+
+- Python>=3.5.0
+- pip>=19.0
+
+
+## Introduction
+
 Tiny tokenizer is a simple wrapper of wrapper for Japanese tokenizers.
 
 It unifies the interface of several Japanese tokenizers.
