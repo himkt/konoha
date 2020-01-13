@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 class Resource:
     NBYTES = 6
+    TINY_TOKENIZER_DIR = '/tmp/tiny_tokenizer'
 
     def __init__(self, path: Optional[str]):
 
@@ -34,7 +35,7 @@ class Resource:
             print(e, 'Please install boto3: pip install boto3')
 
         prefix = secrets.token_hex(self.NBYTES)
-        resource_dir = f'/tmp/tiny_tokenizer/{prefix}'
+        resource_dir = os.path.join(self.TINY_TOKENIZER_DIR, prefix)
         os.makedirs(resource_dir, exist_ok=True)
 
         re_result = re.search(r's3://(.*?)/(.+)', path)
