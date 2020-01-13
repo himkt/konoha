@@ -3,6 +3,10 @@ from typing import Optional
 import logging
 
 
+RED = "\033[1;31m"
+RST = "\033[0;0m"
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -31,8 +35,11 @@ class Resource:
             import re
             import os.path
             import secrets
-        except ImportError as e:
-            print(e, 'Please install boto3: pip install boto3')
+        except ImportError:
+            msg = 'Please install boto3:'
+            msg += f' {RED}`pip install boto3`{RST}'
+            msg += f' or {RED}`pip install tiny_tokenizer[remote]{RST}'
+            raise ImportError(msg)
 
         prefix = secrets.token_hex(self.NBYTES)
         resource_dir = os.path.join(self.TINY_TOKENIZER_DIR, prefix)
