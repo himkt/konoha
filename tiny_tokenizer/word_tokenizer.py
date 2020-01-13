@@ -2,6 +2,7 @@
 from typing import Optional
 
 from tiny_tokenizer import word_tokenizers
+from tiny_tokenizer import resource
 
 
 class WordTokenizer:
@@ -24,9 +25,15 @@ class WordTokenizer:
         """
         self._tokenizer = tokenizer.lower()
         self.with_postag = with_postag
-        self.user_dictionary_path = user_dictionary_path
-        self.system_dictionary_path = system_dictionary_path
-        self.model_path = model_path
+
+        user_dictionary = resource.Resource(user_dictionary_path)
+        system_dictionary = resource.Resource(system_dictionary_path)
+        model = resource.Resource(model_path)
+
+        self.user_dictionary_path = user_dictionary.path
+        self.system_dictionary_path = system_dictionary.path
+        self.model_path = model.path
+
         if mode is not None:
             self.mode = mode.lower()
 
