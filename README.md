@@ -1,5 +1,7 @@
 # konoha
 
+(previous tiny_tokenizer)
+
 [![Build Status](https://travis-ci.org/himkt/konoha.svg?branch=master)](https://travis-ci.org/himkt/konoha)
 [![GitHub stars](https://img.shields.io/github/stars/himkt/konoha.svg?maxAge=2592000&colorB=blue)](https://github.com/himkt/konoha/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/himkt/konoha.svg)](https://github.com/himkt/konoha/issues)
