@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 class Resource:
     NBYTES = 6
-    TINY_TOKENIZER_DIR = '/tmp/tiny_tokenizer'
+    TINY_TOKENIZER_DIR = '/tmp/konoha'
 
     def __init__(self, path: Optional[str]):
 
@@ -38,7 +38,7 @@ class Resource:
         except ImportError:
             msg = 'Please install boto3:'
             msg += f' {RED}`pip install boto3`{RST}'
-            msg += f' or {RED}`pip install tiny_tokenizer[remote]{RST}'
+            msg += f' or {RED}`pip install konoha[remote]{RST}'
             raise ImportError(msg)
 
         prefix = secrets.token_hex(self.NBYTES)

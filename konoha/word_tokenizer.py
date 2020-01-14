@@ -1,8 +1,8 @@
 """Word Level Tokenizer."""
 from typing import Optional
 
-from tiny_tokenizer import word_tokenizers
-from tiny_tokenizer import resource
+from konoha import word_tokenizers
+from konoha import resource
 
 
 class WordTokenizer:

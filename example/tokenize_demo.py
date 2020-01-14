@@ -1,5 +1,5 @@
-from tiny_tokenizer import SentenceTokenizer
-from tiny_tokenizer import WordTokenizer
+from konoha import SentenceTokenizer
+from konoha import WordTokenizer
 
 
 if __name__ == "__main__":
