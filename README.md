@@ -1,9 +1,11 @@
-# tiny_tokenizer
+# konoha
 
-[![Build Status](https://travis-ci.org/himkt/tiny_tokenizer.svg?branch=master)](https://travis-ci.org/himkt/tiny_tokenizer)
-[![GitHub stars](https://img.shields.io/github/stars/himkt/tiny_tokenizer.svg?maxAge=2592000&colorB=blue)](https://github.com/himkt/tiny_tokenizer/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/himkt/tiny_tokenizer.svg)](https://github.com/himkt/tiny_tokenizer/issues)
-[![GitHub release](https://img.shields.io/github/release/himkt/tiny_tokenizer.svg?maxAge=2592000&colorB=red)](https://github.com/himkt/tiny_tokenizer)
+(previous tiny_tokenizer)
+
+[![Build Status](https://travis-ci.org/himkt/konoha.svg?branch=master)](https://travis-ci.org/himkt/konoha)
+[![GitHub stars](https://img.shields.io/github/stars/himkt/konoha.svg?maxAge=2592000&colorB=blue)](https://github.com/himkt/konoha/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/himkt/konoha.svg)](https://github.com/himkt/konoha/issues)
+[![GitHub release](https://img.shields.io/github/release/himkt/konoha.svg?maxAge=2592000&colorB=red)](https://github.com/himkt/konoha)
 [![MIT License](http://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](LICENSE)
 
 
@@ -21,7 +23,7 @@ It unifies the interface of several Japanese tokenizers.
 
 Tiny tokenizer provides you the way to switch a tokenizer and boost your pre-processing.
 
-`tiny_tokenizer` supports following tokenizers.
+`konoha` supports following tokenizers.
 - MeCab (and [natto-py](https://github.com/buruzaemon/natto-py))
 - KyTea (and [Mykytea-python](https://github.com/chezou/Mykytea-python))
 - Sudachi ([SudachiPy](https://github.com/WorksApplications/SudachiPy))
@@ -35,29 +37,29 @@ which segments a document into sentences.
 
 ## Installation
 
-### Install tiny_tokenizer on local machine
+### Install konoha on local machine
 
 It is not needed for sentence level tokenization because these libraries are used in word level tokenization.
 
-You can install tiny_tokenizer and above libraries by pip, please run:
-`pip install tiny_tokenizer[all]`.
+You can install konoha and above libraries by pip, please run:
+`pip install konoha[all]`.
 
-Or, you can install tiny_tokenizer only with SentenceTokenizer by the following command:
-`pip install tiny_tokenizer`.
+Or, you can install konoha only with SentenceTokenizer by the following command:
+`pip install konoha`.
 
 **Note**
 
 If you want to use SudachiPy, please run `pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz` to install a dictionary.
 
-### Install tiny_tokenizer on Docker container
+### Install konoha on Docker container
 
-You can use tiny_tokenizer using the Docker container.
+You can use konoha using the Docker container.
 
-If you want to use tiny_tokenizer with Docker, run following commands.
+If you want to use konoha with Docker, run following commands.
 
 ```
-docker build -t himkt/tiny_tokenizer .
-docker run -it himkt/tiny_tokenizer /bin/bash
+docker build -t himkt/konoha .
+docker run -it himkt/konoha /bin/bash
 ```
 
 
@@ -68,7 +70,7 @@ docker run -it himkt/tiny_tokenizer /bin/bash
 - Code
 
 ```python
-from tiny_tokenizer import WordTokenizer
+from konoha import WordTokenizer
 
 sentence = '自然言語処理を勉強しています'
 
@@ -93,7 +95,7 @@ For more detail, please see the `example/` directory.
 - Code
 
 ```python
-from tiny_tokenizer import SentenceTokenizer
+from konoha import SentenceTokenizer
 
 sentence = "私は猫だ。名前なんてものはない。だが，「かわいい。それで十分だろう」。"
 
@@ -110,11 +112,11 @@ print(tokenizer.tokenize(sentence))
 
 ### Remote files
 
-tiny_tokenizer can load a dictionary/model on a remote location (it currently supports amazon s3).
-For using the remote feature, please run `pip install tiny_tokenizer[remote]` or `pip install tiny_tokenizer[all]`.
+konoha can load a dictionary/model on a remote location (it currently supports amazon s3).
+For using the remote feature, please run `pip install konoha[remote]` or `pip install konoha[all]`.
 
 ```python
-from tiny_tokenizer import WordTokenizer
+from konoha import WordTokenizer
 
 if __name__ == "__main__":
     sentence = "首都大学東京"

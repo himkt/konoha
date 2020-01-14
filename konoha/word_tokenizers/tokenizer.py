@@ -1,18 +1,18 @@
 
 
 class BaseTokenizer:
-    """Base class for word leveltiny_tokenizer.tokenizer"""
+    """Base class for word levelkonoha.tokenizer"""
 
     def __init__(self, name: str, with_postag: bool = False, **kwargs):
         """
-        Abstract class for word leveltiny_tokenizer.tokenizer.
+        Abstract class for word levelkonoha.tokenizer.
 
         Parameters
         ---
         name (str)
-            name of atiny_tokenizer.tokenizer
+            name of akonoha.tokenizer
         with_postag (bool=False)
-            flag determines iftiny_tokenizer.tokenizer include pos tags.
+            flag determines ifkonoha.tokenizer include pos tags.
         **kwargs
             others.
         """
@@ -20,10 +20,10 @@ class BaseTokenizer:
         self.with_postag = with_postag
 
     def tokenize(self, text: str):
-        """Abstract method fortiny_tokenizer.tokenization"""
+        """Abstract method forkonoha.tokenization"""
         raise NotImplementedError
 
     @property
     def name(self):
-        """Return name oftiny_tokenizer.tokenizer"""
+        """Return name ofkonoha.tokenizer"""
         return self.__name

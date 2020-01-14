@@ -1,8 +1,8 @@
 from typing import List
 from typing import Optional
 
-from tiny_tokenizer.tiny_tokenizer_token import Token
-from tiny_tokenizer.word_tokenizers.tokenizer import BaseTokenizer
+from konoha.konoha_token import Token
+from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class JanomeTokenizer(BaseTokenizer):

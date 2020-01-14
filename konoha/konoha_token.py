@@ -3,7 +3,7 @@ from typing import Optional
 
 
 class Token:
-    """Token class for tiny_tokenizer."""
+    """Token class for konoha."""
 
     def __init__(
         self,

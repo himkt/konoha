@@ -1,5 +1,5 @@
 """Test for word tokenizers"""
-from tiny_tokenizer.tiny_tokenizer_token import Token
+from konoha.konoha_token import Token
 
 
 def test_token_without_feature():

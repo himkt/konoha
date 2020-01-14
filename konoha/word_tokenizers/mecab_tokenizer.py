@@ -1,8 +1,8 @@
 from typing import Optional
 from typing import List
 
-from tiny_tokenizer.tiny_tokenizer_token import Token
-from tiny_tokenizer.word_tokenizers.tokenizer import BaseTokenizer
+from konoha.konoha_token import Token
+from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class MeCabTokenizer(BaseTokenizer):
@@ -23,7 +23,7 @@ class MeCabTokenizer(BaseTokenizer):
             path to a custom dictionary (option)
             it is used by `mecab -u [dictionary_path]`
         with_postag (bool=False)
-            flag determines iftiny_tokenizer.tokenizer include pos tags.
+            flag determines ifkonoha.tokenizer include pos tags.
         """
         super().__init__(
             name="mecab",

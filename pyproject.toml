@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "tiny_tokenizer"
-version = "3.1.0"
+name = "konoha"
+version = "1.0.0"
 description = "A tiny sentence/word tokenizer for Japanese text written in Python"
 authors = ["himkt <himkt@cookpad.com>"]
 

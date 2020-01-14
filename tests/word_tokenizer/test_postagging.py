@@ -11,8 +11,8 @@ URL is following:
 
 import pytest
 
-from tiny_tokenizer.tiny_tokenizer_token import Token
-from tiny_tokenizer.word_tokenizer import WordTokenizer
+from konoha.konoha_token import Token
+from konoha.word_tokenizer import WordTokenizer
 
 SENTENCE1 = "吾輩は猫である"
 SENTENCE2 = "医薬品安全管理責任者"

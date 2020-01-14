@@ -1,5 +1,5 @@
-from tiny_tokenizer.tiny_tokenizer_token import Token
-from tiny_tokenizer.word_tokenizers.tokenizer import BaseTokenizer
+from konoha.konoha_token import Token
+from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class SudachiTokenizer(BaseTokenizer):
@@ -12,13 +12,13 @@ class SudachiTokenizer(BaseTokenizer):
         Parameters
         ---
         mode (str)
-            Splitting mode which controls a granuality oftiny_tokenizer.token.
+            Splitting mode which controls a granuality ofkonoha.token.
             (mode should be `A`, `B` or `C`)
             For more information, see following links.
             - document: https://github.com/WorksApplications/Sudachi#the-modes-of-splitting  # NOQA
             - paper: http://www.lrec-conf.org/proceedings/lrec2018/summaries/8884.html  # NOQA
         with_postag (bool=False)
-            flag determines iftiny_tokenizer.tokenizer include pos tags.
+            flag determines ifkonoha.tokenizer include pos tags.
         **kwargs
             others.
         """

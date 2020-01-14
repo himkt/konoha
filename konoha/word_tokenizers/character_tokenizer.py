@@ -1,9 +1,9 @@
-from tiny_tokenizer.tiny_tokenizer_token import Token
-from tiny_tokenizer.word_tokenizers.tokenizer import BaseTokenizer
+from konoha.konoha_token import Token
+from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class CharacterTokenizer(BaseTokenizer):
-    """Charactertiny_tokenizer.tokenizer"""
+    """Characterkonoha.tokenizer"""
 
     def __init__(self):
         super(CharacterTokenizer, self).__init__("character")

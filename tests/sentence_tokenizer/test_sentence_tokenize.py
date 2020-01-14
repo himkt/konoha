@@ -1,4 +1,4 @@
-from tiny_tokenizer.sentence_tokenizer import SentenceTokenizer
+from konoha.sentence_tokenizer import SentenceTokenizer
 import unittest
 
 
