@@ -2,7 +2,7 @@
 
 (previous tiny_tokenizer)
 
-[![Build Status](https://travis-ci.org/himkt/konoha.svg?branch=master)](https://travis-ci.org/himkt/konoha)
+[![Build Status](https://github.com/himkt/konoha/workflows/Python%20package/badge.svg)](https://github.com/himkt/konoha/actions)
 [![GitHub stars](https://img.shields.io/github/stars/himkt/konoha.svg?maxAge=2592000&colorB=blue)](https://github.com/himkt/konoha/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/himkt/konoha.svg)](https://github.com/himkt/konoha/issues)
 [![GitHub release](https://img.shields.io/github/release/himkt/konoha.svg?maxAge=2592000&colorB=red)](https://github.com/himkt/konoha)
