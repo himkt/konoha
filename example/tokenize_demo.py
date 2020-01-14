@@ -57,4 +57,3 @@ if __name__ == "__main__":
     word_tokenizer = WordTokenizer("whitespace")
     sentence = "私 は 猫 だ ニャン"
     print(word_tokenizer.tokenize(sentence))
-

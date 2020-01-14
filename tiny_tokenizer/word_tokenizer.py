@@ -2,6 +2,7 @@
 from typing import Optional
 
 from tiny_tokenizer import word_tokenizers
+from tiny_tokenizer import resource
 
 
 class WordTokenizer:
@@ -22,11 +23,16 @@ class WordTokenizer:
             tokenizer {str or None} -- specify the type of tokenizer (default: {None})  # NOQA
             flags {str} -- option passing to tokenizer (default: {''})
         """
+        user_dictionary = resource.Resource(user_dictionary_path)
+        system_dictionary = resource.Resource(system_dictionary_path)
+        model = resource.Resource(model_path)
+
         self._tokenizer = tokenizer.lower()
         self.with_postag = with_postag
-        self.user_dictionary_path = user_dictionary_path
-        self.system_dictionary_path = system_dictionary_path
-        self.model_path = model_path
+        self.user_dictionary_path = user_dictionary.path
+        self.system_dictionary_path = system_dictionary.path
+        self.model_path = model.path
+
         if mode is not None:
             self.mode = mode.lower()
 
@@ -41,7 +47,8 @@ class WordTokenizer:
 
         if self._tokenizer == "kytea":
             self.tokenizer = word_tokenizers.KyTeaTokenizer(
-                with_postag=self.with_postag, model_path=self.model_path
+                with_postag=self.with_postag,
+                model_path=self.model_path
             )
 
         if self._tokenizer == "sentencepiece":

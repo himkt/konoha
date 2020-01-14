@@ -108,6 +108,31 @@ print(tokenizer.tokenize(sentence))
 ```
 
 
+### Remote files
+
+tiny_tokenizer can load a dictionary/model on a remote location (it currently supports amazon s3).
+For using the remote feature, please run `pip install tiny_tokenizer[remote]` or `pip install tiny_tokenizer[all]`.
+
+```python
+from tiny_tokenizer import WordTokenizer
+
+if __name__ == "__main__":
+    sentence = "首都大学東京"
+
+    word_tokenizer = WordTokenizer("mecab")
+    print(word_tokenizer.tokenize(sentence))
+
+    word_tokenizer = WordTokenizer("mecab", user_dictionary_path="s3://abc/xxx.dic")
+    print(word_tokenizer.tokenize(sentence))
+
+    word_tokenizer = WordTokenizer("mecab", system_dictionary_path="s3://abc/yyy")
+    print(word_tokenizer.tokenize(sentence))
+
+    word_tokenizer = WordTokenizer("sentencepiece", model_path="s3://abc/zzz.model")
+    print(word_tokenizer.tokenize(sentence))
+```
+
+
 ## Test
 
 ```
