@@ -9,7 +9,7 @@ RUN apt update -y && \
 
 # python
 RUN apt update -y && \
-  apt install -y python3 python3-dev python3-pip
+      apt install -y python3 python3-dev python3-pip
 
 # mecab
 RUN apt update -y && \
@@ -25,12 +25,12 @@ RUN wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz && \
       git apply ./24.patch && ./configure && \
       make && make install && ldconfig -v
 
-# tiny_tokeniezr
+# konoha
 WORKDIR /work
 
 COPY ./data ./data
 COPY ./example ./example
-COPY ./tiny_tokenizer ./tiny_tokenizer
+COPY ./konoha ./konoha
 COPY ./pyproject.toml ./pyproject.toml
 COPY ./poetry.lock ./poetry.lock
 
