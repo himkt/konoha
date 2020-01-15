@@ -17,11 +17,11 @@
 
 ## Introduction
 
-Tiny tokenizer is a simple wrapper of wrapper for Japanese tokenizers.
+`konoha` is a simple wrapper of wrapper for Japanese tokenizers.
 
 It unifies the interface of several Japanese tokenizers.
 
-Tiny tokenizer provides you the way to switch a tokenizer and boost your pre-processing.
+`konoha` provides you the way to switch a tokenizer and boost your pre-processing.
 
 `konoha` supports following tokenizers.
 - MeCab (and [natto-py](https://github.com/buruzaemon/natto-py))
@@ -31,7 +31,7 @@ Tiny tokenizer provides you the way to switch a tokenizer and boost your pre-pro
 - character-based
 - whitespace-based
 
-Also, tiny tokenizer provides a simple rule-based sentence tokenizer,
+Also, `konoha` provides a simple rule-based sentence tokenizer,
 which segments a document into sentences.
 
 
