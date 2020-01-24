@@ -42,9 +42,9 @@ class MeCabTokenizer(BaseTokenizer):
 
     def __init__(
         self,
-        dictionary_format: str,
         user_dictionary_path: Optional[str] = None,
         system_dictionary_path: Optional[str] = None,
+        dictionary_format: Optional[str] = None,
         with_postag: bool = False,
     ) -> None:
         """
@@ -75,8 +75,24 @@ class MeCabTokenizer(BaseTokenizer):
         if system_dictionary_path is not None:
             flag += " -d {}".format(system_dictionary_path)
 
-        if dictionary_format.lower() == "ipadic":
-            self.parse_feature = parse_feature_for_ipadic
+        # TODO UniDic
+        if dictionary_format is None:
+            if system_dictionary_path is None:
+                # FIXME dictionary determined by mecab-config.
+                # Therefore, it should not be ipadic.
+                self.dictionary_format = "ipadic"
+                self.parse_feature = parse_feature_for_ipadic
+
+            elif 'ipadic' in system_dictionary_path.lower():
+                self.dictionary_format = "ipadic"
+                self.parse_feature = parse_feature_for_ipadic
+
+        else:
+            if "ipadic" == dictionary_format.lower():
+                self.dictionary_format = "ipadic"
+                self.parse_feature = parse_feature_for_ipadic
+            else:
+                raise ValueError(f"{dictionary_format} is not supported")
 
         self.mecab = natto.MeCab(flag)
 

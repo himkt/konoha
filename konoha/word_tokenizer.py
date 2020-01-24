@@ -33,20 +33,8 @@ class WordTokenizer:
         self.user_dictionary_path = user_dictionary.path
         self.system_dictionary_path = system_dictionary.path
         self.model_path = model.path
+        self.mode = mode.lower() if mode is not None else None
         self.dictionary_format = dictionary_format
-
-        if mode is not None:
-            self.mode = mode.lower()
-
-        if tokenizer.lower() == "mecab":
-            _sdp = system_dictionary_path
-            if _sdp is None:
-                self.dictionary_format = "IPADic"
-            elif isinstance(_sdp, str):
-                if "ipadic" in _sdp.lower():
-                    self.dictionary_format = "IPADic"
-                else:
-                    raise ValueError(f"{dictionary_format} is not supported")
 
         self.__setup_tokenizer()
 
