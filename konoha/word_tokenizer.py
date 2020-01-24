@@ -16,6 +16,7 @@ class WordTokenizer:
         system_dictionary_path: Optional[str] = None,
         model_path: Optional[str] = None,
         mode: Optional[str] = None,
+        dictionary_format: Optional[str] = None,
     ):
         """Create tokenizer.
 
@@ -32,9 +33,20 @@ class WordTokenizer:
         self.user_dictionary_path = user_dictionary.path
         self.system_dictionary_path = system_dictionary.path
         self.model_path = model.path
+        self.dictionary_format = dictionary_format
 
         if mode is not None:
             self.mode = mode.lower()
+
+        if tokenizer.lower() == "mecab":
+            _sdp = system_dictionary_path
+            if _sdp is None:
+                self.dictionary_format = "IPADic"
+            elif isinstance(_sdp, str):
+                if "ipadic" in _sdp.lower():
+                    self.dictionary_format = "IPADic"
+                else:
+                    raise ValueError(f"{dictionary_format} is not supported")
 
         self.__setup_tokenizer()
 
@@ -61,6 +73,7 @@ class WordTokenizer:
                 user_dictionary_path=self.user_dictionary_path,
                 system_dictionary_path=self.system_dictionary_path,
                 with_postag=self.with_postag,
+                dictionary_format=self.dictionary_format,
             )
 
         if self._tokenizer == "janome":
