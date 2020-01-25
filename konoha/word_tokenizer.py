@@ -16,6 +16,7 @@ class WordTokenizer:
         system_dictionary_path: Optional[str] = None,
         model_path: Optional[str] = None,
         mode: Optional[str] = None,
+        dictionary_format: Optional[str] = None,
     ):
         """Create tokenizer.
 
@@ -32,9 +33,8 @@ class WordTokenizer:
         self.user_dictionary_path = user_dictionary.path
         self.system_dictionary_path = system_dictionary.path
         self.model_path = model.path
-
-        if mode is not None:
-            self.mode = mode.lower()
+        self.mode = mode.lower() if mode is not None else None
+        self.dictionary_format = dictionary_format
 
         self.__setup_tokenizer()
 
@@ -61,6 +61,7 @@ class WordTokenizer:
                 user_dictionary_path=self.user_dictionary_path,
                 system_dictionary_path=self.system_dictionary_path,
                 with_postag=self.with_postag,
+                dictionary_format=self.dictionary_format,
             )
 
         if self._tokenizer == "janome":
