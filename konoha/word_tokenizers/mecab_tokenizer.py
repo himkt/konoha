@@ -7,6 +7,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 def parse_feature_for_ipadic(elem):
     surface, feature = elem.split("\t")
+
     (
         postag,
         postag2,
@@ -23,6 +24,7 @@ def parse_feature_for_ipadic(elem):
         yomi, pron = other
     else:
         yomi, pron = None, None
+
     return (
         surface,
         postag,
@@ -66,20 +68,28 @@ class MeCabTokenizer(BaseTokenizer):
             raise ImportError("natto-py is not installed")
 
         flag = ""
+
         if not self.with_postag:
             flag += " -Owakati"
 
-        if user_dictionary_path is not None:
+        if isinstance(user_dictionary_path, str):
             flag += " -u {}".format(user_dictionary_path)
 
-        if system_dictionary_path is not None:
+        if isinstance(system_dictionary_path, str):
             flag += " -d {}".format(system_dictionary_path)
 
-        # TODO UniDic
+        self.mecab = natto.MeCab(flag)
+
+        # If dictionary format is not specified,
+        # konoha detects it by checking a name of system dictionary.
+        # For instance, system_dictionary_path=mecab-ipadic-xxxx -> ipadic and
+        #               system_dictionary_path=mecab-unidic-xxxx -> unidic.
+        # If system_dictionary_path and dictionary_format are not given,
+        # konoha assumes it uses mecab-ipadic (de facto standard).
+        # Currently, konoha only supports ipadic. (TODO: unidic)
+
         if dictionary_format is None:
             if system_dictionary_path is None:
-                # FIXME dictionary determined by mecab-config.
-                # Therefore, it should not be ipadic.
                 self.dictionary_format = "ipadic"
                 self.parse_feature = parse_feature_for_ipadic
 
@@ -93,8 +103,6 @@ class MeCabTokenizer(BaseTokenizer):
                 self.parse_feature = parse_feature_for_ipadic
             else:
                 raise ValueError(f"{dictionary_format} is not supported")
-
-        self.mecab = natto.MeCab(flag)
 
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize"""
