@@ -6,18 +6,18 @@ class Token:
     """Token class for konoha."""
 
     def __init__(
-        self,
-        surface: str,
-        postag: Optional[str] = None,
-        postag2: Optional[str] = None,
-        postag3: Optional[str] = None,
-        postag4: Optional[str] = None,
-        inflection: Optional[str] = None,
-        conjugation: Optional[str] = None,
-        base_form: Optional[str] = None,
-        yomi: Optional[str] = None,
-        pron: Optional[str] = None,
-        normalized_form: Optional[str] = None,
+            self,
+            surface: str,
+            postag: Optional[str] = None,
+            postag2: Optional[str] = None,
+            postag3: Optional[str] = None,
+            postag4: Optional[str] = None,
+            inflection: Optional[str] = None,
+            conjugation: Optional[str] = None,
+            base_form: Optional[str] = None,
+            yomi: Optional[str] = None,
+            pron: Optional[str] = None,
+            normalized_form: Optional[str] = None,
     ):
         """
         Initializer for Token.
@@ -72,7 +72,8 @@ class Token:
             self.surface == right.surface and
             self.postag == right.postag and
             self.postag3 == right.postag3 and
-            self.yomi == right.yomi)
+            self.yomi == right.yomi
+        )
 
     @property
     def feature(self):
