@@ -9,16 +9,16 @@ class JanomeTokenizer(BaseTokenizer):
     """Wrapper class for Janome."""
 
     def __init__(
-        self,
-        user_dictionary_path: Optional[str] = None,
-        with_postag: bool = False) -> None:
-        super().__init__(name="janome", with_postag=with_postag)
-
+            self,
+            user_dictionary_path: Optional[str] = None,
+            with_postag: bool = False
+    ):
         try:
             from janome.tokenizer import Tokenizer
         except ImportError:
             raise ImportError("janome is not installed")
 
+        super().__init__(name="janome", with_postag=with_postag)
         self.janome = Tokenizer(udic=user_dictionary_path)
 
     def tokenize(self, text: str) -> List[Token]:
