@@ -9,14 +9,14 @@ class WordTokenizer:
     """Tokenizer takes a sentence into tokens."""
 
     def __init__(
-        self,
-        tokenizer: str = 'MeCab',
-        with_postag: bool = False,
-        user_dictionary_path: Optional[str] = None,
-        system_dictionary_path: Optional[str] = None,
-        model_path: Optional[str] = None,
-        mode: Optional[str] = None,
-        dictionary_format: Optional[str] = None,
+            self,
+            tokenizer: str = 'MeCab',
+            with_postag: bool = False,
+            user_dictionary_path: Optional[str] = None,
+            system_dictionary_path: Optional[str] = None,
+            model_path: Optional[str] = None,
+            mode: Optional[str] = None,
+            dictionary_format: Optional[str] = None,
     ):
         """Create tokenizer.
 
