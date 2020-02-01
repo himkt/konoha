@@ -60,12 +60,12 @@ class MeCabTokenizer(BaseTokenizer):
         with_postag (bool=False)
             flag determines ifkonoha.tokenizer include pos tags.
         """
-        super().__init__(name="mecab", with_postag=with_postag)
-
         try:
             import natto
         except ImportError:
             raise ImportError("natto-py is not installed")
+
+        super().__init__(name="mecab", with_postag=with_postag)
 
         flag = ""
 

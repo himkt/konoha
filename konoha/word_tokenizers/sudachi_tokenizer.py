@@ -22,16 +22,16 @@ class SudachiTokenizer(BaseTokenizer):
         **kwargs
             others.
         """
-        super(SudachiTokenizer, self).__init__(
-            name="sudachi ({})".format(mode),
-            with_postag=with_postag,
-        )
-
         try:
             from sudachipy import tokenizer
             from sudachipy import dictionary
         except ImportError:
             raise ImportError("sudachipy is not installed")
+
+        super(SudachiTokenizer, self).__init__(
+            name="sudachi ({})".format(mode),
+            with_postag=with_postag,
+        )
         try:
             self.tokenizer = dictionary.Dictionary().create()
         except KeyError:

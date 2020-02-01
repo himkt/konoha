@@ -16,12 +16,13 @@ class SentencepieceTokenizer(BaseTokenizer):
         **kwargs
             others.
         """
-        super(SentencepieceTokenizer, self).__init__("sentencepiece")
+
         try:
             import sentencepiece
         except ImportError:
             raise ImportError("sentencepiece is not installed")
 
+        super(SentencepieceTokenizer, self).__init__("sentencepiece")
         self.tokenizer = sentencepiece.SentencePieceProcessor()
         self.tokenizer.load(model_path)
 
