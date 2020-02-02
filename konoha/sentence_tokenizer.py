@@ -6,6 +6,11 @@ class SentenceTokenizer:
     PERIOD = "。"
     PERIOD_SPECIAL = "__PERIOD__"
 
+    PATTERNS = [
+        r"（.*?）",
+        r"「.*?」",
+    ]
+
     def __init__(self):
         pass
 
@@ -21,13 +26,10 @@ class SentenceTokenizer:
         :return: list of sentences
         :rtype list[str]
         """
-        pattern = r"（.*?）"
-        pattern = re.compile(pattern)
-        document = re.sub(pattern, self.conv_period, document)
 
-        pattern = r"「.*?」"
-        pattern = re.compile(pattern)
-        document = re.sub(pattern, self.conv_period, document)
+        for pattern in SentenceTokenizer.patterns:
+            pattern = re.compile(pattern)
+            document = re.sub(pattern, self.conv_period, document)
 
         result = []
         for line in document.split("\n"):
