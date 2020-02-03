@@ -27,7 +27,7 @@ class SentenceTokenizer:
         :rtype list[str]
         """
 
-        for pattern in SentenceTokenizer.patterns:
+        for pattern in SentenceTokenizer.PATTERNS:
             pattern = re.compile(pattern)
             document = re.sub(pattern, self.conv_period, document)
 
