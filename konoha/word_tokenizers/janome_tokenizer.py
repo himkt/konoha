@@ -48,7 +48,6 @@ class JanomeTokenizer(BaseTokenizer):
                     pron=pron)
                 return_result.append(token)
 
-
         else:
             for morph in parse_result:
                 return_result.append(Token(surface=morph.surface))

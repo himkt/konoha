@@ -1,6 +1,7 @@
+from typing import Optional
+
 from konoha.konoha_token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
-from typing import Optional
 
 
 class KyTeaTokenizer(BaseTokenizer):
