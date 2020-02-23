@@ -1,8 +1,13 @@
 """Word Level Tokenizer."""
 from typing import Optional
+from typing import List
+from typing import Union
+from typing import Any
 
 from konoha import word_tokenizers
 from konoha import resource
+
+TokenizerTransformInput = Union[str, List[str]]
 
 
 class WordTokenizer:
@@ -76,9 +81,22 @@ class WordTokenizer:
                 with_postag=self.with_postag
             )
 
+    def fit(self, texts: List[str]):
+        return self.tokenizer.fit(texts)
+
     def tokenize(self, text: str):
         """Tokenize input text"""
         return self.tokenizer.tokenize(text)
+
+    def transform(self, texts: TokenizerTransformInput):
+        return self.tokenizer.transform(texts)
+
+    def itransform(self, texts: Any):
+        return self.tokenizer.itransform(texts)
+
+    @property
+    def vocabulary(self):
+        return self.tokenizer.vocabulary
 
     @property
     def name(self):

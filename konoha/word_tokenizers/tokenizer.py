@@ -1,3 +1,11 @@
+from typing import List
+from typing import Dict
+from typing import Union
+from typing import Any
+
+
+TokenizerTransformInput = Union[str, List[str]]
+TokenizerITransformInput = Any  # TODO Actually: Union[List[int], List[List[int]]]
 
 
 class BaseTokenizer:
@@ -17,11 +25,57 @@ class BaseTokenizer:
             others.
         """
         self.__name = name
+        self._vocabulary = []  # type: List[str]
+        self._word2idx = {}  # type: Dict[str, int]
+        self._word2frq = {}  # type: Dict[str, int]
         self.with_postag = with_postag
+
+    def fit(self, texts: List[str]):
+        for item in texts:
+            for word in self.tokenize(item):
+                surface = word.surface
+                self._word2frq[surface] = self._word2frq.get(surface, 0) + 1
+
+        self._word2idx = {w: i for i, w in enumerate(self._word2frq.keys())}
+        self._idx2word = {i: w for w, i in self._word2idx.items()}
+        self._vocabulary = list(self._word2idx.keys())
+
+    def transform(self, texts: TokenizerTransformInput):
+        if isinstance(texts, str):
+            texts = [texts]
+
+        sentences = []
+        for item in texts:
+            sentence = [t.surface for t in self.tokenize(item)]
+            sentence = [self._word2idx.get(w, -1) for w in sentence]
+            sentences.append(sentence)
+        return sentence
+
+    def itransform(self, texts: TokenizerITransformInput):
+        if len(texts) == 0:
+            return []
+
+        fitst_order = False
+        if isinstance(texts[0], int):
+            texts = [texts]
+            fitst_order = True
+
+        isentences = []  # type: List[List[str]]
+        for sentence in texts:
+            isentence = [self._idx2word.get(i, '<UNK>') for i in sentence]
+            isentences.append(isentence)
+
+        if fitst_order:
+            return isentences[0]
+        return isentences
 
     def tokenize(self, text: str):
         """Abstract method forkonoha.tokenization"""
         raise NotImplementedError
+
+    @property
+    def vocabulary(self):
+        return self._vocabulary
 
     @property
     def name(self):
