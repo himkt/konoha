@@ -1,14 +1,19 @@
 from konoha import WordTokenizer
 
+import pytest
+
 
 def test_sklearn_like_interface():
+    try:
+        tk = WordTokenizer('mecab')
+    except ImportError:
+        pytest.skip('skip fit/transform test')
+
     documents = [
         '私は猫である',
         '私は猫ではない'
     ]
     vocabulary = {'私', 'は', '猫', 'で', 'ある', 'は', 'ない'}
-
-    tk = WordTokenizer('mecab')
 
     tk.fit(documents)
     assert set(tk.vocabulary) == vocabulary
