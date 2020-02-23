@@ -15,12 +15,10 @@ def test_sklearn_like_interface():
 
     test_input = '私は猫である'
     ids = tk.transform(test_input)
-    print(ids)
     assert isinstance(ids, list)
 
     for id in ids:
         assert isinstance(id, int)
 
     words = tk.itransform(ids)
-    print(words)
-    assert test_input == words
+    assert test_input == ''.join(words)
