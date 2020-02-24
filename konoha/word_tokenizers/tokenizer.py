@@ -30,13 +30,30 @@ class BaseTokenizer:
         self._word2frq = {}  # type: Dict[str, int]
         self.with_postag = with_postag
 
-    def fit(self, texts: List[str]):
+    def fit_transform(
+            self,
+            texts: List[str],
+            min_tf: int = 0,
+            max_tf: int = 1001001001
+    ):
+        self.fit(texts, min_tf=min_tf, max_tf=max_tf)
+        return self.transform(texts)
+
+    def fit(
+            self,
+            texts: List[str],
+            min_tf: int = 0,
+            max_tf: int = 1001001001
+    ):
         for item in texts:
             for word in self.tokenize(item):
                 surface = word.surface
                 self._word2frq[surface] = self._word2frq.get(surface, 0) + 1
 
-        self._word2idx = {w: i for i, w in enumerate(self._word2frq.keys())}
+        self._word2idx = {
+            w: i for i, w in enumerate(self._word2frq.keys())
+            if min_tf <= self._word2frq[w] <= max_tf
+        }
         self._idx2word = {i: w for w, i in self._word2idx.items()}
         self._vocabulary = list(self._word2idx.keys())
 

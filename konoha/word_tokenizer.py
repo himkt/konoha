@@ -81,11 +81,23 @@ class WordTokenizer:
                 with_postag=self.with_postag
             )
 
-    def fit(self, texts: List[str]):
-        return self.tokenizer.fit(texts)
+    def fit_transform(
+            self,
+            texts: List[str],
+            min_tf: int = 0,
+            max_tf: int = 1001001001
+    ):
+        return self.tokenizer.fit_transform(texts, min_tf, max_tf)
+
+    def fit(
+            self,
+            texts: List[str],
+            min_tf: int = 0,
+            max_tf: int = 1001001001
+    ):
+        return self.tokenizer.fit(texts, min_tf, max_tf)
 
     def tokenize(self, text: str):
-        """Tokenize input text"""
         return self.tokenizer.tokenize(text)
 
     def transform(self, texts: TokenizerTransformInput):
