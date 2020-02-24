@@ -1,11 +1,11 @@
 from typing import List
 from typing import Dict
 from typing import Union
-from typing import Any
+from typing import cast
 
 
 TokenizerTransformInput = Union[str, List[str]]
-TokenizerITransformInput = Any  # TODO Actually: Union[List[int], List[List[int]]]
+TokenizerITransformInput = Union[List[int], List[List[int]]]
 
 
 class BaseTokenizer:
@@ -56,9 +56,11 @@ class BaseTokenizer:
             return []
 
         fitst_order = False
-        if isinstance(texts[0], int):
-            texts = [texts]
+        if isinstance(texts[0], int):  # List[int]
+            texts = cast(List[List[int]], [texts])
             fitst_order = True
+        else:  # List[List[int]]
+            texts = cast(List[List[int]], texts)
 
         isentences = []  # type: List[List[str]]
         for sentence in texts:
