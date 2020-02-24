@@ -66,7 +66,7 @@ class BaseTokenizer:
             sentence = [t.surface for t in self.tokenize(item)]
             sentence = [self._word2idx.get(w, -1) for w in sentence]
             sentences.append(sentence)
-        return sentence
+        return sentences
 
     def itransform(self, texts: TokenizerITransformInput):
         if len(texts) == 0:

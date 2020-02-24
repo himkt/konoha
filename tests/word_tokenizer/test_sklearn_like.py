@@ -19,15 +19,15 @@ def test_sklearn_like_interface():
     tk.fit(DOCUMENTS)
     assert set(tk.vocabulary) == VOCABULARY
 
-    test_input = '私は猫である'
-    ids = tk.transform(test_input)
-    assert isinstance(ids, list)
+    texts = '私は猫である'
+    id_texts = tk.transform(texts)
+    assert isinstance(id_texts, list)
 
-    for id in ids:
-        assert isinstance(id, int)
+    for id_text in id_texts:
+        assert isinstance(id_text, list)
 
-    words = tk.itransform(ids)
-    assert test_input == ''.join(words)
+    itexts = tk.itransform(id_texts)
+    assert texts == ''.join(itexts[0])
 
 
 def test_tf_options():
