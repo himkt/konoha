@@ -703,7 +703,7 @@ sphinx = ">=1.6.5"
 category = "main"
 description = "A decorator to automatically detect mismatch when overriding a method."
 name = "overrides"
-optional = true
+optional = false
 python-versions = "*"
 version = "2.8.0"
 
@@ -1455,7 +1455,6 @@ version = "1.1"
 [[package]]
 category = "main"
 description = "Backport of pathlib-compatible object wrapper for zip files"
-marker = "python_version < \"3.8\""
 name = "zipp"
 optional = false
 python-versions = ">=3.6"
@@ -1466,7 +1465,8 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [extras]
-all = ["janome", "natto-py", "kytea", "sudachipy", "sentencepiece", "boto3", "allennlp"]
+all = ["janome", "natto-py", "kytea", "sudachipy", "sentencepiece", "boto3"]
+all_with_integrations = ["janome", "natto-py", "kytea", "sudachipy", "sentencepiece", "boto3", "allennlp"]
 allennlp = ["allennlp"]
 janome = ["janome"]
 kytea = ["kytea"]
@@ -1476,7 +1476,7 @@ sentencepiece = ["sentencepiece"]
 sudachi = ["sudachipy"]
 
 [metadata]
-content-hash = "9870abff237806d7f56129686fec08aaab29605cd468a02f1de4fb863556970e"
+content-hash = "3a978f4e0afcff8653066cf158d4bd8085bf56c99a085ce13cbf8598f945cbd6"
 python-versions = "^3.6.1"
 
 [metadata.files]
