@@ -1,6 +1,6 @@
 """__init__.py."""
-from .sentence_tokenizer import SentenceTokenizer  # NOQA
-from .word_tokenizer import WordTokenizer  # NOQA
-from . import integrations  # NOQA
+from konoha.sentence_tokenizer import SentenceTokenizer  # NOQA
+from konoha.word_tokenizer import WordTokenizer  # NOQA
+from konoha.integrations.allennlp import KonohaTokenizer  # NOQA
 
 __version__ = "4.0.0"

@@ -3,10 +3,14 @@ from typing import Optional
 
 from overrides import overrides
 
-from allennlp.data.tokenizers.token import Token
-from allennlp.data.tokenizers.tokenizer import Tokenizer
-
 from konoha.word_tokenizer import WordTokenizer
+
+try:
+    from allennlp.data.tokenizers.token import Token
+    from allennlp.data.tokenizers.tokenizer import Tokenizer
+except ImportError:
+    from konoha.integrations._allennlp import Tokenizer
+    Token = None
 
 
 @Tokenizer.register("konoha")
