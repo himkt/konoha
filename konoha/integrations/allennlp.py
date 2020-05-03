@@ -21,15 +21,23 @@ class KonohaTokenizer(Tokenizer):
     def __init__(
         self,
         tokenizer_name: str = 'mecab',
+        with_postag: bool = False,
         user_dictionary_path: Optional[str] = None,
         system_dictionary_path: Optional[str] = None,
+        model_path: Optional[str] = None,
+        mode: Optional[str] = None,
+        dictionary_format: Optional[str] = None,
         start_tokens: Optional[List[str]] = None,
         end_tokens: Optional[List[str]] = None,
     ) -> None:
         self._tokenizer = WordTokenizer(
             tokenizer=tokenizer_name,
+            with_postag=with_postag,
             user_dictionary_path=user_dictionary_path,
-            system_dictionary_path=system_dictionary_path
+            system_dictionary_path=system_dictionary_path,
+            model_path=model_path,
+            mode=mode,
+            dictionary_format=dictionary_format,
         )
         self._start_tokens = start_tokens or []
         self._start_tokens.reverse()
