@@ -3,8 +3,6 @@ import pytest
 from konoha.konoha_token import Token
 from konoha.word_tokenizer import WordTokenizer
 
-SENTENCE1 = "吾輩は猫である"
-
 
 def test_kytea_with_s3_model():
     try:
@@ -22,7 +20,7 @@ def test_kytea_with_s3_model():
         pytest.skip("skip kytea")
 
     expect = [Token(surface=w) for w in "吾輩は 猫である".split(" ")]  # NOQA
-    result = tokenizer.tokenize(SENTENCE1)
+    result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
 
 
@@ -42,5 +40,5 @@ def test_sentencepiece_with_s3_model():
         pytest.skip("skip sentencepiece")
 
     expect = [Token(surface=w) for w in "▁ 吾 輩 は 猫 である".split(" ")]  # NOQA
-    result = tokenizer.tokenize(SENTENCE1)
+    result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
