@@ -12,10 +12,12 @@ def test_word_tokenizer():
 
 def test_word_tokenize_with_kytea():
     try:
-        tokenizer = WordTokenizer(tokenizer="KyTea")
+        import Mykytea
+        del Mykytea
     except ImportError:
         pytest.skip("skip kytea")
 
+    tokenizer = WordTokenizer(tokenizer="KyTea")
     expect = [Token(surface=w) for w in "吾輩 は 猫 で あ る".split(" ")]
     result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
@@ -23,10 +25,12 @@ def test_word_tokenize_with_kytea():
 
 def test_word_tokenize_with_kytea_using_custom_model():
     try:
-        tokenizer = WordTokenizer(tokenizer="KyTea", model_path="data/model.knm")
+        import Mykytea
+        del Mykytea
     except ImportError:
         pytest.skip("skip kytea")
 
+    tokenizer = WordTokenizer(tokenizer="KyTea", model_path="data/model.knm")
     expect = [Token(surface=w) for w in "吾輩は 猫である".split(" ")]
     result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
@@ -34,10 +38,12 @@ def test_word_tokenize_with_kytea_using_custom_model():
 
 def test_word_tokenize_with_mecab():
     try:
-        tokenizer = WordTokenizer(tokenizer="MeCab")
+        import natto
+        del natto
     except ImportError:
-        pytest.skip("skip mecab")
+        pytest.skip("natto-py is not installed")
 
+    tokenizer = WordTokenizer(tokenizer="MeCab")
     expect = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]
     result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
@@ -45,10 +51,12 @@ def test_word_tokenize_with_mecab():
 
 def test_word_tokenize_with_janome():
     try:
-        tokenizer = WordTokenizer(tokenizer="Janome")
+        import janome
+        del janome
     except ImportError:
-        pytest.skip("skip janome")
+        pytest.skip("janome is not installed")
 
+    tokenizer = WordTokenizer(tokenizer="Janome")
     expect = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]
     result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
@@ -56,10 +64,12 @@ def test_word_tokenize_with_janome():
 
 def test_word_tokenize_with_mecab_whitespace():
     try:
-        tokenizer = WordTokenizer(tokenizer="MeCab")
+        import natto
+        del natto
     except ImportError:
-        pytest.skip("skip mecab")
+        pytest.skip("natto-py is not installed")
 
+    tokenizer = WordTokenizer(tokenizer="MeCab")
     expect = [Token(surface=w) for w in "吾輩 は 　 で ある".split(" ")]
     result = tokenizer.tokenize("吾輩は　である")
     assert expect == result
@@ -67,12 +77,15 @@ def test_word_tokenize_with_mecab_whitespace():
 
 def test_word_tokenize_with_sentencepiece():
     try:
-        tokenizer = WordTokenizer(
-            tokenizer="Sentencepiece", model_path="data/model.spm"
-        )
+        import sentencepiece
+        del sentencepiece
     except ImportError:
-        pytest.skip("skip sentencepiece")
+        pytest.skip("sentencepiece is not installed")
 
+    tokenizer = WordTokenizer(
+        tokenizer="Sentencepiece",
+        model_path="data/model.spm"
+    )
     expect = [Token(surface=w) for w in "▁ 吾 輩 は 猫 である".split(" ")]
     result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
@@ -80,10 +93,12 @@ def test_word_tokenize_with_sentencepiece():
 
 def test_word_tokenize_with_sudachi_mode_a():
     try:
-        tokenizer = WordTokenizer(tokenizer="Sudachi", mode="A")
+        import sudachipy
+        del sudachipy
     except ImportError:
-        pytest.skip("skip sudachi")
+        pytest.skip("sudachipy is not installed")
 
+    tokenizer = WordTokenizer(tokenizer="Sudachi", mode="A")
     expect = [Token(surface=w) for w in "医薬 品 安全 管理 責任 者".split(" ")]
     result = tokenizer.tokenize("医薬品安全管理責任者")
     assert expect == result
@@ -91,10 +106,12 @@ def test_word_tokenize_with_sudachi_mode_a():
 
 def test_word_tokenize_with_sudachi_mode_b():
     try:
-        tokenizer = WordTokenizer(tokenizer="Sudachi", mode="B")
+        import sudachipy
+        del sudachipy
     except ImportError:
-        pytest.skip("skip sudachi")
+        pytest.skip("sudachipy is not installed")
 
+    tokenizer = WordTokenizer(tokenizer="Sudachi", mode="B")
     expect = [Token(surface=w) for w in "医薬品 安全 管理 責任者".split(" ")]
     result = tokenizer.tokenize("医薬品安全管理責任者")
     assert expect == result
@@ -102,10 +119,12 @@ def test_word_tokenize_with_sudachi_mode_b():
 
 def test_word_tokenize_with_sudachi_mode_c():
     try:
-        tokenizer = WordTokenizer(tokenizer="Sudachi", mode="C")
+        import sudachipy
+        del sudachipy
     except ImportError:
-        pytest.skip("skip sudachi")
+        pytest.skip("sudachipy is not installed")
 
+    tokenizer = WordTokenizer(tokenizer="Sudachi", mode="C")
     expect = [Token(surface=w) for w in "医薬品 安全 管理責任者".split(" ")]
     result = tokenizer.tokenize("医薬品安全管理責任者")
     assert expect == result
