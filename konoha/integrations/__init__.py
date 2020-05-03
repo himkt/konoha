@@ -1,0 +1,1 @@
+from .allennlp import KonohaTokenizer
