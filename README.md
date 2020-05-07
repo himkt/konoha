@@ -8,6 +8,26 @@
 [![GitHub release](https://img.shields.io/github/release/himkt/konoha.svg?maxAge=2592000&colorB=red)](https://github.com/himkt/konoha)
 [![MIT License](http://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](LICENSE)
 
+`Konoha` is a Python library for providing easy-to-use integrated interface of various Japanese tokenziers.
+`konoha` enable you to switch a tokenizer and boost your pre-processing.
+
+#### Requirements
+
+- Python>=3.6.0
+- pip>=19.0
+
+#### Supported tokenizers
+
+`konoha` supports following tokenizers.
+- MeCab (and [natto-py](https://github.com/buruzaemon/natto-py))
+- KyTea (and [Mykytea-python](https://github.com/chezou/Mykytea-python))
+- Sudachi ([SudachiPy](https://github.com/WorksApplications/SudachiPy))
+- Sentencepiece ([Sentencepiece](https://github.com/google/sentencepiece))
+- character-based
+- whitespace-based
+
+Also, `konoha` provides a simple rule-based sentence tokenizer,
+which segments a document into sentences.
 
 ## Quick Start with Docker
 
@@ -31,33 +51,6 @@ You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目
 You can see documentation in `localhost:8000/redoc`.
 
 <img width="80%" alt="スクリーンショット 2020-05-07 18 36 02" src="https://user-images.githubusercontent.com/5164000/81279119-a4eeea00-9091-11ea-90b5-bc0b95e0d0fb.png">
-
-
-## Requirements
-
-- Python>=3.5.0
-- pip>=19.0
-
-
-## Introduction
-
-`konoha` is a simple wrapper of wrapper for Japanese tokenizers.
-
-It unifies the interface of several Japanese tokenizers.
-
-`konoha` provides you the way to switch a tokenizer and boost your pre-processing.
-
-`konoha` supports following tokenizers.
-- MeCab (and [natto-py](https://github.com/buruzaemon/natto-py))
-- KyTea (and [Mykytea-python](https://github.com/chezou/Mykytea-python))
-- Sudachi ([SudachiPy](https://github.com/WorksApplications/SudachiPy))
-- Sentencepiece ([Sentencepiece](https://github.com/google/sentencepiece))
-- character-based
-- whitespace-based
-
-Also, `konoha` provides a simple rule-based sentence tokenizer,
-which segments a document into sentences.
-
 
 ## Installation
 
