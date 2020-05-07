@@ -22,7 +22,7 @@ Simply run followings:
 
 Tokenization is done by posting a json object to `localhost:8000/api/tokenize`.
 
-![carbon](https://user-images.githubusercontent.com/5164000/81279347-f9926500-9091-11ea-8326-3cf7700ec76a.png)
+<img width="70%" src="https://user-images.githubusercontent.com/5164000/81279347-f9926500-9091-11ea-8326-3cf7700ec76a.png">
 
 You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目の入力"]` to the server.
 
@@ -30,7 +30,7 @@ You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目
 
 You can see documentation in `localhost:8000/redoc`.
 
-<img width="1653" alt="スクリーンショット 2020-05-07 18 36 02" src="https://user-images.githubusercontent.com/5164000/81279119-a4eeea00-9091-11ea-90b5-bc0b95e0d0fb.png">
+<img width="80%" alt="スクリーンショット 2020-05-07 18 36 02" src="https://user-images.githubusercontent.com/5164000/81279119-a4eeea00-9091-11ea-90b5-bc0b95e0d0fb.png">
 
 
 ## Requirements
