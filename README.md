@@ -1,4 +1,4 @@
-# konoha
+# 🌿Konoha: Simple wrapper of Japanese Tokenizers
 
 (previous tiny_tokenizer)
 
@@ -7,6 +7,30 @@
 [![GitHub issues](https://img.shields.io/github/issues/himkt/konoha.svg)](https://github.com/himkt/konoha/issues)
 [![GitHub release](https://img.shields.io/github/release/himkt/konoha.svg?maxAge=2592000&colorB=red)](https://github.com/himkt/konoha)
 [![MIT License](http://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](LICENSE)
+
+
+## Quick Start with Docker
+
+### Setup
+
+Simply run followings:
+
+- `git clone https://github.com/himkt/konoha`
+- `cd konoha && docker-compose up --build` on your computer.
+
+### Usage
+
+Tokenization is done by posting a json object to `localhost:8000/api/tokenize`.
+
+![carbon](https://user-images.githubusercontent.com/5164000/81279347-f9926500-9091-11ea-8326-3cf7700ec76a.png)
+
+You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目の入力"]` to the server.
+
+### Document
+
+You can see documentation in `localhost:8000/redoc`.
+
+<img width="1653" alt="スクリーンショット 2020-05-07 18 36 02" src="https://user-images.githubusercontent.com/5164000/81279119-a4eeea00-9091-11ea-90b5-bc0b95e0d0fb.png">
 
 
 ## Requirements
@@ -50,17 +74,6 @@ Or, you can install konoha only with SentenceTokenizer by the following command:
 **Note**
 
 If you want to use SudachiPy, please run `pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz` to install a dictionary.
-
-### Install konoha on Docker container
-
-You can use konoha using the Docker container.
-
-If you want to use konoha with Docker, run following commands.
-
-```
-docker build -t himkt/konoha .
-docker run -it himkt/konoha /bin/bash
-```
 
 
 ## Example
