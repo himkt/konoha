@@ -1,5 +1,5 @@
-"""Sentence Tokenizer."""
 import re
+from typing import List
 
 
 class SentenceTokenizer:
@@ -11,17 +11,17 @@ class SentenceTokenizer:
         r"「.*?」",
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     @staticmethod
-    def conv_period(item):
+    def conv_period(item) -> str:
         return item.group(0).replace(
             SentenceTokenizer.PERIOD,
             SentenceTokenizer.PERIOD_SPECIAL
         )
 
-    def tokenize(self, document):
+    def tokenize(self, document) -> List[str]:
         """
         Divide a raw document into sentences.
         :param document: a raw document
@@ -31,7 +31,7 @@ class SentenceTokenizer:
         """
 
         for pattern in SentenceTokenizer.PATTERNS:
-            pattern = re.compile(pattern)
+            pattern = re.compile(pattern)  # type: ignore
             document = re.sub(pattern, self.conv_period, document)
 
         result = []
