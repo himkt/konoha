@@ -140,6 +140,11 @@ print(tokenizer.tokenize(sentence))
 python -m pytest
 ```
 
+## Article
+
+- Introducing Konoha (in Japanese): [トークナイザをいい感じに切り替えるライブラリ konoha を作った](https://qiita.com/klis/items/bb9ffa4d9c886af0f531)
+- Implementing AllenNLP integration (in Japanese): [日本語解析ツール Konoha に AllenNLP 連携機能を実装した](https://qiita.com/klis/items/f1d29cb431d1bf879898)
+
 ## Acknowledgement
 
 Sentencepiece model used in test is provided by @yoheikikuta. Thanks!
