@@ -56,6 +56,9 @@ class WordTokenizer:
             )
 
         if self._tokenizer == "sentencepiece":
+            if self.model_path is None:
+                raise ValueError("`model_path` must be specified for sentencepiece.")
+
             self.tokenizer = word_tokenizers.SentencepieceTokenizer(
                 model_path=self.model_path,
             )
@@ -75,6 +78,9 @@ class WordTokenizer:
             )
 
         if self._tokenizer == "sudachi":
+            if self.mode is None:
+                raise ValueError("`mode` must be specified for sudachi.")
+
             self.tokenizer = word_tokenizers.SudachiTokenizer(
                 mode=self.mode,
                 with_postag=self.with_postag,

@@ -16,7 +16,9 @@ class JanomeTokenizer(BaseTokenizer):
         try:
             from janome.tokenizer import Tokenizer
         except ImportError:
-            raise ImportError("janome is not installed")
+            msg = "importing janome failed for some reason."
+            msg += "\n  1. make sure janome is successfully installed."
+            raise ImportError(msg)
 
         super().__init__(name="janome", with_postag=with_postag)
         self.janome = Tokenizer(udic=user_dictionary_path)

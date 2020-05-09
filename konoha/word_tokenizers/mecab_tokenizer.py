@@ -63,7 +63,10 @@ class MeCabTokenizer(BaseTokenizer):
         try:
             import natto
         except ImportError:
-            raise ImportError("natto-py is not installed")
+            msg = "importing natto-py failed for some reason."
+            msg += "\n  1. make sure MeCab is successfully installed."
+            msg += "\n  2. make sure natto-py is successfully installed."
+            raise ImportError(msg)
 
         super().__init__(name="mecab", with_postag=with_postag)
 
