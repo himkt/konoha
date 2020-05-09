@@ -1,48 +1,41 @@
 # 🌿Konoha: Simple wrapper of Japanese Tokenizers
 
-(previous tiny_tokenizer)
+[![GitHub stars](https://img.shields.io/github/stars/himkt/konoha?style=social)](https://github.com/himkt/konoha/stargazers)
 
-![Build Status](https://github.com/himkt/konoha/workflows/Python%20package/badge.svg)
-[![GitHub stars](https://img.shields.io/github/stars/himkt/konoha.svg?maxAge=2592000&colorB=blue)](https://github.com/himkt/konoha/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/himkt/konoha.svg)](https://github.com/himkt/konoha/issues)
-[![GitHub release](https://img.shields.io/github/release/himkt/konoha.svg?maxAge=2592000&colorB=red)](https://github.com/himkt/konoha)
-[![MIT License](http://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](LICENSE)
+![Build Status](https://github.com/himkt/konoha/workflows/Python%20package/badge.svg?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue?logo=python)
+[![GitHub Issues](https://img.shields.io/github/issues/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/issues)
+[![GitHub Release](https://img.shields.io/github/release/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/releases)
 
-`Konoha` is a Python library for providing easy-to-use integrated interface of various Japanese tokenziers.
-`konoha` enable you to switch a tokenizer and boost your pre-processing.
+`Konoha` is a Python library for providing easy-to-use integrated interface of various Japanese tokenziers,
+which enables you to switch a tokenizer and boost your pre-processing.
+Supported tokenizers are character-based tokenizer, whitespace-based tokenizer and followings:
 
-#### Requirements
-
-- Python>=3.6.0
-- pip>=19.0
-
-#### Supported tokenizers
-
-`konoha` supports following tokenizers.
-- MeCab (and [natto-py](https://github.com/buruzaemon/natto-py))
-- KyTea (and [Mykytea-python](https://github.com/chezou/Mykytea-python))
-- Sudachi ([SudachiPy](https://github.com/WorksApplications/SudachiPy))
-- Sentencepiece ([Sentencepiece](https://github.com/google/sentencepiece))
-- character-based
-- whitespace-based
+- MeCab (by [natto-py](https://github.com/buruzaemon/natto-py))
+- Janome (by [janome](https://github.com/mocobeta/janome))
+- KyTea (by [Mykytea-python](https://github.com/chezou/Mykytea-python))
+- Sudachi (by [SudachiPy](https://github.com/WorksApplications/SudachiPy))
+- Sentencepiece (by [sentencepiece](https://github.com/google/sentencepiece))
 
 Also, `konoha` provides a simple rule-based sentence tokenizer,
 which segments a document into sentences.
+
 
 ## Quick Start with Docker
 
 ### Setup
 
-Simply run followings:
+Simply run followings on your computer:
 
 - `git clone https://github.com/himkt/konoha`
-- `cd konoha && docker-compose up --build` on your computer.
+- `cd konoha && docker-compose up --build`
 
 ### Usage
 
 Tokenization is done by posting a json object to `localhost:8000/api/tokenize`.
 
-<img width="70%" src="https://user-images.githubusercontent.com/5164000/81279347-f9926500-9091-11ea-8326-3cf7700ec76a.png">
+<img width="60%" src="https://user-images.githubusercontent.com/5164000/81279347-f9926500-9091-11ea-8326-3cf7700ec76a.png">
 
 You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目の入力"]` to the server.
 
@@ -50,7 +43,8 @@ You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目
 
 You can see documentation in `localhost:8000/redoc`.
 
-<img width="80%" alt="スクリーンショット 2020-05-07 18 36 02" src="https://user-images.githubusercontent.com/5164000/81279119-a4eeea00-9091-11ea-90b5-bc0b95e0d0fb.png">
+<img width="80%" src="https://user-images.githubusercontent.com/5164000/81279119-a4eeea00-9091-11ea-90b5-bc0b95e0d0fb.png">
+
 
 ## Installation
 
