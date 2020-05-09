@@ -61,13 +61,13 @@ class Token:
         self.pron = pron
         self.normalized_form = normalized_form
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         representation = self.surface
         if self.postag is not None:
             representation += " ({})".format(self.postag)
         return representation
 
-    def __eq__(self, right):
+    def __eq__(self, right) -> bool:
         return (
             self.surface == right.surface and
             self.postag == right.postag and
@@ -76,7 +76,7 @@ class Token:
         )
 
     @property
-    def feature(self):
+    def feature(self) -> str:
         feature = []
         if self.postag is not None:
             feature.append(self.postag)

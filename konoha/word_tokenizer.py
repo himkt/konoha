@@ -1,6 +1,8 @@
 """Word Level Tokenizer."""
+from typing import List
 from typing import Optional
 
+from konoha.konoha_token import Token
 from konoha import word_tokenizers
 from konoha import resource
 
@@ -17,7 +19,7 @@ class WordTokenizer:
             model_path: Optional[str] = None,
             mode: Optional[str] = None,
             dictionary_format: Optional[str] = None,
-    ):
+    ) -> None:
         """Create tokenizer.
 
         Keyword Arguments:
@@ -36,9 +38,9 @@ class WordTokenizer:
         self.mode = mode.lower() if mode is not None else None
         self.dictionary_format = dictionary_format
 
-        self.__setup_tokenizer()
+        self._setup_tokenizer()
 
-    def __setup_tokenizer(self):
+    def _setup_tokenizer(self) -> None:
         if self._tokenizer == "character":
             self.tokenizer = word_tokenizers.CharacterTokenizer()
 
@@ -76,12 +78,12 @@ class WordTokenizer:
                 with_postag=self.with_postag
             )
 
-    def tokenize(self, text: str):
+    def tokenize(self, text: str) -> List[Token]:
         """Tokenize input text"""
         return self.tokenizer.tokenize(text)
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.tokenizer.name
 
 

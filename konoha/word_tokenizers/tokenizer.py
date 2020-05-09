@@ -1,9 +1,12 @@
+from typing import List
+
+from konoha.konoha_token import Token
 
 
 class BaseTokenizer:
     """Base class for word levelkonoha.tokenizer"""
 
-    def __init__(self, name: str, with_postag: bool = False, **kwargs):
+    def __init__(self, name: str, with_postag: bool = False, **kwargs) -> None:
         """
         Abstract class for word levelkonoha.tokenizer.
 
@@ -19,11 +22,11 @@ class BaseTokenizer:
         self.__name = name
         self.with_postag = with_postag
 
-    def tokenize(self, text: str):
+    def tokenize(self, text: str) -> List[Token]:
         """Abstract method forkonoha.tokenization"""
         raise NotImplementedError
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Return name ofkonoha.tokenizer"""
         return self.__name

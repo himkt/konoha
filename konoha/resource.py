@@ -14,8 +14,7 @@ class Resource:
     NBYTES = 6
     TINY_TOKENIZER_DIR = '/tmp/konoha'
 
-    def __init__(self, path: Optional[str]):
-
+    def __init__(self, path: Optional[str]) -> None:
         if path is None:
             self._path = None
             self._raw_path = None
@@ -79,7 +78,7 @@ class Resource:
         return resource_dir
 
     @property
-    def path(self):
+    def path(self) -> Optional[str]:
         return self._path
 
 
