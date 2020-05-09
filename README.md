@@ -24,50 +24,67 @@ which segments a document into sentences.
 
 ## Quick Start with Docker
 
-### Setup
-
 Simply run followings on your computer:
 
-- `git clone https://github.com/himkt/konoha`
-- `cd konoha && docker-compose up --build`
-
-### Usage
+```bash
+git clone https://github.com/himkt/konoha  # download konoha
+cd konoha && docker-compose up --build  # build and launch contaier
+```
 
 Tokenization is done by posting a json object to `localhost:8000/api/tokenize`.
-
-<img width="60%" src="https://user-images.githubusercontent.com/5164000/81279347-f9926500-9091-11ea-8326-3cf7700ec76a.png">
-
 You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目の入力"]` to the server.
 
-### Document
+(API documentation is available on `localhost:8000/redoc`, you can check it using your web browser)
 
-You can see documentation in `localhost:8000/redoc`.
+Send a request using `curl` on you terminal.
 
-<img width="80%" src="https://user-images.githubusercontent.com/5164000/81279119-a4eeea00-9091-11ea-90b5-bc0b95e0d0fb.png">
+```json
+$ curl localhost:8000/api/tokenize -X POST -H "Content-Type: application/json" \
+    -d '{"tokenizer": "mecab", "text": "これはペンです"}'
+
+{
+  "tokens": [
+    [
+      {
+        "surface": "これ",
+        "part_of_speech": "名詞"
+      },
+      {
+        "surface": "は",
+        "part_of_speech": "助詞"
+      },
+      {
+        "surface": "ペン",
+        "part_of_speech": "名詞"
+      },
+      {
+        "surface": "です",
+        "part_of_speech": "助動詞"
+      }
+    ]
+  ]
+}
+```
 
 
 ## Installation
 
-### Install konoha on local machine
+I recommend you to install konoha by `pip install 'konoha[all]'` or `pip install 'konoha[all_with_integrations]'`.
+(`all_with_integrations` will install `AllenNLP`)
 
-It is not needed for sentence level tokenization because these libraries are used in word level tokenization.
+- Install konoha with a specific tokenizer: `pip install 'konoha[(tokenizer_name)]`.
+- Install konoha with a specific tokenizer and AllenNLP integration: `pip install 'konoha[(tokenizer_name),allennlp]`.
+- Install konoha with a specific tokenzier and remote file support: `pip install 'konoha[(tokenizer_name),remote]'`
 
-You can install konoha and above libraries by pip, please run:
-`pip install konoha[all]`.
-
-Or, you can install konoha only with SentenceTokenizer by the following command:
-`pip install konoha`.
-
-**Note**
-
-If you want to use SudachiPy, please run `pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz` to install a dictionary.
+- Note that SudachiPy requires dictionary. You may have to install dictionary
+  - `pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz`
+  - [SudachiPy docs](https://github.com/WorksApplications/SudachiPy#step-2-install-sudachidict_core)
+  - If you are interested in dictionary, see [SudachiDict docs](https://github.com/WorksApplications/SudachiDict)
 
 
 ## Example
 
 ### Word level tokenization
-
-- Code
 
 ```python
 from konoha import WordTokenizer
@@ -76,23 +93,35 @@ sentence = '自然言語処理を勉強しています'
 
 tokenizer = WordTokenizer('MeCab')
 print(tokenizer.tokenize())
+# => [自然, 言語, 処理, を, 勉強, し, て, い, ます]
 
 tokenizer = WordTokenizer('Sentencepiece', model_path="data/model.spm")
 print(tokenizer.tokenize(sentence))
-```
-
-- Output
-
-```
-[自然, 言語, 処理, を, 勉強, し, て, い, ます]
-[▁, 自然, 言語, 処理, を, 勉強, し, ています]
+# => [▁, 自然, 言語, 処理, を, 勉強, し, ています]
 ```
 
 For more detail, please see the `example/` directory.
 
-### Sentence level tokenization
+### Remote files
 
-- Code
+Konoha supports dictionary and model on cloud storage (currently supports Amazon S3).
+It requires installing konoha with the `remote` option, see [Installation](#installation).
+
+```python
+# download user dictionary from S3
+word_tokenizer = WordTokenizer("mecab", user_dictionary_path="s3://abc/xxx.dic")
+print(word_tokenizer.tokenize(sentence))
+
+# download system dictionary from S3
+word_tokenizer = WordTokenizer("mecab", system_dictionary_path="s3://abc/yyy")
+print(word_tokenizer.tokenize(sentence))
+
+# download model file from S3
+word_tokenizer = WordTokenizer("sentencepiece", model_path="s3://abc/zzz.model")
+print(word_tokenizer.tokenize(sentence))
+```
+
+### Sentence level tokenization
 
 ```python
 from konoha import SentenceTokenizer
@@ -101,37 +130,7 @@ sentence = "私は猫だ。名前なんてものはない。だが，「かわ�
 
 tokenizer = SentenceTokenizer()
 print(tokenizer.tokenize(sentence))
-```
-
-- Output
-
-```
-['私は猫だ。', '名前なんてものはない。', 'だが，「かわいい。それで十分だろう」。']
-```
-
-
-### Remote files
-
-konoha can load a dictionary/model on a remote location (it currently supports amazon s3).
-For using the remote feature, please run `pip install konoha[remote]` or `pip install konoha[all]`.
-
-```python
-from konoha import WordTokenizer
-
-if __name__ == "__main__":
-    sentence = "首都大学東京"
-
-    word_tokenizer = WordTokenizer("mecab")
-    print(word_tokenizer.tokenize(sentence))
-
-    word_tokenizer = WordTokenizer("mecab", user_dictionary_path="s3://abc/xxx.dic")
-    print(word_tokenizer.tokenize(sentence))
-
-    word_tokenizer = WordTokenizer("mecab", system_dictionary_path="s3://abc/yyy")
-    print(word_tokenizer.tokenize(sentence))
-
-    word_tokenizer = WordTokenizer("sentencepiece", model_path="s3://abc/zzz.model")
-    print(word_tokenizer.tokenize(sentence))
+# => ['私は猫だ。', '名前なんてものはない。', 'だが，「かわいい。それで十分だろう」。']
 ```
 
 
