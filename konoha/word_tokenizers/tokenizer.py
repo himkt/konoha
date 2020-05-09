@@ -19,7 +19,7 @@ class BaseTokenizer:
         **kwargs
             others.
         """
-        self.__name = name
+        self._name = name
         self.with_postag = with_postag
 
     def tokenize(self, text: str) -> List[Token]:
@@ -29,4 +29,4 @@ class BaseTokenizer:
     @property
     def name(self) -> str:
         """Return name ofkonoha.tokenizer"""
-        return self.__name
+        return self._name

@@ -17,7 +17,10 @@ class KyTeaTokenizer(BaseTokenizer):
         try:
             import Mykytea
         except ImportError:
-            raise ImportError("kytea is not installed")
+            msg = "importing kytea failed for some reason."
+            msg += "\n  1. make sure KyTea is successfully installed."
+            msg += "\n  2. make sure Mykytea-python is successfully installed."
+            raise ImportError(msg)
 
         kytea_option = ""
         if model_path is not None:

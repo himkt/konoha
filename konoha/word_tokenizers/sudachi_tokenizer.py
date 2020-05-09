@@ -26,7 +26,10 @@ class SudachiTokenizer(BaseTokenizer):
             from sudachipy import tokenizer
             from sudachipy import dictionary
         except ImportError:
-            raise ImportError("sudachipy is not installed")
+            msg = "importing sudachipy failed for some reason."
+            msg += "\n  1. make sure SudachiPy is successfully installed."
+            msg += "\n  2. make sure dictionary is successfully installed."
+            raise ImportError(msg)
 
         super(SudachiTokenizer, self).__init__(
             name="sudachi ({})".format(mode),

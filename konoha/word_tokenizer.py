@@ -1,4 +1,5 @@
 """Word Level Tokenizer."""
+from typing import Any
 from typing import List
 from typing import Optional
 
@@ -37,6 +38,7 @@ class WordTokenizer:
         self.model_path = model.path
         self.mode = mode.lower() if mode is not None else None
         self.dictionary_format = dictionary_format
+        self.tokenizer = None  # type: Any
 
         self._setup_tokenizer()
 
@@ -50,12 +52,15 @@ class WordTokenizer:
         if self._tokenizer == "kytea":
             self.tokenizer = word_tokenizers.KyTeaTokenizer(
                 with_postag=self.with_postag,
-                model_path=self.model_path
+                model_path=self.model_path,
             )
 
         if self._tokenizer == "sentencepiece":
+            if self.model_path is None:
+                raise ValueError("`model_path` must be specified for sentencepiece.")
+
             self.tokenizer = word_tokenizers.SentencepieceTokenizer(
-                model_path=self.model_path
+                model_path=self.model_path,
             )
 
         if self._tokenizer == "mecab":
@@ -69,13 +74,16 @@ class WordTokenizer:
         if self._tokenizer == "janome":
             self.tokenizer = word_tokenizers.JanomeTokenizer(
                 user_dictionary_path=self.user_dictionary_path,
-                with_postag=self.with_postag
+                with_postag=self.with_postag,
             )
 
         if self._tokenizer == "sudachi":
+            if self.mode is None:
+                raise ValueError("`mode` must be specified for sudachi.")
+
             self.tokenizer = word_tokenizers.SudachiTokenizer(
                 mode=self.mode,
-                with_postag=self.with_postag
+                with_postag=self.with_postag,
             )
 
     def tokenize(self, text: str) -> List[Token]:

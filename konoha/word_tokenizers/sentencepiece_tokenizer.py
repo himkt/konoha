@@ -20,7 +20,9 @@ class SentencepieceTokenizer(BaseTokenizer):
         try:
             import sentencepiece
         except ImportError:
-            raise ImportError("sentencepiece is not installed")
+            msg = "importing sentencepiece failed for some reason."
+            msg += "\n  1. make sure sentencepiece is successfully installed."
+            raise ImportError(msg)
 
         super(SentencepieceTokenizer, self).__init__("sentencepiece")
         self.tokenizer = sentencepiece.SentencePieceProcessor()

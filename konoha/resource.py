@@ -28,12 +28,12 @@ class Resource:
             self._raw_path = path
 
     def download_from_s3(self, path: str) -> str:
+        import re
+        import os.path
+        import secrets
 
         try:
             import boto3
-            import re
-            import os.path
-            import secrets
         except ImportError:
             msg = 'Please install boto3:'
             msg += f' {RED}`pip install boto3`{RST}'
