@@ -10,16 +10,16 @@
 
 `Konoha` is a Python library for providing easy-to-use integrated interface of various Japanese tokenziers,
 which enables you to switch a tokenizer and boost your pre-processing.
-Supported tokenizers are character-based tokenizer, whitespace-based tokenizer and followings:
 
-- MeCab (by [natto-py](https://github.com/buruzaemon/natto-py))
-- Janome (by [janome](https://github.com/mocobeta/janome))
-- KyTea (by [Mykytea-python](https://github.com/chezou/Mykytea-python))
-- Sudachi (by [SudachiPy](https://github.com/WorksApplications/SudachiPy))
-- Sentencepiece (by [sentencepiece](https://github.com/google/sentencepiece))
+## Supported tokenizers
 
-Also, `konoha` provides a simple rule-based sentence tokenizer,
-which segments a document into sentences.
+<a href="https://github.com/buruzaemon/natto-py"><img src="https://img.shields.io/badge/MeCab-natto--py-ff69b4"></a>
+<a href="https://github.com/chezou/Mykytea-python"><img src="https://img.shields.io/badge/KyTea-Mykytea--python-ff69b4"></a>
+<a href="https://github.com/mocobeta/janome"><img src="https://img.shields.io/badge/Janome-janome-ff69b4"></a>
+<a href="https://github.com/WorksApplications/SudachiPy"><img src="https://img.shields.io/badge/Sudachi-sudachipy-ff69b4"></a>
+<a href="https://github.com/google/sentencepiece"><img src="https://img.shields.io/badge/Sentencepiece-sentencepiece-ff69b4"></a>
+
+Also, `konoha` provides rule-based tokenizers (whitespace, character) and a rule-based sentence splitter.
 
 
 ## Quick Start with Docker
