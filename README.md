@@ -135,23 +135,30 @@ By running `allennlp train` with `--include-package konoha`, you can train a mod
 
 For example, konoha tokenizer is specified in `xxx.jsonnet` like following:
 
-```json
+```jsonnet
 {
-  dataset_reader: {
-    lazy: false,
-    type: 'text_classification_json',
-    tokenizer: {
-      type: 'konoha',  <-- konoha here!!!
-      tokenizer_name: 'janome',
+  "dataset_reader": {
+    "lazy": false,
+    "type": "text_classification_json",
+    "tokenizer": {
+      "type": "konoha",  // <-- konoha here!!!
+      "tokenizer_name": "janome",
     },
-    token_indexers: {
-      tokens: {
-        type: 'single_id',
-        lowercase_tokens: true,
+    "token_indexers": {
+      "tokens": {
+        "type": "single_id",
+        "lowercase_tokens": true,
       },
     },
   },
-...
+  ...
+  "model": {
+  ...
+  },
+  "trainer": {
+  ...
+  }
+}
 ```
 
 After finishing other sections (e.g. model config, trainer config, ...etc), `allennlp train config/xxx.jsonnet --include-package konoha --serialization-dir yyy` works!
