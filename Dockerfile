@@ -39,6 +39,5 @@ RUN pip3 install 'poetry==1.1.0a1'
 RUN poetry export -f requirements.txt -E all -o requirements.txt
 RUN rm pyproject.toml poetry.lock
 RUN pip3 install -r requirements.txt
-RUN pip3 install "https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz"
 
 CMD ["uvicorn", "konoha.api.server:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
