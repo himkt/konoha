@@ -1,4 +1,4 @@
-# 🌿Konoha: Simple wrapper of Japanese Tokenizers
+# 🌿 Konoha: Simple wrapper of Japanese Tokenizers
 
 [![GitHub stars](https://img.shields.io/github/stars/himkt/konoha?style=social)](https://github.com/himkt/konoha/stargazers)
 
