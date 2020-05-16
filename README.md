@@ -76,11 +76,6 @@ I recommend you to install konoha by `pip install 'konoha[all]'` or `pip install
 - Install konoha with a specific tokenizer and AllenNLP integration: `pip install 'konoha[(tokenizer_name),allennlp]`.
 - Install konoha with a specific tokenzier and remote file support: `pip install 'konoha[(tokenizer_name),remote]'`
 
-- Note that SudachiPy requires dictionary. You may have to install dictionary
-  - `pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz`
-  - [SudachiPy docs](https://github.com/WorksApplications/SudachiPy#step-2-install-sudachidict_core)
-  - If you are interested in dictionary, see [SudachiDict docs](https://github.com/WorksApplications/SudachiDict)
-
 
 ## Example
 
