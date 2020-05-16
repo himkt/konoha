@@ -128,6 +128,43 @@ print(tokenizer.tokenize(sentence))
 # => ['私は猫だ。', '名前なんてものはない。', 'だが，「かわいい。それで十分だろう」。']
 ```
 
+### AllenNLP integration
+
+Konoha provides AllenNLP integration, it enables users to specify konoha tokenizer in a Jsonnet config file.
+By running `allennlp train` with `--include-package konoha`, you can train a model using konoha tokenizer!
+
+For example, konoha tokenizer is specified in `xxx.jsonnet` like following:
+
+```jsonnet
+{
+  "dataset_reader": {
+    "lazy": false,
+    "type": "text_classification_json",
+    "tokenizer": {
+      "type": "konoha",  // <-- konoha here!!!
+      "tokenizer_name": "janome",
+    },
+    "token_indexers": {
+      "tokens": {
+        "type": "single_id",
+        "lowercase_tokens": true,
+      },
+    },
+  },
+  ...
+  "model": {
+  ...
+  },
+  "trainer": {
+  ...
+  }
+}
+```
+
+After finishing other sections (e.g. model config, trainer config, ...etc), `allennlp train config/xxx.jsonnet --include-package konoha --serialization-dir yyy` works!
+(remember to include konoha by `--include-package konoha`)
+
+For more detail, please refer [my blog article](https://qiita.com/klis/items/f1d29cb431d1bf879898) (in Japanese, sorry).
 
 ## Test
 
