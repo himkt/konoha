@@ -26,6 +26,12 @@ Also, `konoha` provides rule-based tokenizers (whitespace, character) and a rule
 
 Simply run followings on your computer:
 
+```baseh
+docker run --rm -p 8000:8000 -t himkt/konoha  # from DockerHub
+```
+
+Or you can build image on your machine:
+
 ```bash
 git clone https://github.com/himkt/konoha  # download konoha
 cd konoha && docker-compose up --build  # build and launch contaier
