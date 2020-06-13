@@ -20,7 +20,7 @@ RUN wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz && \
 RUN apt update -y && apt install -y mecab libmecab-dev mecab-ipadic-utf8
 
 # python
-RUN apt update -y && apt install -y python3 python3-dev python3-pipdo
+RUN apt update -y && apt install -y python3 python3-dev python3-pip
 
 # konoha
 WORKDIR /work
@@ -30,13 +30,11 @@ COPY ./example ./example
 COPY ./tests ./tests
 COPY ./konoha ./konoha
 COPY ./pyproject.toml ./pyproject.toml
-
 COPY ./poetry.lock ./poetry.lock
 
 RUN pip3 install -U pip
 RUN pip3 install 'poetry==1.1.0a1'
-RUN poetry export -f requirements.txt -E all -o requirements.txt
-RUN rm pyproject.toml poetry.lock
-RUN pip3 install -r requirements.txt
+RUN pip3 install .[all]
+# RUN rm pyproject.toml poetry.lock
 
 CMD ["uvicorn", "konoha.api.server:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
