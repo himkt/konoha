@@ -33,8 +33,6 @@ COPY ./pyproject.toml ./pyproject.toml
 COPY ./poetry.lock ./poetry.lock
 
 RUN pip3 install -U pip
-RUN pip3 install 'poetry==1.1.0a1'
 RUN pip3 install .[all]
-# RUN rm pyproject.toml poetry.lock
 
 CMD ["uvicorn", "konoha.api.server:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
