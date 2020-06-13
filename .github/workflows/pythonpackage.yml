@@ -50,10 +50,11 @@ jobs:
         sudo apt update -y
         sudo apt install mecab libmecab-dev mecab-ipadic-utf8
         cd /tmp
-        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz
-        tar zxvf kytea-0.4.7.tar.gz
-        cd kytea-0.4.7 && ./configure && sudo make && sudo make install && cd ..
-        sudo ldconfig -v
+        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz && \
+        tar zxvf kytea-0.4.7.tar.gz && cd kytea-0.4.7 && \
+        wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch && \
+        git apply ./24.patch && ./configure && \
+        sudo make && sudo make install && sudo ldconfig -v
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -91,10 +92,11 @@ jobs:
         sudo apt update -y
         sudo apt install mecab libmecab-dev mecab-ipadic-utf8
         cd /tmp
-        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz
-        tar zxvf kytea-0.4.7.tar.gz
-        cd kytea-0.4.7 && ./configure && sudo make && sudo make install && cd ..
-        sudo ldconfig -v
+        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz && \
+        tar zxvf kytea-0.4.7.tar.gz && cd kytea-0.4.7 && \
+        wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch && \
+        git apply ./24.patch && ./configure && \
+        sudo make && sudo make install && sudo ldconfig -v
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
