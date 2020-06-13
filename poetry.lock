@@ -1362,7 +1362,7 @@ description = "Python version of Sudachi, the Japanese Morphological Analyzer"
 name = "sudachipy"
 optional = true
 python-versions = "*"
-version = "0.4.4"
+version = "0.4.5"
 
 [package.dependencies]
 dartsclone = ">=0.9.0,<0.10.0"
@@ -1637,7 +1637,7 @@ server = ["fastapi", "uvicorn"]
 sudachi = ["sudachipy", "sudachidict_core"]
 
 [metadata]
-content-hash = "ea5721b12ab58fb24630a3c39426db1ee4c1df0e2fb7ee0ec734f135f5aecd31"
+content-hash = "42bc00f73ffdb3419e5ff970b7cf8d980cf9bd76c4305e98be03f634d7e9dec7"
 python-versions = "^3.6.1"
 
 [metadata.files]
@@ -2551,8 +2551,8 @@ sudachidict-core = [
     {file = "SudachiDict-core-20200330.tar.gz", hash = "sha256:8405419f0a4213f638b43f0ca0147becfc9fd4a342366443da77c5a20c352242"},
 ]
 sudachipy = [
-    {file = "SudachiPy-0.4.4-py3-none-any.whl", hash = "sha256:e82cd3c37db4f938108a4a9af650c211e647eb81cbbed2baca12c82613b88148"},
-    {file = "SudachiPy-0.4.4.tar.gz", hash = "sha256:1c2ef0754206674ff51426858d095c498fe7da9b647f9c927ff58b1bec0a5c5f"},
+    {file = "SudachiPy-0.4.5-py3-none-any.whl", hash = "sha256:bb5fc2d9d2dddfeabc6901b9e4adb81e09037d18c3852357525d817bd774cf31"},
+    {file = "SudachiPy-0.4.5.tar.gz", hash = "sha256:404f8b9c1456e1f97382572695c743aaf064f55f9574424be46cb55c3f4cb77b"},
 ]
 tensorboardx = [
     {file = "tensorboardX-2.0-py2.py3-none-any.whl", hash = "sha256:8e336103a66b1b97a663057cc13d1db4419f7a12f332b8364386dbf8635031d9"},
