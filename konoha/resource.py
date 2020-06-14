@@ -55,27 +55,17 @@ class Resource:
         bucket = resource.Bucket(bucket_name)
 
         for obj in bucket.objects.filter(Prefix=prefix):
-            _prefix = obj.key.replace(prefix, '')
-            if _prefix.startswith('/'):
-                _prefix = _prefix[1:]
-
-            if _prefix == '':
-                download_path = os.path.join(resource_dir, os.path.basename(obj.key))
-                logger.info(f'Downloading {obj.key}')
-                bucket.download_file(obj.key, download_path)
-                logging.info(f'Downloaded to {download_path}')
-                return download_path
-            else:
-                download_path = os.path.join(resource_dir, _prefix)
-                dir_name = os.path.dirname(download_path)
-                if not os.path.exists(dir_name):
-                    os.makedirs(dir_name, exist_ok=True)
+            data_dir = os.path.join(resource_dir, os.path.dirname(prefix))
+            os.makedirs(data_dir, exist_ok=True)
 
             logger.info(f'Downloading {obj.key}')
+            download_path = os.path.join(resource_dir, obj.key)
             bucket.download_file(obj.key, download_path)
+            logging.info(f'Downloaded to {download_path}')
 
-        logging.info(f'Downloaded to {resource_dir}')
-        return resource_dir
+        dest_dir = os.path.join(resource_dir, prefix)
+        logging.info(f'Downloaded to {dest_dir}')
+        return dest_dir
 
     @property
     def path(self) -> Optional[str]:
