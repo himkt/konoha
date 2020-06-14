@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build-tiny:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     strategy:
       max-parallel: 4
       matrix:
@@ -33,7 +33,7 @@ jobs:
         pytest
 
   build-all:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     strategy:
       max-parallel: 4
       matrix:
@@ -50,15 +50,15 @@ jobs:
         sudo apt update -y
         sudo apt install mecab libmecab-dev mecab-ipadic-utf8
         cd /tmp
-        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz
-        tar zxvf kytea-0.4.7.tar.gz
-        cd kytea-0.4.7 && ./configure && sudo make && sudo make install && cd ..
-        sudo ldconfig -v
+        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz && \
+        tar zxvf kytea-0.4.7.tar.gz && cd kytea-0.4.7 && \
+        wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch && \
+        git apply ./24.patch && ./configure && \
+        sudo make && sudo make install && sudo ldconfig -v
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install .[all]
-        pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz
     - name: Lint with flake8
       run: |
         pip install flake8
@@ -75,7 +75,7 @@ jobs:
         pytest
 
   build-all-with-integrations:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     strategy:
       max-parallel: 4
       matrix:
@@ -92,15 +92,15 @@ jobs:
         sudo apt update -y
         sudo apt install mecab libmecab-dev mecab-ipadic-utf8
         cd /tmp
-        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz
-        tar zxvf kytea-0.4.7.tar.gz
-        cd kytea-0.4.7 && ./configure && sudo make && sudo make install && cd ..
-        sudo ldconfig -v
+        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz && \
+        tar zxvf kytea-0.4.7.tar.gz && cd kytea-0.4.7 && \
+        wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch && \
+        git apply ./24.patch && ./configure && \
+        sudo make && sudo make install && sudo ldconfig -v
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install .[all_with_integrations]
-        pip install https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/sudachi/SudachiDict_core-20191224.tar.gz
     - name: Lint with flake8
       run: |
         pip install flake8
