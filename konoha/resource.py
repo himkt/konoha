@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 class Resource:
     NBYTES = 6
-    TINY_TOKENIZER_DIR = '/tmp/konoha'
+    KONOHA_DIR = '/tmp/konoha'
 
     def __init__(self, path: Optional[str]) -> None:
         if path is None:
@@ -41,7 +41,7 @@ class Resource:
             raise ImportError(msg)
 
         prefix = secrets.token_hex(self.NBYTES)
-        resource_dir = os.path.join(self.TINY_TOKENIZER_DIR, prefix)
+        resource_dir = os.path.join(self.KONOHA_DIR, prefix)
         os.makedirs(resource_dir, exist_ok=True)
 
         re_result = re.search(r's3://(.*?)/(.+)', path)
