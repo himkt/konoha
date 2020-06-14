@@ -96,7 +96,7 @@ class MeCabTokenizer(BaseTokenizer):
                 self.dictionary_format = "ipadic"
                 self.parse_feature = parse_feature_for_ipadic
 
-            elif 'ipadic' in system_dictionary_path.lower():
+            elif "ipadic" in system_dictionary_path.lower():
                 self.dictionary_format = "ipadic"
                 self.parse_feature = parse_feature_for_ipadic
 

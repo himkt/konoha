@@ -23,7 +23,8 @@ def test_token_with_postag2():
         conjugation="*",
         base_form="大崎",
         yomi="オオサキ",
-        pron="オーサキ")
+        pron="オーサキ",
+    )
 
     truth = "名詞,固有名詞,人名,姓,*,*,大崎,オオサキ,オーサキ"
     assert token.feature == truth

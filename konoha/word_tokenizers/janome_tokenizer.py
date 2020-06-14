@@ -9,9 +9,7 @@ class JanomeTokenizer(BaseTokenizer):
     """Wrapper class for Janome."""
 
     def __init__(
-            self,
-            user_dictionary_path: Optional[str] = None,
-            with_postag: bool = False
+        self, user_dictionary_path: Optional[str] = None, with_postag: bool = False
     ):
         try:
             from janome.tokenizer import Tokenizer
@@ -47,7 +45,8 @@ class JanomeTokenizer(BaseTokenizer):
                     conjugation=conjugation,
                     base_form=base_form,
                     yomi=yomi,
-                    pron=pron)
+                    pron=pron,
+                )
                 return_result.append(token)
 
         else:

@@ -32,7 +32,9 @@ def tokenize(params: TokenizeParameter, request: Request):
         raise HTTPException(status_code=400, detail="text or texts is required.")
 
     mode = params.mode.lower()
-    model_path = "data/model.spm" if params.tokenizer.lower() == "sentencepiece" else None  # NOQA
+    model_path = (
+        "data/model.spm" if params.tokenizer.lower() == "sentencepiece" else None
+    )  # NOQA
 
     signature = f"{params.tokenizer}.{model_path}.{mode}"
     if signature in request.app.tokenizers:
@@ -49,10 +51,7 @@ def tokenize(params: TokenizeParameter, request: Request):
             )
             request.app.tokenizers[signature] = tokenizer
         except Exception:
-            raise HTTPException(
-                status_code=400,
-                detail="fail to initialize tokenizer"
-            )
+            raise HTTPException(status_code=400, detail="fail to initialize tokenizer")
 
     results = [
         [

@@ -12,14 +12,14 @@ class WordTokenizer:
     """Tokenizer takes a sentence into tokens."""
 
     def __init__(
-            self,
-            tokenizer: str = 'MeCab',
-            with_postag: bool = False,
-            user_dictionary_path: Optional[str] = None,
-            system_dictionary_path: Optional[str] = None,
-            model_path: Optional[str] = None,
-            mode: Optional[str] = None,
-            dictionary_format: Optional[str] = None,
+        self,
+        tokenizer: str = "MeCab",
+        with_postag: bool = False,
+        user_dictionary_path: Optional[str] = None,
+        system_dictionary_path: Optional[str] = None,
+        model_path: Optional[str] = None,
+        mode: Optional[str] = None,
+        dictionary_format: Optional[str] = None,
     ) -> None:
         """Create tokenizer.
 
@@ -51,8 +51,7 @@ class WordTokenizer:
 
         if self._tokenizer == "kytea":
             self.tokenizer = word_tokenizers.KyTeaTokenizer(
-                with_postag=self.with_postag,
-                model_path=self.model_path,
+                with_postag=self.with_postag, model_path=self.model_path,
             )
 
         if self._tokenizer == "sentencepiece":
@@ -82,8 +81,7 @@ class WordTokenizer:
                 raise ValueError("`mode` must be specified for sudachi.")
 
             self.tokenizer = word_tokenizers.SudachiTokenizer(
-                mode=self.mode,
-                with_postag=self.with_postag,
+                mode=self.mode, with_postag=self.with_postag,
             )
 
     def tokenize(self, text: str) -> List[Token]:

@@ -1,9 +1,8 @@
-
-
 class Tokenizer:
     def register(func):
         def wrapper(*args, **kwargs):
             pass
+
         return wrapper
 
     def batch_tokenize(self, texts):

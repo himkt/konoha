@@ -32,8 +32,7 @@ class SudachiTokenizer(BaseTokenizer):
             raise ImportError(msg)
 
         super(SudachiTokenizer, self).__init__(
-            name="sudachi ({})".format(mode),
-            with_postag=with_postag,
+            name="sudachi ({})".format(mode), with_postag=with_postag,
         )
         try:
             self.tokenizer = dictionary.Dictionary().create()
@@ -59,26 +58,32 @@ class SudachiTokenizer(BaseTokenizer):
         for token in self.tokenizer.tokenize(text, self.mode):
             surface = token.surface()
             if self.with_postag:
-                postag, postag2, postag3, postag4, \
-                    inflection, conjugation = token.part_of_speech()
+                (
+                    postag,
+                    postag2,
+                    postag3,
+                    postag4,
+                    inflection,
+                    conjugation,
+                ) = token.part_of_speech()
                 base_form = token.dictionary_form()
                 normalized_form = token.normalized_form()
                 yomi = token.reading_form()
-                result.append(Token(
-                    surface=surface,
-                    postag=postag,
-                    postag2=postag2,
-                    postag3=postag3,
-                    postag4=postag4,
-                    inflection=inflection,
-                    conjugation=conjugation,
-                    base_form=base_form,
-                    normalized_form=normalized_form,
-                    yomi=yomi,
-                ))
+                result.append(
+                    Token(
+                        surface=surface,
+                        postag=postag,
+                        postag2=postag2,
+                        postag3=postag3,
+                        postag4=postag4,
+                        inflection=inflection,
+                        conjugation=conjugation,
+                        base_form=base_form,
+                        normalized_form=normalized_form,
+                        yomi=yomi,
+                    )
+                )
 
             else:
-                result.append(Token(
-                    surface=surface
-                ))
+                result.append(Token(surface=surface))
         return result
