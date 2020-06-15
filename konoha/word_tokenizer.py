@@ -99,32 +99,3 @@ class WordTokenizer:
     @property
     def name(self) -> str:
         return self._tokenizer.name
-
-
-if __name__ == "__main__":
-    tokenizer = WordTokenizer(tokenizer="mecab", with_postag=False)
-    print(tokenizer.tokenize("我輩は猫である"))
-
-    tokenizer = WordTokenizer(tokenizer="mecab", with_postag=True)
-    print(tokenizer.tokenize("我輩は猫である"))
-
-    tokenizer = WordTokenizer("kytea", with_postag=False)
-    print(tokenizer.tokenize("我輩は猫である"))
-
-    tokenizer = WordTokenizer("kytea", with_postag=True)
-    print(tokenizer.tokenize("我輩は猫である"))
-
-    tokenizer = WordTokenizer("janome", with_postag=True)
-    print(tokenizer.tokenize("我輩は猫である"))
-
-    tokenizer = WordTokenizer("sentencepiece", model_path="./data/model.spm")
-    print(tokenizer.tokenize("我輩は猫である"))
-
-    tokenizer = WordTokenizer("sudachi", mode="A")
-    print(tokenizer.tokenize("我輩は猫である"))
-
-    tokenizer = WordTokenizer("character")
-    print(tokenizer.tokenize("我輩は猫である"))
-
-    tokenizer = WordTokenizer("whitespace")
-    print(tokenizer.tokenize("我輩 は 猫 で ある"))
