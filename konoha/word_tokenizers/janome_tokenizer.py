@@ -10,7 +10,7 @@ class JanomeTokenizer(BaseTokenizer):
 
     def __init__(
         self, user_dictionary_path: Optional[str] = None, with_postag: bool = False
-    ):
+    ) -> None:
         try:
             from janome.tokenizer import Tokenizer
         except ImportError:

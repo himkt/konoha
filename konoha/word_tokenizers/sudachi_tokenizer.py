@@ -1,3 +1,5 @@
+from typing import List
+
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
@@ -5,7 +7,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class SudachiTokenizer(BaseTokenizer):
     """Wrapper class for SudachiPy."""
 
-    def __init__(self, mode: str, with_postag: bool, **kwargs):
+    def __init__(self, mode: str, with_postag: bool, **kwargs) -> None:
         """
         Initializer for SudachiTokenizer
 
@@ -51,7 +53,7 @@ class SudachiTokenizer(BaseTokenizer):
         else:
             raise ValueError("Invalid mode is specified. Mode should be A, B, or C.")  # NOQA
 
-    def tokenize(self, text: str):
+    def tokenize(self, text: str) -> List[Token]:
         """Tokenize."""
         result = []
         for token in self._tokenizer.tokenize(text, self._mode):

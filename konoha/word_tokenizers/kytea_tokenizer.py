@@ -1,3 +1,4 @@
+from typing import List
 from typing import Optional
 
 from konoha.data.token import Token
@@ -9,7 +10,7 @@ class KyTeaTokenizer(BaseTokenizer):
 
     def __init__(
         self, with_postag: bool = False, model_path: Optional[str] = None, **kwargs
-    ):
+    ) -> None:
 
         super(KyTeaTokenizer, self).__init__(
             name="kytea", with_postag=with_postag, model_path=model_path
@@ -27,7 +28,7 @@ class KyTeaTokenizer(BaseTokenizer):
             kytea_option += "-model {}".format(model_path)
         self._tokenizer = Mykytea.Mykytea(kytea_option)
 
-    def tokenize(self, text: str):
+    def tokenize(self, text: str) -> List[Token]:
         tokens = []
 
         if self._with_postag:

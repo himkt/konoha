@@ -1,3 +1,5 @@
+from typing import List
+
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
@@ -5,7 +7,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class SentencepieceTokenizer(BaseTokenizer):
     """Wrapper class forSentencepiece"""
 
-    def __init__(self, model_path: str, **kwargs):
+    def __init__(self, model_path: str, **kwargs) -> None:
         """
         Initializer for SentencepieceTokenizer.
 
@@ -28,7 +30,7 @@ class SentencepieceTokenizer(BaseTokenizer):
         self._tokenizer = sentencepiece.SentencePieceProcessor()
         self._tokenizer.load(model_path)
 
-    def tokenize(self, text: str):
+    def tokenize(self, text: str) -> List[Token]:
         result = []
         for subword in self._tokenizer.EncodeAsPieces(text):
             token = Token(surface=subword)

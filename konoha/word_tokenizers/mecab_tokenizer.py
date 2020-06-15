@@ -5,9 +5,8 @@ from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
-def parse_feature_for_ipadic(elem):
+def parse_feature_for_ipadic(elem) -> Token:
     surface, feature = elem.split("\t")
-
     (
         postag,
         postag2,
@@ -25,17 +24,17 @@ def parse_feature_for_ipadic(elem):
     else:
         yomi, pron = None, None
 
-    return (
-        surface,
-        postag,
-        postag2,
-        postag3,
-        postag4,
-        inflection,
-        conjugation,
-        base_form,
-        yomi,
-        pron,
+    return Token(
+        surface=surface,
+        postag=postag,
+        postag2=postag2,
+        postag3=postag3,
+        postag4=postag4,
+        inflection=inflection,
+        conjugation=conjugation,
+        base_form=base_form,
+        yomi=yomi,
+        pron=pron,
     )
 
 
@@ -108,32 +107,7 @@ class MeCabTokenizer(BaseTokenizer):
         parse_result = self._tokenizer.parse(text).rstrip(" ")
         if self._with_postag:
             for elem in parse_result.split("\n")[:-1]:
-                (
-                    surface,
-                    postag,
-                    postag2,
-                    postag3,
-                    postag4,
-                    inflection,
-                    conjugation,
-                    base_form,
-                    yomi,
-                    pron,
-                ) = self._parse_feature(elem)
-
-                token = Token(
-                    surface=surface,
-                    postag=postag,
-                    postag2=postag2,
-                    postag3=postag3,
-                    postag4=postag4,
-                    inflection=inflection,
-                    conjugation=conjugation,
-                    base_form=base_form,
-                    yomi=yomi,
-                    pron=pron,
-                )
-                return_result.append(token)
+                return_result.append(self._parse_feature(elem))
         else:
             for surface in parse_result.split(" "):
                 return_result.append(Token(surface=surface))
