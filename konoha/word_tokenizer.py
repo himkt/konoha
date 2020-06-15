@@ -3,9 +3,11 @@ from typing import Any
 from typing import List
 from typing import Optional
 
-from konoha.konoha_token import Token
+import warnings
+
 from konoha import word_tokenizers
 from konoha import resource
+from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class WordTokenizer:
@@ -87,6 +89,11 @@ class WordTokenizer:
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize input text"""
         return self._tokenizer.tokenize(text)
+
+    @property
+    def tokenizer(self) -> BaseTokenizer:
+        warnings.warn("attribute `tokenizer` will be removed in v5.0.0.")
+        return self._tokenizer
 
     @property
     def name(self) -> str:
