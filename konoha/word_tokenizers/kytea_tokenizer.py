@@ -25,13 +25,13 @@ class KyTeaTokenizer(BaseTokenizer):
         kytea_option = ""
         if model_path is not None:
             kytea_option += "-model {}".format(model_path)
-        self.kytea = Mykytea.Mykytea(kytea_option)
+        self._tokenizer = Mykytea.Mykytea(kytea_option)
 
     def tokenize(self, text: str):
         tokens = []
 
-        if self.with_postag:
-            response = self.kytea.getTagsToString(text)
+        if self._with_postag:
+            response = self._tokenizer.getTagsToString(text)
 
             # FIXME Following dirty workaround is required to
             #       process inputs which include <whitespace> itself
@@ -49,7 +49,7 @@ class KyTeaTokenizer(BaseTokenizer):
                 tokens.append(Token(surface=surface, postag=postag, pron=pron))
 
         else:
-            for surface in list(self.kytea.getWS(text)):
+            for surface in list(self._tokenizer.getWS(text)):
                 tokens.append(Token(surface=surface))
 
         return tokens

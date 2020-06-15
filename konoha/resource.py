@@ -1,6 +1,9 @@
 from typing import Optional
 
 import logging
+import os.path
+import re
+import secrets
 
 
 RED = "\033[1;31m"
@@ -28,10 +31,6 @@ class Resource:
             self._raw_path = path
 
     def download_from_s3(self, path: str) -> str:
-        import re
-        import os.path
-        import secrets
-
         try:
             import boto3
         except ImportError:

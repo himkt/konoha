@@ -25,12 +25,12 @@ class SentencepieceTokenizer(BaseTokenizer):
             raise ImportError(msg)
 
         super(SentencepieceTokenizer, self).__init__("sentencepiece")
-        self.tokenizer = sentencepiece.SentencePieceProcessor()
-        self.tokenizer.load(model_path)
+        self._tokenizer = sentencepiece.SentencePieceProcessor()
+        self._tokenizer.load(model_path)
 
     def tokenize(self, text: str):
         result = []
-        for subword in self.tokenizer.EncodeAsPieces(text):
+        for subword in self._tokenizer.EncodeAsPieces(text):
             token = Token(surface=subword)
             result.append(token)
         return result

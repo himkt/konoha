@@ -49,31 +49,75 @@ class Token:
             Note that normalized_form is only
             available on SudachiPy
         """
-        self.surface = surface
-        self.postag = postag
-        self.postag2 = postag2
-        self.postag3 = postag3
-        self.postag4 = postag4
-        self.inflection = inflection
-        self.conjugation = conjugation
-        self.base_form = base_form
-        self.yomi = yomi
-        self.pron = pron
-        self.normalized_form = normalized_form
+        self._surface = surface
+        self._postag = postag
+        self._postag2 = postag2
+        self._postag3 = postag3
+        self._postag4 = postag4
+        self._inflection = inflection
+        self._conjugation = conjugation
+        self._base_form = base_form
+        self._yomi = yomi
+        self._pron = pron
+        self._normalized_form = normalized_form
 
     def __repr__(self) -> str:
-        representation = self.surface
-        if self.postag is not None:
-            representation += " ({})".format(self.postag)
+        representation = self._surface
+        if self._postag is not None:
+            representation += " ({})".format(self._postag)
         return representation
 
     def __eq__(self, right) -> bool:
         return (
-            self.surface == right.surface
-            and self.postag == right.postag
-            and self.postag3 == right.postag3
-            and self.yomi == right.yomi
+            self._surface == right.surface
+            and self._postag == right.postag
+            and self._postag3 == right.postag3
+            and self._yomi == right.yomi
         )
+
+    @property
+    def surface(self):
+        return self._surface
+
+    @property
+    def postag(self):
+        return self._postag
+
+    @property
+    def postag2(self):
+        return self._postag2
+
+    @property
+    def postag3(self):
+        return self._postag3
+
+    @property
+    def postag4(self):
+        return self._postag4
+
+    @property
+    def inflection(self):
+        return self._inflection
+
+    @property
+    def conjugation(self):
+        return self._conjugation
+
+    @property
+    def base_form(self):
+        return self._base_form
+
+    @property
+    def yomi(self):
+        return self._yomi
+
+    @property
+    def pron(self):
+        return self._pron
+
+    @property
+    def normalized_form(self):
+        return self._normalized_form
 
     @property
     def feature(self) -> str:

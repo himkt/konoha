@@ -35,7 +35,7 @@ class SudachiTokenizer(BaseTokenizer):
             name="sudachi ({})".format(mode), with_postag=with_postag,
         )
         try:
-            self.tokenizer = dictionary.Dictionary().create()
+            self._tokenizer = dictionary.Dictionary().create()
         except KeyError:
             msg = "please install dictionary"
             msg += " ( see https://github.com/WorksApplications/SudachiPy#install-dict-packages )"  # NOQA
@@ -43,21 +43,20 @@ class SudachiTokenizer(BaseTokenizer):
 
         _mode = mode.capitalize()
         if _mode == "A":
-            self.mode = tokenizer.Tokenizer.SplitMode.A
+            self._mode = tokenizer.Tokenizer.SplitMode.A
         elif _mode == "B":
-            self.mode = tokenizer.Tokenizer.SplitMode.B
+            self._mode = tokenizer.Tokenizer.SplitMode.B
         elif _mode == "C":
-            self.mode = tokenizer.Tokenizer.SplitMode.C
+            self._mode = tokenizer.Tokenizer.SplitMode.C
         else:
-            msg = "Invalid mode is specified. Mode should be 'A', 'B' or 'C'"
-            raise ValueError(msg)
+            raise ValueError("Invalid mode is specified. Mode should be A, B, or C.")  # NOQA
 
     def tokenize(self, text: str):
         """Tokenize."""
         result = []
-        for token in self.tokenizer.tokenize(text, self.mode):
+        for token in self._tokenizer.tokenize(text, self._mode):
             surface = token.surface()
-            if self.with_postag:
+            if self._with_postag:
                 (
                     postag,
                     postag2,

@@ -31,66 +31,66 @@ class WordTokenizer:
         system_dictionary = resource.Resource(system_dictionary_path)
         model = resource.Resource(model_path)
 
-        self._tokenizer = tokenizer.lower()
-        self.with_postag = with_postag
-        self.user_dictionary_path = user_dictionary.path
-        self.system_dictionary_path = system_dictionary.path
-        self.model_path = model.path
-        self.mode = mode.lower() if mode is not None else None
-        self.dictionary_format = dictionary_format
-        self.tokenizer = None  # type: Any
+        self._tokenizer_name = tokenizer.lower()
+        self._with_postag = with_postag
+        self._user_dictionary_path = user_dictionary.path
+        self._system_dictionary_path = system_dictionary.path
+        self._model_path = model.path
+        self._mode = mode.lower() if mode is not None else None
+        self._dictionary_format = dictionary_format
+        self._tokenizer = None  # type: Any
 
         self._setup_tokenizer()
 
     def _setup_tokenizer(self) -> None:
-        if self._tokenizer == "character":
-            self.tokenizer = word_tokenizers.CharacterTokenizer()
+        if self._tokenizer_name == "character":
+            self._tokenizer = word_tokenizers.CharacterTokenizer()
 
-        if self._tokenizer == "whitespace":
-            self.tokenizer = word_tokenizers.WhitespaceTokenizer()
+        if self._tokenizer_name == "whitespace":
+            self._tokenizer = word_tokenizers.WhitespaceTokenizer()
 
-        if self._tokenizer == "kytea":
-            self.tokenizer = word_tokenizers.KyTeaTokenizer(
-                with_postag=self.with_postag, model_path=self.model_path,
+        if self._tokenizer_name == "kytea":
+            self._tokenizer = word_tokenizers.KyTeaTokenizer(
+                with_postag=self._with_postag, model_path=self._model_path,
             )
 
-        if self._tokenizer == "sentencepiece":
-            if self.model_path is None:
+        if self._tokenizer_name == "sentencepiece":
+            if self._model_path is None:
                 raise ValueError("`model_path` must be specified for sentencepiece.")
 
-            self.tokenizer = word_tokenizers.SentencepieceTokenizer(
-                model_path=self.model_path,
+            self._tokenizer = word_tokenizers.SentencepieceTokenizer(
+                model_path=self._model_path,
             )
 
-        if self._tokenizer == "mecab":
-            self.tokenizer = word_tokenizers.MeCabTokenizer(
-                user_dictionary_path=self.user_dictionary_path,
-                system_dictionary_path=self.system_dictionary_path,
-                with_postag=self.with_postag,
-                dictionary_format=self.dictionary_format,
+        if self._tokenizer_name == "mecab":
+            self._tokenizer = word_tokenizers.MeCabTokenizer(
+                user_dictionary_path=self._user_dictionary_path,
+                system_dictionary_path=self._system_dictionary_path,
+                with_postag=self._with_postag,
+                dictionary_format=self._dictionary_format,
             )
 
-        if self._tokenizer == "janome":
-            self.tokenizer = word_tokenizers.JanomeTokenizer(
-                user_dictionary_path=self.user_dictionary_path,
-                with_postag=self.with_postag,
+        if self._tokenizer_name == "janome":
+            self._tokenizer = word_tokenizers.JanomeTokenizer(
+                user_dictionary_path=self._user_dictionary_path,
+                with_postag=self._with_postag,
             )
 
-        if self._tokenizer == "sudachi":
-            if self.mode is None:
+        if self._tokenizer_name == "sudachi":
+            if self._mode is None:
                 raise ValueError("`mode` must be specified for sudachi.")
 
-            self.tokenizer = word_tokenizers.SudachiTokenizer(
-                mode=self.mode, with_postag=self.with_postag,
+            self._tokenizer = word_tokenizers.SudachiTokenizer(
+                mode=self._mode, with_postag=self._with_postag,
             )
 
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize input text"""
-        return self.tokenizer.tokenize(text)
+        return self._tokenizer.tokenize(text)
 
     @property
     def name(self) -> str:
-        return self.tokenizer.name
+        return self._tokenizer.name
 
 
 if __name__ == "__main__":
