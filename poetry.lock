@@ -1249,6 +1249,17 @@ test = ["pytest", "pytest-cov", "html5lib", "typed-ast", "cython"]
 
 [[package]]
 category = "main"
+description = "Read the Docs theme for Sphinx"
+name = "sphinx-rtd-theme"
+optional = true
+python-versions = "*"
+version = "0.4.3"
+
+[package.dependencies]
+sphinx = "*"
+
+[[package]]
+category = "main"
 description = "sphinxcontrib-applehelp is a sphinx extension which outputs Apple help books"
 name = "sphinxcontrib-applehelp"
 optional = true
@@ -1628,7 +1639,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict_core", "sentencepiece", "boto3", "fastapi", "uvicorn"]
 all_with_integrations = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict_core", "sentencepiece", "boto3", "allennlp", "fastapi", "uvicorn"]
 allennlp = ["allennlp"]
-docs = ["sphinx"]
+docs = ["sphinx", "sphinx_rtd_theme"]
 janome = ["janome"]
 kytea = ["kytea"]
 mecab = ["natto-py"]
@@ -1638,7 +1649,7 @@ server = ["fastapi", "uvicorn"]
 sudachi = ["sudachipy", "sudachidict_core"]
 
 [metadata]
-content-hash = "642a8e44e95a26b0d7f6eb066c89abeba6d94ae9bdcf33d14d7ed239a5597e53"
+content-hash = "046186b2a76e59ad5aaa46a091756cbdfeaef01836490928f7041bfcdb4d8643"
 python-versions = "^3.6.1"
 
 [metadata.files]
@@ -2501,6 +2512,10 @@ spacy = [
 sphinx = [
     {file = "Sphinx-3.1.1-py3-none-any.whl", hash = "sha256:97c9e3bcce2f61d9f5edf131299ee9d1219630598d9f9a8791459a4d9e815be5"},
     {file = "Sphinx-3.1.1.tar.gz", hash = "sha256:74fbead182a611ce1444f50218a1c5fc70b6cc547f64948f5182fb30a2a20258"},
+]
+sphinx-rtd-theme = [
+    {file = "sphinx_rtd_theme-0.4.3-py2.py3-none-any.whl", hash = "sha256:00cf895504a7895ee433807c62094cf1e95f065843bf3acd17037c3e9a2becd4"},
+    {file = "sphinx_rtd_theme-0.4.3.tar.gz", hash = "sha256:728607e34d60456d736cc7991fd236afb828b21b82f956c5ea75f94c8414040a"},
 ]
 sphinxcontrib-applehelp = [
     {file = "sphinxcontrib-applehelp-1.0.2.tar.gz", hash = "sha256:a072735ec80e7675e3f432fcae8610ecf509c5f1869d17e2eecff44389cdbc58"},
