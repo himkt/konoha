@@ -3,11 +3,11 @@
 [![GitHub stars](https://img.shields.io/github/stars/himkt/konoha?style=social)](https://github.com/himkt/konoha/stargazers)
 
 ![Build Status](https://github.com/himkt/konoha/workflows/Python%20package/badge.svg?style=flat-square)
+[![Documentation Status](https://readthedocs.org/projects/konoha/badge/?version=latest)](https://konoha.readthedocs.io/en/latest/?badge=latest)
 ![Python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue?logo=python)
+[![GitHub Release](https://img.shields.io/github/release/himkt/konoha.svg?cacheSeconds=60&color=red)](https://github.com/himkt/konoha/releases)
 [![GitHub Issues](https://img.shields.io/github/issues/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/issues)
-[![GitHub Release](https://img.shields.io/github/release/himkt/konoha.svg?cacheSeconds=60&color=red)](https://github.com/himkt/konoha/releases)
-[![Documentation Status](https://readthedocs.org/projects/konoha/badge/?version=latest)](https://konoha.readthedocs.io/en/latest/?badge=latest)
 
 `Konoha` is a Python library for providing easy-to-use integrated interface of various Japanese tokenziers,
 which enables you to switch a tokenizer and boost your pre-processing.
