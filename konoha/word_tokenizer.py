@@ -6,8 +6,9 @@ from typing import Optional
 import warnings
 
 from konoha import word_tokenizers
-from konoha import resource
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
+from konoha.data.resource import Resource
+from konoha.data.token import Token
 
 
 class WordTokenizer:
@@ -29,9 +30,9 @@ class WordTokenizer:
             tokenizer {str or None} -- specify the type of tokenizer (default: {None})  # NOQA
             flags {str} -- option passing to tokenizer (default: {''})
         """
-        user_dictionary = resource.Resource(user_dictionary_path)
-        system_dictionary = resource.Resource(system_dictionary_path)
-        model = resource.Resource(model_path)
+        user_dictionary = Resource(user_dictionary_path)
+        system_dictionary = Resource(system_dictionary_path)
+        model = Resource(model_path)
 
         self._tokenizer_name = tokenizer.lower()
         self._with_postag = with_postag

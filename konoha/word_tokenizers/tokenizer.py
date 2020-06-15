@@ -1,6 +1,6 @@
 from typing import List
 
-from konoha.konoha_token import Token
+from konoha.data.token import Token
 
 
 class BaseTokenizer:
