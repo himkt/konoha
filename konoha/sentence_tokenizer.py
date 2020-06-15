@@ -3,6 +3,9 @@ from typing import List
 
 
 class SentenceTokenizer:
+    """Simple Rule-based Sentence Splitter.
+    """
+
     PERIOD = "。"
     PERIOD_SPECIAL = "__PERIOD__"
 

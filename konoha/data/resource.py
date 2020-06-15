@@ -31,6 +31,10 @@ class Resource:
             self._raw_path = path
 
     def download_from_s3(self, path: str) -> str:
+        """
+        Download file(s) from Amazon S3.
+
+        """
         try:
             import boto3
         except ImportError:

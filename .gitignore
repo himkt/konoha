@@ -6,3 +6,6 @@ __pycache__
 /build
 /dist
 /konoha.egg-info
+
+# Sphinx documentation
+docs/build/
