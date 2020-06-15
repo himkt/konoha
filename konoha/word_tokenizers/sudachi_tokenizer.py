@@ -1,11 +1,13 @@
-from konoha.konoha_token import Token
+from typing import List
+
+from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class SudachiTokenizer(BaseTokenizer):
     """Wrapper class for SudachiPy."""
 
-    def __init__(self, mode: str, with_postag: bool, **kwargs):
+    def __init__(self, mode: str, with_postag: bool, **kwargs) -> None:
         """
         Initializer for SudachiTokenizer
 
@@ -32,11 +34,10 @@ class SudachiTokenizer(BaseTokenizer):
             raise ImportError(msg)
 
         super(SudachiTokenizer, self).__init__(
-            name="sudachi ({})".format(mode),
-            with_postag=with_postag,
+            name="sudachi ({})".format(mode), with_postag=with_postag,
         )
         try:
-            self.tokenizer = dictionary.Dictionary().create()
+            self._tokenizer = dictionary.Dictionary().create()
         except KeyError:
             msg = "please install dictionary"
             msg += " ( see https://github.com/WorksApplications/SudachiPy#install-dict-packages )"  # NOQA
@@ -44,41 +45,46 @@ class SudachiTokenizer(BaseTokenizer):
 
         _mode = mode.capitalize()
         if _mode == "A":
-            self.mode = tokenizer.Tokenizer.SplitMode.A
+            self._mode = tokenizer.Tokenizer.SplitMode.A
         elif _mode == "B":
-            self.mode = tokenizer.Tokenizer.SplitMode.B
+            self._mode = tokenizer.Tokenizer.SplitMode.B
         elif _mode == "C":
-            self.mode = tokenizer.Tokenizer.SplitMode.C
+            self._mode = tokenizer.Tokenizer.SplitMode.C
         else:
-            msg = "Invalid mode is specified. Mode should be 'A', 'B' or 'C'"
-            raise ValueError(msg)
+            raise ValueError("Invalid mode is specified. Mode should be A, B, or C.")  # NOQA
 
-    def tokenize(self, text: str):
+    def tokenize(self, text: str) -> List[Token]:
         """Tokenize."""
         result = []
-        for token in self.tokenizer.tokenize(text, self.mode):
+        for token in self._tokenizer.tokenize(text, self._mode):
             surface = token.surface()
-            if self.with_postag:
-                postag, postag2, postag3, postag4, \
-                    inflection, conjugation = token.part_of_speech()
+            if self._with_postag:
+                (
+                    postag,
+                    postag2,
+                    postag3,
+                    postag4,
+                    inflection,
+                    conjugation,
+                ) = token.part_of_speech()
                 base_form = token.dictionary_form()
                 normalized_form = token.normalized_form()
                 yomi = token.reading_form()
-                result.append(Token(
-                    surface=surface,
-                    postag=postag,
-                    postag2=postag2,
-                    postag3=postag3,
-                    postag4=postag4,
-                    inflection=inflection,
-                    conjugation=conjugation,
-                    base_form=base_form,
-                    normalized_form=normalized_form,
-                    yomi=yomi,
-                ))
+                result.append(
+                    Token(
+                        surface=surface,
+                        postag=postag,
+                        postag2=postag2,
+                        postag3=postag3,
+                        postag4=postag4,
+                        inflection=inflection,
+                        conjugation=conjugation,
+                        base_form=base_form,
+                        normalized_form=normalized_form,
+                        yomi=yomi,
+                    )
+                )
 
             else:
-                result.append(Token(
-                    surface=surface
-                ))
+                result.append(Token(surface=surface))
         return result

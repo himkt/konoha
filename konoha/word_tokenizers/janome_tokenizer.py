@@ -1,7 +1,7 @@
 from typing import List
 from typing import Optional
 
-from konoha.konoha_token import Token
+from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
@@ -9,10 +9,8 @@ class JanomeTokenizer(BaseTokenizer):
     """Wrapper class for Janome."""
 
     def __init__(
-            self,
-            user_dictionary_path: Optional[str] = None,
-            with_postag: bool = False
-    ):
+        self, user_dictionary_path: Optional[str] = None, with_postag: bool = False
+    ) -> None:
         try:
             from janome.tokenizer import Tokenizer
         except ImportError:
@@ -21,13 +19,13 @@ class JanomeTokenizer(BaseTokenizer):
             raise ImportError(msg)
 
         super().__init__(name="janome", with_postag=with_postag)
-        self.janome = Tokenizer(udic=user_dictionary_path)
+        self._tokenizer = Tokenizer(udic=user_dictionary_path)
 
     def tokenize(self, text: str) -> List[Token]:
         return_result = []
-        parse_result = self.janome.tokenize(text)
+        parse_result = self._tokenizer.tokenize(text)
 
-        if self.with_postag:
+        if self._with_postag:
             for morph in parse_result:
                 surface = morph.surface
                 postag, postag2, postag3, postag4 = morph.part_of_speech.split(",")
@@ -47,7 +45,8 @@ class JanomeTokenizer(BaseTokenizer):
                     conjugation=conjugation,
                     base_form=base_form,
                     yomi=yomi,
-                    pron=pron)
+                    pron=pron,
+                )
                 return_result.append(token)
 
         else:

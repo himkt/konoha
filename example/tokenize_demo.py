@@ -21,7 +21,9 @@ if __name__ == "__main__":
             print("Skip: ", word_tokenizer_name)
 
     try:
-        _tokenizer = WordTokenizer("Sentencepiece", model_path="./data/model.spm")  # NOQA
+        _tokenizer = WordTokenizer(
+            "Sentencepiece", model_path="./data/model.spm"
+        )  # NOQA
         word_tokenizers.append(_tokenizer)
 
     except (ImportError, OSError, RuntimeError):
@@ -50,7 +52,7 @@ if __name__ == "__main__":
             print("Tokenizer: {}".format(word_tokenizer.name))
             result = word_tokenizer.tokenize(sentence)
             result = [str(r) for r in result]
-            print(' '.join(result))
+            print(" ".join(result))
 
         print()
 

@@ -1,6 +1,6 @@
 from typing import List
 
-from konoha.konoha_token import Token
+from konoha.data.token import Token
 
 
 class BaseTokenizer:
@@ -20,7 +20,7 @@ class BaseTokenizer:
             others.
         """
         self._name = name
-        self.with_postag = with_postag
+        self._with_postag = with_postag
 
     def tokenize(self, text: str) -> List[Token]:
         """Abstract method forkonoha.tokenization"""

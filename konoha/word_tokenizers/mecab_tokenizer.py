@@ -1,13 +1,12 @@
 from typing import Optional
 from typing import List
 
-from konoha.konoha_token import Token
+from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
-def parse_feature_for_ipadic(elem):
+def parse_feature_for_ipadic(elem) -> Token:
     surface, feature = elem.split("\t")
-
     (
         postag,
         postag2,
@@ -25,17 +24,17 @@ def parse_feature_for_ipadic(elem):
     else:
         yomi, pron = None, None
 
-    return (
-        surface,
-        postag,
-        postag2,
-        postag3,
-        postag4,
-        inflection,
-        conjugation,
-        base_form,
-        yomi,
-        pron,
+    return Token(
+        surface=surface,
+        postag=postag,
+        postag2=postag2,
+        postag3=postag3,
+        postag4=postag4,
+        inflection=inflection,
+        conjugation=conjugation,
+        base_form=base_form,
+        yomi=yomi,
+        pron=pron,
     )
 
 
@@ -72,7 +71,7 @@ class MeCabTokenizer(BaseTokenizer):
 
         flag = ""
 
-        if not self.with_postag:
+        if not self._with_postag:
             flag += " -Owakati"
 
         if isinstance(user_dictionary_path, str):
@@ -81,7 +80,7 @@ class MeCabTokenizer(BaseTokenizer):
         if isinstance(system_dictionary_path, str):
             flag += " -d {}".format(system_dictionary_path)
 
-        self.mecab = natto.MeCab(flag)
+        self._tokenizer = natto.MeCab(flag)
 
         # If dictionary format is not specified,
         # konoha detects it by checking a name of system dictionary.
@@ -90,55 +89,25 @@ class MeCabTokenizer(BaseTokenizer):
         # If system_dictionary_path and dictionary_format are not given,
         # konoha assumes it uses mecab-ipadic (de facto standard).
         # Currently, konoha only supports ipadic. (TODO: unidic)
-
         if dictionary_format is None:
-            if system_dictionary_path is None:
-                self.dictionary_format = "ipadic"
-                self.parse_feature = parse_feature_for_ipadic
-
-            elif 'ipadic' in system_dictionary_path.lower():
-                self.dictionary_format = "ipadic"
-                self.parse_feature = parse_feature_for_ipadic
+            if system_dictionary_path is None or system_dictionary_path.lower() in "ipadic":
+                self._parse_feature = parse_feature_for_ipadic
+            else:
+                raise ValueError(f"Unsupported system dictionary: {system_dictionary_path}")
 
         else:
             if "ipadic" == dictionary_format.lower():
-                self.dictionary_format = "ipadic"
-                self.parse_feature = parse_feature_for_ipadic
+                self._parse_feature = parse_feature_for_ipadic
             else:
-                raise ValueError(f"{dictionary_format} is not supported")
+                raise ValueError(f"Unsupported dictionary format: {dictionary_format}")
 
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize"""
         return_result = []
-        parse_result = self.mecab.parse(text).rstrip(" ")
-        if self.with_postag:
+        parse_result = self._tokenizer.parse(text).rstrip(" ")
+        if self._with_postag:
             for elem in parse_result.split("\n")[:-1]:
-                (
-                    surface,
-                    postag,
-                    postag2,
-                    postag3,
-                    postag4,
-                    inflection,
-                    conjugation,
-                    base_form,
-                    yomi,
-                    pron,
-                ) = self.parse_feature(elem)
-
-                token = Token(
-                    surface=surface,
-                    postag=postag,
-                    postag2=postag2,
-                    postag3=postag3,
-                    postag4=postag4,
-                    inflection=inflection,
-                    conjugation=conjugation,
-                    base_form=base_form,
-                    yomi=yomi,
-                    pron=pron,
-                )
-                return_result.append(token)
+                return_result.append(self._parse_feature(elem))
         else:
             for surface in parse_result.split(" "):
                 return_result.append(Token(surface=surface))

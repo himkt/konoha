@@ -10,6 +10,7 @@ try:
     from allennlp.data.tokenizers.tokenizer import Tokenizer
 except ImportError:
     from konoha.integrations._allennlp import Tokenizer
+
     Token = None
 
 
@@ -20,7 +21,7 @@ class KonohaTokenizer(Tokenizer):
 
     def __init__(
         self,
-        tokenizer_name: str = 'mecab',
+        tokenizer_name: str = "mecab",
         with_postag: bool = False,
         user_dictionary_path: Optional[str] = None,
         system_dictionary_path: Optional[str] = None,
@@ -52,11 +53,7 @@ class KonohaTokenizer(Tokenizer):
     def tokenize(self, text: str) -> List[Token]:
         konoha_tokens = self._tokenizer.tokenize(text)
         tokens = [
-            Token(
-                text=token.surface,
-                lemma_=token.base_form,
-                pos_=token.postag,
-            )
+            Token(text=token.surface, lemma_=token.base_form, pos_=token.postag,)
             for token in konoha_tokens
         ]
 

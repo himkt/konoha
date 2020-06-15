@@ -7,6 +7,7 @@ from konoha.word_tokenizer import WordTokenizer
 def test_word_tokenize_with_mecab():
     try:
         import natto
+
         del natto
     except ImportError:
         pytest.skip("natto-py is not installed.")
@@ -20,6 +21,7 @@ def test_word_tokenize_with_mecab():
 def test_word_tokenize_with_mecab_whitespace():
     try:
         import natto
+
         del natto
     except ImportError:
         pytest.skip("natto-py is not installed.")
@@ -41,11 +43,71 @@ $ mecab
 EOS
 """
 mecab_tokens_list = [
-    {"surface": "吾輩", "postag": "名詞", "postag2": "代名詞", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": None, "normalized_form": None, "yomi": "ワガハイ", "pron": "ワガハイ"},  # NOQA
-    {"surface": "は", "postag": "助詞", "postag2": "係助詞", "postag3": "*", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": None, "normalized_form": None, "yomi": "ハ", "pron": "ワ"},  # NOQA
-    {"surface": "猫", "postag": "名詞", "postag2": "一般", "postag3": "*", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": None, "normalized_form": None, "yomi": "ネコ", "pron": "ネコ"},  # NOQA
-    {"surface": "で", "postag": "助動詞", "postag2": "*", "postag3": "*", "postag4": "*", "inflection": "特殊・ダ", "conjugation": "連用形", "base_form": None, "normalized_form": None, "yomi": "デ", "pron": "デ"},  # NOQA
-    {"surface": "ある", "postag": "助動詞", "postag2": "*", "postag3": "*", "postag4": "*", "inflection": "五段・ラ行アル", "conjugation": "基本形", "base_form": None, "normalized_form": None, "yomi": "アル", "pron": "アル"},  # NOQA
+    {
+        "surface": "吾輩",
+        "postag": "名詞",
+        "postag2": "代名詞",
+        "postag3": "一般",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": None,
+        "normalized_form": None,
+        "yomi": "ワガハイ",
+        "pron": "ワガハイ",
+    },  # NOQA
+    {
+        "surface": "は",
+        "postag": "助詞",
+        "postag2": "係助詞",
+        "postag3": "*",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": None,
+        "normalized_form": None,
+        "yomi": "ハ",
+        "pron": "ワ",
+    },  # NOQA
+    {
+        "surface": "猫",
+        "postag": "名詞",
+        "postag2": "一般",
+        "postag3": "*",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": None,
+        "normalized_form": None,
+        "yomi": "ネコ",
+        "pron": "ネコ",
+    },  # NOQA
+    {
+        "surface": "で",
+        "postag": "助動詞",
+        "postag2": "*",
+        "postag3": "*",
+        "postag4": "*",
+        "inflection": "特殊・ダ",
+        "conjugation": "連用形",
+        "base_form": None,
+        "normalized_form": None,
+        "yomi": "デ",
+        "pron": "デ",
+    },  # NOQA
+    {
+        "surface": "ある",
+        "postag": "助動詞",
+        "postag2": "*",
+        "postag3": "*",
+        "postag4": "*",
+        "inflection": "五段・ラ行アル",
+        "conjugation": "基本形",
+        "base_form": None,
+        "normalized_form": None,
+        "yomi": "アル",
+        "pron": "アル",
+    },  # NOQA
 ]
 
 

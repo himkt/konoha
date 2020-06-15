@@ -7,6 +7,7 @@ from konoha.word_tokenizer import WordTokenizer
 def test_word_tokenize_with_sudachi_mode_a():
     try:
         import sudachipy
+
         del sudachipy
     except ImportError:
         pytest.skip("SudachiPy is not installed.")
@@ -20,6 +21,7 @@ def test_word_tokenize_with_sudachi_mode_a():
 def test_word_tokenize_with_sudachi_mode_b():
     try:
         import sudachipy
+
         del sudachipy
     except ImportError:
         pytest.skip("SudachiPy is not installed.")
@@ -33,6 +35,7 @@ def test_word_tokenize_with_sudachi_mode_b():
 def test_word_tokenize_with_sudachi_mode_c():
     try:
         import sudachipy
+
         del sudachipy
     except ImportError:
         pytest.skip("SudachiPy is not installed.")
@@ -57,20 +60,91 @@ EOS
                                         norm    dict      yomi
 """
 sudachi_tokens_list = [
-    {"surface": "医薬", "postag": "名詞", "postag2": "普通名詞", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "医薬", "normalized_form": "医薬", "yomi": "イヤク", "pron": None},  # NOQA
-    {"surface": "品", "postag": "接尾辞", "postag2": "名詞的", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "品", "normalized_form": "品", "yomi": "ヒン", "pron": None},  # NOQA
-    {"surface": "安全", "postag": "名詞", "postag2": "普通名詞", "postag3": "形状詞可能", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "安全", "normalized_form": "安全", "yomi": "アンゼン", "pron": None},  # NOQA
-    {"surface": "管理", "postag": "名詞", "postag2": "普通名詞", "postag3": "サ変可能", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "管理", "normalized_form": "管理", "yomi": "カンリ", "pron": None},  # NOQA
-    {"surface": "責任", "postag": "名詞", "postag2": "普通名詞", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "責任", "normalized_form": "責任", "yomi": "セキニン", "pron": None},  # NOQA
-    {"surface": "者", "postag": "接尾辞", "postag2": "名詞的", "postag3": "一般", "postag4": "*", "inflection": "*", "conjugation": "*", "base_form": "者", "normalized_form": "者", "yomi": "シャ", "pron": None},  # NOQA
+    {
+        "surface": "医薬",
+        "postag": "名詞",
+        "postag2": "普通名詞",
+        "postag3": "一般",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": "医薬",
+        "normalized_form": "医薬",
+        "yomi": "イヤク",
+        "pron": None,
+    },  # NOQA
+    {
+        "surface": "品",
+        "postag": "接尾辞",
+        "postag2": "名詞的",
+        "postag3": "一般",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": "品",
+        "normalized_form": "品",
+        "yomi": "ヒン",
+        "pron": None,
+    },  # NOQA
+    {
+        "surface": "安全",
+        "postag": "名詞",
+        "postag2": "普通名詞",
+        "postag3": "形状詞可能",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": "安全",
+        "normalized_form": "安全",
+        "yomi": "アンゼン",
+        "pron": None,
+    },  # NOQA
+    {
+        "surface": "管理",
+        "postag": "名詞",
+        "postag2": "普通名詞",
+        "postag3": "サ変可能",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": "管理",
+        "normalized_form": "管理",
+        "yomi": "カンリ",
+        "pron": None,
+    },  # NOQA
+    {
+        "surface": "責任",
+        "postag": "名詞",
+        "postag2": "普通名詞",
+        "postag3": "一般",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": "責任",
+        "normalized_form": "責任",
+        "yomi": "セキニン",
+        "pron": None,
+    },  # NOQA
+    {
+        "surface": "者",
+        "postag": "接尾辞",
+        "postag2": "名詞的",
+        "postag3": "一般",
+        "postag4": "*",
+        "inflection": "*",
+        "conjugation": "*",
+        "base_form": "者",
+        "normalized_form": "者",
+        "yomi": "シャ",
+        "pron": None,
+    },  # NOQA
 ]
 
 
 def test_postagging_with_sudachi_mode_a():
     """Test Sudachi tokenizer."""
     try:
-        tokenizer = WordTokenizer(
-            tokenizer="sudachi", mode="A", with_postag=True)
+        tokenizer = WordTokenizer(tokenizer="sudachi", mode="A", with_postag=True)
     except ImportError:
         pytest.skip("SudachiPy is not installed.")
 

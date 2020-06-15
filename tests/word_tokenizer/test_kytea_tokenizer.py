@@ -7,6 +7,7 @@ from konoha.word_tokenizer import WordTokenizer
 def test_word_tokenize_with_kytea():
     try:
         import Mykytea
+
         del Mykytea
     except ImportError:
         pytest.skip("KyTea is not installed.")
@@ -20,6 +21,7 @@ def test_word_tokenize_with_kytea():
 def test_word_tokenize_with_kytea_using_custom_model():
     try:
         import Mykytea
+
         del Mykytea
     except ImportError:
         pytest.skip("KyTea is not installed.")
@@ -60,14 +62,14 @@ def test_postagging_with_kytea():
 def test_kytea_with_s3_model():
     try:
         import boto3
+
         del boto3
     except ImportError:
         pytest.skip("skip s3 test because of missing boto3")
 
     try:
         tokenizer = WordTokenizer(
-            tokenizer="KyTea",
-            model_path="s3://konoha-demo/kytea/model.knm"
+            tokenizer="KyTea", model_path="s3://konoha-demo/kytea/model.knm"
         )
     except ImportError:
         pytest.skip("KyTea is not installed.")

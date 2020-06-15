@@ -11,14 +11,10 @@ class SentenceTokenizer:
         r"「.*?」",
     ]
 
-    def __init__(self) -> None:
-        pass
-
     @staticmethod
     def conv_period(item) -> str:
         return item.group(0).replace(
-            SentenceTokenizer.PERIOD,
-            SentenceTokenizer.PERIOD_SPECIAL
+            SentenceTokenizer.PERIOD, SentenceTokenizer.PERIOD_SPECIAL
         )
 
     def tokenize(self, document) -> List[str]:
