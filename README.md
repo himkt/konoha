@@ -94,7 +94,7 @@ from konoha import WordTokenizer
 sentence = '自然言語処理を勉強しています'
 
 tokenizer = WordTokenizer('MeCab')
-print(tokenizer.tokenize())
+print(tokenizer.tokenize(sentence))
 # => [自然, 言語, 処理, を, 勉強, し, て, い, ます]
 
 tokenizer = WordTokenizer('Sentencepiece', model_path="data/model.spm")
