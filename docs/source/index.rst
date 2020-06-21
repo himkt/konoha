@@ -9,6 +9,7 @@ Welcome to konoha's documentation!
 .. toctree::
    :maxdepth: 2
 
+   quickstart
    installation
    reference/index
 
