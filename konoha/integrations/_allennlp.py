@@ -1,3 +1,8 @@
+
+class Token:
+    ...
+
+
 class Tokenizer:
     def register(func):
         def wrapper(*args, **kwargs):

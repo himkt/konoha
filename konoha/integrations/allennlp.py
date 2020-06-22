@@ -1,17 +1,15 @@
 from typing import List
 from typing import Optional
 
-from overrides import overrides
-
-from konoha.word_tokenizer import WordTokenizer
-
 try:
     from allennlp.data.tokenizers.token import Token
     from allennlp.data.tokenizers.tokenizer import Tokenizer
 except ImportError:
+    from konoha.integrations._allennlp import Token
     from konoha.integrations._allennlp import Tokenizer
+from overrides import overrides
 
-    Token = None
+from konoha.word_tokenizer import WordTokenizer
 
 
 @Tokenizer.register("konoha")
@@ -42,7 +40,6 @@ class KonohaTokenizer(Tokenizer):
         )
         self._start_tokens = start_tokens or []
         self._start_tokens.reverse()
-
         self._end_tokens = end_tokens or []
 
     @overrides
