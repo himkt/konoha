@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "konoha"
-version = "4.3.0"
+version = "4.4.0"
 description = "A tiny sentence/word tokenizer for Japanese text written in Python"
 authors = ["himkt <himkt@klis.tsukuba.ac.jp>"]
 
