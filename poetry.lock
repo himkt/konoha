@@ -606,7 +606,7 @@ version = "1.19.0"
 category = "main"
 description = "A decorator to automatically detect mismatch when overriding a method."
 name = "overrides"
-optional = true
+optional = false
 python-versions = "*"
 version = "3.0.0"
 
@@ -1428,7 +1428,6 @@ version = "8.1"
 [[package]]
 category = "main"
 description = "Backport of pathlib-compatible object wrapper for zip files"
-marker = "python_version < \"3.8\""
 name = "zipp"
 optional = false
 python-versions = ">=3.6"
@@ -1452,7 +1451,7 @@ server = ["fastapi", "uvicorn"]
 sudachi = ["sudachipy", "sudachidict_core"]
 
 [metadata]
-content-hash = "960854727c4fb92d140896526d85afbad329e36b64b14c4b2bd25e8f7a9db0df"
+content-hash = "984f91923200892efdc8c863483f7f24de2826496bac839c6730960f654eb94f"
 python-versions = "^3.6.1"
 
 [metadata.files]

@@ -18,6 +18,7 @@ uvicorn = {version = "^0.11.5", optional = true}
 sudachidict_core = {version = "^20200330", optional = true}
 sphinx = {version = "^3.1.1", optional = true}
 sphinx_rtd_theme = {version = "^0.4.3", optional = true}
+overrides = "3.0.0"
 
 [tool.poetry.dev-dependencies]
 python-language-server = "^0.31.2"
