@@ -7,10 +7,9 @@ from konoha.word_tokenizer import WordTokenizer
 def test_word_tokenize_with_kytea():
     try:
         import Mykytea
-
         del Mykytea
     except ImportError:
-        pytest.skip("KyTea is not installed.")
+        pytest.skip("Mykytea is not installed.")
 
     tokenizer = WordTokenizer(tokenizer="KyTea")
     expect = [Token(surface=w) for w in "吾輩 は 猫 で あ る".split(" ")]
@@ -21,7 +20,6 @@ def test_word_tokenize_with_kytea():
 def test_word_tokenize_with_kytea_using_custom_model():
     try:
         import Mykytea
-
         del Mykytea
     except ImportError:
         pytest.skip("KyTea is not installed.")
@@ -52,7 +50,7 @@ def test_postagging_with_kytea():
     try:
         tokenizer = WordTokenizer(tokenizer="kytea", with_postag=True)
     except ImportError:
-        pytest.skip("KyTea is not installed.")
+        pytest.skip("MyKyTea is not installed.")
 
     expect = [Token(**kwargs) for kwargs in kytea_tokens_list]
     result = tokenizer.tokenize("吾輩は猫である")
@@ -62,10 +60,15 @@ def test_postagging_with_kytea():
 def test_kytea_with_s3_model():
     try:
         import boto3
-
         del boto3
     except ImportError:
         pytest.skip("skip s3 test because of missing boto3")
+
+    try:
+        import Mykytea
+        del Mykytea
+    except ImportError:
+        pytest.skip("KyTea is not installed.")
 
     try:
         tokenizer = WordTokenizer(
