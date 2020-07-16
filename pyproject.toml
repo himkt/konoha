@@ -15,7 +15,7 @@ boto3 = {version = "^1.11.0", optional = true}
 allennlp = {version = "^1.0.0", optional = true}
 fastapi = {version = "^0.54.1", optional = true}
 uvicorn = {version = "^0.11.5", optional = true}
-sudachidict_core = {version = "^20200330", optional = true}
+sudachidict-core = {version = "^20200330", optional = true}
 sphinx = {version = "^3.1.1", optional = true}
 sphinx_rtd_theme = {version = "^0.4.3", optional = true}
 overrides = "3.0.0"
@@ -34,12 +34,12 @@ allennlp = ["allennlp"]
 janome = ["janome"]
 mecab = ["natto-py"]
 kytea = ["kytea"]
-sudachi = ["sudachipy", "sudachidict_core"]
+sudachi = ["sudachipy", "sudachidict-core"]
 sentencepiece = ["sentencepiece"]
 remote = ["boto3"]
 server = ["fastapi", "uvicorn"]
-all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict_core", "sentencepiece", "boto3", "fastapi", "uvicorn"]
-all_with_integrations = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict_core", "sentencepiece", "boto3", "allennlp", "fastapi", "uvicorn"]
+all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "sentencepiece", "boto3", "fastapi", "uvicorn"]
+all_with_integrations = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "sentencepiece", "boto3", "allennlp", "fastapi", "uvicorn"]
 docs = ["sphinx", "sphinx_rtd_theme"]
 
 [build-system]
