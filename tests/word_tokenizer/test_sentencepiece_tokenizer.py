@@ -7,7 +7,6 @@ from konoha.word_tokenizer import WordTokenizer
 def test_word_tokenize_with_sentencepiece():
     try:
         import sentencepiece
-
         del sentencepiece
     except ImportError:
         pytest.skip("Sentencepiece is not installed.")
@@ -21,10 +20,14 @@ def test_word_tokenize_with_sentencepiece():
 def test_sentencepiece_with_s3_model():
     try:
         import boto3
-
         del boto3
     except ImportError:
         pytest.skip("skip s3 test because of missing boto3")
+    try:
+        import sentencepiece
+        del sentencepiece
+    except ImportError:
+        pytest.skip("Sentencepiece is not installed.")
 
     try:
         tokenizer = WordTokenizer(
