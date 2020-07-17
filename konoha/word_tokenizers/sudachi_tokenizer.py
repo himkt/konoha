@@ -9,7 +9,7 @@ class SudachiTokenizer(BaseTokenizer):
 
     def __init__(self, mode: str, with_postag: bool, **kwargs) -> None:
         """
-        Initializer for SudachiTokenizer
+        Initializer for SudachiTokenizer.
 
         Parameters
         ---
@@ -28,7 +28,7 @@ class SudachiTokenizer(BaseTokenizer):
             from sudachipy import tokenizer
             from sudachipy import dictionary
         except ImportError:
-            msg = "importing sudachipy failed for some reason."
+            msg = "Importing sudachipy failed for some reason."
             msg += "\n  1. make sure SudachiPy is successfully installed."
             msg += "\n  2. make sure dictionary is successfully installed."
             raise ImportError(msg)
@@ -39,7 +39,7 @@ class SudachiTokenizer(BaseTokenizer):
         try:
             self._tokenizer = dictionary.Dictionary().create()
         except KeyError:
-            msg = "please install dictionary"
+            msg = "Loading a dictionary fails."
             msg += " ( see https://github.com/WorksApplications/SudachiPy#install-dict-packages )"  # NOQA
             raise KeyError(msg)
 

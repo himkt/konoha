@@ -5,7 +5,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class WhitespaceTokenizer(BaseTokenizer):
-    """Whitespace_tokenizer.tokenizer"""
+    """Simple rule-based word tokenizer."""
 
     def __init__(self) -> None:
         super(WhitespaceTokenizer, self).__init__("whitespace")
