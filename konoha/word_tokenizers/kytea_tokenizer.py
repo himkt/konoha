@@ -18,7 +18,7 @@ class KyTeaTokenizer(BaseTokenizer):
         try:
             import Mykytea
         except ImportError:
-            msg = "importing kytea failed for some reason."
+            msg = "Importing kytea failed for some reason."
             msg += "\n  1. make sure KyTea is successfully installed."
             msg += "\n  2. make sure Mykytea-python is successfully installed."
             raise ImportError(msg)

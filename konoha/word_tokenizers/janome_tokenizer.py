@@ -14,7 +14,7 @@ class JanomeTokenizer(BaseTokenizer):
         try:
             from janome.tokenizer import Tokenizer
         except ImportError:
-            msg = "importing janome failed for some reason."
+            msg = "Importing janome failed for some reason."
             msg += "\n  1. make sure janome is successfully installed."
             raise ImportError(msg)
 

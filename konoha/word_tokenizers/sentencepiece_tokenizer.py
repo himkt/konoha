@@ -22,7 +22,7 @@ class SentencepieceTokenizer(BaseTokenizer):
         try:
             import sentencepiece
         except ImportError:
-            msg = "importing sentencepiece failed for some reason."
+            msg = "Importing sentencepiece failed for some reason."
             msg += "\n  1. make sure sentencepiece is successfully installed."
             raise ImportError(msg)
 
