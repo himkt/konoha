@@ -87,6 +87,11 @@ class WordTokenizer:
                 mode=self._mode, with_postag=self._with_postag,
             )
 
+        if self._tokenizer_name == "nagisa":
+            self._tokenizer = word_tokenizers.NagisaTokenizer(
+                with_postag=self._with_postag,
+            )
+
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize input text"""
         return self._tokenizer.tokenize(text)
