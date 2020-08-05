@@ -4,8 +4,8 @@ from konoha import WordTokenizer
 
 if __name__ == "__main__":
     sentence_tokenizer = SentenceTokenizer()
-    tokenizers = ["MeCab", "KyTea", "Janome", "Character"]
-    tokenizers_support_postag = ["MeCab", "KyTea", "Janome"]
+    tokenizers = ["MeCab", "KyTea", "Janome", "nagisa", "Character"]
+    tokenizers_support_postag = ["MeCab", "KyTea", "Janome", "nagisa"]
 
     word_tokenizers = []
     for word_tokenizer_name in tokenizers:

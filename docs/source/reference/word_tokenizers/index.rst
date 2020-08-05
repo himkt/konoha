@@ -13,4 +13,5 @@ Word Tokenizer Implementations
     sentencepiece_tokenizer
     sudachi_tokenizer
     janome_tokenizer
+    nagisa_tokenizer
     whitespace_tokenizer
