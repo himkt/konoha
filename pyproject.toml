@@ -19,6 +19,7 @@ sudachidict-core = {version = "^20200330", optional = true}
 sphinx = {version = "^3.1.1", optional = true}
 sphinx_rtd_theme = {version = "^0.4.3", optional = true}
 overrides = "3.0.0"
+nagisa = {version = "^0.2.7", optional = true}
 
 [tool.poetry.dev-dependencies]
 python-language-server = "^0.31.2"
