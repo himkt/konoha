@@ -58,6 +58,10 @@ def test_postagging_with_kytea():
 
 
 def test_kytea_with_s3_model():
+    import os
+    if os.getenv("AWS_ACCESS_KEY_ID") is None:
+        pytest.skip("AWS credentials not found")
+
     try:
         import boto3
         del boto3
