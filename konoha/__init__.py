@@ -3,4 +3,4 @@ from konoha.sentence_tokenizer import SentenceTokenizer  # NOQA
 from konoha.word_tokenizer import WordTokenizer  # NOQA
 
 
-__version__ = "4.6.0"
+__version__ = "4.6.1"
