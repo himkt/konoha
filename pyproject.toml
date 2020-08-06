@@ -3,6 +3,7 @@ name = "konoha"
 version = "4.6.0"
 description = "A tiny sentence/word tokenizer for Japanese text written in Python"
 authors = ["himkt <himkt@klis.tsukuba.ac.jp>"]
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
