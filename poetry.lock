@@ -1474,6 +1474,7 @@ remote = ["boto3"]
 sentencepiece = ["sentencepiece"]
 server = ["fastapi", "uvicorn"]
 sudachi = ["sudachipy", "sudachidict-core"]
+nagisa = ["nagisa"]
 
 [metadata]
 content-hash = "cb32f03a392b7c6b603e853edead68a1b507dfce1fa364392b1505eb91dcd641"
