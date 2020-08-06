@@ -19,6 +19,7 @@ which enables you to switch a tokenizer and boost your pre-processing.
 <a href="https://github.com/mocobeta/janome"><img src="https://img.shields.io/badge/Janome-janome-ff69b4"></a>
 <a href="https://github.com/WorksApplications/SudachiPy"><img src="https://img.shields.io/badge/Sudachi-sudachipy-ff69b4"></a>
 <a href="https://github.com/google/sentencepiece"><img src="https://img.shields.io/badge/Sentencepiece-sentencepiece-ff69b4"></a>
+<a href="https://github.com/taishi-i/nagisa"><img src="https://img.shields.io/badge/nagisa-nagisa-ff69b4"></a>
 
 Also, `konoha` provides rule-based tokenizers (whitespace, character) and a rule-based sentence splitter.
 

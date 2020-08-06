@@ -18,6 +18,7 @@ version = "1.0.0"
 boto3 = "*"
 filelock = ">=3.0,<3.1"
 h5py = "*"
+jsonnet = ">=0.10.0"
 jsonpickle = "*"
 nltk = "*"
 numpy = "*"
@@ -31,8 +32,10 @@ tensorboardX = ">=1.2"
 torch = ">=1.5.0,<1.6.0"
 tqdm = ">=4.19"
 transformers = ">=2.9,<2.12"
-dataclasses = {version = "*", markers = "python_version < \"3.7\""}
-jsonnet = {version = ">=0.10.0", markers = "sys_platform != \"win32\""}
+
+[package.dependencies.dataclasses]
+python = "<3.7"
+version = "*"
 
 [[package]]
 category = "dev"
@@ -45,6 +48,7 @@ version = "1.4.4"
 [[package]]
 category = "dev"
 description = "Disable App Nap on OS X 10.9"
+marker = "sys_platform == \"darwin\""
 name = "appnope"
 optional = false
 python-versions = "*"
@@ -53,6 +57,7 @@ version = "0.1.0"
 [[package]]
 category = "main"
 description = "Atomic file writes."
+marker = "sys_platform == \"win32\""
 name = "atomicwrites"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
@@ -147,7 +152,10 @@ version = "1.17.21"
 docutils = ">=0.10,<0.16"
 jmespath = ">=0.7.1,<1.0.0"
 python-dateutil = ">=2.1,<3.0.0"
-urllib3 = {version = ">=1.20,<1.26", markers = "python_version != \"3.4\""}
+
+[package.dependencies.urllib3]
+python = "<3.4.0 || >=3.5.0"
+version = ">=1.20,<1.26"
 
 [[package]]
 category = "main"
@@ -158,7 +166,9 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
 version = "1.0.0"
 
 [package.dependencies]
-importlib-metadata = {version = ">=0.20", markers = "python_version < \"3.8\""}
+[package.dependencies.importlib-metadata]
+python = "<3.8"
+version = ">=0.20"
 
 [[package]]
 category = "main"
@@ -198,6 +208,7 @@ version = "7.1.2"
 [[package]]
 category = "main"
 description = "Cross-platform colored terminal text."
+marker = "sys_platform == \"win32\""
 name = "colorama"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
@@ -233,6 +244,7 @@ Cython = "*"
 [[package]]
 category = "main"
 description = "A backport of the dataclasses module for Python 3.6"
+marker = "python_version < \"3.7\""
 name = "dataclasses"
 optional = true
 python-versions = "*"
@@ -253,6 +265,18 @@ name = "docutils"
 optional = true
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 version = "0.15.2"
+
+[[package]]
+category = "main"
+description = "The Dynamic Neural Network Toolkit"
+name = "dynet"
+optional = true
+python-versions = "*"
+version = "2.1"
+
+[package.dependencies]
+cython = "*"
+numpy = "*"
 
 [[package]]
 category = "main"
@@ -292,7 +316,10 @@ version = "3.8.3"
 mccabe = ">=0.6.0,<0.7.0"
 pycodestyle = ">=2.6.0a1,<2.7.0"
 pyflakes = ">=2.2.0,<2.3.0"
-importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
+
+[package.dependencies.importlib-metadata]
+python = "<3.8"
+version = "*"
 
 [[package]]
 category = "main"
@@ -325,6 +352,7 @@ six = "*"
 [[package]]
 category = "main"
 description = "A collection of framework independent HTTP protocol utils."
+marker = "sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\""
 name = "httptools"
 optional = true
 python-versions = "*"
@@ -373,16 +401,17 @@ python-versions = ">=3.6"
 version = "7.16.1"
 
 [package.dependencies]
+appnope = "*"
 backcall = "*"
+colorama = "*"
 decorator = "*"
 jedi = ">=0.10"
+pexpect = "*"
 pickleshare = "*"
 prompt-toolkit = ">=2.0.0,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.1.0"
 pygments = "*"
+setuptools = ">=18.5"
 traitlets = ">=4.2"
-appnope = {version = "*", markers = "sys_platform == \"darwin\""}
-colorama = {version = "*", markers = "sys_platform == \"win32\""}
-pexpect = {version = "*", markers = "sys_platform != \"win32\""}
 
 [package.extras]
 all = ["Sphinx (>=1.3)", "ipykernel", "ipyparallel", "ipywidgets", "nbconvert", "nbformat", "nose (>=0.10.1)", "notebook", "numpy (>=1.14)", "pygments", "qtconsole", "requests", "testpath"]
@@ -458,6 +487,7 @@ version = "0.16.0"
 [[package]]
 category = "main"
 description = "Python bindings for Jsonnet - The data templating language"
+marker = "sys_platform != \"win32\""
 name = "jsonnet"
 optional = true
 python-versions = "*"
@@ -545,6 +575,19 @@ version = "0.4.3"
 
 [[package]]
 category = "main"
+description = "A Japanese tokenizer based on recurrent neural networks"
+name = "nagisa"
+optional = true
+python-versions = "*"
+version = "0.2.7"
+
+[package.dependencies]
+DyNet = "*"
+numpy = "*"
+six = "*"
+
+[[package]]
+category = "main"
 description = "A Tasty Python Binding with MeCab(FFI-based, no SWIG or compiler necessary)"
 name = "natto-py"
 optional = true
@@ -626,6 +669,7 @@ version = "0.8.0"
 [[package]]
 category = "dev"
 description = "Pexpect allows easy control of interactive console applications."
+marker = "sys_platform != \"win32\""
 name = "pexpect"
 optional = false
 python-versions = "*"
@@ -659,7 +703,9 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "0.13.1"
 
 [package.dependencies]
-importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
+[package.dependencies.importlib-metadata]
+python = "<3.8"
+version = ">=0.12"
 
 [package.extras]
 dev = ["pre-commit", "tox"]
@@ -696,11 +742,13 @@ python-versions = "*"
 version = "3.12.2"
 
 [package.dependencies]
+setuptools = "*"
 six = ">=1.9"
 
 [[package]]
 category = "dev"
 description = "Run a subprocess in a pseudo terminal"
+marker = "sys_platform != \"win32\""
 name = "ptyprocess"
 optional = false
 python-versions = "*"
@@ -739,7 +787,9 @@ python-versions = ">=3.6"
 version = "1.6.1"
 
 [package.dependencies]
-dataclasses = {version = ">=0.6", markers = "python_version < \"3.7\""}
+[package.dependencies.dataclasses]
+python = "<3.7"
+version = ">=0.6"
 
 [package.extras]
 dotenv = ["python-dotenv (>=0.10.4)"]
@@ -779,15 +829,18 @@ python-versions = ">=3.5"
 version = "5.4.3"
 
 [package.dependencies]
+atomicwrites = ">=1.0"
 attrs = ">=17.4.0"
+colorama = "*"
 more-itertools = ">=4.0.0"
 packaging = "*"
 pluggy = ">=0.12,<1.0"
 py = ">=1.5.0"
 wcwidth = "*"
-atomicwrites = {version = ">=1.0", markers = "sys_platform == \"win32\""}
-colorama = {version = "*", markers = "sys_platform == \"win32\""}
-importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
+
+[package.dependencies.importlib-metadata]
+python = "<3.8"
+version = ">=0.12"
 
 [package.extras]
 checkqa-mypy = ["mypy (v0.761)"]
@@ -813,7 +866,7 @@ python-versions = "*"
 version = "0.3.4"
 
 [package.dependencies]
-ujson = {version = "<=1.35", markers = "platform_system != \"Windows\""}
+ujson = "<=1.35"
 
 [package.extras]
 test = ["versioneer", "pylint", "pycodestyle", "pyflakes", "pytest", "mock", "pytest-cov", "coverage"]
@@ -830,7 +883,7 @@ version = "0.31.10"
 jedi = ">=0.14.1,<0.16"
 pluggy = "*"
 python-jsonrpc-server = ">=0.3.2"
-ujson = {version = "<=1.35", markers = "platform_system != \"Windows\""}
+ujson = "<=1.35"
 
 [package.extras]
 all = ["autopep8", "flake8", "mccabe", "pycodestyle", "pydocstyle (>=2.0.0)", "pyflakes (>=1.6.0,<2.2.0)", "pylint", "rope (>=0.10.5)", "yapf"]
@@ -990,6 +1043,7 @@ numpy = ">=1.15.0"
 plac = ">=0.9.6,<1.2.0"
 preshed = ">=3.0.2,<3.1.0"
 requests = ">=2.13.0,<3.0.0"
+setuptools = "*"
 srsly = ">=1.0.2,<1.1.0"
 thinc = "7.4.0"
 tqdm = ">=4.38.0,<5.0.0"
@@ -1020,10 +1074,12 @@ Jinja2 = ">=2.3"
 Pygments = ">=2.0"
 alabaster = ">=0.7,<0.8"
 babel = ">=1.3"
+colorama = ">=0.3.5"
 docutils = ">=0.12"
 imagesize = "*"
 packaging = "*"
 requests = ">=2.5.0"
+setuptools = "*"
 snowballstemmer = ">=1.1"
 sphinxcontrib-applehelp = "*"
 sphinxcontrib-devhelp = "*"
@@ -1031,7 +1087,6 @@ sphinxcontrib-htmlhelp = "*"
 sphinxcontrib-jsmath = "*"
 sphinxcontrib-qthelp = "*"
 sphinxcontrib-serializinghtml = "*"
-colorama = {version = ">=0.3.5", markers = "sys_platform == \"win32\""}
 
 [package.extras]
 docs = ["sphinxcontrib-websupport"]
@@ -1288,7 +1343,10 @@ sacremoses = "*"
 sentencepiece = "*"
 tokenizers = "0.7.0"
 tqdm = ">=4.27"
-dataclasses = {version = "*", markers = "python_version < \"3.7\""}
+
+[package.dependencies.dataclasses]
+python = "<3.7"
+version = "*"
 
 [package.extras]
 all = ["pydantic", "uvicorn", "fastapi", "starlette", "tensorflow", "torch"]
@@ -1322,6 +1380,7 @@ version = "3.7.4.2"
 [[package]]
 category = "dev"
 description = "Ultra fast JSON encoder and decoder for Python"
+marker = "platform_system != \"Windows\""
 name = "ujson"
 optional = false
 python-versions = "*"
@@ -1351,9 +1410,9 @@ version = "0.11.5"
 [package.dependencies]
 click = ">=7.0.0,<8.0.0"
 h11 = ">=0.8,<0.10"
+httptools = ">=0.1.0,<0.2.0"
+uvloop = ">=0.14.0"
 websockets = ">=8.0.0,<9.0.0"
-httptools = {version = ">=0.1.0,<0.2.0", markers = "sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\""}
-uvloop = {version = ">=0.14.0", markers = "sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\""}
 
 [package.extras]
 watchgodreload = ["watchgod (>=0.6,<0.7)"]
@@ -1361,6 +1420,7 @@ watchgodreload = ["watchgod (>=0.6,<0.7)"]
 [[package]]
 category = "main"
 description = "Fast implementation of asyncio event loop on top of libuv"
+marker = "sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\""
 name = "uvloop"
 optional = true
 python-versions = "*"
@@ -1414,9 +1474,11 @@ remote = ["boto3"]
 sentencepiece = ["sentencepiece"]
 server = ["fastapi", "uvicorn"]
 sudachi = ["sudachipy", "sudachidict-core"]
+nagisa = ["nagisa"]
 
 [metadata]
-content-hash = "2cef9ff3c9e9cf8901de263bdae848788959a54e212d5e8ed22e3e35a4e11cdf"
+content-hash = "cb32f03a392b7c6b603e853edead68a1b507dfce1fa364392b1505eb91dcd641"
+lock-version = "1.0"
 python-versions = "^3.6.1"
 
 [metadata.files]
@@ -1611,6 +1673,29 @@ docutils = [
     {file = "docutils-0.15.2-py2-none-any.whl", hash = "sha256:9e4d7ecfc600058e07ba661411a2b7de2fd0fafa17d1a7f7361cd47b1175c827"},
     {file = "docutils-0.15.2-py3-none-any.whl", hash = "sha256:6c4f696463b79f1fb8ba0c594b63840ebd41f059e92b31957c46b74a4599b6d0"},
     {file = "docutils-0.15.2.tar.gz", hash = "sha256:a2aeea129088da402665e92e0b25b04b073c04b2dce4ab65caaa38b7ce2e1a99"},
+]
+dynet = [
+    {file = "dyNET-2.1-cp27-cp27m-macosx_10_6_x86_64.whl", hash = "sha256:87031e4f8966bfb167e897fbeca2cc4499a56e6039f044fd1e67bf5b3b988d79"},
+    {file = "dyNET-2.1-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:6dfff819f2f0b49900474380374307192a9e03d9cb8ef59479b29afe890dae47"},
+    {file = "dyNET-2.1-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:58277bd5101a9726a738e421e386ee8765bd04abbad289161dc9ae22dc47e722"},
+    {file = "dyNET-2.1-cp27-cp27mu-manylinux1_i686.whl", hash = "sha256:f52b3add5c2c64220976ee91a86d2842d79260e43b1c5479c1c05e45453dc4a9"},
+    {file = "dyNET-2.1-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:56b95e6ea514a0fc9d74dfca58db52046cccf279a64c46e048bfcf289981e515"},
+    {file = "dyNET-2.1-cp34-cp34m-macosx_10_6_x86_64.whl", hash = "sha256:307af5abeebe22189c8113a61a3dae7984c167e2408a68d99c2c71600e913a11"},
+    {file = "dyNET-2.1-cp34-cp34m-manylinux1_i686.whl", hash = "sha256:9c14720cd676222a09a55f6ae17cd1c25bb4ed9ceaf808a6725fa3c97df018f7"},
+    {file = "dyNET-2.1-cp34-cp34m-manylinux1_x86_64.whl", hash = "sha256:20f3378ba2bcac12b412782721077bcdd7a5f15bcb6aad31198911b6c2a1ef8e"},
+    {file = "dyNET-2.1-cp35-cp35m-macosx_10_6_x86_64.whl", hash = "sha256:d3e86e215176bc4d2e4140127f4d682ad3df74843fe31f4534e12b3011b5f33c"},
+    {file = "dyNET-2.1-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:7a4112253a6320ff0fb61dbb5a0ba8754a6aaa85f8977041dd4911308dd03265"},
+    {file = "dyNET-2.1-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:afa8f55677e067cf893b36fe69b22c328ac3a47be3073023ec0d305a610ef92b"},
+    {file = "dyNET-2.1-cp35-cp35m-win_amd64.whl", hash = "sha256:17914f9e9cb3bcb264716944e596d675459d5f601dc17be920c37b749714937e"},
+    {file = "dyNET-2.1-cp36-cp36m-macosx_10_7_x86_64.whl", hash = "sha256:a7a74aeea249d50c366fe078d3ce04f8929a1e5187fc669fd90a981d81eda089"},
+    {file = "dyNET-2.1-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:b0292e9e06b10711424d924b579786b2eeb08f18150b3f5164efb1d594ff1d27"},
+    {file = "dyNET-2.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:1c516ef2014b9f83cf026c6c9c26881f1e903e976b2edc90053251abd30be23d"},
+    {file = "dyNET-2.1-cp36-cp36m-win_amd64.whl", hash = "sha256:2cf816aa74b5ccd02e6859a05c5f99388d037b751088d204ffec51b84d2dfb71"},
+    {file = "dyNET-2.1-cp37-cp37m-macosx_10_7_x86_64.whl", hash = "sha256:0e9522ac47a6aeb9a0b67588bd75d9e7c385623adb18dbc386588f8f1b88c82e"},
+    {file = "dyNET-2.1-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:e47fb9574e7b75a4b6bea0f9dd466c0222862f78479abc7e969b14abf2ababb3"},
+    {file = "dyNET-2.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:1b7cfcf83e5c304ca2bf217e6d3803eba7ba61f65a48aa862124dc252c441084"},
+    {file = "dyNET-2.1-cp37-cp37m-win_amd64.whl", hash = "sha256:1a51dbb6062d136a2208721ad8d857b1f350630f806efa06f97060a2910fbf26"},
+    {file = "dyNET-2.1.tar.gz", hash = "sha256:d0f58aaf3926da24baba6e3e76cb3d090c8b6d359196ce138b11faa291b2ec07"},
 ]
 fastapi = [
     {file = "fastapi-0.54.2-py3-none-any.whl", hash = "sha256:c8651f8316956240c2ffe5bc05c334c8359a3887e642720a9b23319c51e82907"},
@@ -1827,6 +1912,21 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
+nagisa = [
+    {file = "nagisa-0.2.7-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:c12c3ac51f9aaaa7a5ff08a04d2fd57277f7bb97eacff744bfb8e86c47fca6ae"},
+    {file = "nagisa-0.2.7-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:b009fbde4300dd37e688bc21c6de502645955728532907d1665dde4c8e71f6d2"},
+    {file = "nagisa-0.2.7-cp27-cp27mu-manylinux1_i686.whl", hash = "sha256:271f9c747f4ffe00580babd06a4edc164dab1198857433750bca25f172f8438d"},
+    {file = "nagisa-0.2.7-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:afa6673b846ebe0a5d9015bf78d1aeb82554b8cd023968b1ae8ecee2f46eb298"},
+    {file = "nagisa-0.2.7-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:b7537e3c4a14dc2decb5a3daa389a3c8d8fc079200fb4b56c079a66782fe5c1b"},
+    {file = "nagisa-0.2.7-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:23aa8e5eadf2502410a23863e6347b5763c86cae01ed7600dd4a632306670bca"},
+    {file = "nagisa-0.2.7-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:eb889e12d1f3a68fa7fb1440453aa9130c13244633ebd4f16b97d373dadbc122"},
+    {file = "nagisa-0.2.7-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:07fa155ec5fcb80208d31bb6fd7039d6c2988c3b82c0cdba4baf60624e936c62"},
+    {file = "nagisa-0.2.7-cp36-cp36m-win_amd64.whl", hash = "sha256:eb21e331064f9f8f3d9021761efc30ff94bb36b4ee7f0b9ce7a055c46abe93c0"},
+    {file = "nagisa-0.2.7-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:2c70681c0dc6dc717f93dfb065a14916592a9c702752b2a2e31234dbb3f012f5"},
+    {file = "nagisa-0.2.7-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:f4883c362440ec5594696e4c1f17831182d20cb845f2b080e838944d711c4c13"},
+    {file = "nagisa-0.2.7-cp37-cp37m-win_amd64.whl", hash = "sha256:8b948f73d4884057eb2c20c70a9462823e00779fc35de14afd848467b91299c3"},
+    {file = "nagisa-0.2.7.tar.gz", hash = "sha256:1654650efbc3424fee90ba0259701949bc00843fd2b83bb27a27dddd96f0fbdc"},
+]
 natto-py = [
     {file = "natto-py-0.9.2.tar.gz", hash = "sha256:f1538230fd2f96b916f95b8d9972e3fbd4f558573b8ef7e8b711394102c35191"},
 ]
@@ -2019,6 +2119,7 @@ regex = [
     {file = "regex-2020.7.14-cp38-cp38-manylinux1_i686.whl", hash = "sha256:5ea81ea3dbd6767873c611687141ec7b06ed8bab43f68fad5b7be184a920dc99"},
     {file = "regex-2020.7.14-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:bbb332d45b32df41200380fff14712cb6093b61bd142272a10b16778c418e98e"},
     {file = "regex-2020.7.14-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:c11d6033115dc4887c456565303f540c44197f4fc1a2bfb192224a301534888e"},
+    {file = "regex-2020.7.14-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:75aaa27aa521a182824d89e5ab0a1d16ca207318a6b65042b046053cfc8ed07a"},
     {file = "regex-2020.7.14-cp38-cp38-win32.whl", hash = "sha256:d6cff2276e502b86a25fd10c2a96973fdb45c7a977dca2138d661417f3728341"},
     {file = "regex-2020.7.14-cp38-cp38-win_amd64.whl", hash = "sha256:7a2dd66d2d4df34fa82c9dc85657c5e019b87932019947faece7983f2089a840"},
     {file = "regex-2020.7.14.tar.gz", hash = "sha256:3a3af27a8d23143c49a3420efe5b3f8cf1a48c6fc8bc6856b03f638abc1833bb"},
