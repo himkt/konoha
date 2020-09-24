@@ -121,3 +121,20 @@ def test_postagging_with_mecab():
     expect = [Token(**kwargs) for kwargs in mecab_tokens_list]
     result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
+
+
+def test_word_tokenize_with_s3_system_dictionary():
+    try:
+        import natto
+
+        del natto
+    except ImportError:
+        pytest.skip("natto-py is not installed.")
+
+    tokenizer = WordTokenizer(
+        tokenizer="MeCab",
+        system_dictionary_path="s3://konoha-demo/mecab/ipadic",
+    )
+    expect = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]
+    result = tokenizer.tokenize("吾輩は猫である")
+    assert expect == result
