@@ -58,7 +58,10 @@ class Resource:
         bucket = resource.Bucket(bucket_name)
 
         for obj in bucket.objects.filter(Prefix=prefix):
-            data_dir = os.path.join(resource_dir, os.path.dirname(prefix))
+            if obj.size == 0:
+                data_dir = os.path.join(resource_dir, prefix)
+            else:
+                data_dir = os.path.join(resource_dir, os.path.dirname(obj.key))
             os.makedirs(data_dir, exist_ok=True)
 
             logger.info(f"Downloading {obj.key}")

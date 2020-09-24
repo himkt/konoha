@@ -90,7 +90,7 @@ class MeCabTokenizer(BaseTokenizer):
         # konoha assumes it uses mecab-ipadic (de facto standard).
         # Currently, konoha only supports ipadic. (TODO: unidic)
         if dictionary_format is None:
-            if system_dictionary_path is None or system_dictionary_path.lower() in "ipadic":
+            if system_dictionary_path is None or "ipadic" in system_dictionary_path.lower():
                 self._parse_feature = parse_feature_for_ipadic
             else:
                 raise ValueError(f"Unsupported system dictionary: {system_dictionary_path}")
