@@ -25,8 +25,8 @@ class SudachiTokenizer(BaseTokenizer):
             others.
         """
         try:
-            from sudachipy import tokenizer
             from sudachipy import dictionary
+            from sudachipy import tokenizer
         except ImportError:
             msg = "Importing sudachipy failed for some reason."
             msg += "\n  1. make sure SudachiPy is successfully installed."

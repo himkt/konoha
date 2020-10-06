@@ -1,14 +1,13 @@
 """Word Level Tokenizer."""
+import warnings
 from typing import Any
 from typing import List
 from typing import Optional
 
-import warnings
-
 from konoha import word_tokenizers
-from konoha.word_tokenizers.tokenizer import BaseTokenizer
 from konoha.data.resource import Resource
 from konoha.data.token import Token
+from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class WordTokenizer:

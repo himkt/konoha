@@ -1,11 +1,11 @@
-from fastapi import APIRouter
-from fastapi import Request
-from fastapi import HTTPException
-from pydantic import BaseModel
-
 import logging
 from typing import List
 from typing import Optional
+
+from fastapi import APIRouter
+from fastapi import HTTPException
+from fastapi import Request
+from pydantic import BaseModel
 
 from konoha import WordTokenizer
 
