@@ -1,5 +1,5 @@
-from typing import Optional
 from typing import List
+from typing import Optional
 
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer

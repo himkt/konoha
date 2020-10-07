@@ -1,6 +1,5 @@
 from konoha.sentence_tokenizer import SentenceTokenizer
 
-
 DOCUMENT1 = """
 私は猫である。にゃお。\r\n
 にゃにゃ

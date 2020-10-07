@@ -1,10 +1,8 @@
-from typing import Optional
-
 import logging
 import os.path
 import re
 import secrets
-
+from typing import Optional
 
 RED = "\033[1;31m"
 RST = "\033[0;0m"
