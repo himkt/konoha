@@ -649,7 +649,7 @@ version = "1.20.1"
 category = "main"
 description = "A decorator to automatically detect mismatch when overriding a method."
 name = "overrides"
-optional = true
+optional = false
 python-versions = "*"
 version = "3.1.0"
 
@@ -1512,7 +1512,7 @@ server = ["fastapi", "uvicorn"]
 sudachi = ["sudachipy", "sudachidict-core"]
 
 [metadata]
-content-hash = "25ab0aab10c5cd2db66830f755c1b0b2d13c06e5799dfcabe754a4e8fdb68245"
+content-hash = "6d30a97d23d774e8878fd034f6090dcf628c4137796b81fb0034829d9c65a111"
 lock-version = "1.0"
 python-versions = "^3.6.1"
 
