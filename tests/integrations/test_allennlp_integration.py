@@ -1,3 +1,5 @@
+import tempfile
+
 import pytest
 
 from konoha.integrations.allennlp import KonohaTokenizer
@@ -65,3 +67,18 @@ def test_allennlp_sudachi():
     tokens_konoha = tokenizer.tokenize("医薬品安全管理責任者")
     token_surfaces = "医薬 品 安全 管理 責任 者".split()
     assert token_surfaces == list(t.text for t in tokens_konoha)
+
+
+def test_allennlp_training():
+    try:
+        import allennlp.commands.train
+        from allennlp.models.basic_classifier import BasicClassifier
+    except ImportError:
+        pytest.skip("AllenNLP or Konoha (with Janome) is not installed.")
+
+    with tempfile.TemporaryDirectory() as serialization_dir:
+        model = allennlp.commands.train.train_model_from_file(
+            "test_fixtures/classifier_v1.jsonnet",
+            serialization_dir=serialization_dir,
+        )
+        assert isinstance(model, BasicClassifier)
