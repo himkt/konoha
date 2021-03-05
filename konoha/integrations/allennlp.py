@@ -2,11 +2,12 @@ from typing import List
 from typing import Optional
 
 try:
-    from allennlp.data.tokenizers.token import Token
+    from allennlp.data.tokenizers.token_class import Token
     from allennlp.data.tokenizers.tokenizer import Tokenizer
 except ImportError:
-    from konoha.integrations._allennlp import Token
-    from konoha.integrations._allennlp import Tokenizer
+    from konoha.integrations._allennlp import Token  # type: ignore
+    from konoha.integrations._allennlp import Tokenizer  # type: ignore
+
 from overrides import overrides
 
 from konoha.word_tokenizer import WordTokenizer
@@ -50,7 +51,11 @@ class KonohaTokenizer(Tokenizer):
     def tokenize(self, text: str) -> List[Token]:
         konoha_tokens = self._tokenizer.tokenize(text)
         tokens = [
-            Token(text=token.surface, lemma_=token.base_form, pos_=token.postag,)
+            Token(
+                text=token.surface,
+                lemma_=token.base_form,
+                pos_=token.postag,
+            )
             for token in konoha_tokens
         ]
 
