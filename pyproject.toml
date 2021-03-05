@@ -3,7 +3,7 @@ line-length = 99
 
 [tool.poetry]
 name = "konoha"
-version = "4.6.2"
+version = "4.6.3"
 description = "A tiny sentence/word tokenizer for Japanese text written in Python"
 authors = ["himkt <himkt@klis.tsukuba.ac.jp>"]
 readme = "README.md"
