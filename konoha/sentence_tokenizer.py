@@ -10,8 +10,8 @@ class SentenceTokenizer:
     PERIOD_SPECIAL = "__PERIOD__"
 
     PATTERNS = [
-        r"（.*?）",
-        r"「.*?」",
+        re.compile(r"（.*?）"),
+        re.compile(r"「.*?」"),
     ]
 
     @staticmethod
@@ -30,7 +30,6 @@ class SentenceTokenizer:
         """
 
         for pattern in SentenceTokenizer.PATTERNS:
-            pattern = re.compile(pattern)  # type: ignore
             document = re.sub(pattern, self.conv_period, document)
 
         result = []
