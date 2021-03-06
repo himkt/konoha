@@ -55,10 +55,6 @@ docs = ["sphinx", "sphinx_rtd_theme"]
 enable = true
 style = "pep440"
 
-[tool.poetry-dynamic-versioning.substitution]
-files = ["konoha/__version__.py"]
-style = "pep440"
-
 [build-system]
 requires = ["poetry>=1.0.2", "poetry-dynamic-versioning"]
 build-backend = "poetry.masonry.api"
