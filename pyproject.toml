@@ -1,5 +1,5 @@
 [tool.black]
-line-length = 99
+line-length = 119
 
 [tool.poetry]
 name = "konoha"
@@ -53,10 +53,6 @@ docs = ["sphinx", "sphinx_rtd_theme"]
 
 [tool.poetry-dynamic-versioning]
 enable = true
-style = "pep440"
-
-[tool.poetry-dynamic-versioning.substitution]
-files = ["konoha/__version__.py"]
 style = "pep440"
 
 [build-system]
