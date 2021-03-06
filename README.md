@@ -51,7 +51,7 @@ You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目
 Send a request using `curl` on you terminal.
 
 ```json
-$ curl localhost:8000/api/tokenize -X POST -H "Content-Type: application/json" \
+$ curl localhost:8000/api/v1/tokenize -X POST -H "Content-Type: application/json" \
     -d '{"tokenizer": "mecab", "text": "これはペンです"}'
 
 {
