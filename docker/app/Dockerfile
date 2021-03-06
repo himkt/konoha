@@ -1,5 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
+ENV DEBIAN_FRONTEND "noninteractive"
 ENV LANG "ja_JP.UTF-8"
 ENV PYTHONIOENCODING "utf-8"
 
@@ -31,8 +32,11 @@ COPY ./tests ./tests
 COPY ./konoha ./konoha
 COPY ./pyproject.toml ./pyproject.toml
 COPY ./poetry.lock ./poetry.lock
+COPY ./README.md ./README.md
+COPY ./libexec ./libexec
 
 RUN pip3 install -U pip
-RUN pip3 install .[all]
+RUN pip3 install poetry
+RUN poetry install --no-dev -E all
 
-CMD ["uvicorn", "konoha.api.server:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "uvicorn", "libexec.api:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]

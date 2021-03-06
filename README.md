@@ -51,7 +51,7 @@ You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目
 Send a request using `curl` on you terminal.
 
 ```json
-$ curl localhost:8000/api/tokenize -X POST -H "Content-Type: application/json" \
+$ curl localhost:8000/api/v1/tokenize -X POST -H "Content-Type: application/json" \
     -d '{"tokenizer": "mecab", "text": "これはペンです"}'
 
 {
@@ -88,13 +88,6 @@ I recommend you to install konoha by `pip install 'konoha[all]'` or `pip install
 - Install konoha with a specific tokenizer: `pip install 'konoha[(tokenizer_name)]`.
 - Install konoha with a specific tokenizer and AllenNLP integration: `pip install 'konoha[(tokenizer_name),allennlp]`.
 - Install konoha with a specific tokenzier and remote file support: `pip install 'konoha[(tokenizer_name),remote]'`
-
-** Attention!! **
-
-Currently, installing konoha with all tokenizers on Python3.8 fails.
-This failure happens since we can't install nagisa on Python3.8. (https://github.com/taishi-i/nagisa/issues/24)
-This problem is caused by DyNet dependency problem. (https://github.com/clab/dynet/issues/1616)
-DyNet doesn't provide wheel for Python3.8 and building DyNet from source doesn't work due to the dependency issue of DyNet.
 
 If you want to install konoha with a tokenizer, please install konoha with a specific tokenizer
 (e.g. `konoha[mecab]`, `konoha[sudachi]`, ...etc) or install tokenizers individually.

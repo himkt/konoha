@@ -22,7 +22,7 @@ router = APIRouter()
 logger = logging.getLogger(__file__)
 
 
-@router.post("/api/tokenize")
+@router.post("/api/v1/tokenize")
 def tokenize(params: TokenizeParameter, request: Request):
     if params.text is not None:
         texts = [params.text]
