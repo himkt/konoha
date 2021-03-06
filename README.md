@@ -43,12 +43,14 @@ git clone https://github.com/himkt/konoha  # download konoha
 cd konoha && docker-compose up --build  # build and launch contaier
 ```
 
-Tokenization is done by posting a json object to `localhost:8000/api/tokenize`.
+Tokenization is done by posting a json object to `localhost:8000/api/v1/tokenize`.
 You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目の入力"]` to the server.
 
 (API documentation is available on `localhost:8000/redoc`, you can check it using your web browser)
 
 Send a request using `curl` on you terminal.
+Note that a path to an endpoint is changed in v4.6.4.
+Please check our release note (https://github.com/himkt/konoha/releases/tag/v4.6.4).
 
 ```json
 $ curl localhost:8000/api/v1/tokenize -X POST -H "Content-Type: application/json" \
