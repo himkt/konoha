@@ -1,5 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
+ENV DEBIAN_FRONTEND "noninteractive"
 ENV LANG "ja_JP.UTF-8"
 ENV PYTHONIOENCODING "utf-8"
 
