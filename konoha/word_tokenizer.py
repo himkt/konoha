@@ -1,8 +1,10 @@
 """Word Level Tokenizer."""
 import warnings
-from typing import Any
+from typing import Any, Dict
 from typing import List
 from typing import Optional
+
+import requests
 
 from konoha import word_tokenizers
 from konoha.data.resource import Resource
@@ -22,6 +24,7 @@ class WordTokenizer:
         model_path: Optional[str] = None,
         mode: Optional[str] = None,
         dictionary_format: Optional[str] = None,
+        endpoint: Optional[str] = None,
     ) -> None:
         """Create tokenizer.
 
@@ -41,8 +44,10 @@ class WordTokenizer:
         self._mode = mode.lower() if mode is not None else None
         self._dictionary_format = dictionary_format
         self._tokenizer = None  # type: Any
+        self._endpoint = endpoint
 
-        self._setup_tokenizer()
+        if not isinstance(endpoint, str):
+            self._setup_tokenizer()
 
     def _setup_tokenizer(self) -> None:
         if self._tokenizer_name == "character":
@@ -93,7 +98,46 @@ class WordTokenizer:
 
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize input text"""
-        return self._tokenizer.tokenize(text)
+
+        if isinstance(self._endpoint, str):
+            endpoint = self._endpoint
+            if not endpoint.startswith("http"):
+                endpoint = "http://" + endpoint
+
+            payload = {
+                "tokenizer": self._tokenizer_name,
+                "model_path": self._model_path,
+                "mode": self._mode,
+                "text": text,
+            }
+            headers = {"Content-Type": "application/json"}
+            token_params = self._tokenize_with_remote_host(
+                endpoint=endpoint,
+                payload=payload,
+                headers=headers,
+            )
+
+            tokens = []
+            for token_param in token_params:
+                token = Token(surface=token_param["surface"], postag=token_param["part_of_speech"])
+                tokens.append(token)
+
+            return tokens
+
+        else:
+            return self._tokenizer.tokenize(text)
+
+    @staticmethod
+    def _tokenize_with_remote_host(
+        endpoint: str,
+        payload: Dict,
+        headers: Dict,
+    ) -> List[Dict]:
+        return requests.post(
+            endpoint,
+            json=payload,
+            headers=headers,
+        ).json()["tokens"][0]
 
     @property
     def tokenizer(self) -> BaseTokenizer:
