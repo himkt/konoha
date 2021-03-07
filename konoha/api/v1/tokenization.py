@@ -11,11 +11,11 @@ from konoha import WordTokenizer
 
 
 class TokenizeParameter(BaseModel):
+    tokenizer: str
     model_path: Optional[str] = None
     text: Optional[str] = None
     texts: Optional[List[str]] = None
-    tokenizer: str
-    mode: str = "A"
+    mode: Optional[str] = "A"
 
 
 router = APIRouter()
@@ -31,7 +31,11 @@ def tokenize(params: TokenizeParameter, request: Request):
     else:
         raise HTTPException(status_code=400, detail="text or texts is required.")
 
-    mode = params.mode.lower()
+    if isinstance(params.mode, str):
+        mode = params.mode.lower()  # type: Optional[str]
+    else:
+        mode = None
+
     model_path = (
         "data/model.spm" if params.tokenizer.lower() == "sentencepiece" else None
     )  # NOQA
