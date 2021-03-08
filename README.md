@@ -13,7 +13,7 @@
 [![GitHub Issues](https://img.shields.io/github/issues/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/issues)
 
-`Konoha` is a Python library for providing easy-to-use integrated interface of various Japanese tokenziers,
+`Konoha` is a Python library for providing easy-to-use integrated interface of various Japanese tokenizers,
 which enables you to switch a tokenizer and boost your pre-processing.
 
 ## Supported tokenizers
@@ -32,7 +32,7 @@ Also, `konoha` provides rule-based tokenizers (whitespace, character) and a rule
 
 Simply run followings on your computer:
 
-```baseh
+```bash
 docker run --rm -p 8000:8000 -t himkt/konoha  # from DockerHub
 ```
 
@@ -40,7 +40,7 @@ Or you can build image on your machine:
 
 ```bash
 git clone https://github.com/himkt/konoha  # download konoha
-cd konoha && docker-compose up --build  # build and launch contaier
+cd konoha && docker-compose up --build  # build and launch container
 ```
 
 Tokenization is done by posting a json object to `localhost:8000/api/v1/tokenize`.
@@ -48,7 +48,7 @@ You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目
 
 (API documentation is available on `localhost:8000/redoc`, you can check it using your web browser)
 
-Send a request using `curl` on you terminal.
+Send a request using `curl` on your terminal.
 Note that a path to an endpoint is changed in v4.6.4.
 Please check our release note (https://github.com/himkt/konoha/releases/tag/v4.6.4).
 
@@ -89,7 +89,7 @@ I recommend you to install konoha by `pip install 'konoha[all]'` or `pip install
 
 - Install konoha with a specific tokenizer: `pip install 'konoha[(tokenizer_name)]`.
 - Install konoha with a specific tokenizer and AllenNLP integration: `pip install 'konoha[(tokenizer_name),allennlp]`.
-- Install konoha with a specific tokenzier and remote file support: `pip install 'konoha[(tokenizer_name),remote]'`
+- Install konoha with a specific tokenizer and remote file support: `pip install 'konoha[(tokenizer_name),remote]'`
 
 If you want to install konoha with a tokenizer, please install konoha with a specific tokenizer
 (e.g. `konoha[mecab]`, `konoha[sudachi]`, ...etc) or install tokenizers individually.
