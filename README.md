@@ -1,5 +1,8 @@
 # 🌿 Konoha: Simple wrapper of Japanese Tokenizers
 
+
+<p align="center"><img src="https://user-images.githubusercontent.com/5164000/110263957-80d69f00-7ffb-11eb-864a-0d6e5b982971.gif" width="70%"></p>
+
 [![GitHub stars](https://img.shields.io/github/stars/himkt/konoha?style=social)](https://github.com/himkt/konoha/stargazers)
 
 [![Downloads](https://pepy.tech/badge/konoha)](https://pepy.tech/project/konoha)
