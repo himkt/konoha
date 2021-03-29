@@ -4,15 +4,12 @@ ENV DEBIAN_FRONTEND "noninteractive"
 ENV LANG "ja_JP.UTF-8"
 ENV PYTHONIOENCODING "utf-8"
 
-RUN apt update -y && \
-      apt install -y \
-            libprotobuf-dev \
-            libgoogle-perftools-dev \
+RUN apt update -y \
+      && apt install -y \
             language-pack-ja \
             build-essential \
             git \
             wget \
-            pkg-config \
             mecab \
             libmecab-dev \
             mecab-ipadic-utf8 \
@@ -23,16 +20,15 @@ RUN apt update -y && \
 
 
 WORKDIR /tmp
+
 # kytea
-RUN wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz && \
-      tar zxvf kytea-0.4.7.tar.gz
-
-WORKDIR /tmp/kytea-0.4.7
-RUN wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch && git apply ./24.patch \
-      && ./configure && make && make install && ldconfig -v
-
-WORKDIR /tmp
-RUN rm -rf kytea-0.4.7.tar.gz kytea-0.4.7
+RUN wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz
+RUN wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch
+RUN tar zxvf kytea-0.4.7.tar.gz \
+      && cd kytea-0.4.7 \
+      && git apply ../24.patch \
+      && ./configure && make && make install && ldconfig -v \
+      && cd .. && rm -rf kytea-0.4.7.tar.gz kytea-0.4.7
 
 
 WORKDIR /work
