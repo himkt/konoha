@@ -119,7 +119,7 @@ class WordTokenizer:
 
             tokens = []
             for token_param in token_params:
-                token = Token(surface=token_param["surface"], postag=token_param["part_of_speech"])
+                token = Token.from_dict(token_param)
                 tokens.append(token)
 
             return tokens
