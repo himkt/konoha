@@ -7,16 +7,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 def parse_feature_for_ipadic(elem) -> Token:
     surface, feature = elem.split("\t")
-    (
-        postag,
-        postag2,
-        postag3,
-        postag4,
-        inflection,
-        conjugation,
-        base_form,
-        *other,
-    ) = feature.split(",")
+    (postag, postag2, postag3, postag4, inflection, conjugation, base_form, *other,) = feature.split(",")
 
     # For words not in a dictionary
     if len(other) == 2:

@@ -65,9 +65,7 @@ class WordTokenizer:
             if self._model_path is None:
                 raise ValueError("`model_path` must be specified for sentencepiece.")
 
-            self._tokenizer = word_tokenizers.SentencepieceTokenizer(
-                model_path=self._model_path,
-            )
+            self._tokenizer = word_tokenizers.SentencepieceTokenizer(model_path=self._model_path,)
 
         if self._tokenizer_name == "mecab":
             self._tokenizer = word_tokenizers.MeCabTokenizer(
@@ -79,22 +77,17 @@ class WordTokenizer:
 
         if self._tokenizer_name == "janome":
             self._tokenizer = word_tokenizers.JanomeTokenizer(
-                user_dictionary_path=self._user_dictionary_path,
-                with_postag=self._with_postag,
+                user_dictionary_path=self._user_dictionary_path, with_postag=self._with_postag,
             )
 
         if self._tokenizer_name == "sudachi":
             if self._mode is None:
                 raise ValueError("`mode` must be specified for sudachi.")
 
-            self._tokenizer = word_tokenizers.SudachiTokenizer(
-                mode=self._mode, with_postag=self._with_postag,
-            )
+            self._tokenizer = word_tokenizers.SudachiTokenizer(mode=self._mode, with_postag=self._with_postag,)
 
         if self._tokenizer_name == "nagisa":
-            self._tokenizer = word_tokenizers.NagisaTokenizer(
-                with_postag=self._with_postag,
-            )
+            self._tokenizer = word_tokenizers.NagisaTokenizer(with_postag=self._with_postag,)
 
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize input text"""
@@ -111,11 +104,7 @@ class WordTokenizer:
                 "text": text,
             }
             headers = {"Content-Type": "application/json"}
-            token_params = self._tokenize_with_remote_host(
-                endpoint=endpoint,
-                payload=payload,
-                headers=headers,
-            )
+            token_params = self._tokenize_with_remote_host(endpoint=endpoint, payload=payload, headers=headers,)
 
             tokens = []
             for token_param in token_params:
@@ -128,16 +117,8 @@ class WordTokenizer:
             return self._tokenizer.tokenize(text)
 
     @staticmethod
-    def _tokenize_with_remote_host(
-        endpoint: str,
-        payload: Dict,
-        headers: Dict,
-    ) -> List[Dict]:
-        return requests.post(
-            endpoint,
-            json=payload,
-            headers=headers,
-        ).json()["tokens"][0]
+    def _tokenize_with_remote_host(endpoint: str, payload: Dict, headers: Dict,) -> List[Dict]:
+        return requests.post(endpoint, json=payload, headers=headers,).json()["tokens"][0]
 
     @property
     def tokenizer(self) -> BaseTokenizer:

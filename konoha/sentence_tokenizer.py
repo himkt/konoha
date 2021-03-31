@@ -16,9 +16,7 @@ class SentenceTokenizer:
 
     @staticmethod
     def conv_period(item) -> str:
-        return item.group(0).replace(
-            SentenceTokenizer.PERIOD, SentenceTokenizer.PERIOD_SPECIAL
-        )
+        return item.group(0).replace(SentenceTokenizer.PERIOD, SentenceTokenizer.PERIOD_SPECIAL)
 
     def tokenize(self, document) -> List[str]:
         """

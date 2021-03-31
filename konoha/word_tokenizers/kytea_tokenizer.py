@@ -8,13 +8,9 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class KyTeaTokenizer(BaseTokenizer):
     """Wrapper class forKyTea"""
 
-    def __init__(
-        self, with_postag: bool = False, model_path: Optional[str] = None, **kwargs
-    ) -> None:
+    def __init__(self, with_postag: bool = False, model_path: Optional[str] = None, **kwargs) -> None:
 
-        super(KyTeaTokenizer, self).__init__(
-            name="kytea", with_postag=with_postag, model_path=model_path
-        )
+        super(KyTeaTokenizer, self).__init__(name="kytea", with_postag=with_postag, model_path=model_path)
         try:
             import Mykytea
         except ImportError:
@@ -43,9 +39,7 @@ class KyTeaTokenizer(BaseTokenizer):
                 # FIXME If input contains a character "/",
                 #       KyTea outputs "//補助記号/・",
                 #       which breaks the simple logic elem.split("/")
-                pron, postag, surface = map(
-                    lambda e: e[::-1], elem[::-1].split("/", maxsplit=2)
-                )
+                pron, postag, surface = map(lambda e: e[::-1], elem[::-1].split("/", maxsplit=2))
                 surface = surface.replace("<SPACE>", " ")
                 tokens.append(Token(surface=surface, postag=postag, pron=pron))
 
