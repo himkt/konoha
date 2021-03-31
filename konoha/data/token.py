@@ -1,5 +1,5 @@
 """Token class."""
-from typing import Optional
+from typing import Dict, List, Optional
 
 
 class Token:
@@ -120,6 +120,22 @@ class Token:
         return self._normalized_form
 
     @property
+    def feature_names(_) -> List[str]:
+        return [
+            "surface",
+            "postag",
+            "postag2",
+            "postag3",
+            "postag4",
+            "inflection",
+            "conjugation",
+            "base_form",
+            "yomi",
+            "pron",
+            "normalized_form",
+        ]
+
+    @property
     def feature(self) -> str:
         feature = []
         if self.postag is not None:
@@ -143,3 +159,10 @@ class Token:
         if self.normalized_form is not None:
             feature.append(self.normalized_form)
         return ",".join(feature)
+
+    @classmethod
+    def from_dict(cls, dict: dict):
+        return cls(**dict)
+
+    def dict(self) -> Dict:
+        return {f: getattr(self, f) for f in self.feature_names}
