@@ -7,7 +7,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class SudachiTokenizer(BaseTokenizer):
     """Wrapper class for SudachiPy."""
 
-    def __init__(self, mode: str, with_postag: bool, **kwargs) -> None:
+    def __init__(self, mode: str, with_postag: bool) -> None:
         """
         Initializer for SudachiTokenizer.
 
@@ -33,9 +33,9 @@ class SudachiTokenizer(BaseTokenizer):
             msg += "\n  2. make sure dictionary is successfully installed."
             raise ImportError(msg)
 
-        super(SudachiTokenizer, self).__init__(
-            name="sudachi ({})".format(mode), with_postag=with_postag,
-        )
+        super().__init__(name="sudachi ({})".format(mode))
+        self._with_postag = with_postag
+
         try:
             self._tokenizer = dictionary.Dictionary().create()
         except KeyError:

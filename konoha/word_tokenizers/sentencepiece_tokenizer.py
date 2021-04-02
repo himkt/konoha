@@ -7,7 +7,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class SentencepieceTokenizer(BaseTokenizer):
     """Wrapper class forSentencepiece"""
 
-    def __init__(self, model_path: str, **kwargs) -> None:
+    def __init__(self, model_path: str) -> None:
         """
         Initializer for SentencepieceTokenizer.
 
@@ -26,7 +26,7 @@ class SentencepieceTokenizer(BaseTokenizer):
             msg += "\n  1. make sure sentencepiece is successfully installed."
             raise ImportError(msg)
 
-        super(SentencepieceTokenizer, self).__init__("sentencepiece")
+        super().__init__(name="sentencepiece")
         self._tokenizer = sentencepiece.SentencePieceProcessor()
         self._tokenizer.load(model_path)
 
