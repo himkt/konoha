@@ -1,4 +1,5 @@
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from typing import List
 
 from konoha.data.token import Token
@@ -11,7 +12,7 @@ class BaseTokenizer(ABC):
         self._name = name
 
     @abstractmethod
-    def tokenize(self, text: str) -> List[Token]:
+    def tokenize(_, text: str) -> List[Token]:
         """Abstract method forkonoha.tokenization"""
         raise NotImplementedError
 
