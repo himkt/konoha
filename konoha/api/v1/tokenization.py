@@ -41,9 +41,9 @@ def tokenize(params: TokenizeParameter, request: Request):
         raise HTTPException(status_code=400, detail="text or texts is required.")
 
     cache_key = generate_cache_key(params)
-    if cache_key in request.app.tokenizers:
+    if cache_key in request.app.state.cache:
         logging.info(f"Hit cache: {cache_key}")
-        tokenizer = request.app.tokenizers[cache_key]
+        tokenizer = request.app.state.cache[cache_key]
     else:
         logging.info(f"Create tokenizer: {cache_key}")
         try:
@@ -56,7 +56,7 @@ def tokenize(params: TokenizeParameter, request: Request):
                 mode=params.mode,
                 dictionary_format=params.dictionary_format,
             )
-            request.app.tokenizers[cache_key] = tokenizer
+            request.app.state.cache[cache_key] = tokenizer
         except Exception:
             raise HTTPException(status_code=400, detail="fail to initialize tokenizer")
 
