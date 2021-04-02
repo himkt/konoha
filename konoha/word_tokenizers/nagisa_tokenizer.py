@@ -1,5 +1,4 @@
 from typing import List
-from typing import Optional
 
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
@@ -8,9 +7,10 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class NagisaTokenizer(BaseTokenizer):
     """Wrapper class for Nagisa"""
 
-    def __init__(self, with_postag: bool = False, **kwargs) -> None:
+    def __init__(self, with_postag: bool = False) -> None:
+        super().__init__(name="nagisa")
+        self._with_postag = with_postag
 
-        super(NagisaTokenizer, self).__init__(name="nagisa", with_postag=with_postag)
         try:
             import nagisa
 

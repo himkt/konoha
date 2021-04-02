@@ -58,7 +58,8 @@ class MeCabTokenizer(BaseTokenizer):
             msg += "\n  2. make sure natto-py is successfully installed."
             raise ImportError(msg)
 
-        super().__init__(name="mecab", with_postag=with_postag)
+        super().__init__(name="mecab")
+        self._with_postag = with_postag
 
         flag = ""
 

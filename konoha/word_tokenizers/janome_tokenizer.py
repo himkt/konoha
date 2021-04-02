@@ -16,7 +16,8 @@ class JanomeTokenizer(BaseTokenizer):
             msg += "\n  1. make sure janome is successfully installed."
             raise ImportError(msg)
 
-        super().__init__(name="janome", with_postag=with_postag)
+        super().__init__(name="janome")
+        self._with_postag = with_postag
         self._tokenizer = Tokenizer(udic=user_dictionary_path)
 
     def tokenize(self, text: str) -> List[Token]:

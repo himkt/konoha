@@ -6,7 +6,7 @@ class CharacterTokenizer(BaseTokenizer):
     """Characterkonoha.tokenizer"""
 
     def __init__(self):
-        super(CharacterTokenizer, self).__init__("character")
+        super().__init__(name="character")
 
-    def tokenize(self, text: str):
+    def tokenize(_, text: str):
         return [Token(surface=char) for char in list(text)]

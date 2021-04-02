@@ -8,9 +8,10 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class KyTeaTokenizer(BaseTokenizer):
     """Wrapper class forKyTea"""
 
-    def __init__(self, with_postag: bool = False, model_path: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, with_postag: bool = False, model_path: Optional[str] = None) -> None:
+        super().__init__(name="kytea")
+        self._with_postag = with_postag
 
-        super(KyTeaTokenizer, self).__init__(name="kytea", with_postag=with_postag, model_path=model_path)
         try:
             import Mykytea
         except ImportError:
