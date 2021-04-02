@@ -38,11 +38,10 @@ COPY ./konoha ./konoha
 COPY ./pyproject.toml ./pyproject.toml
 COPY ./poetry.lock ./poetry.lock
 COPY ./README.md ./README.md
-COPY ./libexec ./libexec
 
 RUN pip3 install -U pip
 RUN pip3 install poetry
 RUN poetry install --no-dev -E all
 RUN poetry cache clear pypi --all --no-interaction
 
-CMD ["poetry", "run", "uvicorn", "libexec.api:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "uvicorn", "--factory", "konoha.api.server:create_app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
