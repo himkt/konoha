@@ -38,7 +38,6 @@ COPY ./konoha ./konoha
 COPY ./pyproject.toml ./pyproject.toml
 COPY ./poetry.lock ./poetry.lock
 COPY ./README.md ./README.md
-COPY ./libexec ./libexec
 
 RUN pip3 install -U pip
 RUN pip3 install poetry
