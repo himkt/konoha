@@ -59,14 +59,7 @@ class SudachiTokenizer(BaseTokenizer):
         for token in self._tokenizer.tokenize(text, self._mode):
             surface = token.surface()
             if self._with_postag:
-                (
-                    postag,
-                    postag2,
-                    postag3,
-                    postag4,
-                    inflection,
-                    conjugation,
-                ) = token.part_of_speech()
+                (postag, postag2, postag3, postag4, inflection, conjugation,) = token.part_of_speech()
                 base_form = token.dictionary_form()
                 normalized_form = token.normalized_form()
                 yomi = token.reading_form()

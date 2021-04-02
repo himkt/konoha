@@ -50,14 +50,7 @@ class KonohaTokenizer(Tokenizer):
     @overrides
     def tokenize(self, text: str) -> List[Token]:
         konoha_tokens = self._tokenizer.tokenize(text)
-        tokens = [
-            Token(
-                text=token.surface,
-                lemma_=token.base_form,
-                pos_=token.postag,
-            )
-            for token in konoha_tokens
-        ]
+        tokens = [Token(text=token.surface, lemma_=token.base_form, pos_=token.postag,) for token in konoha_tokens]
 
         for start_token in self._start_tokens:
             tokens.insert(0, Token(start_token, 0))

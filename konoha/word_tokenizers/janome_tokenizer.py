@@ -8,9 +8,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class JanomeTokenizer(BaseTokenizer):
     """Wrapper class for Janome."""
 
-    def __init__(
-        self, user_dictionary_path: Optional[str] = None, with_postag: bool = False
-    ) -> None:
+    def __init__(self, user_dictionary_path: Optional[str] = None, with_postag: bool = False) -> None:
         try:
             from janome.tokenizer import Tokenizer
         except ImportError:

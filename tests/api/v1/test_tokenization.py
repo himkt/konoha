@@ -16,7 +16,7 @@ client = TestClient(app)
         {"tokenizer": "sudachi", "mode": "A"},
         {"tokenizer": "sudachi", "mode": "B"},
         {"tokenizer": "sudachi", "mode": "C"},
-        {"tokenizer": "sentencepiece", "model_path": "data/model.knm"},
+        {"tokenizer": "sentencepiece", "model_path": "data/model.spm"},
         {"tokenizer": "kytea", "model_path": "data/model.knm"},
         {"tokenizer": "character"},
         {"tokenizer": "nagisa"},

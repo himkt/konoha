@@ -11,15 +11,24 @@ from konoha import WordTokenizer
 
 
 class TokenizeParameter(BaseModel):
-    tokenizer: str
+    tokenizer: str = "MeCab"
+    with_postag: bool = False
+    user_dictionary_path: Optional[str] = None
+    system_dictionary_path: Optional[str] = None
     model_path: Optional[str] = None
+    mode: Optional[str] = "A"
+    dictionary_format: Optional[str] = None
     text: Optional[str] = None
     texts: Optional[List[str]] = None
-    mode: Optional[str] = "A"
 
 
 router = APIRouter()
 logger = logging.getLogger(__file__)
+
+
+def generate_cache_key(params):
+    params = params.dict(exclude={"text", "texts"})
+    return ".".join(f"{k}-{v}" for k, v in params.items())
 
 
 @router.post("/api/v1/tokenize")
@@ -31,38 +40,25 @@ def tokenize(params: TokenizeParameter, request: Request):
     else:
         raise HTTPException(status_code=400, detail="text or texts is required.")
 
-    if isinstance(params.mode, str):
-        mode = params.mode.lower()  # type: Optional[str]
+    cache_key = generate_cache_key(params)
+    if cache_key in request.app.tokenizers:
+        logging.info(f"Hit cache: {cache_key}")
+        tokenizer = request.app.tokenizers[cache_key]
     else:
-        mode = None
-
-    model_path = (
-        "data/model.spm" if params.tokenizer.lower() == "sentencepiece" else None
-    )  # NOQA
-
-    signature = f"{params.tokenizer}.{model_path}.{mode}"
-    if signature in request.app.tokenizers:
-        logging.info(f"Hit cache: {signature}")
-        tokenizer = request.app.tokenizers[signature]
-    else:
-        logging.info(f"Create tokenizer: {signature}")
+        logging.info(f"Create tokenizer: {cache_key}")
         try:
             tokenizer = WordTokenizer(
                 tokenizer=params.tokenizer,
-                with_postag=True,
-                model_path=model_path,
-                mode=mode,
+                with_postag=params.with_postag,
+                user_dictionary_path=params.user_dictionary_path,
+                system_dictionary_path=params.system_dictionary_path,
+                model_path=params.model_path,
+                mode=params.mode,
+                dictionary_format=params.dictionary_format,
             )
-            request.app.tokenizers[signature] = tokenizer
+            request.app.tokenizers[cache_key] = tokenizer
         except Exception:
             raise HTTPException(status_code=400, detail="fail to initialize tokenizer")
 
-    results = [
-        [
-            {"surface": t.surface, "part_of_speech": t.postag}
-            for t in tokenizer.tokenize(text)
-        ]
-        for text in texts
-    ]
-
-    return {"tokens": results}
+    tokens_list = [[token.dict() for token in tokenizer.tokenize(text)] for text in texts]
+    return {"tokens": tokens_list}
