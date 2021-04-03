@@ -78,7 +78,7 @@ def test_allennlp_training():
 
     with tempfile.TemporaryDirectory() as serialization_dir:
         model = allennlp.commands.train.train_model_from_file(
-            "test_fixtures/classifier_v1.jsonnet",
+            "test_fixtures/classifier.jsonnet",
             serialization_dir=serialization_dir,
         )
         assert isinstance(model, BasicClassifier)
