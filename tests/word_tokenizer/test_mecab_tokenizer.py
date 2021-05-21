@@ -2,6 +2,7 @@ import pytest
 
 from konoha.konoha_token import Token
 from konoha.word_tokenizer import WordTokenizer
+from konoha.word_tokenizers.mecab_tokenizer import parse_feature_for_unidic
 
 
 def test_word_tokenize_with_mecab():
@@ -138,3 +139,37 @@ def test_word_tokenize_with_s3_system_dictionary():
     expect = [Token(surface=w) for w in "吾輩 は 猫 で ある".split(" ")]
     result = tokenizer.tokenize("吾輩は猫である")
     assert expect == result
+
+
+def test_parse_feature_for_unidic():
+    token = parse_feature_for_unidic(
+        "吾輩\t代名詞,,,,,,ワガハイ,我が輩,吾輩,ワガハイ,吾輩,ワガハイ,混,,,,,,,体,ワガハイ,ワガハイ,ワガハイ,ワガハイ,0,,,11321954766299648,41189"
+    )
+    result = (
+        token.surface,
+        token.postag,
+        token.postag2,
+        token.postag3,
+        token.postag4,
+        token.inflection,
+        token.conjugation,
+        token.base_form,
+        token.normalized_form,
+        token.yomi,
+        token.pron,
+    )
+    expect = (
+        "吾輩",
+        "代名詞",
+        None,
+        None,
+        None,
+        None,
+        None,
+        "我が輩",
+        None,
+        "ワガハイ",
+        "ワガハイ",
+    )
+
+    assert result == expect

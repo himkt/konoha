@@ -29,6 +29,43 @@ def parse_feature_for_ipadic(elem) -> Token:
     )
 
 
+def parse_feature_for_unidic(elem) -> Token:
+    """
+    UniDic format: https://unidic.ninjal.ac.jp/faq
+    """
+    surface, feaature_line = elem.split("\t")
+    features = feaature_line.split(",")
+
+    postag = features[0] or None
+    postag2 = features[1] or None
+    postag3 = features[2] or None
+    postag4 = features[3] or None
+    inflection = features[4] or None
+    conjugation = features[5] or None
+
+    if len(features) >= 10:
+        yomi = features[6] or None
+        base_form = features[7] or None
+        pron = features[9] or None
+    else:
+        yomi = None
+        base_form = None
+        pron = None
+
+    return Token(
+        surface=surface,
+        postag=postag,
+        postag2=postag2,
+        postag3=postag3,
+        postag4=postag4,
+        inflection=inflection,
+        conjugation=conjugation,
+        base_form=base_form,
+        yomi=yomi,
+        pron=pron,
+    )
+
+
 class MeCabTokenizer(BaseTokenizer):
     """Wrapper class forexternal text analyzers"""
 
@@ -84,12 +121,16 @@ class MeCabTokenizer(BaseTokenizer):
         if dictionary_format is None:
             if system_dictionary_path is None or "ipadic" in system_dictionary_path.lower():
                 self._parse_feature = parse_feature_for_ipadic
+            elif system_dictionary_path is None or "unidic" in system_dictionary_path.lower():
+                self._parse_feature = parse_feature_for_unidic
             else:
                 raise ValueError(f"Unsupported system dictionary: {system_dictionary_path}")
 
         else:
             if "ipadic" == dictionary_format.lower():
                 self._parse_feature = parse_feature_for_ipadic
+            elif "unidic" == dictionary_format.lower():
+                self._parse_feature = parse_feature_for_unidic
             else:
                 raise ValueError(f"Unsupported dictionary format: {dictionary_format}")
 
