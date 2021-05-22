@@ -121,7 +121,7 @@ class MeCabTokenizer(BaseTokenizer):
         if dictionary_format is None:
             if system_dictionary_path is None or "ipadic" in system_dictionary_path.lower():
                 self._parse_feature = parse_feature_for_ipadic
-            elif system_dictionary_path is None or "unidic" in system_dictionary_path.lower():
+            elif "unidic" in system_dictionary_path.lower():
                 self._parse_feature = parse_feature_for_unidic
             else:
                 raise ValueError(f"Unsupported system dictionary: {system_dictionary_path}")
