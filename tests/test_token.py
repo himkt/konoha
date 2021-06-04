@@ -1,5 +1,4 @@
-"""Test for word tokenizers"""
-from konoha.konoha_token import Token
+from konoha.data.token import Token
 
 
 def test_token_without_feature():
