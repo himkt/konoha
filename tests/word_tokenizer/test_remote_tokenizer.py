@@ -14,6 +14,10 @@ def test_word_tokenize_with_remote_host():
         assert mock_obj.call_args[1]["payload"] == {
             "text": "猫は可愛い",
             "tokenizer": "mecab",
+            "system_dictionary_path": None,
+            "user_dictionary_path": None,
             "model_path": None,
             "mode": None,
+            "dictionary_format": None,
+            "with_postag": False,
         }
