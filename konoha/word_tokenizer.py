@@ -100,12 +100,15 @@ class WordTokenizer:
 
             payload = {
                 "tokenizer": self._tokenizer_name,
+                "with_postag": self._with_postag,
+                "user_dictionary_path": self._user_dictionary_path,
                 "model_path": self._model_path,
                 "mode": self._mode,
                 "text": text,
+                "dictionary_format": self._dictionary_format,
             }
             headers = {"Content-Type": "application/json"}
-            token_params = self._tokenize_with_remote_host(endpoint=endpoint, payload=payload, headers=headers,)
+            token_params = self._tokenize_with_remote_host(endpoint=endpoint, payload=payload, headers=headers)
 
             tokens = []
             for token_param in token_params:
