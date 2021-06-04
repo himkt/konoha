@@ -31,17 +31,10 @@ def generate_cache_key(params):
     return ".".join(f"{k}-{v}" for k, v in params.items())
 
 
-@router.post("/api/v1/tokenize")
-def tokenize(params: TokenizeParameter, request: Request):
-    if params.texts is not None:
-        message = (
-            "A parameter `texts` is now unacceptable for /api/v1/tokenize."
-            " Please use /api/v1/batch_tokenize instead."
-        )
-        raise HTTPException(status_code=400, detail=message)
-
-    if params.text is None:
-        raise HTTPException(status_code=400, detail="text or texts is required.")
+@router.post("/api/v1/batch_tokenize")
+def batch_tokenize(params: TokenizeParameter, request: Request):
+    if params.texts is None:
+        raise HTTPException(status_code=400, detail="texts is required.")
 
     cache_key = generate_cache_key(params)
     if cache_key in request.app.state.cache:
@@ -63,5 +56,5 @@ def tokenize(params: TokenizeParameter, request: Request):
         except Exception:
             raise HTTPException(status_code=400, detail="fail to initialize tokenizer")
 
-    tokens = [token.dict() for token in tokenizer.tokenize(params.text)]
-    return {"tokens": tokens}
+    tokens_list = [[token.dict() for token in tokenizer.tokenize(text)] for text in params.texts]
+    return {"tokens_list": tokens_list}
