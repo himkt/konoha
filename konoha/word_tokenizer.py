@@ -102,6 +102,7 @@ class WordTokenizer:
                 "tokenizer": self._tokenizer_name,
                 "with_postag": self._with_postag,
                 "user_dictionary_path": self._user_dictionary_path,
+                "system_dictionary_path": self._system_dictionary_path,
                 "model_path": self._model_path,
                 "mode": self._mode,
                 "text": text,
