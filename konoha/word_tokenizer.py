@@ -1,6 +1,5 @@
 """Word Level Tokenizer."""
 import warnings
-from typing import Any
 from typing import Dict
 from typing import List
 from typing import Optional
@@ -44,7 +43,7 @@ class WordTokenizer:
         self._model_path = model.path
         self._mode = mode.lower() if mode is not None else None
         self._dictionary_format = dictionary_format
-        self._tokenizer = None  # type: Any
+        self._tokenizer: Optional[BaseTokenizer] = None
         self._endpoint = endpoint
 
         if not isinstance(endpoint, str):
@@ -100,32 +99,72 @@ class WordTokenizer:
 
             payload = {
                 "tokenizer": self._tokenizer_name,
+                "with_postag": self._with_postag,
+                "user_dictionary_path": self._user_dictionary_path,
+                "system_dictionary_path": self._system_dictionary_path,
                 "model_path": self._model_path,
                 "mode": self._mode,
                 "text": text,
+                "dictionary_format": self._dictionary_format,
             }
             headers = {"Content-Type": "application/json"}
-            token_params = self._tokenize_with_remote_host(endpoint=endpoint, payload=payload, headers=headers,)
-
-            tokens = []
-            for token_param in token_params:
-                token = Token.from_dict(token_param)
-                tokens.append(token)
-
-            return tokens
+            token_params = self._tokenize_with_remote_host(endpoint=endpoint, payload=payload, headers=headers)
+            return [Token.from_dict(token_param) for token_param in token_params]
 
         else:
+            assert self._tokenizer is not None
             return self._tokenizer.tokenize(text)
+
+    def batch_tokenize(self, texts: List[str]) -> List[List[Token]]:
+        """Tokenize input texts"""
+
+        if isinstance(self._endpoint, str):
+            endpoint = self._endpoint
+            if not endpoint.startswith("http"):
+                endpoint = "http://" + endpoint
+
+            payload = {
+                "tokenizer": self._tokenizer_name,
+                "with_postag": self._with_postag,
+                "user_dictionary_path": self._user_dictionary_path,
+                "system_dictionary_path": self._system_dictionary_path,
+                "model_path": self._model_path,
+                "mode": self._mode,
+                "texts": texts,
+                "dictionary_format": self._dictionary_format,
+            }
+            headers = {"Content-Type": "application/json"}
+            token_params_list = self._batch_tokenize_with_remote_host(
+                endpoint=endpoint,
+                payload=payload,
+                headers=headers,
+            )
+
+            tokens_list: List[List[Token]] = []
+            for tokens in token_params_list:
+                tokens_list.append([Token.from_dict(token) for token in tokens])
+
+            return tokens_list
+
+        else:
+            assert self._tokenizer is not None
+            return [self._tokenizer.tokenize(text) for text in texts]
 
     @staticmethod
     def _tokenize_with_remote_host(endpoint: str, payload: Dict, headers: Dict,) -> List[Dict]:
-        return requests.post(endpoint, json=payload, headers=headers,).json()["tokens"][0]
+        return requests.post(endpoint, json=payload, headers=headers).json()["tokens"]
+
+    @staticmethod
+    def _batch_tokenize_with_remote_host(endpoint: str, payload: Dict, headers: Dict) -> List[List[Dict]]:
+        return requests.post(endpoint, json=payload, headers=headers).json()["tokens_list"]
 
     @property
     def tokenizer(self) -> BaseTokenizer:
         warnings.warn("attribute `tokenizer` will be removed in v5.0.0.")
+        assert self._tokenizer is not None
         return self._tokenizer
 
     @property
     def name(self) -> str:
+        assert self._tokenizer is not None
         return self._tokenizer.name

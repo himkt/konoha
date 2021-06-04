@@ -47,3 +47,31 @@ def test_tokenize_with_character(raw_texts: List[str], tokenizer_params: Dict):
     result = tokenizer.tokenize(raw_texts[0])
     assert expect == result
 
+
+@pytest.mark.parametrize(
+    "tokenizer_params", [
+        {"tokenizer": "mecab"},
+        {"tokenizer": "mecab", "with_postag": True},
+        {"tokenizer": "sudachi", "mode": "A"},
+        {"tokenizer": "sudachi", "mode": "A", "with_postag": True},
+        {"tokenizer": "kytea"},
+        {"tokenizer": "kytea", "with_postag": True},
+        {"tokenizer": "nagisa"},
+        {"tokenizer": "nagisa", "with_postag": True},
+        {"tokenizer": "janome"},
+        {"tokenizer": "janome", "with_postag": True},
+        {"tokenizer": "character"},
+        {"tokenizer": "whitespace"},
+        {"tokenizer": "sentencepiece", "model_path": "data/model.spm"},
+    ]
+)
+def test_batch_tokenize_with_character(raw_texts: List[str], tokenizer_params: Dict):
+    tokenizer_name = tokenizer_params["tokenizer"]
+    tokenizer = WordTokenizer(**tokenizer_params)
+    data_type = "full" if tokenizer_params.get("with_postag", False) else "wakati"
+    expect = [
+        [Token.from_dict(token_param) for token_param in token_params]
+        for token_params in read_lines(tokenizer_name, data_type)
+    ]
+    result = tokenizer.batch_tokenize(raw_texts)
+    assert expect == result
