@@ -25,6 +25,8 @@ class WordTokenizer:
         mode: Optional[str] = None,
         dictionary_format: Optional[str] = None,
         endpoint: Optional[str] = None,
+        ssl: Optional[bool] = None,
+        port: Optional[int] = None,
     ) -> None:
         """Create tokenizer.
 
@@ -45,6 +47,8 @@ class WordTokenizer:
         self._dictionary_format = dictionary_format
         self._tokenizer: Optional[BaseTokenizer] = None
         self._endpoint = endpoint
+        self._ssl = ssl
+        self._port = port
 
         if not isinstance(endpoint, str):
             self._setup_tokenizer()
@@ -93,22 +97,9 @@ class WordTokenizer:
         """Tokenize input text"""
 
         if isinstance(self._endpoint, str):
-            endpoint = self._endpoint
-            if not endpoint.startswith("http"):
-                endpoint = "http://" + endpoint
-
-            payload = {
-                "tokenizer": self._tokenizer_name,
-                "with_postag": self._with_postag,
-                "user_dictionary_path": self._user_dictionary_path,
-                "system_dictionary_path": self._system_dictionary_path,
-                "model_path": self._model_path,
-                "mode": self._mode,
-                "text": text,
-                "dictionary_format": self._dictionary_format,
-            }
-            headers = {"Content-Type": "application/json"}
-            token_params = self._tokenize_with_remote_host(endpoint=endpoint, payload=payload, headers=headers)
+            endpoint = self.get_endpoint("/api/v1/tokenize")
+            payload = dict(self.payload, text=text)
+            token_params = self._tokenize_with_remote_host(endpoint=endpoint, payload=payload, headers=self.headers)
             return [Token.from_dict(token_param) for token_param in token_params]
 
         else:
@@ -119,25 +110,12 @@ class WordTokenizer:
         """Tokenize input texts"""
 
         if isinstance(self._endpoint, str):
-            endpoint = self._endpoint
-            if not endpoint.startswith("http"):
-                endpoint = "http://" + endpoint
-
-            payload = {
-                "tokenizer": self._tokenizer_name,
-                "with_postag": self._with_postag,
-                "user_dictionary_path": self._user_dictionary_path,
-                "system_dictionary_path": self._system_dictionary_path,
-                "model_path": self._model_path,
-                "mode": self._mode,
-                "texts": texts,
-                "dictionary_format": self._dictionary_format,
-            }
-            headers = {"Content-Type": "application/json"}
+            endpoint = self.get_endpoint("/api/v1/batch_tokenize")
+            payload = dict(self.payload, texts=texts)
             token_params_list = self._batch_tokenize_with_remote_host(
                 endpoint=endpoint,
                 payload=payload,
-                headers=headers,
+                headers=self.headers,
             )
 
             tokens_list: List[List[Token]] = []
@@ -168,3 +146,31 @@ class WordTokenizer:
     def name(self) -> str:
         assert self._tokenizer is not None
         return self._tokenizer.name
+
+    def get_endpoint(self, method: str):
+        assert self._endpoint
+        endpoint = self._endpoint
+
+        if self._ssl and not endpoint.startswith("https://"):
+            endpoint = "https://" + endpoint
+
+        if not self._ssl and not endpoint.startswith("http://"):
+            endpoint = "http://" + endpoint
+
+        return endpoint + method
+
+    @property
+    def payload(self):
+        return {
+            "tokenizer": self._tokenizer_name,
+            "with_postag": self._with_postag,
+            "user_dictionary_path": self._user_dictionary_path,
+            "system_dictionary_path": self._system_dictionary_path,
+            "model_path": self._model_path,
+            "mode": self._mode,
+            "dictionary_format": self._dictionary_format,
+        }
+
+    @property
+    def headers(self):
+        return {"Content-Type": "application/json"}
