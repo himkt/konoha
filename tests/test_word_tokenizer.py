@@ -1,10 +1,11 @@
 import json
-from typing import Dict, List
+from typing import Dict
+from typing import List
 
 import pytest
 
-from konoha.konoha_token import Token
-from konoha.word_tokenizer import WordTokenizer
+from konoha.data.token import Token
+from konoha import WordTokenizer
 
 
 @pytest.fixture
