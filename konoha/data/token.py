@@ -64,10 +64,10 @@ class Token:
         self._normalized_form = normalized_form
 
     def __repr__(self) -> str:
-        representation = self._surface
+        text = self._surface
         if self._postag is not None:
-            representation += " ({})".format(self._postag)
-        return representation
+            text += " ({})".format(self._postag)
+        return text
 
     def __eq__(self, right) -> bool:
         return (

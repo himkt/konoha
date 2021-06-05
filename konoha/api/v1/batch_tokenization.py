@@ -12,7 +12,6 @@ from konoha import WordTokenizer
 
 class TokenizeParameter(BaseModel):
     tokenizer: str = "MeCab"
-    with_postag: bool = False
     user_dictionary_path: Optional[str] = None
     system_dictionary_path: Optional[str] = None
     model_path: Optional[str] = None
@@ -45,7 +44,6 @@ def batch_tokenize(params: TokenizeParameter, request: Request):
         try:
             tokenizer = WordTokenizer(
                 tokenizer=params.tokenizer,
-                with_postag=params.with_postag,
                 user_dictionary_path=params.user_dictionary_path,
                 system_dictionary_path=params.system_dictionary_path,
                 model_path=params.model_path,

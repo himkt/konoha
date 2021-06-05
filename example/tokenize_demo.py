@@ -14,7 +14,7 @@ if __name__ == "__main__":
             word_tokenizers.append(_tokenizer)
 
             if word_tokenizer_name in tokenizers_support_postag:
-                _tokenizer = WordTokenizer(word_tokenizer_name, with_postag=True)
+                _tokenizer = WordTokenizer(word_tokenizer_name)
                 word_tokenizers.append(_tokenizer)
 
         except (ImportError, RuntimeError):
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         print("Skip: ", "Sentencepiece")
 
     try:
-        _tokenizer = WordTokenizer("Sudachi", mode="A", with_postag=True)
+        _tokenizer = WordTokenizer("Sudachi", mode="A")
         word_tokenizers.append(_tokenizer)
 
     except (ImportError, KeyError):
@@ -55,7 +55,3 @@ if __name__ == "__main__":
             print(" ".join(result))
 
         print()
-
-    word_tokenizer = WordTokenizer("whitespace")
-    sentence = "私 は 猫 だ ニャン"
-    print(word_tokenizer.tokenize(sentence))

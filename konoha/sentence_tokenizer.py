@@ -3,8 +3,6 @@ from typing import List
 
 
 class SentenceTokenizer:
-    """Simple Rule-based Sentence Splitter.
-    """
 
     PERIOD = "。"
     PERIOD_SPECIAL = "__PERIOD__"
@@ -19,14 +17,6 @@ class SentenceTokenizer:
         return item.group(0).replace(SentenceTokenizer.PERIOD, SentenceTokenizer.PERIOD_SPECIAL)
 
     def tokenize(self, document) -> List[str]:
-        """
-        Divide a raw document into sentences.
-        :param document: a raw document
-        :type document: str
-        :return: list of sentences
-        :rtype list[str]
-        """
-
         for pattern in SentenceTokenizer.PATTERNS:
             document = re.sub(pattern, self.conv_period, document)
 

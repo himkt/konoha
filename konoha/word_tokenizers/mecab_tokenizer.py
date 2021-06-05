@@ -1,5 +1,8 @@
+from os import system
 from typing import List
 from typing import Optional
+
+import natto
 
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
@@ -67,49 +70,19 @@ def parse_feature_for_unidic(elem) -> Token:
 
 
 class MeCabTokenizer(BaseTokenizer):
-    """Wrapper class forexternal text analyzers"""
-
     def __init__(
         self,
         user_dictionary_path: Optional[str] = None,
         system_dictionary_path: Optional[str] = None,
         dictionary_format: Optional[str] = None,
-        with_postag: bool = False,
     ) -> None:
-        """
-        Initializer for MeCabTokenizer.
-
-        Parameters
-        ---
-        dictionary_path (Optional[str]=None)
-            path to a custom dictionary (option)
-            it is used by `mecab -u [dictionary_path]`
-        with_postag (bool=False)
-            flag determines ifkonoha.tokenizer include pos tags.
-        """
-        try:
-            import natto
-        except ImportError:
-            msg = "importing natto-py failed for some reason."
-            msg += "\n  1. make sure MeCab is successfully installed."
-            msg += "\n  2. make sure natto-py is successfully installed."
-            raise ImportError(msg)
-
         super().__init__(name="mecab")
-        self._with_postag = with_postag
-
-        flag = ""
-
-        if not self._with_postag:
-            flag += " -Owakati"
-
+        options = []
         if isinstance(user_dictionary_path, str):
-            flag += " -u {}".format(user_dictionary_path)
-
+            options.append("-u {}".format(user_dictionary_path))
         if isinstance(system_dictionary_path, str):
-            flag += " -d {}".format(system_dictionary_path)
-
-        self._tokenizer = natto.MeCab(flag)
+            options.append("-d {}".format(system_dictionary_path))
+        self._tokenizer = natto.MeCab(" ".join(options))
 
         # If dictionary format is not specified,
         # konoha detects it by checking a name of system dictionary.
@@ -135,14 +108,8 @@ class MeCabTokenizer(BaseTokenizer):
                 raise ValueError(f"Unsupported dictionary format: {dictionary_format}")
 
     def tokenize(self, text: str) -> List[Token]:
-        """Tokenize"""
         return_result = []
         parse_result = self._tokenizer.parse(text).rstrip(" ")
-        if self._with_postag:
-            for elem in parse_result.split("\n")[:-1]:
-                return_result.append(self._parse_feature(elem))
-        else:
-            for surface in parse_result.split(" "):
-                return_result.append(Token(surface=surface))
-
+        for elem in parse_result.split("\n")[:-1]:
+            return_result.append(self._parse_feature(elem))
         return return_result
