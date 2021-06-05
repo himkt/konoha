@@ -1,20 +1,19 @@
 from typing import List
 from typing import Optional
 
-import Mykytea
-
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class KyTeaTokenizer(BaseTokenizer):
     def __init__(self, model_path: Optional[str] = None) -> None:
+        from Mykytea import Mykytea
         super().__init__(name="kytea")
 
         kytea_option = ""
         if model_path is not None:
             kytea_option += "-model {}".format(model_path)
-        self._tokenizer = Mykytea.Mykytea(kytea_option)
+        self._tokenizer = Mykytea(kytea_option)
 
     def tokenize(self, text: str) -> List[Token]:
         tokens = []
