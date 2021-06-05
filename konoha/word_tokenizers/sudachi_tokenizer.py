@@ -1,14 +1,13 @@
 from typing import List
 
-from sudachipy import dictionary
-from sudachipy import tokenizer
-
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class SudachiTokenizer(BaseTokenizer):
     def __init__(self, mode: str) -> None:
+        from sudachipy import dictionary
+        from sudachipy import tokenizer
         super().__init__(name="sudachi ({})".format(mode))
 
         try:

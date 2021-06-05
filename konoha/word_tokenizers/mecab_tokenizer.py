@@ -1,8 +1,5 @@
-from os import system
 from typing import List
 from typing import Optional
-
-import natto
 
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
@@ -76,13 +73,14 @@ class MeCabTokenizer(BaseTokenizer):
         system_dictionary_path: Optional[str] = None,
         dictionary_format: Optional[str] = None,
     ) -> None:
+        from natto import MeCab
         super().__init__(name="mecab")
         options = []
         if isinstance(user_dictionary_path, str):
             options.append("-u {}".format(user_dictionary_path))
         if isinstance(system_dictionary_path, str):
             options.append("-d {}".format(system_dictionary_path))
-        self._tokenizer = natto.MeCab(" ".join(options))
+        self._tokenizer = MeCab(" ".join(options))
 
         # If dictionary format is not specified,
         # konoha detects it by checking a name of system dictionary.
