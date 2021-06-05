@@ -3,8 +3,6 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class CharacterTokenizer(BaseTokenizer):
-    """Characterkonoha.tokenizer"""
-
     def __init__(self):
         super().__init__(name="character")
 

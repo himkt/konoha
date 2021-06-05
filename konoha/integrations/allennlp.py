@@ -21,7 +21,6 @@ class KonohaTokenizer(Tokenizer):
     def __init__(
         self,
         tokenizer_name: str = "mecab",
-        with_postag: bool = False,
         user_dictionary_path: Optional[str] = None,
         system_dictionary_path: Optional[str] = None,
         model_path: Optional[str] = None,
@@ -32,7 +31,6 @@ class KonohaTokenizer(Tokenizer):
     ) -> None:
         self._tokenizer = WordTokenizer(
             tokenizer=tokenizer_name,
-            with_postag=with_postag,
             user_dictionary_path=user_dictionary_path,
             system_dictionary_path=system_dictionary_path,
             model_path=model_path,
