@@ -13,12 +13,9 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class WordTokenizer:
-    """Tokenizer takes a sentence into tokens."""
-
     def __init__(
         self,
         tokenizer: str = "MeCab",
-        with_postag: bool = False,
         user_dictionary_path: Optional[str] = None,
         system_dictionary_path: Optional[str] = None,
         model_path: Optional[str] = None,
@@ -28,18 +25,11 @@ class WordTokenizer:
         ssl: Optional[bool] = None,
         port: Optional[int] = None,
     ) -> None:
-        """Create tokenizer.
-
-        Keyword Arguments:
-            tokenizer {str or None} -- specify the type of tokenizer (default: {None})  # NOQA
-            flags {str} -- option passing to tokenizer (default: {''})
-        """
         user_dictionary = Resource(user_dictionary_path)
         system_dictionary = Resource(system_dictionary_path)
         model = Resource(model_path)
 
         self._tokenizer_name = tokenizer.lower()
-        self._with_postag = with_postag
         self._user_dictionary_path = user_dictionary.path
         self._system_dictionary_path = system_dictionary.path
         self._model_path = model.path
@@ -61,9 +51,7 @@ class WordTokenizer:
             self._tokenizer = word_tokenizers.WhitespaceTokenizer()
 
         if self._tokenizer_name == "kytea":
-            self._tokenizer = word_tokenizers.KyTeaTokenizer(
-                with_postag=self._with_postag, model_path=self._model_path,
-            )
+            self._tokenizer = word_tokenizers.KyTeaTokenizer(model_path=self._model_path)
 
         if self._tokenizer_name == "sentencepiece":
             if self._model_path is None:
@@ -75,23 +63,20 @@ class WordTokenizer:
             self._tokenizer = word_tokenizers.MeCabTokenizer(
                 user_dictionary_path=self._user_dictionary_path,
                 system_dictionary_path=self._system_dictionary_path,
-                with_postag=self._with_postag,
                 dictionary_format=self._dictionary_format,
             )
 
         if self._tokenizer_name == "janome":
-            self._tokenizer = word_tokenizers.JanomeTokenizer(
-                user_dictionary_path=self._user_dictionary_path, with_postag=self._with_postag,
-            )
+            self._tokenizer = word_tokenizers.JanomeTokenizer(user_dictionary_path=self._user_dictionary_path)
 
         if self._tokenizer_name == "sudachi":
             if self._mode is None:
                 raise ValueError("`mode` must be specified for sudachi.")
 
-            self._tokenizer = word_tokenizers.SudachiTokenizer(mode=self._mode, with_postag=self._with_postag,)
+            self._tokenizer = word_tokenizers.SudachiTokenizer(mode=self._mode)
 
         if self._tokenizer_name == "nagisa":
-            self._tokenizer = word_tokenizers.NagisaTokenizer(with_postag=self._with_postag,)
+            self._tokenizer = word_tokenizers.NagisaTokenizer()
 
     def tokenize(self, text: str) -> List[Token]:
         """Tokenize input text"""
@@ -163,7 +148,6 @@ class WordTokenizer:
     def payload(self):
         return {
             "tokenizer": self._tokenizer_name,
-            "with_postag": self._with_postag,
             "user_dictionary_path": self._user_dictionary_path,
             "system_dictionary_path": self._system_dictionary_path,
             "model_path": self._model_path,

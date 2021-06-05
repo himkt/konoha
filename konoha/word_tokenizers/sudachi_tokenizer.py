@@ -1,40 +1,15 @@
 from typing import List
 
+from sudachipy import dictionary
+from sudachipy import tokenizer
+
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
 
 
 class SudachiTokenizer(BaseTokenizer):
-    """Wrapper class for SudachiPy."""
-
-    def __init__(self, mode: str, with_postag: bool) -> None:
-        """
-        Initializer for SudachiTokenizer.
-
-        Parameters
-        ---
-        mode (str)
-            Splitting mode which controls a granuality ofkonoha.token.
-            (mode should be `A`, `B` or `C`)
-            For more information, see following links.
-            - document: https://github.com/WorksApplications/Sudachi#the-modes-of-splitting  # NOQA
-            - paper: http://www.lrec-conf.org/proceedings/lrec2018/summaries/8884.html  # NOQA
-        with_postag (bool=False)
-            flag determines ifkonoha.tokenizer include pos tags.
-        **kwargs
-            others.
-        """
-        try:
-            from sudachipy import dictionary
-            from sudachipy import tokenizer
-        except ImportError:
-            msg = "Importing sudachipy failed for some reason."
-            msg += "\n  1. make sure SudachiPy is successfully installed."
-            msg += "\n  2. make sure dictionary is successfully installed."
-            raise ImportError(msg)
-
+    def __init__(self, mode: str) -> None:
         super().__init__(name="sudachi ({})".format(mode))
-        self._with_postag = with_postag
 
         try:
             self._tokenizer = dictionary.Dictionary().create()
@@ -54,30 +29,21 @@ class SudachiTokenizer(BaseTokenizer):
             raise ValueError("Invalid mode is specified. Mode should be A, B, or C.")  # NOQA
 
     def tokenize(self, text: str) -> List[Token]:
-        """Tokenize."""
         result = []
         for token in self._tokenizer.tokenize(text, self._mode):
-            surface = token.surface()
-            if self._with_postag:
-                (postag, postag2, postag3, postag4, inflection, conjugation,) = token.part_of_speech()
-                base_form = token.dictionary_form()
-                normalized_form = token.normalized_form()
-                yomi = token.reading_form()
-                result.append(
-                    Token(
-                        surface=surface,
-                        postag=postag,
-                        postag2=postag2,
-                        postag3=postag3,
-                        postag4=postag4,
-                        inflection=inflection,
-                        conjugation=conjugation,
-                        base_form=base_form,
-                        normalized_form=normalized_form,
-                        yomi=yomi,
-                    )
+            (postag, postag2, postag3, postag4, inflection, conjugation) = token.part_of_speech()
+            result.append(
+                Token(
+                    surface=token.surface(),
+                    postag=postag,
+                    postag2=postag2,
+                    postag3=postag3,
+                    postag4=postag4,
+                    inflection=inflection,
+                    conjugation=conjugation,
+                    base_form=token.dictionary_form(),
+                    normalized_form=token.normalized_form(),
+                    yomi=token.reading_form(),
                 )
-
-            else:
-                result.append(Token(surface=surface))
+            )
         return result
