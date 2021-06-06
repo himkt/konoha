@@ -67,7 +67,7 @@ class Token:
         return self.surface
 
     def __eq__(self, right) -> bool:
-        return self.feature == right.feature
+        return self.surface == right.surface and self.feature == right.feature
 
     @property
     def surface(self):
