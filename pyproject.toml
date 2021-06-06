@@ -27,6 +27,7 @@ nagisa = {version = "^0.2.7", optional = true}
 overrides = {version = "^3.0.0"}
 importlib-metadata = "^3.7.0"
 requests = "^2.25.1"
+rich = "^10.2.2"
 
 [tool.poetry.dev-dependencies]
 python-language-server = "^0.31.2"
