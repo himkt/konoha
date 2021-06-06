@@ -57,7 +57,7 @@ class WordTokenizer:
             if self._model_path is None:
                 raise ValueError("`model_path` must be specified for sentencepiece.")
 
-            self._tokenizer = word_tokenizers.SentencepieceTokenizer(model_path=self._model_path,)
+            self._tokenizer = word_tokenizers.SentencepieceTokenizer(model_path=self._model_path)
 
         if self._tokenizer_name == "mecab":
             self._tokenizer = word_tokenizers.MeCabTokenizer(
@@ -114,7 +114,7 @@ class WordTokenizer:
             return [self._tokenizer.tokenize(text) for text in texts]
 
     @staticmethod
-    def _tokenize_with_remote_host(endpoint: str, payload: Dict, headers: Dict,) -> List[Dict]:
+    def _tokenize_with_remote_host(endpoint: str, payload: Dict, headers: Dict) -> List[Dict]:
         return requests.post(endpoint, json=payload, headers=headers).json()["tokens"]
 
     @staticmethod
