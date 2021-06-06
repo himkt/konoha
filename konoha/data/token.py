@@ -64,18 +64,10 @@ class Token:
         self._normalized_form = normalized_form
 
     def __repr__(self) -> str:
-        text = self._surface
-        if self._postag is not None:
-            text += " ({})".format(self._postag)
-        return text
+        return self.surface
 
     def __eq__(self, right) -> bool:
-        return (
-            self._surface == right.surface
-            and self._postag == right.postag
-            and self._postag3 == right.postag3
-            and self._yomi == right.yomi
-        )
+        return self.surface == right.surface and self.feature == right.feature
 
     @property
     def surface(self):
