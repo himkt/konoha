@@ -47,7 +47,7 @@ cd konoha && docker-compose up --build  # build and launch container
 ```
 
 Tokenization is done by posting a json object to `localhost:8000/api/v1/tokenize`.
-You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目の入力"]` to the server.
+You can also batch tokenize by passing `texts: ["１つ目の入力", "２つ目の入力"]` to `localhost:8000/api/v1/batch_tokenize`.
 
 (API documentation is available on `localhost:8000/redoc`, you can check it using your web browser)
 

@@ -1,81 +1,45 @@
 import tempfile
+from typing import List, Optional
+
+import allennlp.commands.train
+from allennlp.models.basic_classifier import BasicClassifier
 
 import pytest
 
 from konoha.integrations.allennlp import KonohaTokenizer
 
 
-def test_allennlp_mecab():
-    try:
-        import allennlp  # NOQA
-        import natto  # NOQA
-    except ImportError:
-        pytest.skip("AllenNLP or MeCab is not installed.")
-
-    tokenizer = KonohaTokenizer(tokenizer_name="mecab")
-    tokens_konoha = tokenizer.tokenize("吾輩は猫である")
-    token_surfaces = "吾輩 は 猫 で ある".split()
-    assert token_surfaces == list(t.text for t in tokens_konoha)
+@pytest.fixture
+def raw_text():
+    return "吾輩は猫である"
 
 
-def test_allennlp_janome():
-    try:
-        import allennlp  # NOQA
-        import janome  # NOQA
-    except ImportError:
-        pytest.skip("AllenNLP or Janome is not installed.")
-
-    tokenizer = KonohaTokenizer(tokenizer_name="janome")
-    tokens_konoha = tokenizer.tokenize("吾輩は猫である")
-    token_surfaces = "吾輩 は 猫 で ある".split()
-    assert token_surfaces == list(t.text for t in tokens_konoha)
-
-
-def test_allennlp_kytea():
-    try:
-        import allennlp  # NOQA
-        import Mykytea  # NOQA
-    except ImportError:
-        pytest.skip("AllenNLP or KyTea is not installed.")
-    tokenizer = KonohaTokenizer(tokenizer_name="kytea")
-    tokens_konoha = tokenizer.tokenize("吾輩は猫である")
-    token_surfaces = "吾輩 は 猫 で あ る".split()
-    assert token_surfaces == list(t.text for t in tokens_konoha)
-
-
-def test_allennlp_sentencepiece():
-    try:
-        import allennlp  # NOQA
-        import sentencepiece  # NOQA
-    except ImportError:
-        pytest.skip("AllenNLP or Sentencepiece is not installed.")
-    tokenizer = KonohaTokenizer(
-        tokenizer_name="sentencepiece", model_path="data/model.spm"
+@pytest.mark.parametrize(
+    "token_surfaces,tokenizer_name,mode,model_path", (
+        ("吾輩 は 猫 で ある".split(" "), "mecab", None, None),
+        ("吾輩 は 猫 で ある".split(" "), "janome", None, None),
+        ("吾輩 は 猫 で あ る".split(" "), "kytea", None, None),
+        ("▁ 吾 輩 は 猫 である".split(" "), "sentencepiece", None, "data/model.spm"),
+        ("吾輩 は 猫 で ある".split(" "), "sudachi", "A", None),
     )
-    tokens_konoha = tokenizer.tokenize("吾輩は猫である")
-    token_surfaces = "▁ 吾 輩 は 猫 である".split()
-    assert token_surfaces == list(t.text for t in tokens_konoha)
-
-
-def test_allennlp_sudachi():
-    try:
-        import allennlp  # NOQA
-        import sudachipy  # NOQA
-    except ImportError:
-        pytest.skip("AllenNLP or SudachiPy is not installed.")
-    tokenizer = KonohaTokenizer(tokenizer_name="sudachi", mode="A",)
-    tokens_konoha = tokenizer.tokenize("医薬品安全管理責任者")
-    token_surfaces = "医薬 品 安全 管理 責任 者".split()
+)
+def test_allennlp(
+    raw_text: str,
+    token_surfaces: List[str],
+    tokenizer_name: str,
+    mode: Optional[str],
+    model_path: Optional[str],
+) -> None:
+    tokenizer = KonohaTokenizer(
+        tokenizer_name=tokenizer_name,
+        mode=mode,
+        model_path=model_path,
+    )
+    tokens_konoha = tokenizer.tokenize(raw_text)
     assert token_surfaces == list(t.text for t in tokens_konoha)
 
 
 def test_allennlp_training():
-    try:
-        import allennlp.commands.train
-        from allennlp.models.basic_classifier import BasicClassifier
-    except ImportError:
-        pytest.skip("AllenNLP or Konoha (with Janome) is not installed.")
-
     with tempfile.TemporaryDirectory() as serialization_dir:
         model = allennlp.commands.train.train_model_from_file(
             "test_fixtures/classifier.jsonnet",
