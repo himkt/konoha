@@ -31,7 +31,7 @@ def generate_cache_key(params):
 
 
 @router.post("/api/v1/tokenize")
-def tokenize(params: TokenizeParameter, request: Request):
+async def tokenize(params: TokenizeParameter, request: Request):
     if params.texts is not None:
         message = (
             "A parameter `texts` is now unacceptable for /api/v1/tokenize."
