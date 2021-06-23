@@ -14,7 +14,6 @@ client = TestClient(app)
     "tokenizer_params", [
         {"tokenizer": "mecab"},
         {"tokenizer": "mecab", "with_postag": True},
-        {"tokenizer": "mecab", "system_dictionary_path": "s3://konoha-demo/mecab/ipadic"},
         {"tokenizer": "sudachi", "mode": "A"},
         {"tokenizer": "sudachi", "mode": "B"},
         {"tokenizer": "sudachi", "mode": "C"},

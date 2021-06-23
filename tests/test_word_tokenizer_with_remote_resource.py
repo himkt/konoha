@@ -25,15 +25,7 @@ def read_lines(tokenizer: str):
 
 @pytest.mark.parametrize(
     "tokenizer_params", [
-        {"tokenizer": "mecab"},
-        {"tokenizer": "sudachi", "mode": "A"},
-        {"tokenizer": "sudachi", "mode": "A"},
-        {"tokenizer": "kytea"},
-        {"tokenizer": "nagisa"},
-        {"tokenizer": "janome"},
-        {"tokenizer": "character"},
-        {"tokenizer": "whitespace"},
-        {"tokenizer": "sentencepiece", "model_path": "data/model.spm"},
+        {"tokenizer": "mecab", "system_dictionary_path": "s3://konoha-demo/mecab/ipadic"},
     ]
 )
 def test_tokenize(raw_texts: List[str], tokenizer_params: Dict):
@@ -46,15 +38,7 @@ def test_tokenize(raw_texts: List[str], tokenizer_params: Dict):
 
 @pytest.mark.parametrize(
     "tokenizer_params", [
-        {"tokenizer": "mecab"},
-        {"tokenizer": "sudachi", "mode": "A"},
-        {"tokenizer": "sudachi", "mode": "A"},
-        {"tokenizer": "kytea"},
-        {"tokenizer": "nagisa"},
-        {"tokenizer": "janome"},
-        {"tokenizer": "character"},
-        {"tokenizer": "whitespace"},
-        {"tokenizer": "sentencepiece", "model_path": "data/model.spm"},
+        {"tokenizer": "mecab", "system_dictionary_path": "s3://konoha-demo/mecab/ipadic"},
     ]
 )
 def test_batch_tokenize(raw_texts: List[str], tokenizer_params: Dict):
