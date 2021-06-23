@@ -1,4 +1,5 @@
 import json
+import os
 from typing import Dict
 from typing import List
 
@@ -46,6 +47,19 @@ def test_tokenize_with_character(raw_texts: List[str], tokenizer_params: Dict):
 
 @pytest.mark.parametrize(
     "tokenizer_params", [
+        {"tokenizer": "mecab", "system_dictionary_path": "s3://konoha-demo/mecab/ipadic"},
+    ]
+)
+def test_tokenize(raw_texts: List[str], tokenizer_params: Dict):
+    tokenizer_name = tokenizer_params["tokenizer"]
+    tokenizer = WordTokenizer(**tokenizer_params)
+    expect = [Token.from_dict(token_param) for token_param in read_lines(tokenizer_name)[0]]
+    result = tokenizer.tokenize(raw_texts[0])
+    assert expect == result
+
+
+@pytest.mark.parametrize(
+    "tokenizer_params", [
         {"tokenizer": "mecab"},
         {"tokenizer": "sudachi", "mode": "A"},
         {"tokenizer": "sudachi", "mode": "A"},
@@ -58,6 +72,25 @@ def test_tokenize_with_character(raw_texts: List[str], tokenizer_params: Dict):
     ]
 )
 def test_batch_tokenize_with_character(raw_texts: List[str], tokenizer_params: Dict):
+    tokenizer_name = tokenizer_params["tokenizer"]
+    tokenizer = WordTokenizer(**tokenizer_params)
+    expect = [
+        [Token.from_dict(token_param) for token_param in token_params]
+        for token_params in read_lines(tokenizer_name)
+    ]
+    result = tokenizer.batch_tokenize(raw_texts)
+    assert expect == result
+
+
+@pytest.mark.parametrize(
+    "tokenizer_params", [
+        {"tokenizer": "mecab", "system_dictionary_path": "s3://konoha-demo/mecab/ipadic"},
+    ]
+)
+def test_batch_tokenize(raw_texts: List[str], tokenizer_params: Dict):
+    if "AWS_ACCESS_KEY_ID" not in os.environ and tokenizer_params["system_dictionary_path"].startswith("s3://"):
+        pytest.skip("AWS credentials not found.")
+
     tokenizer_name = tokenizer_params["tokenizer"]
     tokenizer = WordTokenizer(**tokenizer_params)
     expect = [
