@@ -31,7 +31,7 @@ def generate_cache_key(params):
 
 
 @router.post("/api/v1/batch_tokenize")
-def batch_tokenize(params: TokenizeParameter, request: Request):
+async def batch_tokenize(params: TokenizeParameter, request: Request):
     if params.texts is None:
         raise HTTPException(status_code=400, detail="texts is required.")
 
