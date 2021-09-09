@@ -11,6 +11,8 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
+importlib-metadata = {version="^3.7.0"}
+overrides = {version = "^3.0.0"}
 janome = {version = "^0.3.10", optional = true}
 natto-py = {version = "^0.9.0", optional = true}
 kytea = {version = "^0.1.4", optional = true}
@@ -24,10 +26,8 @@ sudachidict-core = {version = "^20200330", optional = true}
 sphinx = {version = "^3.1.1", optional = true}
 sphinx_rtd_theme = {version = "^0.4.3", optional = true}
 nagisa = {version = "^0.2.7", optional = true}
-overrides = {version = "^3.0.0"}
-importlib-metadata = "^3.7.0"
-requests = "^2.25.1"
-rich = "^10.2.2"
+requests = {version = "^2.25.1", optional = true}
+rich = {version = "^10.2.2", optional = true}
 
 [tool.poetry.dev-dependencies]
 python-language-server = "^0.31.2"
@@ -48,7 +48,7 @@ sudachi = ["sudachipy", "sudachidict-core"]
 nagisa = ["nagisa"]
 sentencepiece = ["sentencepiece"]
 remote = ["boto3"]
-server = ["fastapi", "uvicorn"]
+server = ["fastapi", "uvicorn", "requests", "rich"]
 all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn"]
 all_with_integrations = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "allennlp", "fastapi", "uvicorn"]
 docs = ["sphinx", "sphinx_rtd_theme"]
