@@ -49,7 +49,7 @@ nagisa = ["nagisa"]
 sentencepiece = ["sentencepiece"]
 remote = ["boto3"]
 server = ["fastapi", "uvicorn", "requests", "rich"]
-all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn"]
+all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "requests", "rich"]
 all_with_integrations = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "allennlp", "fastapi", "uvicorn"]
 docs = ["sphinx", "sphinx_rtd_theme"]
 
