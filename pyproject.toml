@@ -19,7 +19,7 @@ kytea = {version = "^0.1.4", optional = true}
 sentencepiece = {version = "^0.1.85", optional = true}
 sudachipy = {version = "0.4.9", optional = true}
 boto3 = {version = "^1.11.0", optional = true}
-allennlp = {version = "^2.0.0", optional = true}
+allennlp = {version = "^2.6.0", optional = true}
 fastapi = {version = "^0.54.1", optional = true}
 uvicorn = {version = "0.13.4", optional = true}
 sudachidict-core = {version = "^20200330", optional = true}
