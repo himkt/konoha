@@ -41,5 +41,6 @@ COPY ./pyproject.toml ./pyproject.toml
 COPY ./poetry.lock ./poetry.lock
 
 RUN pip3 install -U pip
-RUN pip3 install poetry
+RUN pip3 install poetry==1.1.6
+RUN poetry run pip install --upgrade setuptools==57.5.0
 RUN poetry install -E all_with_integrations
