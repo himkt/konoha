@@ -25,8 +25,8 @@ sudachidict-core = {version = "^20200330", optional = true}
 sphinx = {version = "^3.1.1", optional = true}
 sphinx_rtd_theme = {version = "^0.4.3", optional = true}
 nagisa = {version = "^0.2.7", optional = true}
-requests = {version = "^2.25.1", optional = true}
 rich = {version = "^10.2.2", optional = true}
+requests = "^2.26.0"
 
 [tool.poetry.dev-dependencies]
 python-language-server = "^0.31.2"
@@ -46,8 +46,8 @@ sudachi = ["sudachipy", "sudachidict-core"]
 nagisa = ["nagisa"]
 sentencepiece = ["sentencepiece"]
 remote = ["boto3"]
-server = ["fastapi", "uvicorn", "requests", "rich"]
-all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "requests", "rich"]
+server = ["fastapi", "uvicorn", "rich"]
+all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "rich"]
 docs = ["sphinx", "sphinx_rtd_theme"]
 
 [tool.poetry-dynamic-versioning]
