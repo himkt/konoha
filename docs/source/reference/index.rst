@@ -9,5 +9,4 @@ API Reference
     word_tokenizers/index
     konoha_token
     data/index
-    integrations/index
     api/index
