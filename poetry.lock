@@ -1069,7 +1069,6 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 
 [extras]
 all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "requests", "rich"]
-all_with_integrations = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "rich"]
 docs = ["sphinx", "sphinx_rtd_theme"]
 janome = ["janome"]
 kytea = ["kytea"]
@@ -1083,7 +1082,7 @@ sudachi = ["sudachipy", "sudachidict-core"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "d94a388b62f3066102296d9c6f55cbbcd9457dc6c14891add231529c560884d0"
+content-hash = "cce7c5f5412c3a103031abaf3e6b3d2dd5774ef4b16ebf8ff0191f804d185b1e"
 
 [metadata.files]
 alabaster = [

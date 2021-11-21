@@ -48,7 +48,6 @@ sentencepiece = ["sentencepiece"]
 remote = ["boto3"]
 server = ["fastapi", "uvicorn", "requests", "rich"]
 all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "requests", "rich"]
-all_with_integrations = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "rich"]
 docs = ["sphinx", "sphinx_rtd_theme"]
 
 [tool.poetry-dynamic-versioning]

@@ -87,8 +87,7 @@ $ curl localhost:8000/api/v1/tokenize -X POST -H "Content-Type: application/json
 ## Installation
 
 
-I recommend you to install konoha by `pip install 'konoha[all]'` or `pip install 'konoha[all_with_integrations]'`.
-(`all_with_integrations` will install `AllenNLP`)
+I recommend you to install konoha by `pip install 'konoha[all]'`.
 
 - Install konoha with a specific tokenizer: `pip install 'konoha[(tokenizer_name)]`.
 - Install konoha with a specific tokenizer and remote file support: `pip install 'konoha[(tokenizer_name),remote]'`
