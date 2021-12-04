@@ -1,3 +1,5 @@
+import re
+
 from konoha.sentence_tokenizer import SentenceTokenizer
 
 DOCUMENT1 = """
@@ -20,6 +22,14 @@ DOCUMENT3 = """
 
 DOCUMENT4 = """
 わんわん。「にゃ？」(にゃー）わんわん。「わおーん。」（犬より。）
+"""
+
+DOCUMENT5 = """
+わんわん。「にゃ？」(にゃー）わんわん。『わおーん。』（犬より。）
+"""
+
+DOCUMENT6 = """
+わんわん。「にゃ？」(にゃー）わんわん．「わおーん。」（犬より。）
 """
 
 
@@ -48,4 +58,18 @@ def test_sentence_tokenize_with_combined():
     corpus = SentenceTokenizer()
     expect = ["わんわん。", "「にゃ？」(にゃー）わんわん。", "「わおーん。」（犬より。）"]
     result = corpus.tokenize(DOCUMENT4)
+    assert expect == result
+
+
+def test_sentence_tokenize_with_custom_patterns():
+    corpus = SentenceTokenizer(patterns=SentenceTokenizer.PATTERNS + [re.compile(r"『.*?』")])
+    expect = ["わんわん。", "「にゃ？」(にゃー）わんわん。", "『わおーん。』（犬より。）"]
+    result = corpus.tokenize(DOCUMENT5)
+    assert expect == result
+
+
+def test_sentence_tokenize_with_custom_period():
+    corpus = SentenceTokenizer(period="．")
+    expect = ["わんわん。「にゃ？」(にゃー）わんわん．", "「わおーん。」（犬より。）"]
+    result = corpus.tokenize(DOCUMENT6)
     assert expect == result

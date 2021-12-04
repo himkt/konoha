@@ -147,6 +147,29 @@ print(tokenizer.tokenize(sentence))
 # => ['私は猫だ。', '名前なんてものはない。', 'だが，「かわいい。それで十分だろう」。']
 ```
 
+You can change symbols for a sentence splitter and bracket expression.
+
+1. sentence splitter
+
+```python
+sentence = "私は猫だ。名前なんてものはない．だが，「かわいい。それで十分だろう」。"
+
+tokenizer = SentenceTokenizer(period="．")
+print(tokenizer.tokenize(sentence))
+# => ['私は猫だ。名前なんてものはない．', 'だが，「かわいい。それで十分だろう」。']
+```
+
+2. bracket expression
+
+```python
+sentence = "私は猫だ。名前なんてものはない。だが，『かわいい。それで十分だろう』。"
+
+tokenizer = SentenceTokenizer()
+print(tokenizer.tokenize(sentence))
+# => ['私は猫だ。', '名前なんてものはない。', 'だが，『かわいい。それで十分だろう』。']
+```
+
+
 ## Test
 
 ```
