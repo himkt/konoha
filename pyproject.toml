@@ -3,7 +3,7 @@ line-length = 119
 
 [tool.poetry]
 name = "konoha"
-version = "0.0.0"  # it's be overwritten by poetry-dynamic-versioning
+version = "5.1.0"
 description = "A tiny sentence/word tokenizer for Japanese text written in Python"
 authors = ["himkt <himkt@klis.tsukuba.ac.jp>"]
 readme = "README.md"
@@ -50,10 +50,6 @@ server = ["fastapi", "uvicorn", "rich"]
 all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "rich"]
 docs = ["sphinx", "sphinx_rtd_theme"]
 
-[tool.poetry-dynamic-versioning]
-enable = true
-style = "pep440"
-
 [build-system]
-requires = ["poetry>=1.0.2", "poetry-dynamic-versioning"]
+requires = ["poetry>=1.0.2"]
 build-backend = "poetry.masonry.api"
