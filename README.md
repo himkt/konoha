@@ -164,7 +164,9 @@ print(tokenizer.tokenize(sentence))
 ```python
 sentence = "私は猫だ。名前なんてものはない。だが，『かわいい。それで十分だろう』。"
 
-tokenizer = SentenceTokenizer()
+tokenizer = SentenceTokenizer(
+    patterns=SentenceTokenizer.PATTERNS + [re.compile(r"『.*?』")],
+)
 print(tokenizer.tokenize(sentence))
 # => ['私は猫だ。', '名前なんてものはない。', 'だが，『かわいい。それで十分だろう』。']
 ```
