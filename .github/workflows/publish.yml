@@ -1,0 +1,17 @@
+name: publish
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    if: github.event_name == 'release'
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and publish to pypi
+      uses: JRubics/poetry-publish@v1.9
+      with:
+        pypi_token: ${{ secrets.PYPI_TOKEN }}
