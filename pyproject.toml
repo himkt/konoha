@@ -35,7 +35,7 @@ flake8 = "^3.7.9"
 rope = "^0.14.0"
 mypy = "^0.812"
 black = "^19.10b0"
-ipython = "^7.10.2"
+ipython = "^7.16.3"
 isort = "^5.5.3"
 
 [tool.poetry.extras]
