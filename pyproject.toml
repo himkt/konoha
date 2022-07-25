@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.7.0"
 importlib-metadata = "^4.0.0"
 overrides = {version = "^3.0.0"}
 janome = {version = "^0.3.10", optional = true}
