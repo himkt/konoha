@@ -23,7 +23,7 @@ You can also install Konoha with specific tokenizer, please run:
 
 If you run `pip install konoha`, Konoha will be installed only with sentence splitter.
 
-You can also install the development version of Konoha from master branch of Git repository:
+You can also install the development version of Konoha from the main branch of Git repository:
 
 .. code-block:: bash
 
