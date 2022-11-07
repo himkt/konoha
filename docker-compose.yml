@@ -4,10 +4,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: docker/app/Dockerfile
     ports:
       - "8000:8000"
-  dev:
-    build:
-      context: .
-      dockerfile: docker/dev/Dockerfile
+    platform:
+      linux/amd64
