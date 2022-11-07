@@ -18,7 +18,6 @@ RUN apt update -y \
             python3-pip \
       && rm -rf /var/lib/apt/lists/*
 
-
 WORKDIR /tmp
 
 # kytea
@@ -30,7 +29,6 @@ RUN tar zxvf kytea-0.4.7.tar.gz \
       && ./configure && make && make install && ldconfig -v \
       && cd .. && rm -rf kytea-0.4.7.tar.gz kytea-0.4.7
 
-
 WORKDIR /work
 
 COPY ./data ./data
@@ -40,9 +38,7 @@ COPY ./poetry.lock ./poetry.lock
 COPY ./README.md ./README.md
 
 RUN pip3 install -U pip
-RUN pip3 install poetry
-RUN pip3 install poetry==1.1.6
-RUN poetry run pip install --upgrade setuptools==57.5.0
+RUN pip3 install poetry==1.2.2
 RUN poetry install --no-dev -E all
 RUN poetry cache clear pypi --all --no-interaction
 
