@@ -9,7 +9,7 @@
 [![Downloads](https://pepy.tech/badge/konoha/month)](https://pepy.tech/project/konoha/month)
 [![Downloads](https://pepy.tech/badge/konoha/week)](https://pepy.tech/project/konoha/week)
 
-[![Build Status](https://github.com/himkt/konoha/workflows/Python%20package/badge.svg?style=flat-square)](https://github.com/himkt/konoha/actions)
+[![Build Status](https://github.com/himkt/konoha/actions/workflows/ci.yml/badge.svg)](https://github.com/himkt/konoha/actions/workflows/ci.yml)
 [![Documentation Status](https://readthedocs.org/projects/konoha/badge/?version=latest)](https://konoha.readthedocs.io/en/latest/?badge=latest)
 ![Python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue?logo=python)
 [![PyPI](https://img.shields.io/pypi/v/konoha.svg)](https://pypi.python.org/pypi/konoha)
