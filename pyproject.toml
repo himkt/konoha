@@ -10,9 +10,8 @@ readme = "README.md"
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7.0"
+python = "^3.8.0"
 importlib-metadata = ">=4.0.0,<7.0.0"
-overrides = {version = "^3.0.0"}
 janome = {version = "^0.3.10", optional = true}
 natto-py = {version = "^1.0.0", optional = true}
 kytea = {version = "^0.1.4", optional = true}
@@ -26,7 +25,7 @@ sphinx = {version = "^5.1.1", optional = true}
 pydata-sphinx-theme = {version = "^0.10.1", optional = true}
 nagisa = {version = "^0.2.7", optional = true}
 rich = {version = "^10.2.2", optional = true}
-requests = "^2.26.0"
+requests = "<3.0.0"
 
 [tool.poetry.dev-dependencies]
 python-language-server = "^0.31.2"
