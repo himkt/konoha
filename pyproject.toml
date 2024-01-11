@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7.0"
+python = "^3.8.0"
 importlib-metadata = ">=4.0.0,<7.0.0"
 janome = {version = "^0.3.10", optional = true}
 natto-py = {version = "^1.0.0", optional = true}
