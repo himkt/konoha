@@ -6,7 +6,6 @@ from typing import Pattern
 
 
 class SentenceTokenizer:
-
     PERIOD = "。"
     PERIOD_SPECIAL = "__PERIOD__"
 
@@ -20,7 +19,6 @@ class SentenceTokenizer:
         period: Optional[str] = None,
         patterns: Optional[List[Pattern[str]]] = None,
     ) -> None:
-
         self._period = period or self.PERIOD
         self._patterns = patterns or self.PATTERNS
 

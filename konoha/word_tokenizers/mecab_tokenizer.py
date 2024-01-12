@@ -74,6 +74,7 @@ class MeCabTokenizer(BaseTokenizer):
         dictionary_format: Optional[str] = None,
     ) -> None:
         from natto import MeCab
+
         super().__init__(name="mecab")
         options = []
         if isinstance(user_dictionary_path, str):
