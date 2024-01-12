@@ -1,6 +1,9 @@
 [tool.black]
 line-length = 119
 
+[tool.ruff]
+line-length = 119
+
 [tool.poetry]
 name = "konoha"
 version = "5.5.2"
@@ -26,17 +29,6 @@ nagisa = {version = "^0.2.7", optional = true}
 rich = {version = "^13.7.0", optional = true}
 requests = "<3.0.0"
 
-[tool.poetry.dev-dependencies]
-python-language-server = "^0.31.2"
-pytest = "^5.3.2"
-flake8 = "^3.7.9"
-rope = "^0.14.0"
-mypy = "^0.812"
-black = "^19.10b0"
-ipython = "^7.16.3"
-isort = "^5.5.3"
-httpx = "<1.0.0"
-
 [tool.poetry.extras]
 janome = ["janome"]
 mecab = ["natto-py"]
@@ -48,6 +40,12 @@ remote = ["boto3"]
 server = ["fastapi", "uvicorn", "rich"]
 all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn", "rich"]
 docs = ["sphinx", "pydata-sphinx-theme"]
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.4"
+httpx = "^0.26.0"
+ruff = "^0.1.12"
+mypy = "^1.8.0"
 
 [build-system]
 requires = ["poetry>=1.0.2"]
