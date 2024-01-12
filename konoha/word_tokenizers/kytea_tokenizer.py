@@ -8,6 +8,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class KyTeaTokenizer(BaseTokenizer):
     def __init__(self, model_path: Optional[str] = None) -> None:
         from Mykytea import Mykytea
+
         super().__init__(name="kytea")
 
         kytea_option = ""

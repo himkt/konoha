@@ -8,6 +8,7 @@ from konoha.word_tokenizers.tokenizer import BaseTokenizer
 class JanomeTokenizer(BaseTokenizer):
     def __init__(self, user_dictionary_path: Optional[str] = None) -> None:
         from janome.tokenizer import Tokenizer
+
         super().__init__(name="janome")
         self._tokenizer = Tokenizer(udic=user_dictionary_path)
 
