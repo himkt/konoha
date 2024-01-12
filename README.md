@@ -11,7 +11,7 @@
 
 [![Build Status](https://github.com/himkt/konoha/actions/workflows/ci.yml/badge.svg)](https://github.com/himkt/konoha/actions/workflows/ci.yml)
 [![Documentation Status](https://readthedocs.org/projects/konoha/badge/?version=latest)](https://konoha.readthedocs.io/en/latest/?badge=latest)
-![Python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue?logo=python)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/konoha)
 [![PyPI](https://img.shields.io/pypi/v/konoha.svg)](https://pypi.python.org/pypi/konoha)
 [![GitHub Issues](https://img.shields.io/github/issues/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/himkt/konoha.svg?cacheSeconds=60&color=yellow)](https://github.com/himkt/konoha/issues)
