@@ -36,7 +36,7 @@ jobs:
     - name: Install konoha
       run: pip install .[all]
     - name: Install checker and pytest
-      run: pip install ruff pytest
+      run: pip install ruff pytest httpx
     - name: Run linter
       run: |
         ruff check konoha
