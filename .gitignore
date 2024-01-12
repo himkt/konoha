@@ -9,3 +9,5 @@ __pycache__
 
 # Sphinx documentation
 docs/build/
+
+/venv
