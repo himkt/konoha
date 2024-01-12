@@ -40,9 +40,7 @@ jobs:
         poetry run ruff check konoha
         poetry run ruff format --diff konoha
     - name: Test with pytest
+      run: poetry run pytest
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: |
-        pip install pytest httpx
-        pytest
