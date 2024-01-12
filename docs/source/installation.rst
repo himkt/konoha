@@ -1,19 +1,13 @@
 Installation
 ============
 
-Konoha supports Python 3.5 or newer.
+The latest Konoha supports Python 3.8 or newer.
 
 We recommend to install via pip:
 
 .. code-block:: bash
 
     $ pip install konoha[all]
-
-If you want to install Konoha with AllenNLP integration, please run:
-
-.. code-block:: bash
-
-    $ pip install konoha[all_with_integrations]
 
 You can also install Konoha with specific tokenizer, please run:
 
