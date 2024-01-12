@@ -15,5 +15,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - run: docker build -t himkt/konoha:${{ github.sha }} .
-      - run: docker push himkt/konoha:${{ github.sha }}
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: himkt/konoha:latest,himkt/konoha:${{ github.sha }}
