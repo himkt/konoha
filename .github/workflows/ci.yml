@@ -35,14 +35,14 @@ jobs:
         python -m pip install --upgrade pip
     - name: Install konoha
       run: pip install .[all]
-    - name: Install checker
-      run: pip install ruff
+    - name: Install checker and pytest
+      run: pip install ruff pytest
     - name: Run linter
       run: |
         ruff check konoha
         ruff format --diff konoha
-    - name: Test with pytest
-      run: run pytest
+    - name: Run test
+      run: pytest
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
