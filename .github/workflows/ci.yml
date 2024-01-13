@@ -36,8 +36,8 @@ jobs:
     - run: pip install ruff pytest httpx
 
     - run: |
-        ruff check konoha
-        ruff format --diff konoha
+        ruff check src
+        ruff format --diff src
     - run: pytest
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
