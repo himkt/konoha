@@ -84,17 +84,17 @@ lxml = ["lxml"]
 
 [[package]]
 name = "boto3"
-version = "1.34.17"
+version = "1.34.18"
 description = "The AWS SDK for Python"
 optional = true
 python-versions = ">= 3.8"
 files = [
-    {file = "boto3-1.34.17-py3-none-any.whl", hash = "sha256:1efc02be786884034d503d59c018cf7650d0cff9fcb37cd2eb49b802a6fe6111"},
-    {file = "boto3-1.34.17.tar.gz", hash = "sha256:8ca248cc84e7e859e4e276eb9c4309fa01a3e58473bf48d6c33448be870c2bb8"},
+    {file = "boto3-1.34.18-py3-none-any.whl", hash = "sha256:ae7cfdf45f4dfd33bd3e84e36afcfbf0517e64a32e647989a068f34d053572b8"},
+    {file = "boto3-1.34.18.tar.gz", hash = "sha256:5e38ca63007e903a7efe0a1751a0374d287b50d7bc148b9d3d495cdf74a0b712"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.17,<1.35.0"
+botocore = ">=1.34.18,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -103,13 +103,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.17"
+version = "1.34.18"
 description = "Low-level, data-driven core of boto 3."
 optional = true
 python-versions = ">= 3.8"
 files = [
-    {file = "botocore-1.34.17-py3-none-any.whl", hash = "sha256:7272c39032c6f1d62781e4c8445d9a1d9140c2bf52ba7ee66bf6db559c4b2427"},
-    {file = "botocore-1.34.17.tar.gz", hash = "sha256:e48a662f3a6919219276b55085e8f73c3347966675f55e9d448be30cf79678ee"},
+    {file = "botocore-1.34.18-py3-none-any.whl", hash = "sha256:2067d8385c11b7cf2d336227d8fa5aea632fe61afbadb3168dc169dcc13d8c3e"},
+    {file = "botocore-1.34.18.tar.gz", hash = "sha256:85a77e72560a45b0dfdad94f92f5e114c82be07a51bb2d19dd310dab8be158cf"},
 ]
 
 [package.dependencies]
@@ -644,27 +644,27 @@ files = [
 
 [[package]]
 name = "kytea"
-version = "0.1.7"
-description = "An text analysis toolkit KyTea binding"
+version = "0.1.8"
+description = "A text analysis toolkit KyTea binding"
 optional = true
 python-versions = "*"
 files = [
-    {file = "kytea-0.1.7-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:d0a52a124928f79800dd30b76dd76f2987b037f002342a75dcd79af65923eaa4"},
-    {file = "kytea-0.1.7-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:c6d814c3d2e5f9354fb19a7fbdf6ef6d8e90db612cbc277eac80e5071d9460d9"},
-    {file = "kytea-0.1.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:08d8dffde9683e2f702c886a6ccf24d570a101537e86c8c1b74c6ca8278c7809"},
-    {file = "kytea-0.1.7-cp310-cp310-win_amd64.whl", hash = "sha256:0c7df17da942f8568b8d6067c2cdcdb3df4ce15b5de08b1fdd8f1083bc06287f"},
-    {file = "kytea-0.1.7-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:20475dca4cc369917abdc80725d1b15dd590b1962315eaefa4d5e8ce973f773f"},
-    {file = "kytea-0.1.7-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:489033f9ee2a77be302b67b1aab5e78144044b8b1d54b6198a57ea7c8704031d"},
-    {file = "kytea-0.1.7-cp37-cp37m-win_amd64.whl", hash = "sha256:c8d338811dd2fda7d8c7310259818ff1cc4c72df27b484c6d385189065c516ec"},
-    {file = "kytea-0.1.7-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:d21aa496d59e3daeb5bf65070d87fe77461d5b5e2ee18103e6cd24f2120b2ac7"},
-    {file = "kytea-0.1.7-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:fb912c477e2e046a7f43cafd672a7a11be04197b3f04f9cd45f423c8d5cd38c4"},
-    {file = "kytea-0.1.7-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e7af4ef5aabbb1fa86cf0f61c304ca83141a3a7cdad0411f7140ec1a74750a1a"},
-    {file = "kytea-0.1.7-cp38-cp38-win_amd64.whl", hash = "sha256:65bb113ce9ae662eb4c9d247718dd301a5acc42ad6aadcc5145b3219c6963858"},
-    {file = "kytea-0.1.7-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:a4a1c9e7ec6450505ac4690537bf6af4f6733c36362b47433c90e09000be9ef7"},
-    {file = "kytea-0.1.7-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:820b821f8e9a701bab2c39a2c1a6ecf72a58cbf3ac3aef1c18dce4d46937334e"},
-    {file = "kytea-0.1.7-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:401f84f41ecd8913be6754872c08fdd2dff2d39a3bd2aca7cfc537e27f4dbe78"},
-    {file = "kytea-0.1.7-cp39-cp39-win_amd64.whl", hash = "sha256:30160ac0a8b58c9790a74bc3e60f86f492c61c644c74a91a214cedcec06c7071"},
-    {file = "kytea-0.1.7.tar.gz", hash = "sha256:fab1594ad3f18737fb686c9bb7eedda38c0f2f3b4e2f7624e8c1145246e13e9b"},
+    {file = "kytea-0.1.8-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:befce479c5879ee2a2482669e890d7b15ac438e72f6c530e2209b9f9ae97e587"},
+    {file = "kytea-0.1.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5b9bf995de3f6dfdd175019404233f86109e6c62d5c768300078f78d463ed99d"},
+    {file = "kytea-0.1.8-cp310-cp310-win_amd64.whl", hash = "sha256:ddbc0faacd0c95be21f2bc674f436ebdaad6ca6a985f451da0aec29f3e9696e7"},
+    {file = "kytea-0.1.8-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:04281051a568cffc733ce6bdaf6a64a6fb0264990c4802d170862b2fe996837a"},
+    {file = "kytea-0.1.8-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4f8f8627d1ddd8a8062366f1fe8ee6cf8422b0fd781f4f5a84288aeffcb7336b"},
+    {file = "kytea-0.1.8-cp311-cp311-win_amd64.whl", hash = "sha256:159a5d14a09c3b1675ebb825cc955927a594feded78dcd797e7d8ff849e70d92"},
+    {file = "kytea-0.1.8-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:1b2ef51c218b4736c7a634c695ff5f5058fd5e86d90f003182f8cb057392b0a0"},
+    {file = "kytea-0.1.8-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1a7f3b936f215f21041393d368ed2ada382ca9ae4be1d82d5ca14cea6749e100"},
+    {file = "kytea-0.1.8-cp312-cp312-win_amd64.whl", hash = "sha256:c6215e054b94d02dd588ee24903c984f0dbfe366ca05fa3924812261a0bfa81f"},
+    {file = "kytea-0.1.8-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:f52e7d290e10325076be26dbb6c40a8a17721cba4731198954281b9cb7cf0575"},
+    {file = "kytea-0.1.8-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:31d8190d4eee37a2036261712ae9c10a73cb3543b8408bfcef54ab057d6fd151"},
+    {file = "kytea-0.1.8-cp38-cp38-win_amd64.whl", hash = "sha256:781478b05f40d5e773d75d8be30642adbcb4edb71e71f4c96c860ad1bfa6034c"},
+    {file = "kytea-0.1.8-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:eef3fd904c10a9f36dd50c87edda4e008c1e2a717125c6d15ffa2dfe7b0d0680"},
+    {file = "kytea-0.1.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2072d85d0ad52de1ef7a83ffc8600e0f53ffe9519dbee70847d9c7430cb390c6"},
+    {file = "kytea-0.1.8-cp39-cp39-win_amd64.whl", hash = "sha256:c8a811ce7431d6ac93e3cdb50ca1fcd9b009bc9b84cf4e0547c9041d65c9eed3"},
+    {file = "kytea-0.1.8.tar.gz", hash = "sha256:ace0b3ab9193a06e2b9c096ebd608432a95bd272f347952cc3e429e384c1d903"},
 ]
 
 [[package]]
@@ -1227,28 +1227,28 @@ jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [[package]]
 name = "ruff"
-version = "0.1.12"
+version = "0.1.13"
 description = "An extremely fast Python linter and code formatter, written in Rust."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "ruff-0.1.12-py3-none-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:544038693543c11edc56bb94a9875df2dc249e3616f90c15964c720dcccf0745"},
-    {file = "ruff-0.1.12-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:8a0e3ef6299c4eab75a7740730e4b4bd4a36e0bd8102ded01553403cad088fd4"},
-    {file = "ruff-0.1.12-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:47f6d939461e3273f10f4cd059fd0b83c249d73f1736032fffbac83a62939395"},
-    {file = "ruff-0.1.12-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:25be18abc1fc3f3d3fb55855c41ed5d52063316defde202f413493bb3888218c"},
-    {file = "ruff-0.1.12-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:d41e9f100b50526d80b076fc9c103c729387ff3f10f63606ed1038c30a372a40"},
-    {file = "ruff-0.1.12-py3-none-manylinux_2_17_ppc64.manylinux2014_ppc64.whl", hash = "sha256:472a0548738d4711549c7874b43fab61aacafb1fede29c5232d4cfb8e2d13f69"},
-    {file = "ruff-0.1.12-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:46685ef2f106b827705df876d38617741ed4f858bbdbc0817f94476c45ab6669"},
-    {file = "ruff-0.1.12-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:cf6073749c70b616d7929897b14824ec6713a6c3a8195dfd2ffdcc66594d880c"},
-    {file = "ruff-0.1.12-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4bdf26e5a2efab4c3aaf6b61648ea47a525dc12775810a85c285dc9ca03e5ac0"},
-    {file = "ruff-0.1.12-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:b631c6a95e4b6d5c4299e599067b5a89f5b18e2f2d9a6c22b879b3c4b077c96e"},
-    {file = "ruff-0.1.12-py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:f193f460e231e63af5fc7516897cf5ab257cbda72ae83cf9a654f1c80c3b758a"},
-    {file = "ruff-0.1.12-py3-none-musllinux_1_2_i686.whl", hash = "sha256:718523c3a0b787590511f212d30cc9b194228ef369c8bdd72acd1282cc27c468"},
-    {file = "ruff-0.1.12-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:1c49e826de55d81a6ef93808b760925e492bad7cc470aaa114a3be158b2c7f99"},
-    {file = "ruff-0.1.12-py3-none-win32.whl", hash = "sha256:fbb1c002eeacb60161e51d77b2274c968656599477a1c8c65066953276e8ee2b"},
-    {file = "ruff-0.1.12-py3-none-win_amd64.whl", hash = "sha256:7fe06ba77e5b7b78db1d058478c47176810f69bb5be7c1b0d06876af59198203"},
-    {file = "ruff-0.1.12-py3-none-win_arm64.whl", hash = "sha256:bb29f8e3e6c95024902eaec5a9ce1fd5ac4e77f4594f4554e67fbb0f6d9a2f37"},
-    {file = "ruff-0.1.12.tar.gz", hash = "sha256:97189f38c655e573f6bea0d12e9f18aad5539fd08ab50651449450999f45383a"},
+    {file = "ruff-0.1.13-py3-none-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:e3fd36e0d48aeac672aa850045e784673449ce619afc12823ea7868fcc41d8ba"},
+    {file = "ruff-0.1.13-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:9fb6b3b86450d4ec6a6732f9f60c4406061b6851c4b29f944f8c9d91c3611c7a"},
+    {file = "ruff-0.1.13-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:b13ba5d7156daaf3fd08b6b993360a96060500aca7e307d95ecbc5bb47a69296"},
+    {file = "ruff-0.1.13-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:9ebb40442f7b531e136d334ef0851412410061e65d61ca8ce90d894a094feb22"},
+    {file = "ruff-0.1.13-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:226b517f42d59a543d6383cfe03cccf0091e3e0ed1b856c6824be03d2a75d3b6"},
+    {file = "ruff-0.1.13-py3-none-manylinux_2_17_ppc64.manylinux2014_ppc64.whl", hash = "sha256:5f0312ba1061e9b8c724e9a702d3c8621e3c6e6c2c9bd862550ab2951ac75c16"},
+    {file = "ruff-0.1.13-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:2f59bcf5217c661254bd6bc42d65a6fd1a8b80c48763cb5c2293295babd945dd"},
+    {file = "ruff-0.1.13-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:e6894b00495e00c27b6ba61af1fc666f17de6140345e5ef27dd6e08fb987259d"},
+    {file = "ruff-0.1.13-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9a1600942485c6e66119da294c6294856b5c86fd6df591ce293e4a4cc8e72989"},
+    {file = "ruff-0.1.13-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:ee3febce7863e231a467f90e681d3d89210b900d49ce88723ce052c8761be8c7"},
+    {file = "ruff-0.1.13-py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:dcaab50e278ff497ee4d1fe69b29ca0a9a47cd954bb17963628fa417933c6eb1"},
+    {file = "ruff-0.1.13-py3-none-musllinux_1_2_i686.whl", hash = "sha256:f57de973de4edef3ad3044d6a50c02ad9fc2dff0d88587f25f1a48e3f72edf5e"},
+    {file = "ruff-0.1.13-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:7a36fa90eb12208272a858475ec43ac811ac37e91ef868759770b71bdabe27b6"},
+    {file = "ruff-0.1.13-py3-none-win32.whl", hash = "sha256:a623349a505ff768dad6bd57087e2461be8db58305ebd5577bd0e98631f9ae69"},
+    {file = "ruff-0.1.13-py3-none-win_amd64.whl", hash = "sha256:f988746e3c3982bea7f824c8fa318ce7f538c4dfefec99cd09c8770bd33e6539"},
+    {file = "ruff-0.1.13-py3-none-win_arm64.whl", hash = "sha256:6bbbc3042075871ec17f28864808540a26f0f79a4478c357d3e3d2284e832998"},
+    {file = "ruff-0.1.13.tar.gz", hash = "sha256:e261f1baed6291f434ffb1d5c6bd8051d1c2a26958072d38dfbec39b3dda7352"},
 ]
 
 [[package]]
@@ -1660,4 +1660,4 @@ sudachi = ["sudachidict-core", "sudachipy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.0"
-content-hash = "9c3e13ad19bc34d815ea330867eb03662e01e748d376bc1752b3eedfb929e7e6"
+content-hash = "2366c09e79987ef6d888226ad2ff21945cc5fc78b003ce17bd71419a056c9fb3"
