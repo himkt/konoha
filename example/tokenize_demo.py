@@ -11,17 +11,12 @@ if __name__ == "__main__":
 
     sentence_tokenizer = SentenceTokenizer()
     tokenizers = ["MeCab", "KyTea", "Janome", "nagisa", "Character"]
-    tokenizers_support_postag = ["MeCab", "KyTea", "Janome", "nagisa"]
 
     word_tokenizers = []
     for word_tokenizer_name in tokenizers:
         try:
             _tokenizer = WordTokenizer(word_tokenizer_name, endpoint=args.endpoint)
             word_tokenizers.append(_tokenizer)
-
-            if word_tokenizer_name in tokenizers_support_postag:
-                _tokenizer = WordTokenizer(word_tokenizer_name)
-                word_tokenizers.append(_tokenizer)
 
         except (ImportError, RuntimeError):
             print("Skip: ", word_tokenizer_name)
