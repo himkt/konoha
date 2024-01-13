@@ -8,6 +8,7 @@ description = "A tiny sentence/word tokenizer for Japanese text written in Pytho
 authors = ["himkt <himkt@klis.tsukuba.ac.jp>"]
 readme = "README.md"
 packages = [{include = "konoha", from = "src" }]
+include = ["src/konoha/py.typed"]
 license = "MIT"
 
 [tool.poetry.dependencies]
