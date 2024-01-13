@@ -38,7 +38,9 @@ jobs:
     - run: |
         ruff check src
         ruff format --diff src
-    - run: mypy src
+    - run: |
+        mypy --install-types
+        mypy src
     - run: pytest
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
