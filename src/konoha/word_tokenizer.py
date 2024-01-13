@@ -10,6 +10,7 @@ from konoha import word_tokenizers
 from konoha.data.resource import Resource
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
+from konoha.word_tokenizers import KonohaAPITokenizer
 
 
 class WordTokenizer:
@@ -42,6 +43,8 @@ class WordTokenizer:
 
         if not isinstance(endpoint, str):
             self._setup_tokenizer()
+        else:
+            self._tokenizer = KonohaAPITokenizer(tokenizer)
 
     def _setup_tokenizer(self) -> None:
         if self._tokenizer_name == "character":
