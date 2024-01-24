@@ -8,7 +8,7 @@ RED = "\033[1;31m"
 RST = "\033[0;0m"
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("uvicorn.app.konoha.data.resource")
 
 
 class Resource:
@@ -65,10 +65,10 @@ class Resource:
             logger.info(f"Downloading {obj.key}")
             download_path = os.path.join(resource_dir, obj.key)
             bucket.download_file(obj.key, download_path)
-            logging.info(f"Downloaded to {download_path}")
+            logger.info(f"Downloaded to {download_path}")
 
         dest_dir = os.path.join(resource_dir, prefix)
-        logging.info(f"Downloaded to {dest_dir}")
+        logger.info(f"Downloaded to {dest_dir}")
         return dest_dir
 
     @property

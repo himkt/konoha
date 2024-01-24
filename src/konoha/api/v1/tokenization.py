@@ -22,7 +22,7 @@ class TokenizeParameter(BaseModel):
 
 
 router = APIRouter()
-logger = logging.getLogger(__file__)
+logger = logging.getLogger("uvicorn.app.konoha.api.v1.tokenization")
 
 
 def generate_cache_key(params):
@@ -44,10 +44,10 @@ async def tokenize(params: TokenizeParameter, request: Request):
 
     cache_key = generate_cache_key(params)
     if cache_key in request.app.state.cache:
-        logging.info(f"Hit cache: {cache_key}")
+        logger.info(f"Hit cache: {cache_key}")
         tokenizer = request.app.state.cache[cache_key]
     else:
-        logging.info(f"Create tokenizer: {cache_key}")
+        logger.info(f"Create tokenizer: {cache_key}")
         try:
             tokenizer = WordTokenizer(
                 tokenizer=params.tokenizer,
