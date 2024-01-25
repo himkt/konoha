@@ -32,11 +32,11 @@ RUN tar zxvf kytea-0.4.7.tar.gz \
 
 WORKDIR /work
 
-COPY ./data ./data
-COPY ./konoha ./konoha
+COPY ./data           ./data
+COPY ./src            ./src
 COPY ./pyproject.toml ./pyproject.toml
-COPY ./poetry.lock ./poetry.lock
-COPY ./README.md ./README.md
+COPY ./poetry.lock    ./poetry.lock
+COPY ./README.md      ./README.md
 
 RUN python3.10 -m pip install -U pip
 RUN python3.10 -m pip install .[all]
