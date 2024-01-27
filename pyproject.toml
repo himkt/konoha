@@ -36,11 +36,13 @@ remote = ["boto3"]
 server = ["fastapi", "uvicorn"]
 all = ["janome", "natto-py", "kytea", "sudachipy", "sudachidict-core", "nagisa", "sentencepiece", "boto3", "fastapi", "uvicorn"]
 
-[tool.poetry.group.test.dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^7.4.4"
 httpx = "^0.26.0"
-ruff = "^0.1.12"
+ruff = "^0.1.14"
 mypy = "^1.8.0"
+sphinx = "<7.2.0"
+pydata-sphinx-theme = "<0.15.0"
 
 [build-system]
 requires = ["poetry>=1.0.2"]
