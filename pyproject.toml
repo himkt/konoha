@@ -21,7 +21,7 @@ nagisa = {version = "^0.2.7", optional = true}
 natto-py = {version = "^1.0.0", optional = true}
 requests = "<3.0.0"
 sentencepiece = {version = "^0.1.85", optional = true}
-sudachipy = {version = "^0.5.0", optional = true}
+sudachipy = {version = "^0.6.8", optional = true}
 sudachidict-core = {version = "20230927", optional = true}
 uvicorn = {version = "<0.26.0", optional = true}
 

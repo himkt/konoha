@@ -407,34 +407,6 @@ files = [
 ]
 
 [[package]]
-name = "dartsclone"
-version = "0.9.0"
-description = "Python binding of Darts Clone"
-optional = true
-python-versions = "*"
-files = [
-    {file = "dartsclone-0.9.0-cp36-cp36m-macosx_10_13_x86_64.whl", hash = "sha256:9d7776a98a29a09f27605b2a38776c098f967065449fabc07b8417bee2ac2695"},
-    {file = "dartsclone-0.9.0-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:31526b6be82f2b6dd972802483298c964735044ced874d86a41aaa2767946b05"},
-    {file = "dartsclone-0.9.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:86773da42e67bc88429c5dbfb1bbd730ada89705cd19a22818dbda07022acdc3"},
-    {file = "dartsclone-0.9.0-cp36-cp36m-win32.whl", hash = "sha256:fbd6bedaa48d6e2a55bf3c3e2d7e237dc16011c94e095378be4cf38a2d2be6f3"},
-    {file = "dartsclone-0.9.0-cp36-cp36m-win_amd64.whl", hash = "sha256:d82d9291f76bf6d884e1856220bf4eb5e2782b442e9862c5eb46cd7a5e78b0d1"},
-    {file = "dartsclone-0.9.0-cp37-cp37m-macosx_10_13_x86_64.whl", hash = "sha256:57e94d298109fbeacfbec3ea39cb5be02c1e662d9a026f6bbe629725f4bcf714"},
-    {file = "dartsclone-0.9.0-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:ac706d78f83e0ab9281b56136e2c90179b68e444cde48ebe74ddb3462d608499"},
-    {file = "dartsclone-0.9.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:dc23a841448f6382903cf893c99b54713a4ddc362f8af39d62e8b2b8eac94377"},
-    {file = "dartsclone-0.9.0-cp37-cp37m-win32.whl", hash = "sha256:5771e089b564fd79edc2f3a21b03474bf4f115a8251d1b185c70110b334cf33b"},
-    {file = "dartsclone-0.9.0-cp37-cp37m-win_amd64.whl", hash = "sha256:9ec3051f2d3a94ba0d8edf3798bc14fd905b7dff6dbdc982f32ceba18a767bc4"},
-    {file = "dartsclone-0.9.0-cp38-cp38-macosx_10_13_x86_64.whl", hash = "sha256:b967698e94ce991a12ab8e98d02968beeec2bb739de24ffc6a273284abcf83c9"},
-    {file = "dartsclone-0.9.0-cp38-cp38-manylinux1_i686.whl", hash = "sha256:eb353030aa25355ccc3bf3b98c97b3ef06263fe5050cb92a62bf50aba2472884"},
-    {file = "dartsclone-0.9.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:ee0b39c73cac7c3b25b40c178ee239c53c3ebebac57551535a1d534c1d55fa0b"},
-    {file = "dartsclone-0.9.0-cp38-cp38-win32.whl", hash = "sha256:bc29f27e654253d29ed242422c45a6e0cc90d291165cd753ca0d34bdee15b180"},
-    {file = "dartsclone-0.9.0-cp38-cp38-win_amd64.whl", hash = "sha256:b1e0cbca0e1865b6b5238580a015cf40077fea31548b0a98152bca8c46dea0e6"},
-    {file = "dartsclone-0.9.0.tar.gz", hash = "sha256:311bc24cd13ef9a8c3632bb3e5986f97ca53cf28420501b2cc343859b0c8ce26"},
-]
-
-[package.dependencies]
-Cython = "*"
-
-[[package]]
 name = "docutils"
 version = "0.20.1"
 description = "Docutils -- Python Documentation Utilities"
@@ -1337,17 +1309,6 @@ files = [
 ]
 
 [[package]]
-name = "sortedcontainers"
-version = "2.1.0"
-description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
-optional = true
-python-versions = "*"
-files = [
-    {file = "sortedcontainers-2.1.0-py2.py3-none-any.whl", hash = "sha256:d9e96492dd51fae31e60837736b38fe42a187b5404c16606ff7ee7cd582d4c60"},
-    {file = "sortedcontainers-2.1.0.tar.gz", hash = "sha256:974e9a32f56b17c1bac2aebd9dcf197f3eb9cd30553c5852a3187ad162e1a03a"},
-]
-
-[[package]]
 name = "soupsieve"
 version = "2.5"
 description = "A modern CSS selector implementation for Beautiful Soup."
@@ -1516,26 +1477,34 @@ SudachiPy = ">=0.5,<0.7"
 
 [[package]]
 name = "sudachipy"
-version = "0.5.4"
+version = "0.6.8"
 description = "Python version of Sudachi, the Japanese Morphological Analyzer"
 optional = true
 python-versions = "*"
 files = [
-    {file = "SudachiPy-0.5.4-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:8194527270c966f675db9ed6d628813f6db3cbd45b46708b09ab55fc9ca54189"},
-    {file = "SudachiPy-0.5.4-cp36-cp36m-win32.whl", hash = "sha256:3116443b45f1b175907a1194bbf3bfff4d08b473adfe28a525065d12d1b86ab7"},
-    {file = "SudachiPy-0.5.4-cp36-cp36m-win_amd64.whl", hash = "sha256:c116c2a8ac9249b0cc096403bf7927373bdf6c3bdde7f2d76cc5c15ac7b1346f"},
-    {file = "SudachiPy-0.5.4-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:b0b93a03f5354d1d27ff0aa471737bfdb560b7c3e6ce94d54166fde6029ccc62"},
-    {file = "SudachiPy-0.5.4-cp37-cp37m-win32.whl", hash = "sha256:e07a49fcc677960f266840d3590d73447a8aad3640dfbe68b63ee044c7575cb2"},
-    {file = "SudachiPy-0.5.4-cp37-cp37m-win_amd64.whl", hash = "sha256:399b9541771afe5c71989558a96c61caf78044d1772b1cec8c717dfad590abcd"},
-    {file = "SudachiPy-0.5.4-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:91d9cb3b926315225daf4bac7f6c30137bffd5511ba4e764557f3256f7473553"},
-    {file = "SudachiPy-0.5.4-cp38-cp38-win32.whl", hash = "sha256:fe9c5e5c35172150b64ac590d357498bfc8589d6c42460d06cce235ba4eb5138"},
-    {file = "SudachiPy-0.5.4-cp38-cp38-win_amd64.whl", hash = "sha256:89ddd6012eec719c45ce3f01d77199f427e569394ac6b944829e1d22b90c3b4f"},
-    {file = "SudachiPy-0.5.4.tar.gz", hash = "sha256:c8b456c6cada5e67793f342a0ae841b08e7a548cb58180e51aa4c3e8858c29c2"},
+    {file = "SudachiPy-0.6.8-cp310-cp310-macosx_10_12_universal2.whl", hash = "sha256:85f91a6ac347d2fbf478ae96e0e08efe7b8e47fb7cdfb770e90611be5669cabb"},
+    {file = "SudachiPy-0.6.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:361ef3e3333ef4165b517668878dd80fbed6d3c443659b9dc3236132ea8f7fbb"},
+    {file = "SudachiPy-0.6.8-cp310-cp310-win_amd64.whl", hash = "sha256:081c52918bdae35f564637db146389f0a48b3b5263f215859b4d1ae311a7a474"},
+    {file = "SudachiPy-0.6.8-cp311-cp311-macosx_10_12_universal2.whl", hash = "sha256:0a6cb506e402933023ea07035fc3e81d65880392afcdb2f09676027882b09e73"},
+    {file = "SudachiPy-0.6.8-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d19db58be100b05362d00d0ad5cd29aff6da31807967b302f35bd43dd59e141f"},
+    {file = "SudachiPy-0.6.8-cp311-cp311-win_amd64.whl", hash = "sha256:27833ae472220dc46f934edd9a8839b0134279c0113f7da01d67e424bfe2d0ab"},
+    {file = "SudachiPy-0.6.8-cp312-cp312-macosx_10_12_universal2.whl", hash = "sha256:7f75d4627fa141bc02951c5ce17ec7055faf2e9424d10c697e923c27b7936369"},
+    {file = "SudachiPy-0.6.8-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:33afa2efa4d98ae3cbea0ab8cc09c71b0405d188074d0c4cef2b2080a51caafe"},
+    {file = "SudachiPy-0.6.8-cp312-cp312-win_amd64.whl", hash = "sha256:2a2f22605093ed7994eb7edced2a21c8ac71b9ecc9877e94539414b1a60d172a"},
+    {file = "SudachiPy-0.6.8-cp37-cp37m-macosx_10_12_universal2.whl", hash = "sha256:6ab54826d151dcf69dfd168e784887d2701c553cf3f455d28b171e64584a404d"},
+    {file = "SudachiPy-0.6.8-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9d9aa1890b3f43af0ff691f6de8f770ab9ea58506d9e1ee3c8bb9aae460c58d2"},
+    {file = "SudachiPy-0.6.8-cp37-cp37m-win_amd64.whl", hash = "sha256:686a890a376589e78b606548f9d5427a43ce8492edc46bcd09c104d9df594f7c"},
+    {file = "SudachiPy-0.6.8-cp38-cp38-macosx_10_12_universal2.whl", hash = "sha256:8d19395daf8c96e4a14df18c4df634e1f7caa7790917ab089c174ffcbdcaf4c0"},
+    {file = "SudachiPy-0.6.8-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d9cae943138ef2e9d0126a5a4110dca5d6e5d8f35dc3f909e3ef1aeff3aa565b"},
+    {file = "SudachiPy-0.6.8-cp38-cp38-win_amd64.whl", hash = "sha256:e8de107715dcd1d566837c91c6a10572efc171d4969a505176ecb37efe65cb48"},
+    {file = "SudachiPy-0.6.8-cp39-cp39-macosx_10_12_universal2.whl", hash = "sha256:d52ddc5001b0125375419409adee012f8957b15ad1a4017e18f30c54ba69f9b7"},
+    {file = "SudachiPy-0.6.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c2a7c98f75567bd8488a1597c83f8f6abb4c15c577d0b5f92fa0c31c8304dae4"},
+    {file = "SudachiPy-0.6.8-cp39-cp39-win_amd64.whl", hash = "sha256:1ae6e533f98e510e751d7355ec512aff3a7dac73539abb61c731cdcc316a183f"},
+    {file = "SudachiPy-0.6.8.tar.gz", hash = "sha256:3d1c9086ff09afacc34d02fdb2112aab7cff1d78f0d4b81f78b9ba01c36d4888"},
 ]
 
-[package.dependencies]
-dartsclone = ">=0.9.0,<0.10.0"
-sortedcontainers = ">=2.1.0,<2.2.0"
+[package.extras]
+tests = ["sudachidict-core", "tokenizers"]
 
 [[package]]
 name = "tomli"
@@ -1640,4 +1609,4 @@ sudachi = ["sudachidict-core", "sudachipy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.0"
-content-hash = "05102a808f82f59050d3002d479eff8e60b511cad35994d416bb85dd2de20858"
+content-hash = "d37af52c7546a583a054b5cf0543de638e352279fe31ff64a8b4f93c319f5131"
