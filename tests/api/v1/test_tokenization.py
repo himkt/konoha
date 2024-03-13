@@ -12,7 +12,8 @@ client = TestClient(app)
 
 
 @pytest.mark.parametrize(
-    "tokenizer_params", [
+    "tokenizer_params",
+    [
         {"tokenizer": "mecab"},
         {"tokenizer": "mecab", "with_postag": True},
         {"tokenizer": "sudachi", "mode": "A"},
@@ -23,7 +24,7 @@ client = TestClient(app)
         {"tokenizer": "character"},
         {"tokenizer": "nagisa"},
         {"tokenizer": "janome"},
-    ]
+    ],
 )
 def test_tokenization(tokenizer_params: Dict):
     if tokenizer_params["tokenizer"] == "kytea" and sys.version_info < (3, 7):
@@ -37,9 +38,10 @@ def test_tokenization(tokenizer_params: Dict):
 
 
 @pytest.mark.parametrize(
-    "tokenizer_params", [
+    "tokenizer_params",
+    [
         {"tokenizer": "mecab", "system_dictionary_path": "s3://konoha-demo/mecab/ipadic"},
-    ]
+    ],
 )
 def test_tokenization_with_remote_resoruce(tokenizer_params: Dict):
     if "AWS_ACCESS_KEY_ID" not in os.environ and tokenizer_params["system_dictionary_path"].startswith("s3://"):

@@ -15,13 +15,13 @@
 
 import os
 
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+on_rtd = os.environ.get("READTHEDOCS", None) == "True"
 
 # -- Project information -----------------------------------------------------
 
-project = 'konoha'
-copyright = '2020, himkt'
-author = 'himkt'
+project = "konoha"
+copyright = "2020, himkt"
+author = "himkt"
 
 
 # -- General configuration ---------------------------------------------------
@@ -30,11 +30,11 @@ author = 'himkt'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
+    "sphinx.ext.autodoc",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -48,9 +48,9 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 if not on_rtd:
-    html_theme = 'pydata_sphinx_theme'
+    html_theme = "pydata_sphinx_theme"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
