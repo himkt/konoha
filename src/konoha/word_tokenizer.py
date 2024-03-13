@@ -1,4 +1,5 @@
 """Word Level Tokenizer."""
+
 import warnings
 from typing import Dict
 from typing import List
