@@ -1,4 +1,5 @@
 """__init__.py."""
+
 from importlib.metadata import version
 
 from konoha.sentence_tokenizer import SentenceTokenizer  # NOQA
