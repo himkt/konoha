@@ -9,7 +9,7 @@ dependencies = [
     "requests<3.0.0",
 ]
 readme = "README.md"
-requires-python = ">= 3.9"
+requires-python = ">= 3.8"
 license = "MIT"
 
 [project.optional-dependencies]
