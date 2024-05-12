@@ -2,9 +2,7 @@
 name = "konoha"
 version = "5.5.5"
 description = "Add your description here"
-authors = [
-    { name = "himkt", email = "himkt@klis.tsukuba.ac.jp" }
-]
+authors = [{ name = "himkt", email = "himkt@klis.tsukuba.ac.jp" }]
 dependencies = [
     "requests<3.0.0",
 ]
@@ -66,17 +64,6 @@ only-packages = true
 packages = ["src/konoha"]
 only-packages = true
 
-[tool.rye]
-managed = true
-dev-dependencies = [
-    "pytest>=8.2.0",
-    "httpx>=0.27.0",
-    "ruff>=0.4.4",
-    "mypy>=1.10.0",
-    "sphinx>=7.3.7",
-    "pydata-sphinx-theme>=0.15.2",
-]
-
 [[tool.mypy.overrides]]
 module = [
     "boto3",
@@ -88,6 +75,17 @@ module = [
     "sudachipy",
 ]
 ignore_missing_imports = true
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pytest>=8.2.0",
+    "httpx>=0.27.0",
+    "ruff>=0.4.4",
+    "mypy>=1.10.0",
+    "sphinx>=7.3.7",
+    "pydata-sphinx-theme>=0.15.2",
+]
 
 [tool.ruff]
 line-length = 119
