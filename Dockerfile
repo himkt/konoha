@@ -32,14 +32,15 @@ RUN tar zxvf kytea-0.4.7.tar.gz \
 
 WORKDIR /work
 
-COPY ./data           ./data
-COPY ./src            ./src
-COPY ./pyproject.toml ./pyproject.toml
-COPY ./poetry.lock    ./poetry.lock
-COPY ./README.md      ./README.md
+COPY ./data              ./data
+COPY ./src               ./src
+COPY ./pyproject.toml    ./pyproject.toml
+COPY ./requirements.lock ./requirements.lock
+COPY ./README.md         ./README.md
 
 RUN python3.10 -m pip install -U pip
-RUN python3.10 -m pip install .[all]
+RUN python3.10 -m pip install -r requirements.lock
+RUN python3.10 -m pip install .
 
 CMD [ \
       "python3.10", "-m", "uvicorn", \
