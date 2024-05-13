@@ -11,7 +11,6 @@ jobs:
     if: github.event_name == 'release'
     steps:
     - uses: actions/checkout@v4
-    - name: Build and publish to pypi
-      uses: JRubics/poetry-publish@v1.9
-      with:
-        pypi_token: ${{ secrets.PYPI_TOKEN }}
+    - run: curl -sSf https://rye-up.com/get | bash
+    - run: rye build --sdist
+    - run: rye publish --yes --token "${{ secrets.PYPI_TOKEN }}"
