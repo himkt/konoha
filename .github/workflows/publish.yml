@@ -14,5 +14,5 @@ jobs:
     - run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
     - run: |
         source $HOME/.rye/env
-        rye build --sdist
+        rye build
         rye publish --yes --token "${{ secrets.PYPI_TOKEN }}"
