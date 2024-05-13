@@ -12,5 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-    - run: rye build --sdist
-    - run: rye publish --yes --token "${{ secrets.PYPI_TOKEN }}"
+    - run: |
+      source $HOME/.rye/env
+      rye build --sdist
+      rye publish --yes --token "${{ secrets.PYPI_TOKEN }}"
