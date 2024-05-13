@@ -57,12 +57,7 @@ build-backend = "hatchling.build"
 allow-direct-references = true
 
 [tool.hatch.build.targets.sdist]
-packages = ["src/konoha"]
-only-packages = true
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/konoha"]
-only-packages = true
+only-include = ["src"]
 
 [[tool.mypy.overrides]]
 module = [
