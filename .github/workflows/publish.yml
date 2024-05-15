@@ -11,6 +11,8 @@ jobs:
     if: github.event_name == 'release'
     steps:
     - uses: actions/checkout@v4
-    - run: curl -sSf https://rye-up.com/get | bash
-    - run: rye build --sdist
-    - run: rye publish --yes --token "${{ secrets.PYPI_TOKEN }}"
+    - run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+    - run: |
+        source $HOME/.rye/env
+        rye build
+        rye publish --yes --token "${{ secrets.PYPI_TOKEN }}"

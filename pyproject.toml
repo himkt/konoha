@@ -1,6 +1,6 @@
 [project]
 name = "konoha"
-version = "5.5.5"
+version = "5.5.6"
 description = "Add your description here"
 authors = [{ name = "himkt", email = "himkt@klis.tsukuba.ac.jp" }]
 dependencies = [
@@ -57,12 +57,7 @@ build-backend = "hatchling.build"
 allow-direct-references = true
 
 [tool.hatch.build.targets.sdist]
-packages = ["src/konoha"]
-only-packages = true
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/konoha"]
-only-packages = true
+only-include = ["src"]
 
 [[tool.mypy.overrides]]
 module = [
