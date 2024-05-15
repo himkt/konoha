@@ -1,6 +1,6 @@
 [project]
 name = "konoha"
-version = "5.5.6a"
+version = "5.5.6"
 description = "Add your description here"
 authors = [{ name = "himkt", email = "himkt@klis.tsukuba.ac.jp" }]
 dependencies = [
