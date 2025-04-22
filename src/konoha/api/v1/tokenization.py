@@ -34,8 +34,7 @@ def generate_cache_key(params):
 async def tokenize(params: TokenizeParameter, request: Request):
     if params.texts is not None:
         message = (
-            "A parameter `texts` is now unacceptable for /api/v1/tokenize."
-            " Please use /api/v1/batch_tokenize instead."
+            "A parameter `texts` is now unacceptable for /api/v1/tokenize. Please use /api/v1/batch_tokenize instead."
         )
         raise HTTPException(status_code=400, detail=message)
 
