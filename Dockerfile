@@ -19,6 +19,9 @@ RUN apt update -y \
             python3-pip \
       && rm -rf /var/lib/apt/lists/*
 
+# uv
+COPY --from=ghcr.io/astral-sh/uv:0.6.17 /uv /uvx /bin/
+
 WORKDIR /tmp
 
 # kytea
@@ -32,18 +35,29 @@ RUN tar zxvf kytea-0.4.7.tar.gz \
 
 WORKDIR /work
 
-COPY ./data              ./data
-COPY ./src               ./src
-COPY ./pyproject.toml    ./pyproject.toml
-COPY ./requirements.lock ./requirements.lock
-COPY ./README.md         ./README.md
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
 
-RUN python3.10 -m pip install -U pip
-RUN python3.10 -m pip install -r requirements.lock
-RUN python3.10 -m pip install .
+# install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project --no-dev
+
+ADD ./data              /work
+ADD ./src               /work
+ADD ./pyproject.toml    /work
+ADD ./uv.lock           /work
+ADD ./README.md         /work
+
+# install project
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-dev --all-extras
+
+ENV PATH="/work/.venv/bin:$PATH"
 
 CMD [ \
-      "python3.10", "-m", "uvicorn", \
+      "uvicorn", \
       "--factory", "konoha.api.server:create_app", \
       "--reload", "--host", "0.0.0.0", "--port", "8000" \
 ]
