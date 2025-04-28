@@ -54,7 +54,7 @@ ADD ./README.md         /work
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev --all-extras
 
-ENV PATH="/app/.venv/bin:$PATH"
+ENV PATH="/work/.venv/bin:$PATH"
 
 CMD [ \
       "uvicorn", \
