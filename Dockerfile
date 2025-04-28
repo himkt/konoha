@@ -52,7 +52,7 @@ ADD ./README.md         /work
 
 # install project
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-dev
+    uv sync --frozen --no-dev --all-extras
 
 ENV PATH="/app/.venv/bin:$PATH"
 
