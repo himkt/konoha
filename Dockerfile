@@ -47,6 +47,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 ADD ./data              /work
 ADD ./src               /work
 ADD ./pyproject.toml    /work
+ADD ./uv.lock           /work
 ADD ./README.md         /work
 
 # install project
