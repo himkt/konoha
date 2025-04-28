@@ -26,7 +26,7 @@ logger = logging.getLogger("uvicorn.app.konoha.api.v1.tokenization")
 
 
 def generate_cache_key(params):
-    params = params.dict(exclude={"text", "texts"})
+    params = params.model_dump(exclude={"text", "texts"})
     return ".".join(f"{k}-{v}" for k, v in params.items())
 
 
