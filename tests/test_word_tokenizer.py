@@ -31,7 +31,6 @@ def read_lines(tokenizer: str):
         {"tokenizer": "mecab"},
         {"tokenizer": "sudachi", "mode": "A"},
         {"tokenizer": "sudachi", "mode": "A"},
-        {"tokenizer": "kytea"},
         {"tokenizer": "nagisa"},
         {"tokenizer": "janome"},
         {"tokenizer": "character"},
@@ -40,9 +39,6 @@ def read_lines(tokenizer: str):
     ],
 )
 def test_tokenize_with_character(raw_texts: List[str], tokenizer_params: Dict):
-    if tokenizer_params["tokenizer"] == "kytea" and sys.version_info < (3, 7):
-        pytest.skip("KyTea doesn't work in Python3.6")
-
     tokenizer_name = tokenizer_params["tokenizer"]
     tokenizer = WordTokenizer(**tokenizer_params)
     expect = [Token.from_dict(token_param) for token_param in read_lines(tokenizer_name)[0]]
@@ -70,7 +66,6 @@ def test_tokenize(raw_texts: List[str], tokenizer_params: Dict):
         {"tokenizer": "mecab"},
         {"tokenizer": "sudachi", "mode": "A"},
         {"tokenizer": "sudachi", "mode": "A"},
-        {"tokenizer": "kytea"},
         {"tokenizer": "nagisa"},
         {"tokenizer": "janome"},
         {"tokenizer": "character"},
@@ -79,9 +74,6 @@ def test_tokenize(raw_texts: List[str], tokenizer_params: Dict):
     ],
 )
 def test_batch_tokenize_with_character(raw_texts: List[str], tokenizer_params: Dict):
-    if tokenizer_params["tokenizer"] == "kytea" and sys.version_info < (3, 7):
-        pytest.skip("KyTea doesn't work in Python3.6")
-
     tokenizer_name = tokenizer_params["tokenizer"]
     tokenizer = WordTokenizer(**tokenizer_params)
     expect = [

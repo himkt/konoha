@@ -25,12 +25,6 @@ jobs:
       run: |
         sudo apt update -y
         sudo apt install mecab libmecab-dev mecab-ipadic-utf8
-        cd /tmp
-        wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz && \
-        tar zxvf kytea-0.4.7.tar.gz && cd kytea-0.4.7 && \
-        wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch && \
-        git apply ./24.patch && ./configure && \
-        sudo make && sudo make install && sudo ldconfig -v
 
     - name: Install dependencies
       run: uv sync --group dev --all-extras

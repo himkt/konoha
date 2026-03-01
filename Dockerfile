@@ -22,15 +22,6 @@ COPY --from=ghcr.io/astral-sh/uv:0.10.7 /uv /uvx /bin/
 
 WORKDIR /tmp
 
-# kytea
-RUN wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz
-RUN wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch
-RUN tar zxvf kytea-0.4.7.tar.gz \
-      && cd kytea-0.4.7 \
-      && patch -p1 < ../24.patch \
-      && ./configure && make && make install && ldconfig -v \
-      && cd .. && rm -rf kytea-0.4.7.tar.gz kytea-0.4.7
-
 WORKDIR /work
 
 ENV UV_COMPILE_BYTECODE=1

@@ -54,9 +54,6 @@ class WordTokenizer:
         if self._tokenizer_name == "whitespace":
             self._tokenizer = word_tokenizers.WhitespaceTokenizer()
 
-        if self._tokenizer_name == "kytea":
-            self._tokenizer = word_tokenizers.KyTeaTokenizer(model_path=self._model_path)
-
         if self._tokenizer_name == "sentencepiece":
             if self._model_path is None:
                 raise ValueError("`model_path` must be specified for sentencepiece.")
