@@ -1,12 +1,10 @@
-FROM ubuntu:22.04
+FROM ubuntu:25.10
 
 ENV DEBIAN_FRONTEND "noninteractive"
 ENV LANG "ja_JP.UTF-8"
 ENV PYTHONIOENCODING "utf-8"
 
 RUN apt update -y \
-      && apt install -y software-properties-common \
-      && add-apt-repository -y ppa:deadsnakes/ppa \
       && apt install -y \
             language-pack-ja \
             build-essential \
@@ -14,13 +12,13 @@ RUN apt update -y \
             mecab \
             libmecab-dev \
             mecab-ipadic-utf8 \
-            python3.10 \
-            python3.10-dev \
+            python3 \
+            python3-dev \
             python3-pip \
       && rm -rf /var/lib/apt/lists/*
 
 # uv
-COPY --from=ghcr.io/astral-sh/uv:0.6.17 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.10.7 /uv /uvx /bin/
 
 WORKDIR /tmp
 
