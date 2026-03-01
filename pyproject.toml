@@ -7,13 +7,13 @@ dependencies = [
     "requests<3.0.0",
 ]
 readme = "README.md"
-requires-python = ">= 3.9"
+requires-python = ">= 3.10"
 license = "MIT"
 
 [project.optional-dependencies]
 server = [
-    "fastapi<1.0.0",
-    "uvicorn<0.26.0",
+    "fastapi<2.0.0",
+    "uvicorn<1.0.0",
 ]
 all = [
     "boto3~=1.34.0",
