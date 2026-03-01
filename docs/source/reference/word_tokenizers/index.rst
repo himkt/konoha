@@ -9,7 +9,6 @@ Word Tokenizer Implementations
     tokenizer
     character_tokenizer
     mecab_tokenizer
-    kytea_tokenizer
     sentencepiece_tokenizer
     sudachi_tokenizer
     janome_tokenizer

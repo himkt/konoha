@@ -13,7 +13,7 @@ You can also install Konoha with specific tokenizer, please run:
 
 .. code-block:: bash
 
-    $ pip install konoha[janome,kytea,mecab,sentencepiece,sudachi,nagisa]  # specify one or more of them
+    $ pip install konoha[janome,mecab,sentencepiece,sudachi,nagisa]  # specify one or more of them
 
 If you run `pip install konoha`, Konoha will be installed only with sentence splitter.
 

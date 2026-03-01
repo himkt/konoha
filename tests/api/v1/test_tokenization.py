@@ -20,16 +20,12 @@ client = TestClient(app)
         {"tokenizer": "sudachi", "mode": "B"},
         {"tokenizer": "sudachi", "mode": "C"},
         {"tokenizer": "sentencepiece", "model_path": "data/model.spm"},
-        {"tokenizer": "kytea", "model_path": "data/model.knm"},
         {"tokenizer": "character"},
         {"tokenizer": "nagisa"},
         {"tokenizer": "janome"},
     ],
 )
 def test_tokenization(tokenizer_params: Dict):
-    if tokenizer_params["tokenizer"] == "kytea" and sys.version_info < (3, 7):
-        pytest.skip("KyTea doesn't work in Python3.6")
-
     headers = {"Content-Type": "application/json"}
     params = dict(tokenizer_params, text="私は猫")
     response = client.post("/api/v1/tokenize", headers=headers, json=params)
