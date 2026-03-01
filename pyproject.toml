@@ -21,7 +21,7 @@ all = [
     "janome~=0.5.0",
     "nagisa~=0.2.10",
     "natto-py~=1.0.0",
-    "sentencepiece~=0.1.85",
+    "sentencepiece~=0.2.1",
     "sudachidict-core==20230927",
     "uvicorn<0.26.0",
 ]
@@ -38,7 +38,7 @@ mecab = [
     "natto-py~=1.0.0",
 ]
 sentencepiece = [
-    "sentencepiece~=0.1.85",
+    "sentencepiece~=0.2.1",
 ]
 sudachi = [
     "sudachipy~=0.6.10",
