@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-22.04
     if: github.event_name == 'release'
     steps:
-    - uses: actions/checkout@v4
-    - uses: astral-sh/setup-uv@v5
+    - uses: actions/checkout@v6
+    - uses: astral-sh/setup-uv@v7
     - run: |
         uv build
         uv publish --token "${{ secrets.PYPI_TOKEN }}"
