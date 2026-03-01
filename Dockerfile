@@ -1,8 +1,8 @@
 FROM ubuntu:25.10
 
-ENV DEBIAN_FRONTEND "noninteractive"
-ENV LANG "ja_JP.UTF-8"
-ENV PYTHONIOENCODING "utf-8"
+ENV DEBIAN_FRONTEND="noninteractive"
+ENV LANG="ja_JP.UTF-8"
+ENV PYTHONIOENCODING="utf-8"
 
 RUN apt update -y \
       && apt install -y \
@@ -20,12 +20,10 @@ RUN apt update -y \
 # uv
 COPY --from=ghcr.io/astral-sh/uv:0.10.7 /uv /uvx /bin/
 
-WORKDIR /tmp
-
 WORKDIR /work
 
-ENV UV_COMPILE_BYTECODE=1
-ENV UV_LINK_MODE=copy
+ENV UV_COMPILE_BYTECODE="1"
+ENV UV_LINK_MODE="copy"
 
 # install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
