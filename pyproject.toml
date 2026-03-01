@@ -41,7 +41,7 @@ sentencepiece = [
     "sentencepiece~=0.1.85",
 ]
 sudachi = [
-    "sudachipy~=0.6.8",
+    "sudachipy~=0.6.10",
     "sudachidict-core==20230927",
 ]
 
