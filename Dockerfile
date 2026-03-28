@@ -12,10 +12,17 @@ RUN apt update -y \
             mecab \
             libmecab-dev \
             mecab-ipadic-utf8 \
-            python3 \
-            python3-dev \
-            python3-pip \
       && rm -rf /var/lib/apt/lists/*
+
+# kytea
+WORKDIR /tmp
+RUN wget http://www.phontron.com/kytea/download/kytea-0.4.7.tar.gz
+RUN wget https://patch-diff.githubusercontent.com/raw/neubig/kytea/pull/24.patch
+RUN tar zxvf kytea-0.4.7.tar.gz \
+      && cd kytea-0.4.7 \
+      && patch -p1 < ../24.patch \
+      && ./configure && make && make install && ldconfig -v \
+      && cd .. && rm -rf kytea-0.4.7.tar.gz kytea-0.4.7
 
 # uv
 COPY --from=ghcr.io/astral-sh/uv:0.10.7 /uv /uvx /bin/
@@ -31,6 +38,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project --no-dev
 
+ADD ./.python-version   /work
 ADD ./data              /work
 ADD ./src               /work
 ADD ./pyproject.toml    /work
