@@ -8,10 +8,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      id-token: write
     if: github.event_name == 'release'
     steps:
     - uses: actions/checkout@v6
     - uses: astral-sh/setup-uv@v7
     - run: |
         uv build
-        uv publish --token "${{ secrets.PYPI_TOKEN }}"
+        uv publish
