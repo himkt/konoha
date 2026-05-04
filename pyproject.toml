@@ -23,6 +23,7 @@ all = [
     "nagisa~=0.2.10",
     "natto-py~=1.0.0",
     "sentencepiece~=0.2.1",
+    "sudachipy~=0.6.11",
     "sudachidict-core==20230927",
     "uvicorn<0.26.0",
 ]

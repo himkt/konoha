@@ -575,6 +575,7 @@ all = [
     { name = "natto-py" },
     { name = "sentencepiece" },
     { name = "sudachidict-core" },
+    { name = "sudachipy" },
     { name = "uvicorn" },
 ]
 janome = [
@@ -636,6 +637,7 @@ requires-dist = [
     { name = "sentencepiece", marker = "extra == 'sentencepiece'", specifier = "~=0.2.1" },
     { name = "sudachidict-core", marker = "extra == 'all'", specifier = "==20230927" },
     { name = "sudachidict-core", marker = "extra == 'sudachi'", specifier = "==20230927" },
+    { name = "sudachipy", marker = "extra == 'all'", specifier = "~=0.6.11" },
     { name = "sudachipy", marker = "extra == 'sudachi'", specifier = "~=0.6.11" },
     { name = "uvicorn", marker = "extra == 'all'", specifier = "<0.26.0" },
     { name = "uvicorn", marker = "extra == 'server'", specifier = "<1.0.0" },
