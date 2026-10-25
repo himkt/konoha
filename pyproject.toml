@@ -1,13 +1,13 @@
 [project]
 name = "konoha"
-version = "5.7.0"
+version = "5.7.1"
 description = "Add your description here"
 authors = [{ name = "himkt", email = "himkt@klis.tsukuba.ac.jp" }]
 dependencies = [
     "requests<3.0.0",
 ]
 readme = "README.md"
-requires-python = ">= 3.10"
+requires-python = ">= 3.11"
 license = "MIT"
 
 [project.optional-dependencies]
