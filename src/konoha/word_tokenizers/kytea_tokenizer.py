@@ -1,8 +1,17 @@
+from typing import Any
 from typing import List
 from typing import Optional
 
 from konoha.data.token import Token
 from konoha.word_tokenizers.tokenizer import BaseTokenizer
+
+
+def _first_best(tag: Any, level: int) -> Optional[str]:
+    # ``word.tag`` holds one list of (tag, score) candidates per tag level.
+    # A level is an empty list when it is skipped (e.g. with ``-notag``).
+    if level >= len(tag) or not tag[level]:
+        return None
+    return tag[level][0][0]
 
 
 class KyTeaTokenizer(BaseTokenizer):
@@ -11,24 +20,18 @@ class KyTeaTokenizer(BaseTokenizer):
 
         super().__init__(name="kytea")
 
-        kytea_option = ""
         if model_path is not None:
-            kytea_option += "-model {}".format(model_path)
-        self._tokenizer = Mykytea(kytea_option)
+            self._tokenizer = Mykytea(model=model_path)
+        else:
+            self._tokenizer = Mykytea()
 
     def tokenize(self, text: str) -> List[Token]:
         tokens = []
-        response = self._tokenizer.getTagsToString(text)
-        # FIXME Following dirty workaround is required to
-        #       process inputs which include <whitespace> itself
-        #       (e.g. "私 は猫")
-        response = response.replace("\\ ", "<SPACE>").replace("  ", " <SPACE>")
-        for elem in response.split(" ")[:-1]:
-            # FIXME If input contains a character "/",
-            #       KyTea outputs "//補助記号/・",
-            #       which breaks the simple logic elem.split("/")
-            pron, postag, surface = map(lambda e: e[::-1], elem[::-1].split("/", maxsplit=2))
-            surface = surface.replace("<SPACE>", " ")
-            tokens.append(Token(surface=surface, postag=postag, pron=pron))
+        for word in self._tokenizer.getTags(text):
+            # In the Japanese model, the first tag is the part of speech
+            # and the second one is the pronunciation.
+            postag = _first_best(word.tag, 0)
+            pron = _first_best(word.tag, 1)
+            tokens.append(Token(surface=word.surface, postag=postag, pron=pron))
 
         return tokens

@@ -1,5 +1,5 @@
 version = 1
-revision = 5
+revision = 3
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.12'",
@@ -550,8 +550,8 @@ requires-dist = [
     { name = "fastapi", marker = "extra == 'server'", specifier = "<2.0.0" },
     { name = "janome", marker = "extra == 'all'", specifier = "~=0.5.0" },
     { name = "janome", marker = "extra == 'janome'", specifier = "~=0.5.0" },
-    { name = "kytea", marker = "extra == 'all'", specifier = "~=0.1.10" },
-    { name = "kytea", marker = "extra == 'kytea'", specifier = "~=0.1.10" },
+    { name = "kytea", marker = "extra == 'all'", specifier = "~=0.2.0" },
+    { name = "kytea", marker = "extra == 'kytea'", specifier = "~=0.2.0" },
     { name = "nagisa", marker = "extra == 'all'", specifier = "~=0.2.10" },
     { name = "nagisa", marker = "extra == 'nagisa'", specifier = "~=0.2.10" },
     { name = "natto-py", marker = "extra == 'all'", specifier = "~=1.0.0" },
@@ -581,26 +581,30 @@ dev = [
 
 [[package]]
 name = "kytea"
-version = "0.1.10"
+version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/13/b2/f20da6ba4e4af8df3355c2ebadbe522296b49276f031fc85b7bc84341d50/kytea-0.1.10.tar.gz", hash = "sha256:94a3406df3b85de56567e3d35e1037e0f6cfbf328225febfd558787a9d984f2c", size = 78780, upload-time = "2026-03-28T06:07:30.096Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c3/fc/09dbee9f5ac509dcc1fedcc16b2a399819ef4dbbf356184668f01198f8c5/kytea-0.2.0.tar.gz", hash = "sha256:b8a32407b3bca3de389fecc959b983bf8feb9ea44bea13b4e33a5387ef89bbf8", size = 14309, upload-time = "2026-11-10T01:05:33.626Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bc/93/db0c32e4fd1c1a2bc559b21e7a6fe5957a3694dce6e337a8f138c5062e8b/kytea-0.1.10-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:7985fef29f834e298a7032801fb1e08ff67b615f656d07e005e7e2309169dbbf", size = 680201, upload-time = "2026-03-28T06:07:03.087Z" },
-    { url = "https://files.pythonhosted.org/packages/c1/b2/137276b54b1a5414a56b4036daeee59930c362eff32ea6ebbc63a96bf4eb/kytea-0.1.10-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:6d90f8f19bfdef7e442e5d668f202e00dcea13480bb04b0dbe537ff8b31fbf3e", size = 657699, upload-time = "2026-03-28T06:07:04.678Z" },
-    { url = "https://files.pythonhosted.org/packages/82/89/6f1c7df4f197caa4eb19203e97242252494e1f9e710c745368c7d77d10da/kytea-0.1.10-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:cb788e7f529aa6870cf0a95dee4632afa82ab31882f8353e35a1b7a43bcdb9ef", size = 5578993, upload-time = "2026-03-28T06:07:06.571Z" },
-    { url = "https://files.pythonhosted.org/packages/23/ab/1c9f24fe3f8e93c75ce723397052fdd6d97f9491184f1778b851afb45404/kytea-0.1.10-cp311-cp311-win_amd64.whl", hash = "sha256:8235b2ea3ffed66e56e690b22067636ecb7805bb79e12f077014cd7a263737b9", size = 312015, upload-time = "2026-03-28T06:07:08.599Z" },
-    { url = "https://files.pythonhosted.org/packages/f2/7d/2ae8a8af81c12f03c5ee166ffa7fd3ae27984eed2bacc77450c8e011cf4e/kytea-0.1.10-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:5a61c5567c15815ee49374727e2a8234c213f646b7e3f43555e30a574167dc56", size = 678271, upload-time = "2026-03-28T06:07:10.351Z" },
-    { url = "https://files.pythonhosted.org/packages/9b/d6/5c03ebf7e09c1679b5039450e37d331d95662b0a2b9fd3cfa05bd469abb6/kytea-0.1.10-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:2e3714942a412376988d77a2a963da7dbc7677a61f38afc38d1da1b0f17c41c4", size = 658200, upload-time = "2026-03-28T06:07:12.278Z" },
-    { url = "https://files.pythonhosted.org/packages/c7/03/292f5f01fe3b2e1086205ac3e835f0c7ad8f686b6fb53d36717e62530802/kytea-0.1.10-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:6801e0e62bd19160748f1b2be2697352cf402f2aa2a92957beb162857e723993", size = 5583441, upload-time = "2026-03-28T06:07:14.294Z" },
-    { url = "https://files.pythonhosted.org/packages/02/10/5d70e1bef23b566e8f8fdfb18f2610ad332a022aa82ab00a3b6579070ac8/kytea-0.1.10-cp312-cp312-win_amd64.whl", hash = "sha256:c1548511dd585928d91944863d4d5fa3cf859f761682b59ad849ec572964698a", size = 312452, upload-time = "2026-03-28T06:07:15.796Z" },
-    { url = "https://files.pythonhosted.org/packages/d6/38/fe85dfff8e7edfb7812e413058d93e395ec1d81e07b0369a7f81bba664d4/kytea-0.1.10-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:82a986a368a12b9879d843d0d9990c5e48d631300151e6b11a0d8fd19ce1f885", size = 678055, upload-time = "2026-03-28T06:07:17.31Z" },
-    { url = "https://files.pythonhosted.org/packages/9a/05/85f1ab6f53d96e21a45ffc3e48c90278f513ccc0b728c1031ea5cf66a980/kytea-0.1.10-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:b8c621abad5780f5b6b2d1208a3c785ae0cd5d6c6be3dcef05c7a86a16b97446", size = 657974, upload-time = "2026-03-28T06:07:19Z" },
-    { url = "https://files.pythonhosted.org/packages/a8/2b/a6b86dacb732fdac6073adbf95dfe5d945e89ff25b84d34ed8a62c9d1acb/kytea-0.1.10-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:d68c0486bd7c1709c20c90d57be2dd2d654902dd352c7a218fd4f80f272319a5", size = 5585043, upload-time = "2026-03-28T06:07:20.696Z" },
-    { url = "https://files.pythonhosted.org/packages/d8/6a/6234c11a5f8a33adc268b100bbad6bfd59f2cbdbe0de9390b66753badbb5/kytea-0.1.10-cp313-cp313-win_amd64.whl", hash = "sha256:8544eb1d2e4c16df81111bc66e108377d17c16b2345acba1a4986f031be75ef4", size = 312290, upload-time = "2026-03-28T06:07:22.514Z" },
-    { url = "https://files.pythonhosted.org/packages/c8/04/05355478d4e022340d40d0d10d90e54260847933ab7ab35a6e8a19b7b812/kytea-0.1.10-cp314-cp314-macosx_10_15_x86_64.whl", hash = "sha256:7d4f0ed78da8d497d4cde1b9b5ae7fc69557741e4f44d632898c1b2bcc29abe0", size = 678299, upload-time = "2026-03-28T06:07:24.317Z" },
-    { url = "https://files.pythonhosted.org/packages/8f/62/7a30fade31eb3960a0db41e305b2b00daff22f51077bc461ba61800271c2/kytea-0.1.10-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:b82cf6e23406574bee67dd250c89cb20c6097bb87c5e1f9f9d9e9fb7bfbbe77d", size = 658199, upload-time = "2026-03-28T06:07:25.82Z" },
-    { url = "https://files.pythonhosted.org/packages/4d/67/fa9c040eaa6ded4abaecdbb5b85561504da2df33e613b5f634b59102f743/kytea-0.1.10-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:d8bf2c273e7f5d25b4509d8e004b3ebcb7effd6751cccd295ef056c28a7c383c", size = 5581487, upload-time = "2026-03-28T06:07:27.397Z" },
-    { url = "https://files.pythonhosted.org/packages/90/80/3137e8ef7600e45699e7d751e1c626009dd6a6b30e8e3a9e7b97488023b6/kytea-0.1.10-cp314-cp314-win_amd64.whl", hash = "sha256:2cb826cb827efb74529ccc09904126464eb3f294438132170bd0150e010e109c", size = 320031, upload-time = "2026-03-28T06:07:28.818Z" },
+    { url = "https://files.pythonhosted.org/packages/73/57/86ddab9c0b11740656a99d49c4f3f778067457254d8c614464f5d3618c0d/kytea-0.2.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:52bdcbcc63e1bcb07061ed82c183a294184004e08845c0edac88ff955ef26fd7", size = 678479, upload-time = "2026-11-10T01:04:59.726Z" },
+    { url = "https://files.pythonhosted.org/packages/07/99/73ccf2f74fc7d487f4bcdbd0a2fe7e0efcf1d6ec7f9528fec1ddc4e60fc2/kytea-0.2.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:ce51cd7c4e319781bfb277feaf67c36a5dc735cfc6d58cc718dbdb3e97f7b7ee", size = 658783, upload-time = "2026-11-10T01:05:01.488Z" },
+    { url = "https://files.pythonhosted.org/packages/dc/23/83e2a8c7c7f9d1bf28e88fed086cc27f3d35f3ec0e71b1d0854a63e671c0/kytea-0.2.0-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:67f8fc9cbb6df9eb2980c6362b89699ff717d8b7339f2942af1d0dc04f784ee0", size = 5537677, upload-time = "2026-11-10T01:05:03.494Z" },
+    { url = "https://files.pythonhosted.org/packages/91/b2/553ea78a30620822f6ba504a02a4c39cd5b80258b7b9fc236f77b3228182/kytea-0.2.0-cp311-cp311-win_amd64.whl", hash = "sha256:fbb81712ad5123b405dd11ef5beb05712b423641692917092084ebfce0fdcc6f", size = 312233, upload-time = "2026-11-10T01:05:04.995Z" },
+    { url = "https://files.pythonhosted.org/packages/96/0d/4854458cd1f93504e66d6de8b9b78f5b5223a6fa6c25b17755909eb5aaf5/kytea-0.2.0-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:5b3125a0039eb74c5860e2cb404760c560db753183f11e6e0bb2eca71173d934", size = 677063, upload-time = "2026-11-10T01:05:06.44Z" },
+    { url = "https://files.pythonhosted.org/packages/d7/1f/06ef4334b818b94a6585113b0586a1261e02d7b29abb55e2584ae0e87020/kytea-0.2.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:af967bee497263dc5c02a358de742826a5ca42b9e862d3f14dc35bcbc2001d7c", size = 659218, upload-time = "2026-11-10T01:05:08.03Z" },
+    { url = "https://files.pythonhosted.org/packages/b6/1c/520ca49a259b449377206c07bd03822d5198bdcd69d95373fba891fdbd87/kytea-0.2.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:46c57250064c39f91da6f13eabcefa7d6874970acbc63772f46735cb8470c33f", size = 5542449, upload-time = "2026-11-10T01:05:09.97Z" },
+    { url = "https://files.pythonhosted.org/packages/16/d5/4b11ddbfbe1b629ae953467826a0fc0989f60f94fff7f362489cc13dc8a9/kytea-0.2.0-cp312-cp312-win_amd64.whl", hash = "sha256:a8cae868d5c39ddf6442869376658571c297f01a691d6995c5971aefa0d12d23", size = 312747, upload-time = "2026-11-10T01:05:11.611Z" },
+    { url = "https://files.pythonhosted.org/packages/a8/d9/728a95234ceb536ca6ef0dfc20be108766f7042822d2fe3c098f836b9f9b/kytea-0.2.0-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:3d7317e4d3a2fd72c0cac45da826181bf974804ab5a7a91192451595cdb98a80", size = 676863, upload-time = "2026-11-10T01:05:13.254Z" },
+    { url = "https://files.pythonhosted.org/packages/8d/32/2374f8bb23f3525ced747ec3e6e9f856ee941090bed6ccbea53b6f3edd0a/kytea-0.2.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:d58975e95e175a2ff7af18441fb751e09b00411e1e841af2a4dbe70db222765c", size = 658850, upload-time = "2026-11-10T01:05:14.885Z" },
+    { url = "https://files.pythonhosted.org/packages/7b/4e/49f2730575fa94dedbc6d4fcd8a450b18da774c302acd2f390091af04f65/kytea-0.2.0-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:46c731e5b04daedc2e4b8c0a91d15aec446c09dd9728d53f92f957aaae183eca", size = 5544945, upload-time = "2026-11-10T01:05:16.49Z" },
+    { url = "https://files.pythonhosted.org/packages/16/30/58628241c79bbe9b79ef0889f04908a8c105085477dbfc8b0558277cb317/kytea-0.2.0-cp313-cp313-win_amd64.whl", hash = "sha256:620180cbec73002bb72cd9581cc8da45f2d73da93ba5d1925e5ba6b57b87fc36", size = 312593, upload-time = "2026-11-10T01:05:18.173Z" },
+    { url = "https://files.pythonhosted.org/packages/bf/61/23a29f8576b18a37706938d4562bdda7c62928a31cfac2f63f7dcad33601/kytea-0.2.0-cp314-cp314-macosx_10_15_x86_64.whl", hash = "sha256:03cb0d6e0d9401da249330c733f786d5af06526c40e9c818e3ab5a01a17f545e", size = 677034, upload-time = "2026-11-10T01:05:19.562Z" },
+    { url = "https://files.pythonhosted.org/packages/35/68/e6583dced2cdf91c98dd1e572f1fefbeda7183706d77396020412a803562/kytea-0.2.0-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:bfb35abbf5017d52a0a560359a6b5e040c71a7222b5fe7bf365e6a4556ea4c4c", size = 659154, upload-time = "2026-11-10T01:05:21.132Z" },
+    { url = "https://files.pythonhosted.org/packages/ab/1f/ca8eef2870cbfd1f31af90b95145df62eaeaa31e4e759561830382dab9bf/kytea-0.2.0-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:9b18ca00e8e475413b3629eda5059c1f8520ed8c931047ad2b5240c80ebf09d5", size = 5540622, upload-time = "2026-11-10T01:05:23.096Z" },
+    { url = "https://files.pythonhosted.org/packages/2a/5a/62fa2aa7b0ee1e85a2aeebb9a38f0e390897f4367957172f784ea736813f/kytea-0.2.0-cp314-cp314-win_amd64.whl", hash = "sha256:70e4b913ed01ecd5a52c4a02a304fe50103868808701000a916aa1928ddf7ded", size = 320247, upload-time = "2026-11-10T01:05:25.083Z" },
+    { url = "https://files.pythonhosted.org/packages/81/f8/d6be9296a93d0d7ec4d779ab981a8ac99e91bb94810d2d41726207b97ef4/kytea-0.2.0-cp315-cp315-macosx_10_15_x86_64.whl", hash = "sha256:2e72dd621e09d7a8e4875cb37767efc4ca25b373d811c8bb4f88efcb971ce8c3", size = 677037, upload-time = "2026-11-10T01:05:26.937Z" },
+    { url = "https://files.pythonhosted.org/packages/84/cd/717895ecffa671f46422680a3946495f6ebe024a2d4538e56298417c81d1/kytea-0.2.0-cp315-cp315-macosx_11_0_arm64.whl", hash = "sha256:4a168b58249b0c3c152ffa5de976cb935d5cee2291685fdcdee90934725fdc93", size = 659435, upload-time = "2026-11-10T01:05:28.485Z" },
+    { url = "https://files.pythonhosted.org/packages/ec/fd/0202254b034bc65ca3a0363053d0f747a068a842793554fdae969e00374d/kytea-0.2.0-cp315-cp315-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:0382f7c57eb53bde92ed75bd06e60d2de7d34254c316989f1546c08d3e15c6ad", size = 5543031, upload-time = "2026-11-10T01:05:30.362Z" },
+    { url = "https://files.pythonhosted.org/packages/06/b1/58dfd1dea292bc6897c505540fb21ce0315e01a1ce031c67cdec9141a737/kytea-0.2.0-cp315-cp315-win_amd64.whl", hash = "sha256:4306d70cf16f7cdbdb80ed0f08ab533b7db79f783bf1d9b05f8892432ad77d21", size = 320256, upload-time = "2026-11-10T01:05:32.158Z" },
 ]
 
 [[package]]

@@ -102,3 +102,26 @@ def test_batch_tokenize(raw_texts: List[str], tokenizer_params: Dict):
     ]
     result = tokenizer.batch_tokenize(raw_texts)
     assert expect == result
+
+
+@pytest.mark.parametrize(
+    "text,expect",
+    [
+        ("私 は猫", [("私 ", "UNK", "UNK"), ("は", "助詞", "は"), ("猫", "名詞", "ねこ")]),
+        (
+            "a/b です",
+            [
+                ("a", "UNK", "UNK"),
+                ("/", "UNK", "UNK"),
+                ("b", "UNK", "UNK"),
+                (" ", "UNK", "UNK"),
+                ("で", "助動詞", "で"),
+                ("す", "語尾", "す"),
+            ],
+        ),
+    ],
+)
+def test_kytea_tokenize_with_space_and_slash(text: str, expect: List):
+    tokenizer = WordTokenizer("kytea", model_path="data/model.knm")
+    result = [(token.surface, token.postag, token.pron) for token in tokenizer.tokenize(text)]
+    assert expect == result
